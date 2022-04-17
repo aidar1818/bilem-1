@@ -7,9 +7,14 @@ const router = express.Router();
 
 router.post('/', async (req, res, next) => {
     try {
+        if (req.body.password.length < 8) {
+            return res.status(403).send({error: 'Password should be at least 8 characters.'});
+        }
+
         const user = new User({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            displayName: req.body.displayName
         });
 
         user.generateToken();

@@ -1,0 +1,84 @@
+<app-centered-card title="Register">
+  <form
+    #f="ngForm"
+    fxLayout="column"
+    autocomplete="off"
+    [appIdentical]="['password', 'passwordRepeat']"
+    style="margin-top: 20px"
+    (ngSubmit)="register()"
+  >
+    <div *ngIf="error | async" class="error">
+      {{ (error | async)?.errors }}
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input
+        type="email" name="email" autocomplete="username"
+        email required matInput ngModel #email="ngModel"
+      />
+      <mat-error *ngIf="email.touched && email.hasError('required')">
+        Email is required!
+      </mat-error>
+      <mat-error *ngIf="email.touched && email.hasError('email')">
+        Enter correct email!
+      </mat-error>
+      <mat-error *ngIf="email.touched && email.hasError('serverError')">
+        {{ email.getError('serverError') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text" name="displayName" autocomplete="displayName"
+        required matInput ngModel #displayName="ngModel"
+      />
+      <mat-error *ngIf="displayName.touched && displayName.hasError('required')">
+        Name is required!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        type="password" name="password" id="password" autocomplete="new-password"
+        required matInput ngModel appPassword minlength="8" #password="ngModel"
+      />
+      <mat-error *ngIf="password.touched && password.hasError('required')">
+        Password is required!
+      </mat-error>
+      <mat-error *ngIf="password.touched && password.hasError('minlength')">
+        Password should be at least 8 characters.
+      </mat-error>
+      <mat-error *ngIf="password.touched && password.hasError('password')">
+        Password should contain at least: « 1 number, 1 lowercase letter and 1 uppercase letter, also 1 character (#?!@$%^&*-) »
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat password</mat-label>
+      <input
+        type="password" name="passwordRepeat" id="passwordRepeat" required matInput ngModel
+        appPassword #passwordRepeat="ngModel"
+      />
+      <mat-error *ngIf="passwordRepeat.touched && passwordRepeat.hasError('required')">
+        Repeat password!
+      </mat-error>
+      <small
+        *ngIf="passwordRepeat.touched && f.hasError('identical')"
+        class="form-text invalid-form-text"
+      >
+        Passwords should match
+      </small>
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid"
+    >
+      REGISTER
+    </button>
+  </form>
+</app-centered-card>

@@ -2,13 +2,24 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppStoreModule} from "./store/app-store.module";
 import {AuthInterceptor} from "./auth.interceptor";
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CenteredCardComponent } from './ui/centered-card/centered-card.component';
+import { FlexModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ValidatePasswordDirective } from './directives/validate-password.directive';
+import { ValidateIdenticalDirective } from './directives/validate-identical.directive';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -24,16 +35,28 @@ const socialConfig: SocialAuthServiceConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    CenteredCardComponent,
+    ValidatePasswordDirective,
+    ValidateIdenticalDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     SocialLoginModule,
     AppStoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
