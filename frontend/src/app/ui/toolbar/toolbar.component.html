@@ -1,0 +1,41 @@
+<mat-toolbar
+  class="toolbar"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+ <div fxLayoutAlign="space-between center">
+   <a routerLink="/" class="logo">bilem.</a>
+   <nav class="page-nav">
+     <a routerLink="courses">Мои курсы</a>
+     <a routerLink="teaching">Преподавание</a>
+   </nav>
+ </div>
+  <div fxLayoutAlign="space-between center">
+    <div class="search">
+      <input
+        type="text"
+        name="search"
+        matInput
+        ngModel
+        placeholder="поиск"
+      />
+    </div>
+    <nav *ngIf="!(user | async) else userMenu">
+      <a mat-button routerLink="register">РЕГИСТРАЦИЯ</a>&nbsp;
+      <a mat-button routerLink="login">ВОЙТИ</a>
+    </nav>
+  </div>
+</mat-toolbar>
+
+<ng-template #userMenu>
+  <nav>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="avatar">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>{{ (user | async)?.displayName }}</button>
+      <a mat-menu-item>Profile</a>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </nav>
+</ng-template>

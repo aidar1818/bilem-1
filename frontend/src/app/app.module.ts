@@ -27,6 +27,11 @@ import {
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ToolbarComponent } from './ui/toolbar/toolbar.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -50,7 +55,9 @@ const socialConfig: SocialAuthServiceConfig = {
     ValidateIdenticalDirective,
     RecoveryComponent,
     DialogExamplePasswordComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    ToolbarComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,10 @@ const socialConfig: SocialAuthServiceConfig = {
     MatButtonModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
