@@ -17,6 +17,20 @@ export interface LoginUserData {
   password: string,
 }
 
+export interface CodeUserData {
+  email: string,
+  code: string
+}
+
+export interface EditPasswordData {
+  email: string,
+  password: string
+}
+
+export interface EmailData {
+  email: string,
+}
+
 export interface FieldError {
   message: string
 }

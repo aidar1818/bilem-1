@@ -7,7 +7,10 @@ export type UsersState = {
   loginLoading: boolean,
   loginError: null | LoginError,
   loginFacebookLoading: boolean,
-  loginFacebookError: null | LoginError
+  loginFacebookError: null | LoginError,
+  code: string | null,
+  codeError: string | null,
+  userEmail: string | null
 }
 
 export type AppState = {

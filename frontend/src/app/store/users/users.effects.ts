@@ -3,6 +3,8 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {UsersService} from '../../services/users.service';
 import {Router} from '@angular/router';
 import {
+  editPasswordFailure,
+  editPasswordRequest, editPasswordSuccess,
   loginFacebookFailure,
   loginFacebookRequest,
   loginFacebookSuccess,
@@ -13,9 +15,9 @@ import {
   logoutUserRequest,
   registerUserFailure,
   registerUserRequest,
-  registerUserSuccess
+  registerUserSuccess, sendEmailRequest, sendEmailSuccess, sendUserCodeFailure, sendUserCodeRequest, sendUserCodeSuccess
 } from './users.actions';
-import {map, mergeMap, tap} from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import {HelpersService} from '../../services/helpers.service';
 import {AppState} from '../types';
 import {Store} from '@ngrx/store';
@@ -81,4 +83,32 @@ export class UsersEffects {
       );
     }))
   )
+
+  sendEmail = createEffect(() => this.actions.pipe(
+    ofType(sendEmailRequest),
+    mergeMap( ({email}) => this.usersService.recoveryPassword(email).pipe(
+      map(user => sendEmailSuccess({user})),
+    ))
+  ));
+
+  sendCode = createEffect(() => this.actions.pipe(
+    ofType(sendUserCodeRequest),
+    mergeMap(({userData}) => this.usersService.sendCode(userData).pipe(
+      map(code => {
+        return sendUserCodeSuccess({code})
+      }),
+      catchError(() => of(sendUserCodeFailure({error: 'Вы ввели не актуальный код, попробуйте еще раз отправить форму'})))
+    ))
+  ));
+
+  editPassword = createEffect(() => this.actions.pipe(
+    ofType(editPasswordRequest),
+    mergeMap( ({password}) => this.usersService.editPassword(password).pipe(
+      map(() => editPasswordSuccess()),
+      tap(() => {
+        void this.router.navigate(['/login']);
+      })
+    )),
+    catchError(() => of(editPasswordFailure({error: 'Что-то пошло не так'})))
+  ));
 }

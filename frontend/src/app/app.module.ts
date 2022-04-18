@@ -20,6 +20,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ValidatePasswordDirective } from './directives/validate-password.directive';
 import { ValidateIdenticalDirective } from './directives/validate-identical.directive';
+import { RecoveryComponent } from './pages/password-recovery/recovery.component';
+import {
+  DialogExamplePasswordComponent
+} from './pages/password-recovery/dialog-password-recovery/dialog-example-password.component';
+import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -40,7 +47,10 @@ const socialConfig: SocialAuthServiceConfig = {
     LoginComponent,
     CenteredCardComponent,
     ValidatePasswordDirective,
-    ValidateIdenticalDirective
+    ValidateIdenticalDirective,
+    RecoveryComponent,
+    DialogExamplePasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +66,9 @@ const socialConfig: SocialAuthServiceConfig = {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

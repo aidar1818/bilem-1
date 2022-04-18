@@ -1,7 +1,13 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const config = require("../config");
 const axios = require('axios');
+
+require('dotenv').config();
+const nodemailer = require('nodemailer');
+const { customAlphabet } = require('nanoid');
+const nanoid = customAlphabet('1234567890', 6);
 
 const router = express.Router();
 
@@ -106,6 +112,63 @@ router.delete('/sessions', async (req, res, next) => {
         return res.send(message);
     } catch (e) {
         next(e);
+    }
+});
+
+router.post('/recovery', async (req, res, next) => {
+    try{
+        const user = await User.findOne({email: req.body.email});
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
+            }
+        });
+
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: user.email,
+            subject: 'Код для подтверждения пароля',
+            text: nanoid(),
+        };
+
+        transporter.sendMail(mailOptions);
+
+        const updateUser = await User.findByIdAndUpdate({_id: user._id});
+        updateUser.code = mailOptions.text;
+        await updateUser.save();
+
+        return res.send(updateUser);
+    } catch(error){
+        next(error)
+    }
+});
+
+router.post('/checkCode', async (req, res, next)=>{
+    try{
+        const user = await User.findOne({email: req.body.email});
+
+        if(user.code !== req.body.code) {
+            return res.status(400).send({error: 'Incorrect code!'})
+        }
+
+        return res.send(user.code);
+    } catch(error){
+        next(error);
+    }
+});
+
+router.put('/editPassword', async (req, res, next)=>{
+    try{
+        const user = await User.findOne({email: req.body.email});
+        user.password = req.body.password;
+        await user.save();
+
+        return res.send(user);
+    } catch(error){
+        next(error);
     }
 });
 

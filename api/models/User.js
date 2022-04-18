@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
     },
     facebookId: String,
+    code: String
 });
 
 const SALT_WORK_FACTOR = 10;
