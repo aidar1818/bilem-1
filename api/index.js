@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const users = require('./app/users');
 const subcategories = require('./app/subcategories');
+const categories = require('./app/categories');
 const config = require('./config');
 const app = express();
 
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/users', users);
 app.use('/subcategories', subcategories);
+app.use('/categories', categories);
+
 
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);
