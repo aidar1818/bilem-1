@@ -15,7 +15,9 @@ export type UsersState = {
 };
 
 export type CategoriesState = {
-  categories: Category[]
+  categories: Category[],
+  fetchLoading: boolean,
+  fetchLoadingError: null | string
 };
 
 export type AppState = {

@@ -3,13 +3,19 @@
   fxLayout="row"
   fxLayoutAlign="space-between center"
 >
- <div fxLayoutAlign="space-between center">
-   <a routerLink="/" class="logo">bilem.</a>
-   <nav class="page-nav">
-     <a routerLink="courses">Мои курсы</a>
-     <a routerLink="teaching">Преподавание</a>
-   </nav>
- </div>
+  <div fxLayoutAlign="space-between center">
+    <a routerLink="/" class="logo">bilem.</a>
+    <nav class="page-nav">
+      <div class="dropdown">
+        <a class="dropbtn">Категории</a>
+        <div class="dropdown-content">
+          <div class="content" *ngFor="let category of categoriesArray">{{ category.title }}</div>
+        </div>
+      </div>
+      <a routerLink="courses">Мои курсы</a>
+      <a routerLink="teaching">Преподавание</a>
+    </nav>
+  </div>
   <div fxLayoutAlign="space-between center">
     <div class="search">
       <span class="material-icons search-icon">
