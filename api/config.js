@@ -10,7 +10,7 @@ module.exports = {
         options: {useNewUrlParser: true},
     },
     facebook: {
-        appId: '663684838047329',
-        appSecret: '335c3edc437ab77d4096e4d5a43085bb'
+        appId: '298585782430692',
+        appSecret: 'a9f65879f5adf3b48cf60c534a404d20'
     },
 };
