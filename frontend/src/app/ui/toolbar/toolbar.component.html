@@ -12,11 +12,13 @@
  </div>
   <div fxLayoutAlign="space-between center">
     <div class="search">
+      <span class="material-icons search-icon">
+        search
+      </span>
       <input
         type="text"
         name="search"
-        matInput
-        ngModel
+        [(ngModel)]="search"
         placeholder="поиск"
       />
     </div>

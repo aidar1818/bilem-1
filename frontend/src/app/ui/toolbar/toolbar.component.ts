@@ -12,6 +12,7 @@ import { logoutUserRequest } from '../../store/users/users.actions';
 })
 export class ToolbarComponent implements OnInit {
   user: Observable<null | User>;
+  search = '';
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
@@ -23,5 +24,4 @@ export class ToolbarComponent implements OnInit {
   logout(){
     this.store.dispatch(logoutUserRequest());
   }
-
 }
