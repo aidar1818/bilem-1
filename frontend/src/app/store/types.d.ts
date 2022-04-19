@@ -1,4 +1,5 @@
 import { LoginError, RegisterError, User } from '../models/user.models';
+import { Category } from '../models/category.model';
 
 export type UsersState = {
   user: null | User,
@@ -11,8 +12,13 @@ export type UsersState = {
   code: string | null,
   codeError: string | null,
   userEmail: string | null
-}
+};
+
+export type CategoriesState = {
+  categories: Category[]
+};
 
 export type AppState = {
   users: UsersState,
-}
+  categories: CategoriesState
+};
