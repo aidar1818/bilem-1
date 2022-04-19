@@ -20,6 +20,8 @@ export type CategoriesState = {
   fetchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
+  removeLoading: boolean,
+  removeError: null | string,
 };
 
 export type AppState = {

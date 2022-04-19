@@ -68,7 +68,7 @@
   display: none;
   position: absolute;
   background-color: white;
-  min-width: 160px;
+  max-width: 250px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 10px;
@@ -85,11 +85,18 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: black;
   font-size: 13px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight: 400;
   padding: 3px 10px;
+}
+.content span {
+  margin-right: 10px;
+  cursor: pointer
 }
 
 .content:hover {

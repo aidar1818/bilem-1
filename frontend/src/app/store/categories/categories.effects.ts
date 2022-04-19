@@ -3,17 +3,16 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoriesService } from '../../services/categories.service';
 import { Router } from '@angular/router';
 import { HelpersService } from '../../services/helpers.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '../types';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import {
   createCategoryFailure,
-  createCategoryRequest,
-  createCategorySuccess,
+  createCategoryRequest, createCategorySuccess, deleteCategoryFailure, deleteCategoryRequest, deleteCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
   fetchCategoriesSuccess
 } from './categories.actions';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { AppState } from '../types';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class CategoriesEffects {
@@ -31,17 +30,30 @@ export class CategoriesEffects {
       map(categories => fetchCategoriesSuccess({categories})),
       this.helpers.catchServerError(fetchCategoriesFailure)
     ))
-  ));
+  ))
 
   createCategory = createEffect(() => this.actions.pipe(
     ofType(createCategoryRequest),
     mergeMap(({categoryData}) => this.categoriesService.createNewCategory(categoryData).pipe(
       map(() => createCategorySuccess()),
       tap(() => {
+        this.store.dispatch(fetchCategoriesRequest());
         this.helpers.openSnackbar('Успешное создание категории!');
         void this.router.navigate(['/']);
       }),
       catchError(() => of(createCategoryFailure({error: 'Неверные данные для создания категории!'})))
+    ))
+  ));
+
+  deleteCategory = createEffect(() => this.actions.pipe(
+    ofType(deleteCategoryRequest),
+    mergeMap(({id}) => this.categoriesService.deleteCategory(id).pipe(
+      map(() => deleteCategorySuccess()),
+      tap(() => {
+        this.store.dispatch(fetchCategoriesRequest());
+        this.helpers.openSnackbar('Успешное удаление категории!');
+      }),
+      this.helpers.catchServerError(deleteCategoryFailure)
     ))
   ));
 

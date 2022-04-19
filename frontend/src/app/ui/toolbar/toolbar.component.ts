@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { logoutUserRequest } from '../../store/users/users.actions';
 import { Category } from '../../models/category.model';
-import { fetchCategoriesRequest } from '../../store/categories/categories.actions';
+import { deleteCategoryRequest, fetchCategoriesRequest } from '../../store/categories/categories.actions';
 
 @Component({
   selector: 'app-toolbar',
@@ -39,5 +39,9 @@ export class ToolbarComponent implements OnInit {
 
   logout(){
     this.store.dispatch(logoutUserRequest());
+  }
+
+  deleteCategory(id: string) {
+    this.store.dispatch(deleteCategoryRequest({id}))
   }
 }

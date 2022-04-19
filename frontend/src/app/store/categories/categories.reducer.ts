@@ -2,7 +2,7 @@ import { CategoriesState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
   createCategoryFailure,
-  createCategoryRequest, createCategorySuccess,
+  createCategoryRequest, createCategorySuccess, deleteCategoryFailure, deleteCategoryRequest, deleteCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
   fetchCategoriesSuccess
@@ -14,6 +14,8 @@ const initialState: CategoriesState = {
   fetchLoadingError: null,
   createLoading: false,
   createError: null,
+  removeLoading: false,
+  removeError: null,
 };
 
 export const categoriesReducer = createReducer(
@@ -39,5 +41,15 @@ export const categoriesReducer = createReducer(
     ...state,
     createLoading: false,
     createError: error
+  })),
+  on(deleteCategoryRequest, state => ({...state, removeLoading: true})),
+  on(deleteCategorySuccess, state => ({
+    ...state,
+    removeLoading: false,
+  })),
+  on(deleteCategoryFailure, (state, {error}) => ({
+    ...state,
+    removeLoadingLoading: false,
+    removeError: error,
   })),
 );

@@ -9,13 +9,17 @@
       <div class="dropdown">
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
-          <div class="content" *ngFor="let category of categoriesArray">{{ category.title }}</div>
+          <div class="content" *ngFor="let category of categoriesArray">
+            <p>{{ category.title }}</p>
+            <span class="material-icons" (click)="deleteCategory(category._id)">
+                delete
+              </span>
+          </div>
           <div *appHasRoles="['admin']">
             <a mat-raised-button color="primary" routerLink="/edit-category">
-            <span class="material-icons" style="margin-right: 10px">
-          add
-          </span>
-              <span>Добавить новую категорию</span>
+              <span class="material-icons" style="margin-right: 10px">
+                add
+              </span>
             </a>
           </div>
         </div>
