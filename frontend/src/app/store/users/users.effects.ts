@@ -60,7 +60,7 @@ export class UsersEffects {
 
   loginFacebook  = createEffect(() => this.actions.pipe(
     ofType(loginFacebookRequest),
-    mergeMap(({userSocial}) => this.usersService.loginWithFacebook(userSocial).pipe(
+    mergeMap(({userData}) => this.usersService.loginWithFacebook(userData).pipe(
       map(user => loginFacebookSuccess({user})),
       tap(() => {
         this.helpers.openSnackbar('Login from facebook successful');

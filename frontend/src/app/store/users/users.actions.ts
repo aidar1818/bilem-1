@@ -2,13 +2,12 @@ import { createAction, props } from '@ngrx/store';
 import {
   CodeUserData, EditPasswordData,
   EmailData,
-  LoginError,
+  LoginError, LoginFacebookUser,
   LoginUserData,
   RegisterError,
   RegisterUserData,
   User
 } from '../../models/user.models';
-import {SocialUser} from "angularx-social-login";
 
 export const registerUserRequest = createAction(
   '[Users] Register Request',
@@ -37,7 +36,7 @@ export const loginUserFailure = createAction(
 
 export const loginFacebookRequest = createAction(
   '[Users] Login Facebook Request',
-  props<{userSocial: SocialUser}>()
+  props<{userData: LoginFacebookUser}>()
 );
 
 export const loginFacebookSuccess = createAction(

@@ -17,6 +17,13 @@ export interface LoginUserData {
   password: string,
 }
 
+export interface LoginFacebookUser {
+  id: string,
+  authToken: string,
+  email: string,
+  name: string,
+}
+
 export interface CodeUserData {
   email: string,
   code: string

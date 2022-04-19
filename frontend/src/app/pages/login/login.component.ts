@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { LoginError, LoginUserData } from '../../models/user.models';
+import { LoginError, LoginFacebookUser, LoginUserData } from '../../models/user.models';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { FacebookLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
@@ -27,8 +27,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authStateSub = this.authService.authState.subscribe((userSocial: SocialUser) => {
-      this.store.dispatch(loginFacebookRequest({userSocial}));
+    this.authStateSub = this.authService.authState.subscribe((user: SocialUser) => {
+      const userData: LoginFacebookUser = {
+        id: user.id,
+        authToken: user.authToken,
+        email: user.email,
+        name: user.name,
+      };
+      this.store.dispatch(loginFacebookRequest({userData}));
     });
   }
 

@@ -3,13 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import {
   CodeUserData,
   EditPasswordData,
-  EmailData,
+  EmailData, LoginFacebookUser,
   LoginUserData,
   RegisterUserData,
   User
 } from '../models/user.models';
 import { environment, environment as env } from '../../environments/environment';
-import { SocialUser } from 'angularx-social-login';
 import { map } from 'rxjs';
 
 
@@ -32,13 +31,8 @@ export class UsersService {
     return this.http.delete(env.apiUrl + '/users/sessions');
   }
 
-  loginWithFacebook(user: SocialUser) {
-    return this.http.post<User>(env.apiUrl + '/users/facebookLogin', {
-      authToken: user.authToken,
-      id: user.id,
-      email: user.email,
-      name: user.name
-    });
+  loginWithFacebook(userData: LoginFacebookUser) {
+    return this.http.post<User>(env.apiUrl + '/users/facebookLogin', userData);
   }
 
   recoveryPassword(email: EmailData) {
