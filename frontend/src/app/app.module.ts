@@ -28,9 +28,12 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToolbarComponent } from './ui/toolbar/toolbar.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
+import { HasRolesDirective } from './directives/has-roles.directive';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -55,7 +58,10 @@ const socialConfig: SocialAuthServiceConfig = {
     RecoveryComponent,
     DialogExamplePasswordComponent,
     NewPasswordComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    CatalogComponent,
+    EditCategoryComponent,
+    HasRolesDirective
   ],
   imports: [
     BrowserModule,

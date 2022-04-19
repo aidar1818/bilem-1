@@ -10,6 +10,14 @@
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
           <div class="content" *ngFor="let category of categoriesArray">{{ category.title }}</div>
+          <div *appHasRoles="['admin']">
+            <a mat-raised-button color="primary" routerLink="/edit-category">
+            <span class="material-icons" style="margin-right: 10px">
+          add
+          </span>
+              <span>Добавить новую категорию</span>
+            </a>
+          </div>
         </div>
       </div>
       <a routerLink="courses">Мои курсы</a>

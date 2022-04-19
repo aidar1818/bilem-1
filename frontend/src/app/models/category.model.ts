@@ -5,3 +5,7 @@ export class Category {
   ) {}
 }
 
+export interface CreateCategoryData {
+  title: string
+}
+
