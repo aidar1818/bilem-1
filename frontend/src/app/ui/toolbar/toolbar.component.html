@@ -11,7 +11,7 @@
         <div class="dropdown-content">
           <div class="content" *ngFor="let category of categoriesArray">
             <p>{{ category.title }}</p>
-            <span class="material-icons" (click)="deleteCategory(category._id)">
+            <span class="material-icons" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
                 delete
               </span>
           </div>

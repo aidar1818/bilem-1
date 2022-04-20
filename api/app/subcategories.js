@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
+    if(req.query.category) {
+      const subcategoriesByCategory = await Subcategory.find({category: req.query.category});
+      return res.send(subcategoriesByCategory);
+    }
     const subcategory = await Subcategory.find();
 
     return res.send(subcategory);

@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const users = require('./app/users');
 const subcategories = require('./app/subcategories');
 const categories = require('./app/categories');
+const courses = require('./app/courses');
+const modules = require('./app/modules');
+const lessons = require('./app/lessons');
 const config = require('./config');
 const app = express();
 
@@ -27,6 +30,9 @@ app.use(express.static('public'));
 app.use('/users', users);
 app.use('/subcategories', subcategories);
 app.use('/categories', categories);
+app.use('/courses', courses);
+app.use('/modules', modules);
+app.use('/lessons', lessons);
 
 
 const run = async () => {
