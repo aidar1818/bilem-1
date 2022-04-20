@@ -33,8 +33,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', auth, permit('user', 'admin'), upload.single('image'), async (req, res, next) => {
+router.post('/', auth, upload.single('image'), async (req, res, next) => {
   try {
+    console.log(req.body)
     if(!req.body.title) {
       return res.status(400).send({message: 'Title is required !'});
     }
@@ -42,14 +43,16 @@ router.post('/', auth, permit('user', 'admin'), upload.single('image'), async (r
     const course = new Course({
       title: req.body.title,
       description: req.body.description,
-      author: req.body.author,
+      author: req.user._id,
       subcategory: req.body.subcategory,
-      price: req.body.price,
       image: null,
       is_free: req.body.is_free,
-      content: req.body.content,
       rate: req.body.rate
     });
+
+    if(req.body.price) {
+      course.price = req.body.price;
+    }
 
     if(req.file) {
       course.image = req.file.filename;

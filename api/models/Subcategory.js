@@ -13,10 +13,6 @@ const SubcategorySchema = new Schema({
     unique: true,
   },
   description: String,
-  quantity: {
-    type: Number,
-    default: 0,
-  },
 });
 
 const Subcategory = mongoose.model('Subcategory', SubcategorySchema);

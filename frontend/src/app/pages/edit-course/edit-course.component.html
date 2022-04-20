@@ -1,0 +1,59 @@
+<div class="content">
+  <h1>Создание нового курса</h1>
+
+    <form fxLayout="column" (ngSubmit)="onSubmit()" #f=ngForm>
+      <mat-form-field>
+        <mat-label>Название курса</mat-label>
+        <input matInput type="text" name="title" required ngModel #title="ngModel">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Описание</mat-label>
+        <input matInput type="text" name="description" ngModel #description="ngModel">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Категории</mat-label>
+        <mat-select
+          name="category"
+          required
+          ngModel
+          #category="ngModel"
+        >
+          <mat-option
+            *ngFor="let category of categories | async" [value]="category._id"
+            (click)="getSubCategories(category._id)"
+          >
+            {{ category.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Предмет</mat-label>
+        <mat-select
+          name="subcategory"
+          required
+          ngModel
+          #subcategory="ngModel"
+        >
+          <mat-option
+            *ngFor="let subcategory of subcategories | async" [value]="subcategory._id"
+          >{{ subcategory.title }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="!is_free">
+        <mat-label>Цена</mat-label>
+        <input matInput type="number" name="price" ngModel #price="ngModel">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <app-file-input name="image" ngModel></app-file-input>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button [disabled]="f.invalid">Создать курс</button>
+    </form>
+
+</div>

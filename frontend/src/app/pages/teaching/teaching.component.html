@@ -1,0 +1,42 @@
+<div class="title">
+  <h1>
+    Создавайте любые онлайн-курсы на конструкторе Bilem
+  </h1>
+
+  <button class="btn" mat-raised-button (click)="showFreeCards()">Создать курс</button>
+</div>
+
+<div class="box" fxLayout="row" fxLayoutAlign="center" *ngIf="showCard === true">
+  <mat-card>
+    <mat-card-title>
+      Платный курс
+    </mat-card-title>
+    <hr>
+    <div>
+      Создать платный курс
+    </div>
+    <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addPaidCourse()" fxLayoutAlign="center center">
+      <span class="material-icons" style="margin-right: 10px">
+        add
+      </span>
+      Создать новый курс
+    </button>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Бесплатный курс
+    </mat-card-title>
+    <hr>
+    <div>
+      Создать бесплатный курс
+    </div>
+    <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addFreeCourse()" fxLayoutAlign="center center">
+      <span class="material-icons" style="margin-right: 10px">
+        add
+      </span>
+      Создать новый курс
+    </button>
+  </mat-card>
+</div>
+

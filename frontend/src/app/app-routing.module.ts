@@ -7,6 +7,8 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 import { RoleGuardService } from './services/role-guard.service';
+import { TeachingComponent } from './pages/teaching/teaching.component';
+import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 
 const routes: Routes = [
   {path: '', component: CatalogComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'recovery', component: RecoveryComponent},
   {path: 'newPassword', component: NewPasswordComponent},
+  {path: 'teaching', component: TeachingComponent},
+  {path: 'editCourse', component: EditCourseComponent},
   {
     path: 'edit-category',
     component: EditCategoryComponent,

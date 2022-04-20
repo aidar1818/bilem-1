@@ -1,0 +1,35 @@
+.title{
+  text-align: center;
+  margin: 7rem auto 2rem;
+}
+
+.box mat-card{
+  margin: 20px;
+  padding: 40px;
+}
+
+.btn{
+  padding: 5px 25px;
+}
+
+mat-card{
+  width: 15rem;
+}
+
+mat-card:hover{
+  box-shadow: 0 0 5px 2px lightgray;
+}
+
+mat-card mat-card-title{
+  margin: 0 0 30px;
+}
+
+mat-card div{
+  margin: 20px 0
+}
+
+.addBtn{
+  background: #EB8B7F;
+  color: white;
+}
+

@@ -34,6 +34,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 import { HasRolesDirective } from './directives/has-roles.directive';
+import { TeachingComponent } from './pages/teaching/teaching.component';
+import { EditCourseComponent } from './pages/edit-course/edit-course.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FileInputComponent } from './ui/file-input/file-input.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -61,7 +65,11 @@ const socialConfig: SocialAuthServiceConfig = {
     ToolbarComponent,
     CatalogComponent,
     EditCategoryComponent,
-    HasRolesDirective
+    HasRolesDirective,
+    TeachingComponent,
+    EditCourseComponent,
+    FileInputComponent,
+    FileInputComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +90,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatDialogModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

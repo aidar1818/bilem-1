@@ -3,14 +3,14 @@ import { CreateCategoryData } from '../../models/category.model';
 import { Category } from '../../models/category.model';
 
 export const fetchCategoriesRequest = createAction(
-  '[Categories] Register Request'
+  '[Categories] Fetch Request'
 );
 export const fetchCategoriesSuccess = createAction(
-  '[Categories] Register Success',
+  '[Categories] Fetch Success',
   props<{categories: Category[]}>()
 );
 export const fetchCategoriesFailure = createAction(
-  '[Categories] Register Failure',
+  '[Categories] Fetch Failure',
   props<{error: string}>()
 );
 

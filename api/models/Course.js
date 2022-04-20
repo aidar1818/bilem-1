@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Module = require("module");
 const Schema = mongoose.Schema;
 
 const CourseSchema = new Schema({
@@ -31,6 +32,9 @@ const CourseSchema = new Schema({
   is_free: {
     type: Boolean,
     default: true,
+  },
+  content : {
+    type: null | [Module],
   },
   rate: {
     type: Number,

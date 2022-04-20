@@ -6,6 +6,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './users/users.effects';
 import { categoriesReducer } from './categories/categories.reducer';
 import { CategoriesEffects } from './categories/categories.effects';
+import { subcategoriesReducer } from './subcategories/subcategories.reducer';
+import { SubcategoriesEffects } from './subcategories/subcategories.effects';
+import { courseReducer } from './course/course.reducer';
+import { CourseEffects } from './course/course.effects';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -18,10 +22,12 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
 
 const reducers = {
   users: usersReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  subcategories: subcategoriesReducer,
+  courses: courseReducer,
 };
 
-const effects = [UsersEffects, CategoriesEffects];
+const effects = [UsersEffects, CategoriesEffects, SubcategoriesEffects, CourseEffects];
 
 @NgModule({
   imports: [
