@@ -4,3 +4,10 @@
   display: block;
   margin: 0 auto;
 }
+
+.div p {
+  margin-top: 15px;
+  padding: 0 10px;
+  color: gray;
+  font-weight: 500;
+}

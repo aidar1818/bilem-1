@@ -1,4 +1,4 @@
-<app-centered-card title="Sign in">
+<app-centered-card title="Вход">
   <form
     #f="ngForm"
     fxLayout="column"
@@ -16,29 +16,29 @@
         email required matInput ngModel #email="ngModel"
       />
       <mat-error *ngIf="email.touched && email.hasError('required')">
-        Email is required!
+        Введите ваш почтовый адрес.
       </mat-error>
       <mat-error *ngIf="email.touched && email.hasError('email')">
-        Enter correct email!
+        Пожалуйста, введите корректный адрес.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>Пароль</mat-label>
       <input
         type="password" name="password" autocomplete="current-password"
         required matInput ngModel minlength="8" #password="ngModel"
       />
       <mat-error *ngIf="password.touched && password.hasError('required')">
-        Password is required!
+        Введите пароль.
       </mat-error>
       <mat-error *ngIf="password.touched && password.hasError('minlength')">
-        Password should be at least 8 characters.
+        Пароль должен содержать минимум 8 символов.
       </mat-error>
     </mat-form-field>
 
-    <div fxLayout="row" fxLayoutAlign="center" style="margin-bottom: 16px">
-      <a routerLink="/register">Don't have an account? Sign Up</a>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <p>Еще нет аккаунта? <a routerLink="/register">Зарегистрируйтесь</a></p>
     </div>
 
     <div class="regLink">
@@ -51,14 +51,17 @@
       type="submit"
       mat-raised-button
       color="primary"
+      style="font-size: 18px"
       [disabled]="f.invalid"
     >
-      SIGN IN
+      Войти
     </button>
 
-    <hr style="width: 100%; margin: 25px 0"/>
+    <div fxLayout="row" class="div">
+      <hr style="width: 45%; margin: 25px 0; transform: scaleY(0.3);"/><p>ИЛИ</p><hr style="width: 45%; margin: 25px 0; transform: scaleY(0.3);"/>
+    </div>
 
-    <p style="font-size: 16px">Or sign in by social network:</p>
+    <p style="font-size: 16px">Войдите с помощью социальных сетей:</p>
 
     <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
   </form>

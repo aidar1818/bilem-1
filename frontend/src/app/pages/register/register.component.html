@@ -1,4 +1,4 @@
-<app-centered-card title="Register">
+<app-centered-card title="Регистрация">
   <form
     #f="ngForm"
     fxLayout="column"
@@ -17,10 +17,10 @@
         email required matInput ngModel #email="ngModel"
       />
       <mat-error *ngIf="email.touched && email.hasError('required')">
-        Email is required!
+        Введите ваш почтовый адрес.
       </mat-error>
       <mat-error *ngIf="email.touched && email.hasError('email')">
-        Enter correct email!
+        Пожалуйста, введите корректный адрес.
       </mat-error>
       <mat-error *ngIf="email.touched && email.hasError('serverError')">
         {{ email.getError('serverError') }}
@@ -28,57 +28,52 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
+      <mat-label>Имя</mat-label>
       <input
         type="text" name="displayName" autocomplete="displayName"
         required matInput ngModel #displayName="ngModel"
       />
       <mat-error *ngIf="displayName.touched && displayName.hasError('required')">
-        Name is required!
+        Введите ваше имя.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>Пароль</mat-label>
       <input
         type="password" name="password" id="password" autocomplete="new-password"
         required matInput ngModel appPassword minlength="8" #password="ngModel"
       />
       <mat-error *ngIf="password.touched && password.hasError('required')">
-        Password is required!
+        Введите пароль.
       </mat-error>
       <mat-error *ngIf="password.touched && password.hasError('minlength')">
-        Password should be at least 8 characters.
+        Пароль должен состоять минимум из 8 символов.
       </mat-error>
-      <mat-error *ngIf="password.touched && password.hasError('password')">
-        Password should contain at least: « 1 number, 1 lowercase letter and 1 uppercase letter, also 1 character (#?!@$%^&*-) »
+      <mat-error *ngIf="password.touched && password.hasError('password') && password.value.length >= 8">
+        Пароль должен содержать: буквы нижнего и верхнего регистра, цифры и символы (#?!@$%^&*-).
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Repeat password</mat-label>
+      <mat-label>Повтор пароля</mat-label>
       <input
         type="password" name="passwordRepeat" id="passwordRepeat" required matInput ngModel
         appPassword #passwordRepeat="ngModel"
       />
-      <mat-error *ngIf="passwordRepeat.touched && passwordRepeat.hasError('required')">
-        Repeat password!
+      <mat-error *ngIf="passwordRepeat.touched && passwordRepeat.hasError('required') || f.hasError('identical')">
+        Пароли не совпадают, попробуйте еще раз.
       </mat-error>
-      <small
-        *ngIf="passwordRepeat.touched && f.hasError('identical')"
-        class="form-text invalid-form-text"
-      >
-        Passwords should match
-      </small>
     </mat-form-field>
 
     <button
       type="submit"
       mat-raised-button
       color="primary"
+      style="font-size: 18px"
       [disabled]="f.invalid"
     >
-      REGISTER
+      Зарегестрироваться
     </button>
   </form>
 </app-centered-card>
