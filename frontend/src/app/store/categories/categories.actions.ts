@@ -23,6 +23,10 @@ export const createCategoryFailure = createAction(
   props<{ error: string }>()
 );
 
+export const editCategoryRequest = createAction('[Category] Edit Request', props<{id: string, change: {title: string}}>());
+export const editCategorySuccess = createAction('[Category] Edit Success', props<{category: Category}>());
+export const editCategoryFailure = createAction('[Category] Edit Failure', props<{error: string}>());
+
 export const deleteCategoryRequest = createAction(
   '[Categories] Delete Request',
   props<{id: string}>()

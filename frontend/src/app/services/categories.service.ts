@@ -15,8 +15,16 @@ export class CategoriesService {
     return this.http.get<Category[]>(env.apiUrl + '/categories')
   }
 
+  getCategoryById(id: string) {
+    return this.http.get<Category | null>(env.apiUrl + '/categories/' + id);
+  }
+
   createNewCategory(categoryData: CreateCategoryData) {
     return this.http.post<Category>(env.apiUrl + '/categories', categoryData);
+  }
+
+  editCategory(id: string, change: {title: string}) {
+    return this.http.put<Category>(env.apiUrl + '/categories/' + id, change);
   }
 
   deleteCategory(id: string) {

@@ -6,7 +6,12 @@ import { HelpersService } from '../../services/helpers.service';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import {
   createCategoryFailure,
-  createCategoryRequest, createCategorySuccess, deleteCategoryFailure, deleteCategoryRequest, deleteCategorySuccess,
+  createCategoryRequest,
+  createCategorySuccess,
+  deleteCategoryFailure,
+  deleteCategoryRequest,
+  deleteCategorySuccess,
+  editCategoryRequest, editCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
   fetchCategoriesSuccess
@@ -42,6 +47,13 @@ export class CategoriesEffects {
         void this.router.navigate(['/']);
       }),
       catchError(() => of(createCategoryFailure({error: 'Неверные данные для создания категории!'})))
+    ))
+  ));
+
+  editCategory = createEffect(() => this.actions.pipe(
+    ofType(editCategoryRequest),
+    mergeMap(({id, change}) => this.categoriesService.editCategory(id, change).pipe(
+      map(category => editCategorySuccess({category}))
     ))
   ));
 

@@ -1,4 +1,4 @@
-<app-centered-card title="Создание категории">
+<app-centered-card title="{{ isEdit ? 'Редактирование категории' : 'Создание категории' }}">
   <form
     #f="ngForm"
     fxLayout="column"
@@ -10,7 +10,7 @@
       {{ error | async }}
     </div>
     <mat-form-field appearance="outline">
-      <mat-label>Название новой категории</mat-label>
+      <mat-label>{{ isEdit ? 'Измененное название' : 'Название новой категории' }}</mat-label>
       <input
         type="text" name="title"
         required matInput ngModel #title="ngModel"
@@ -25,7 +25,7 @@
       color="primary"
       [disabled]="f.invalid || (loading | async)"
     >
-     Создать
+      {{ isEdit ? 'Обновить' : 'Создать' }}
     </button>
   </form>
 </app-centered-card>

@@ -50,7 +50,7 @@
       <mat-error *ngIf="password.touched && password.hasError('minlength')">
         Пароль должен состоять минимум из 8 символов.
       </mat-error>
-      <mat-error *ngIf="password.touched && password.hasError('password') && password.value.length >= 8">
+      <mat-error *ngIf="password.touched && password.hasError('password') && password.value.length >= 8" [ngStyle]="{'font-size.px': 10}">
         Пароль должен содержать: буквы нижнего и верхнего регистра, цифры и символы (#?!@$%^&*-).
       </mat-error>
     </mat-form-field>

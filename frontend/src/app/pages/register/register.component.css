@@ -2,6 +2,6 @@
   color: red;
 }
 
-form mat-error {
-  margin-bottom: 10px;
+form mat-form-field {
+  margin-bottom: 5px;
 }

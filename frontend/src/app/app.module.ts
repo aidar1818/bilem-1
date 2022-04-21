@@ -32,7 +32,7 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
+import { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';
 import { HasRolesDirective } from './directives/has-roles.directive';
 import { TeachingComponent } from './pages/teaching/teaching.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
