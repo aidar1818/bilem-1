@@ -1,0 +1,61 @@
+.module-content {
+  text-align: center;
+  padding: 5rem;
+}
+
+.module-first-text {
+  margin: 40px 0;
+  opacity: 0.5;
+}
+
+.module-card {
+  margin: 20px auto;
+  width: 80%;
+  text-align: left;
+}
+
+.mat-card-input{
+  width: 70%;
+  margin: 0 20px;
+}
+
+.field{
+  width: 85%;
+  margin-right: 2rem;
+}
+
+.btnAddLesson{
+  margin-left: 15px;
+}
+
+.btnDelete{
+  margin-left: 10px;
+}
+
+.material-icons{
+  cursor: pointer;
+}
+
+.addModule{
+  background: #E6B1A8;
+  width: 15rem;
+  margin-left: 7rem;
+  font-size: 18px;
+  padding: 8px;
+}
+
+.saveBtn{
+  width: 15rem;
+  padding: 10px;
+  margin-right: 15rem;
+}
+
+.btnBlock{
+  background: #dddddd;
+  min-width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: right;
+  padding: 7px;
+}

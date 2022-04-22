@@ -1,0 +1,64 @@
+<div class="module-content">
+  <h1>Программа курса</h1>
+  <div class="module-first-text">
+    <p>В курсе пока нет ни одного урока.</p>
+    <p>Создайте первый модуль, чтобы добавить уроки.</p>
+  </div>
+  <div>
+    <form [formGroup]="moduleForm" (ngSubmit)="onSubmit()" fxLayout="column">
+      <div formArrayName="modules">
+        <div *ngFor="let module of modules().controls; let moduleIndex = index">
+            <mat-card class="module-card"
+              [formGroupName]="moduleIndex"
+            >
+              <mat-form-field class="mat-card-input">
+                <mat-label>Название модуля</mat-label>
+                <input
+                  type="text"
+                  name="moduleTitle"
+                  matInput
+                  formControlName="moduleTitle"
+                  required
+                />
+              </mat-form-field>
+              <span class="material-icons btnDelete" (click)="removeModule(moduleIndex)">delete</span>
+
+
+
+              <div formArrayName="lessons">
+                <div
+                  *ngFor="let lesson of getLessonsControls(moduleIndex).controls; let lessonIndex = index"
+                >
+                  <div [formGroupName]="lessonIndex">
+                    {{lessonIndex+1}} :
+                    <mat-form-field appearance="outline" class="field">
+                      <input
+                        type="text"
+                        name="lessonTitle"
+                        matInput
+                        formControlName="lessonTitle"
+                        placeholder="Название урока"
+                      />
+                    </mat-form-field>
+
+                    <span class="material-icons" (click)="removeLesson(moduleIndex,lessonIndex)">
+                      clear
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button mat-raised-button type="button" (click)="addLesson(moduleIndex)" class="btnAddLesson">
+                <span class="material-icons">add</span>
+                Добавить урок
+              </button>
+            </mat-card>
+        </div>
+      </div>
+      <button mat-raised-button type="button" (click)="addModule()" class="addModule">Добавить модуль</button>
+      <div class="btnBlock">
+        <button mat-raised-button class="saveBtn" type="submit">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+

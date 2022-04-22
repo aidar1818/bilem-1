@@ -32,17 +32,18 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';
 import { HasRolesDirective } from './directives/has-roles.directive';
 import { TeachingComponent } from './pages/teaching/teaching.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FileInputComponent } from './ui/file-input/file-input.component';
-import { MatListModule } from '@angular/material/list';
+import { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';
+import { EditModuleComponent } from './pages/edit-module/edit-module.component';
 import { CoursesComponent } from './pages/teaching/courses/courses.component';
-import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ImageForCoursePipe } from './pipes/imageForCourse.pipe';
+import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
+import { MatListModule } from '@angular/material/list';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -75,9 +76,10 @@ const socialConfig: SocialAuthServiceConfig = {
     EditCourseComponent,
     FileInputComponent,
     FileInputComponent,
+    EditModuleComponent,
     CoursesComponent,
-    NewCourseComponent,
-    ImageForCoursePipe
+    ImageForCoursePipe,
+    NewCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -100,8 +102,9 @@ const socialConfig: SocialAuthServiceConfig = {
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     MatListModule,
-    MatProgressSpinnerModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

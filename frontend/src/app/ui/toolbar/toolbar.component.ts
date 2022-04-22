@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/user.models';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { deleteCategoryRequest, fetchCategoriesRequest } from '../../store/categ
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements OnInit, OnDestroy {
   user: Observable<null | User>;
   categories: Observable<Category[]>;
   categoriesArray!: Category[];
@@ -43,5 +43,9 @@ export class ToolbarComponent implements OnInit {
 
   deleteCategory(id: string) {
     this.store.dispatch(deleteCategoryRequest({id}))
+  }
+
+  ngOnDestroy(): void {
+    this.categorySubscription.unsubscribe();
   }
 }
