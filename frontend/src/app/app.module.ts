@@ -38,6 +38,11 @@ import { TeachingComponent } from './pages/teaching/teaching.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FileInputComponent } from './ui/file-input/file-input.component';
+import { MatListModule } from '@angular/material/list';
+import { CoursesComponent } from './pages/teaching/courses/courses.component';
+import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ImageForCoursePipe } from './pipes/imageForCourse.pipe';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -69,7 +74,10 @@ const socialConfig: SocialAuthServiceConfig = {
     TeachingComponent,
     EditCourseComponent,
     FileInputComponent,
-    FileInputComponent
+    FileInputComponent,
+    CoursesComponent,
+    NewCourseComponent,
+    ImageForCoursePipe
   ],
   imports: [
     BrowserModule,
@@ -91,7 +99,9 @@ const socialConfig: SocialAuthServiceConfig = {
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

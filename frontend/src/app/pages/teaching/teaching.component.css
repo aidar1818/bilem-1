@@ -1,35 +1,23 @@
-.title{
-  text-align: center;
-  margin: 7rem auto 2rem;
+.main {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.box mat-card{
-  margin: 20px;
-  padding: 40px;
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: relative;
+  left: 0;
+  top: 0;
+  margin-right: 50px;
+  padding-top: 40px;
+  background-color: #eaecf0;
 }
 
-.btn{
-  padding: 5px 25px;
+mat-list-item {
+  color: #85233E;
 }
 
-mat-card{
-  width: 15rem;
-}
-
-mat-card:hover{
-  box-shadow: 0 0 5px 2px lightgray;
-}
-
-mat-card mat-card-title{
-  margin: 0 0 30px;
-}
-
-mat-card div{
-  margin: 20px 0
-}
-
-.addBtn{
-  background: #EB8B7F;
-  color: white;
-}
 

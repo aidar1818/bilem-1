@@ -1,0 +1,36 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+  <h1>Курсы</h1>
+</div>
+
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #coursesArea>
+  <div class="cards" *ngFor="let course of courses | async">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between" style="width: 500px; margin-bottom: 16px;">
+      <img
+        style="width: 60px; margin-right: 16px;"
+        class="img"
+        [src]="course.image | imageForCourse"
+        [alt]="course.title"
+      />
+      <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%">
+        <h2>
+          <i>Курс: {{ course.title }}</i>
+        </h2>
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+      </div>
+    </mat-card>
+  </div>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+  <button mat-button color="primary">Редактировать</button>
+  <button mat-button color="warn">Удалить</button>
+</mat-menu>

@@ -5,11 +5,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { RecoveryComponent } from './pages/password-recovery/recovery.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
-import { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 import { RoleGuardService } from './services/role-guard.service';
 import { TeachingComponent } from './pages/teaching/teaching.component';
 import { EditCourseComponent } from './pages/edit-course/edit-course.component';
-import { CategoryResolverService } from './pages/categories/category-resolver.service';
 
 const routes: Routes = [
   {path: '', component: CatalogComponent},
@@ -20,14 +19,8 @@ const routes: Routes = [
   {path: 'teaching', component: TeachingComponent},
   {path: 'editCourse', component: EditCourseComponent},
   {
-    path: 'add-category',
+    path: 'edit-category',
     component: EditCategoryComponent,
-    canActivate: [RoleGuardService],
-    data: {roles: ['admin']}
-  },
-  {path: 'edit-category/:id', component: EditCategoryComponent, resolve: {
-    category: CategoryResolverService
-    },
     canActivate: [RoleGuardService],
     data: {roles: ['admin']}
   }

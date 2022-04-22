@@ -21,6 +21,11 @@ const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
   try {
+    if(req.query.user) {
+      const userCourses = await Course.find({author: req.query.user}).populate('author', 'displayName');
+      return res.send(userCourses);
+    }
+
     if(req.query.subcategory) {
       const coursesBySubcategory = await Course.find({subcategory: req.query.subcategory});
       return res.send(coursesBySubcategory);

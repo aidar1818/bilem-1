@@ -2,14 +2,35 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
 import { Course, CourseData } from '../models/course.model';
+import { map } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-
   constructor(private http: HttpClient) { }
+
+  getUserCourses(id: string) {
+    return this.http.get<Course[]>(env.apiUrl + '/courses?user=' + id).pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.author,
+            courseData.students,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.rate,
+          );
+        });
+      })
+    );
+  }
 
   createCourse(courseData: CourseData) {
     const formData = new FormData();

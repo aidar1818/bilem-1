@@ -1,6 +1,11 @@
 import { CourseState } from '../types';
 import { createReducer, on } from '@ngrx/store';
-import { createCourseFailure, createCourseRequest, createCourseSuccess } from './course.actions';
+import {
+  createCourseFailure,
+  createCourseRequest,
+  createCourseSuccess, fetchUserCoursesFailure,
+  fetchUserCoursesRequest, fetchUserCoursesSuccess
+} from './course.actions';
 
 const initialState: CourseState = {
   courses: [],
@@ -14,6 +19,17 @@ const initialState: CourseState = {
 
 export const courseReducer = createReducer(
   initialState,
+  on(fetchUserCoursesRequest, state => ({...state, fetchLoading: true})),
+  on(fetchUserCoursesSuccess, (state, {courses}) => ({
+    ...state,
+    fetchLoading: false,
+    courses
+  })),
+  on(fetchUserCoursesFailure, (state, {error}) => ({
+    ...state,
+    fetchLoading: false,
+    fetchLoadingError: error
+  })),
   on(createCourseRequest, state => ({
     ...state,
     createLoading: true,

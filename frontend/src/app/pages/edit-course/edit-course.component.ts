@@ -43,10 +43,11 @@ export class EditCourseComponent implements OnInit {
       title: course.title,
       description: course.description,
       subcategory: course.subcategory,
-      price: course.price,
+      price: course.price? course.price : null,
       image: course.image,
       is_free: this.is_free,
     }
+
 
     this.store.dispatch(createCourseRequest({courseData}));
   }

@@ -1,5 +1,18 @@
 import { createAction, props } from '@ngrx/store';
-import { CourseData } from '../../models/course.model';
+import { Course, CourseData } from '../../models/course.model';
+
+export const fetchUserCoursesRequest = createAction(
+  '[Courses] Fetch Request',
+  props<{id: string}>()
+);
+export const fetchUserCoursesSuccess = createAction(
+  '[Courses] Fetch Success',
+  props<{courses: Course[]}>()
+);
+export const fetchUserCoursesFailure = createAction(
+  '[Courses] Fetch Failure',
+  props<{error: string}>()
+);
 
 export const createCourseRequest = createAction(
   '[Course] Create Request',
