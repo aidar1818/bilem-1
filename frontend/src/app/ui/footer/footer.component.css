@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 15px;
+  background: rgb(235,127,127);
+  background: linear-gradient(90deg, rgba(235,127,127,1) 0%, rgba(133,35,62,1) 50%);
+}
+
+.footer-logo:hover {
+ opacity: 1;
+}
+
+.footer-nav a {
+  color: #000;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-nav a:hover {
+  color: #fff
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  opacity: 0.5;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+.footer-text {
+  color: #dddddd;
+}

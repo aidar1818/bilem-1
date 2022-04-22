@@ -1,0 +1,8 @@
+.main-contents {
+  position: absolute;
+}
+
+.footer {
+  position: relative;
+  top: 100%;
+}

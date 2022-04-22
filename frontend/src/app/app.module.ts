@@ -44,6 +44,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ImageForCoursePipe } from './pipes/imageForCourse.pipe';
 import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
 import { MatListModule } from '@angular/material/list';
+import { FooterComponent } from './ui/footer/footer.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -79,7 +80,8 @@ const socialConfig: SocialAuthServiceConfig = {
     EditModuleComponent,
     CoursesComponent,
     ImageForCoursePipe,
-    NewCourseComponent
+    NewCourseComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
