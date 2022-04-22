@@ -9,15 +9,31 @@
       <div class="dropdown">
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
-          <div class="content" *ngFor="let category of categoriesArray">
+          <div class="content" *ngFor="let category of categoriesArray" (mouseover)="fetchSubCategory(category._id)">
             <p class="category__title">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
+              <span class="material-icons subcategory">chevron_right</span>
             <span class="material-icons" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
-                delete
+                clear
               </span>
-            <span class="material-icons" *appHasRoles="['admin']" [routerLink]="['/edit-category', category._id]">edit</span>
+            <span class="material-icons" *appHasRoles="['admin']"
+                  [routerLink]="['/edit-category', category._id]">edit</span>
+
+            </div>
+
+            <div class="subcategory-dropdown">
+              <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray">
+                <p class="category__title">{{ subcategory.title }}</p>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <span class="material-icons" *appHasRoles="['admin']">clear</span>
+                  <span class="material-icons" *appHasRoles="['admin']">edit</span>
+                </div>
+              </div>
             </div>
           </div>
+
+
+
           <div *appHasRoles="['admin']">
             <a mat-raised-button color="primary" routerLink="/add-category">
               <span class="material-icons" style="margin-right: 10px">
@@ -28,7 +44,7 @@
         </div>
       </div>
       <a routerLink="courses">Мои курсы</a>
-      <a routerLink="teaching/courses">Преподавание</a>
+      <a routerLink="teaching">Преподавание</a>
     </nav>
   </div>
   <div fxLayoutAlign="space-between center">
@@ -50,6 +66,7 @@
   </div>
 </mat-toolbar>
 
+
 <ng-template #userMenu>
   <nav>
     <button mat-icon-button [matMenuTriggerFor]="menu" class="avatar">
@@ -62,3 +79,4 @@
     </mat-menu>
   </nav>
 </ng-template>
+
