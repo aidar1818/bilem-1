@@ -40,13 +40,13 @@ const routes: Routes = [
     data: {roles: ['admin', 'user']}
   },
   {
-    path: 'editModule',
+    path: 'editModule/:id',
     component: EditModuleComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin', 'user']}
   },
   {
-    path: 'edit-category',
+    path: 'edit-category/:id',
     component: EditCategoryComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin']}

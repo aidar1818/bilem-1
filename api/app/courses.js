@@ -75,8 +75,9 @@ router.post('/course/:id', auth, permit('user', 'admin'), async (req, res, next)
     if(!course) {
       return res.status(404).send({message: `Course is not found`});
     }
-    course.modules = JSON.parse(req.body.modules);
+    course.modules = req.body.modules;
     await course.save();
+
     return res.send(course);
   } catch (e) {
     next(e);

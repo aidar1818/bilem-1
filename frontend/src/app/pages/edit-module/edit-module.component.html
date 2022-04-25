@@ -15,9 +15,9 @@
                 <mat-label>Название модуля</mat-label>
                 <input
                   type="text"
-                  name="moduleTitle"
+                  name="title"
                   matInput
-                  formControlName="moduleTitle"
+                  formControlName="title"
                   required
                 />
               </mat-form-field>
@@ -34,9 +34,9 @@
                     <mat-form-field appearance="outline" class="field">
                       <input
                         type="text"
-                        name="lessonTitle"
+                        name="title"
                         matInput
-                        formControlName="lessonTitle"
+                        formControlName="title"
                         placeholder="Название урока"
                       />
                     </mat-form-field>
@@ -55,9 +55,7 @@
         </div>
       </div>
       <button mat-raised-button type="button" (click)="addModule()" class="addModule">Добавить модуль</button>
-      <div class="btnBlock">
-        <button mat-raised-button class="saveBtn" type="submit">Сохранить</button>
-      </div>
+      <button mat-raised-button class="saveBtn" type="submit">Сохранить</button>
     </form>
   </div>
 </div>

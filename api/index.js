@@ -30,7 +30,6 @@ app.use('/subcategories', subcategories);
 app.use('/categories', categories);
 app.use('/courses', courses);
 
-
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);
 

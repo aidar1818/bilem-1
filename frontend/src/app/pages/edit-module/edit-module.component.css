@@ -47,15 +47,6 @@
 .saveBtn{
   width: 15rem;
   padding: 10px;
-  margin-right: 15rem;
+  margin: 5rem;
 }
 
-.btnBlock{
-  background: #dddddd;
-  min-width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: right;
-  padding: 7px;
-}

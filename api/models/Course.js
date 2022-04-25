@@ -43,8 +43,6 @@ const StudentSchema = new mongoose.Schema({
   }
 });
 
-
-
 const CourseSchema = new Schema({
   title: {
     type: String,

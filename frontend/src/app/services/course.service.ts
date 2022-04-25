@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
 import { Course, CourseData } from '../models/course.model';
 import { map } from 'rxjs';
+import { Module } from '../models/module.model';
 
 
 @Injectable({
@@ -41,5 +42,9 @@ export class CourseService {
       }
     });
     return this.http.post<Course>(env.apiUrl + '/courses', formData);
+  }
+
+  addModules(moduleData: Module, id: string) {
+    return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);
   }
 }

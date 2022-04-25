@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/types';
+import { createModuleRequest } from '../../store/modules/modules.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-module',
@@ -9,7 +13,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class EditModuleComponent implements OnInit {
   moduleForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.moduleForm = this.fb.group({
@@ -23,7 +27,7 @@ export class EditModuleComponent implements OnInit {
 
   newModule(): FormGroup {
     return this.fb.group({
-      moduleTitle: '',
+      title: '',
       lessons: this.fb.array([])
     });
   }
@@ -40,7 +44,7 @@ export class EditModuleComponent implements OnInit {
 
   newLesson(): FormGroup {
     return this.fb.group({
-      lessonTitle: ''
+      title: ''
     });
   }
 
@@ -49,7 +53,13 @@ export class EditModuleComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.moduleForm.value)
+    let id = '';
+    this.route.params.subscribe(params => {
+      id = params['id'];
+    });
+    const module = this.moduleForm.value;
+
+    this.store.dispatch(createModuleRequest({module, id}));
   }
 
   removeLesson(moduleIndex: number, lessonIndex: number) {
