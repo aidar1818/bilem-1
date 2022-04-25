@@ -1,16 +1,12 @@
 .main {
-  position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-self: stretch;
+  height: calc(100vh - 145px);
 }
 
-.sidebar {
-  height: 100vh;
+.nav {
   width: 250px;
-  position: relative;
-  left: 0;
-  top: 0;
   margin-right: 50px;
   padding-top: 40px;
   background-color: #eaecf0;

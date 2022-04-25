@@ -12,6 +12,7 @@ import { EditModuleComponent } from './pages/edit-module/edit-module.component';
 import { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';
 import { CoursesComponent } from './pages/teaching/courses/courses.component';
 import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
+import { CategoryResolverService } from './pages/categories/category-resolver.service';
 
 const routes: Routes = [
   {path: '', component: CatalogComponent},
@@ -22,6 +23,8 @@ const routes: Routes = [
   {
     path: 'teaching',
     component: TeachingComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin', 'user']},
     children: [
       {
         path: 'courses',
@@ -40,16 +43,25 @@ const routes: Routes = [
     data: {roles: ['admin', 'user']}
   },
   {
-    path: 'editModule',
+    path: 'editModule/:id',
     component: EditModuleComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin', 'user']}
   },
   {
-    path: 'edit-category',
+    path: 'add-category',
     component: EditCategoryComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin']}
+  },
+  {
+    path: 'edit-category/:id',
+    component: EditCategoryComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin']},
+    resolve: {
+      category: CategoryResolverService
+    }
   }
 ];
 
