@@ -1,6 +1,49 @@
 const mongoose = require('mongoose');
-const Module = require("module");
 const Schema = mongoose.Schema;
+
+const LessonSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    validate: {
+      validator: function () {
+        if((!this.isModified('description') && this.video)) return true;
+        if(!this.description && !this.video) return false;
+      },
+      message: 'Должно присутствовать либо описание, либо видео урока!'
+    }
+  },
+  video: {
+    type: String,
+    validate: {
+      validator: function () {
+        if((!this.isModified('video') && this.description)) return true;
+        if(!this.video && !this.description) return false;
+      },
+      message: 'Должно присутствовать либо видео, либо описание урока!'
+    }
+  }
+});
+
+const ModuleSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  lessons: [LessonSchema]
+});
+
+const StudentSchema = new mongoose.Schema({
+  type: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }
+});
+
+
 
 const CourseSchema = new Schema({
   title: {
@@ -15,15 +58,13 @@ const CourseSchema = new Schema({
     ref: 'User',
     required: true
   },
-  students: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  students: [StudentSchema],
   subcategory: {
     type: Schema.Types.ObjectId,
     ref: 'Subcategory',
     required: true
   },
+  modules: [ModuleSchema],
   price: {
     type: Number,
     default: 0,
@@ -33,12 +74,13 @@ const CourseSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  content : {
-    type: null | [Module],
-  },
   rate: {
     type: Number,
     default: 0.0
+  },
+  is_published: {
+    type: Boolean,
+    default: false,
   }
 });
 

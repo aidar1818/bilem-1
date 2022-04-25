@@ -21,12 +21,12 @@ const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
   try {
-    if(req.query.user) {
+    if (req.query.user) {
       const userCourses = await Course.find({author: req.query.user}).populate('author', 'displayName');
       return res.send(userCourses);
     }
 
-    if(req.query.subcategory) {
+    if (req.query.subcategory) {
       const coursesBySubcategory = await Course.find({subcategory: req.query.subcategory});
       return res.send(coursesBySubcategory);
     }
@@ -40,8 +40,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', auth, upload.single('image'), async (req, res, next) => {
   try {
-    console.log(req.body)
-    if(!req.body.title) {
+    if (!req.body.title) {
       return res.status(400).send({message: 'Title is required !'});
     }
 
@@ -52,14 +51,13 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
       subcategory: req.body.subcategory,
       image: null,
       is_free: req.body.is_free,
-      rate: req.body.rate
     });
 
-    if(req.body.price) {
+    if (req.body.price) {
       course.price = req.body.price;
     }
 
-    if(req.file) {
+    if (req.file) {
       course.image = req.file.filename;
     }
 
@@ -71,10 +69,24 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
   }
 });
 
-router.delete('/:id', auth, permit('user', 'admin'),  async (req, res, next) => {
+router.post('/course/:id', auth, permit('user', 'admin'), async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);
     if(!course) {
+      return res.status(404).send({message: `Course is not found`});
+    }
+    course.modules = JSON.parse(req.body.modules);
+    await course.save();
+    return res.send(course);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    if (!course) {
       return res.status(404).send({message: `Not found!`});
     }
     await Course.deleteOne({_id: req.params.id});
