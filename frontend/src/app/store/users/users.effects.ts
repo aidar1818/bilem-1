@@ -39,7 +39,7 @@ export class UsersEffects {
     mergeMap(({userData}) => this.usersService.registerUser(userData).pipe(
       map(user => registerUserSuccess({user})),
       tap(() => {
-        this.helpers.openSnackbar('Register successful');
+        this.helpers.openSnackbar('Успешная регистрация');
         void this.router.navigate(['/']);
       }),
       this.helpers.catchServerError(registerUserFailure)
@@ -51,7 +51,7 @@ export class UsersEffects {
     mergeMap(({userData}) => this.usersService.login(userData).pipe(
       map(user => loginUserSuccess({user})),
       tap(() => {
-        this.helpers.openSnackbar('Login successful');
+        this.helpers.openSnackbar('Вход выполнен');
         void this.router.navigate(['/']);
       }),
       this.helpers.catchServerError(loginUserFailure)
@@ -63,7 +63,7 @@ export class UsersEffects {
     mergeMap(({userData}) => this.usersService.loginWithFacebook(userData).pipe(
       map(user => loginFacebookSuccess({user})),
       tap(() => {
-        this.helpers.openSnackbar('Login from facebook successful');
+        this.helpers.openSnackbar('Успешная регистрация через Facebook');
         void this.router.navigate(['/']);
       }),
       this.helpers.catchServerError(loginFacebookFailure)
@@ -78,7 +78,7 @@ export class UsersEffects {
         tap(async () => {
           await this.auth.signOut();
           await this.router.navigate(['/']);
-          this.helpers.openSnackbar('Logout successful');
+          this.helpers.openSnackbar('Выход из аккаунта');
         })
       );
     }))

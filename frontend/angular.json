@@ -61,6 +61,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "bdd": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.bdd.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -73,6 +81,9 @@
             },
             "development": {
               "browserTarget": "frontend:build:development"
+            },
+            "bdd": {
+              "browserTarget": "frontend:build:bdd"
             }
           },
           "defaultConfiguration": "development"
