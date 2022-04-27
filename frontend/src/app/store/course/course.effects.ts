@@ -6,7 +6,12 @@ import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import {
   createCourseFailure,
   createCourseRequest,
-  createCourseSuccess, fetchUserCoursesFailure, fetchUserCoursesRequest, fetchUserCoursesSuccess,
+  createCourseSuccess, fetchCoursesFailure,
+  fetchCoursesRequest,
+  fetchCoursesSuccess,
+  fetchUserCoursesFailure,
+  fetchUserCoursesRequest,
+  fetchUserCoursesSuccess,
 } from './course.actions';
 import { CourseService } from '../../services/course.service';
 
@@ -18,6 +23,14 @@ export class CourseEffects {
     private router: Router,
     private helpers: HelpersService,
   ) {}
+
+  fetchCourses = createEffect(() => this.actions.pipe(
+    ofType(fetchCoursesRequest),
+    mergeMap(() => this.courseService.fetchCourses().pipe(
+      map(courses => fetchCoursesSuccess({courses})),
+      catchError(() => of(fetchCoursesFailure({error: 'Something wrong'})))
+    ))
+  ));
 
   fetchUserCourses = createEffect(() => this.actions.pipe(
     ofType(fetchUserCoursesRequest),

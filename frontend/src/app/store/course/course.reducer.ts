@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   createCourseFailure,
   createCourseRequest,
-  createCourseSuccess, fetchUserCoursesFailure,
+  createCourseSuccess, fetchCoursesFailure, fetchCoursesRequest, fetchCoursesSuccess, fetchUserCoursesFailure,
   fetchUserCoursesRequest, fetchUserCoursesSuccess
 } from './course.actions';
 
@@ -11,6 +11,8 @@ const initialState: CourseState = {
   courses: [],
   fetchLoading: false,
   fetchLoadingError: null,
+  fetchPersonalLoading: false,
+  fetchPersonalLoadingError: null,
   createLoading: false,
   createError: null,
   removeLoading: false,
@@ -19,16 +21,20 @@ const initialState: CourseState = {
 
 export const courseReducer = createReducer(
   initialState,
-  on(fetchUserCoursesRequest, state => ({...state, fetchLoading: true})),
+  on(fetchCoursesRequest, state => ({...state, fetchLoading: true})),
+  on(fetchCoursesSuccess, (state, {courses}) => ({...state, fetchLoading: false, courses})),
+  on(fetchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+
+  on(fetchUserCoursesRequest, state => ({...state, fetchPersonalLoading: true})),
   on(fetchUserCoursesSuccess, (state, {courses}) => ({
     ...state,
-    fetchLoading: false,
+    fetchPersonalLoading: false,
     courses
   })),
   on(fetchUserCoursesFailure, (state, {error}) => ({
     ...state,
-    fetchLoading: false,
-    fetchLoadingError: error
+    fetchPersonalLoading: false,
+    fetchPersonalLoadingError: error
   })),
   on(createCourseRequest, state => ({
     ...state,

@@ -45,6 +45,8 @@ import { ImageForCoursePipe } from './pipes/imageForCourse.pipe';
 import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
 import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './ui/footer/footer.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { OrderModule } from 'ngx-order-pipe';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -81,7 +83,7 @@ const socialConfig: SocialAuthServiceConfig = {
     CoursesComponent,
     ImageForCoursePipe,
     NewCourseComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatSelectModule,
     MatProgressSpinnerModule,
     MatListModule,
-
+    MatStepperModule,
+    OrderModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

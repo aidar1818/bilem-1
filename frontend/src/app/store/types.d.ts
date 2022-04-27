@@ -43,6 +43,8 @@ export type CourseState = {
   courses: Course[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchPersonalLoading: boolean,
+  fetchPersonalLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   removeLoading: boolean,

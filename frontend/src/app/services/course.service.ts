@@ -12,6 +12,10 @@ import { Module } from '../models/module.model';
 export class CourseService {
   constructor(private http: HttpClient) { }
 
+  fetchCourses() {
+    return this.http.get<Course[]>(env.apiUrl + '/courses');
+  }
+
   getUserCourses(id: string) {
     return this.http.get<Course[]>(env.apiUrl + '/courses?user=' + id).pipe(
       map(response => {
