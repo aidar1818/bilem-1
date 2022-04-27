@@ -131,7 +131,7 @@ router.post('/recovery', async (req, res, next) => {
             from: process.env.EMAIL,
             to: user.email,
             subject: 'Код для подтверждения пароля',
-            text: nanoid(),
+            text: 123456,
         };
 
         transporter.sendMail(mailOptions);

@@ -19,7 +19,7 @@ echo '# Running fixtures'
 npm run seed:test
 
 echo '# Running API server in test mode'
-pm2 start "npm start:test" --name="bilem-api-test"
+pm2 start "npm run start:test" --name="bilem-api-test"
 
 echo '# Running frontend in test mode'
 cd ../frontend

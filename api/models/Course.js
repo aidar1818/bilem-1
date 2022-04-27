@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LessonSchema = new mongoose.Schema({
+const LessonSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -28,7 +28,7 @@ const LessonSchema = new mongoose.Schema({
   }
 });
 
-const ModuleSchema = new mongoose.Schema({
+const ModuleSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -36,7 +36,7 @@ const ModuleSchema = new mongoose.Schema({
   lessons: [LessonSchema]
 });
 
-const StudentSchema = new mongoose.Schema({
+const StudentSchema = new Schema({
   type: {
     type: Schema.Types.ObjectId,
     ref: 'User',

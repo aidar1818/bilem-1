@@ -6,15 +6,15 @@ export const fetchCoursesSuccess = createAction('[Courses] Fetch Success', props
 export const fetchCoursesFailure = createAction('[Courses] Fetch Failure', props<{error: string}>());
 
 export const fetchUserCoursesRequest = createAction(
-  '[Courses] Fetch Request',
+  '[UserCourses] Fetch Request',
   props<{id: string}>()
 );
 export const fetchUserCoursesSuccess = createAction(
-  '[Courses] Fetch Success',
+  '[UserCourses] Fetch Success',
   props<{courses: Course[]}>()
 );
 export const fetchUserCoursesFailure = createAction(
-  '[Courses] Fetch Failure',
+  '[UserCourses] Fetch Failure',
   props<{error: string}>()
 );
 
