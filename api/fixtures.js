@@ -169,7 +169,6 @@ const run = async () => {
     image: null,
     is_free: true,
     rate: 4.7,
-    index: 1,
     is_published: false
   });
 

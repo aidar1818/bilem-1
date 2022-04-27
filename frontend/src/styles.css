@@ -72,20 +72,3 @@ footer {
   width: 100%;
   height: 80px;
 }
-
-.mat-stepper-horizontal-line,  .mat-stepper-vertical-line{
-  display: none;
-}
-
-.mat-step-icon-state-number {
-  display: none;
-}
-
-.mat-step-header .mat-step-icon-state-edit {
-  display: none;
-}
-
-.mat-horizontal-stepper-header {
-  padding: 0;
-  height: 10px;
-}
