@@ -35,6 +35,8 @@ export type SubcategoriesState = {
   fetchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
+  editLoading: boolean,
+  editError: null | string,
   removeLoading: boolean,
   removeError: null | string,
 };

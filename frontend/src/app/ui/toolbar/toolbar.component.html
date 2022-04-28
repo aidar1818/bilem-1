@@ -9,7 +9,7 @@
       <div class="dropdown">
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
-          <div class="content" *ngFor="let category of categoriesArray" (mouseover)="fetchSubCategory(category._id)">
+          <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
             <p class="category__title">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <span class="material-icons subcategory">chevron_right</span>
@@ -24,14 +24,21 @@
               <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray">
                 <p class="category__title">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <span class="material-icons" *appHasRoles="['admin']">clear</span>
-                  <span class="material-icons" *appHasRoles="['admin']">edit</span>
+                  <span class="material-icons" *appHasRoles="['admin']" (click)="deleteSubcategory(subcategory._id)" >clear</span>
+                  <span class="material-icons" *appHasRoles="['admin']"
+                        [routerLink]="['/edit-subcategory', subcategory._id]"
+                  >edit</span>
                 </div>
+              </div>
+              <div *appHasRoles="['admin']">
+                <a mat-raised-button color="primary" class="add-btn" [routerLink]="['/add-subcategory/', category._id]">
+              <span class="material-icons">
+                add
+              </span>
+                </a>
               </div>
             </div>
           </div>
-
-
 
           <div *appHasRoles="['admin']">
             <a mat-raised-button color="primary" class="add-btn" routerLink="/add-category">

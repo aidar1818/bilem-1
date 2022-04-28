@@ -7,5 +7,10 @@ export class Subcategory {
   ) {}
 }
 
+export interface CreateSubcategoryData {
+  category: string,
+  title: string
+}
+
 
 

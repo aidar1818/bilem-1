@@ -13,6 +13,8 @@ import { EditCategoryComponent } from './pages/categories/edit-category/edit-cat
 import { CoursesComponent } from './pages/teaching/courses/courses.component';
 import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
 import { CategoryResolverService } from './pages/categories/category-resolver.service';
+import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';
+import { SubcategoryResolverService } from './pages/subcategories/subcategory-resolver.service';
 
 const routes: Routes = [
   {path: '', component: CatalogComponent},
@@ -61,6 +63,21 @@ const routes: Routes = [
     data: {roles: ['admin']},
     resolve: {
       category: CategoryResolverService
+    }
+  },
+  {
+    path: 'add-subcategory/:id',
+    component: EditSubcategoryComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin']},
+  },
+  {
+    path: 'edit-subcategory/:id',
+    component: EditSubcategoryComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin']},
+    resolve: {
+      subcategory: SubcategoryResolverService
     }
   }
 ];

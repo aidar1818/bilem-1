@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/user.models';
 import { Store } from '@ngrx/store';
@@ -6,7 +6,10 @@ import { AppState } from '../../store/types';
 import { logoutUserRequest } from '../../store/users/users.actions';
 import { Category } from '../../models/category.model';
 import { deleteCategoryRequest, fetchCategoriesRequest } from '../../store/categories/categories.actions';
-import { fetchSubcategoriesByCategoryRequest } from '../../store/subcategories/subcategories.actions';
+import {
+  deleteSubcategoryRequest,
+  fetchSubcategoriesByCategoryRequest
+} from '../../store/subcategories/subcategories.actions';
 import { Subcategory } from '../../models/subcategory.model';
 
 @Component({
@@ -15,6 +18,7 @@ import { Subcategory } from '../../models/subcategory.model';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
+  @Output() categoryId = new EventEmitter();
   user: Observable<null | User>;
   categories: Observable<Category[]>;
   categoriesArray!: Category[];
@@ -61,8 +65,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.store.dispatch(fetchSubcategoriesByCategoryRequest({id}));
   }
 
+  deleteSubcategory(id: string) {
+    this.store.dispatch(deleteSubcategoryRequest({id}))
+  }
+
   ngOnDestroy(): void {
     this.categorySubscription.unsubscribe();
     this.subCategorySubscription.unsubscribe();
+  }
+
+  setCategoryId(_id: string) {
+    this.categoryId.emit(_id);
   }
 }

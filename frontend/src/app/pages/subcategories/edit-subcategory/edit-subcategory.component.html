@@ -1,0 +1,32 @@
+<app-centered-card title="{{ isEdit ? 'Редактирование подкатегории' : 'Создание подкатегории' }}">
+  <form
+    #f="ngForm"
+    fxLayout="column"
+    autocomplete="off"
+    style="margin-top: 20px"
+    (ngSubmit)="createSubcategory()"
+  >
+    <div *ngIf="error | async" class="error">
+      {{ error | async }}
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ isEdit ? 'Измененное название' : 'Название новой подкатегории' }}</mat-label>
+      <input
+          type="text" name="title"
+          required matInput ngModel #title="ngModel"
+      />
+      <mat-error *ngIf="title.touched && title.hasError('required')">
+        Поле является обязательным!
+      </mat-error>
+    </mat-form-field>
+    <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="f.invalid || (loading | async)"
+    >
+      {{ isEdit ? 'Обновить' : 'Создать' }}
+    </button>
+  </form>
+</app-centered-card>
+
