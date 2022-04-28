@@ -45,9 +45,12 @@ import { ImageForCoursePipe } from './pipes/imageForCourse.pipe';
 import { NewCourseComponent } from './pages/teaching/new-course/new-course.component';
 import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './ui/footer/footer.component';
-import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { MatStepperModule } from '@angular/material/stepper';
+import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { SearchComponent } from './pages/search/search.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -86,6 +89,7 @@ const socialConfig: SocialAuthServiceConfig = {
     NewCourseComponent,
     FooterComponent,
     EditSubcategoryComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +116,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatListModule,
     MatStepperModule,
     OrderModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

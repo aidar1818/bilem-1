@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from '../../models/course.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { fetchCoursesRequest } from '../../store/course/course.actions';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-catalog',
@@ -12,6 +13,8 @@ import { fetchCoursesRequest } from '../../store/course/course.actions';
 })
 export class CatalogComponent implements OnInit {
   courses: Observable<Course[]>;
+  @ViewChild('f') form!: NgForm;
+  is_free = false;
 
   constructor(private store: Store<AppState>) {
     this.courses = store.select(state => state.courses.courses);
@@ -19,5 +22,9 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fetchCoursesRequest());
+  }
+
+  onSubmit() {
+    console.log(this.form.value)
   }
 }

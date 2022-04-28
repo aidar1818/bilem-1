@@ -15,6 +15,7 @@ import { NewCourseComponent } from './pages/teaching/new-course/new-course.compo
 import { CategoryResolverService } from './pages/categories/category-resolver.service';
 import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';
 import { SubcategoryResolverService } from './pages/subcategories/subcategory-resolver.service';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {path: '', component: CatalogComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'recovery', component: RecoveryComponent},
   {path: 'newPassword', component: NewPasswordComponent},
+  {path: 'search/:title', component: SearchComponent},
   {
     path: 'teaching',
     component: TeachingComponent,

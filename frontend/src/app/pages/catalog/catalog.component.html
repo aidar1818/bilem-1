@@ -1,18 +1,36 @@
-<h1>Бесплатные курсы:</h1>
-<div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="16px" class="container">
+<mat-card class="search-block">
+  <form fxLayoutAlign="space-between center" (ngSubmit)="onSubmit()" #f=ngForm>
+    <mat-form-field appearance="outline">
+      <mat-label>Название курса</mat-label>
+      <input matInput type="text" ngModel name="title"/>
+    </mat-form-field>
+    <mat-checkbox ngModel name="is_free">Бесплатные</mat-checkbox>
+    <button mat-raised-button type="submit" color="primary">Поиск</button>
+  </form>
+</mat-card>
+
+<h1>Бесплатные курсы</h1>
+<div fxLayout="row wrap" fxLayoutAlign="start" class="container">
   <div *ngFor="let course of courses | async | orderBy:'-rate'">
     <mat-card class="example-card" *ngIf="course.is_free">
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
         <mat-card-title>{{ course.title }}</mat-card-title>
-        <img mat-card-sm-image class="course-image"
-             [src]="course.image | imageForCourse"
-             alt="icon">
+        <img
+          mat-card-sm-image
+          class="course-image"
+          [src]="course.image | imageForCourse"
+          alt="icon"
+        >
       </mat-card-title-group>
       <div class="course-content" fxLayout="row">
         <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
         <p style="margin-top: 3px; margin-left: 5px">{{ course.rate }}</p>
-        <img class="subscribers" style="height: 20px; margin-left: 5px" src="assets/icons/subscriber.png"
-             alt="subscribers">
+        <img
+          class="subscribers"
+          style="height: 20px; margin-left: 5px"
+          src="assets/icons/subscriber.png"
+          alt="subscribers"
+        >
         <p style="margin-top: 3px; margin-left: 5px">Students</p>
       </div>
       <p class="price" style="color: green;">Бесплатно</p>
@@ -20,8 +38,8 @@
   </div>
 </div>
 
-<h1>Платные курсы:</h1>
-<div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="16px" class="container">
+<h1>Платные курсы</h1>
+<div fxLayout="row wrap" fxLayoutAlign="start" class="container">
   <div *ngFor="let course of courses | async | orderBy:'-rate'">
     <mat-card class="example-card" *ngIf="course.is_free === false">
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">

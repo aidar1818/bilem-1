@@ -154,9 +154,13 @@
   background-color: whitesmoke;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 .category__title {
   width: 70%;
@@ -166,5 +170,6 @@
 .add-btn {
   padding: 0!important;
 }
+
 
 
