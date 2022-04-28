@@ -13,10 +13,10 @@
             <p class="category__title">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <span class="material-icons subcategory">chevron_right</span>
-            <span class="material-icons" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
+            <span class="material-icons delete" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
                 clear
               </span>
-            <span class="material-icons" *appHasRoles="['admin']"
+            <span class="material-icons edit" *appHasRoles="['admin']"
                   [routerLink]="['/edit-category', category._id]">edit</span>
             </div>
 

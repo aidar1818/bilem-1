@@ -10,7 +10,7 @@ import {
   createCategorySuccess,
   deleteCategoryFailure,
   deleteCategoryRequest,
-  deleteCategorySuccess,
+  deleteCategorySuccess, editCategoryFailure,
   editCategoryRequest, editCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
@@ -53,7 +53,12 @@ export class CategoriesEffects {
   editCategory = createEffect(() => this.actions.pipe(
     ofType(editCategoryRequest),
     mergeMap(({id, change}) => this.categoriesService.editCategory(id, change).pipe(
-      map(category => editCategorySuccess({category}))
+      map(category => editCategorySuccess({category})),
+      tap(() => {
+        this.helpers.openSnackbar('Название категории изменено!');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(editCategoryFailure)
     ))
   ));
 

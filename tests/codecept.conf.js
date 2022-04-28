@@ -19,7 +19,8 @@ exports.config = {
     features: './features/*.feature',
     steps: [
         './step_definitions/steps.abstract.js',
-        './step_definitions/steps.recovery.js'
+        './step_definitions/steps.recovery.js',
+        './step_definitions/steps.categoryCrud.js'
     ]
   },
   plugins: {

@@ -10,6 +10,8 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/login');
     case 'Редактирование пароля':
       return I.amOnPage('/newPassword');
+    case 'Создание категории':
+      return I.amOnPage('/add-category');
     default:
       return I.amOnPage('/');
   }
@@ -20,7 +22,7 @@ Given('я ввожу в поля формы:', (table) => {
     I.fillField(row.cells[0].value, row.cells[1].value);
   });
 
-  I.wait(1);
+  I.wait(2);
 });
 
 Given('нажимаю на кнопку формы {string}', (buttonText) => {
