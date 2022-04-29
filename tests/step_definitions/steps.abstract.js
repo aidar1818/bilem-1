@@ -55,9 +55,21 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
   }
 });
 
+Given('я должен увидеть элемент страницы с содержимым {string}', (array) => {
+  array.split(',').forEach(item => {
+    I.see(item);
+    I.wait(1);
+  });
+});
+
 Then('я должен увидеть текст {string}', (text) => {
   I.see(text);
   I.wait(3);
+});
+
+Given('вижу элемент страницы {string}', (elemText) => {
+  I.see(elemText);
+  I.wait(1);
 });
 
 
