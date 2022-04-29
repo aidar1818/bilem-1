@@ -1,13 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {UsersService} from '../../services/users.service';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { UsersService } from '../../services/users.service';
+import { Router } from '@angular/router';
 import {
   editPasswordFailure,
-  editPasswordRequest, editPasswordSuccess,
+  editPasswordRequest,
+  editPasswordSuccess,
   loginFacebookFailure,
   loginFacebookRequest,
   loginFacebookSuccess,
+  loginGoogleFailure,
+  loginGoogleRequest,
+  loginGoogleSuccess,
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess,
@@ -15,13 +19,18 @@ import {
   logoutUserRequest,
   registerUserFailure,
   registerUserRequest,
-  registerUserSuccess, sendEmailRequest, sendEmailSuccess, sendUserCodeFailure, sendUserCodeRequest, sendUserCodeSuccess
+  registerUserSuccess,
+  sendEmailRequest,
+  sendEmailSuccess,
+  sendUserCodeFailure,
+  sendUserCodeRequest,
+  sendUserCodeSuccess
 } from './users.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
-import {HelpersService} from '../../services/helpers.service';
-import {AppState} from '../types';
-import {Store} from '@ngrx/store';
-import {SocialAuthService} from 'angularx-social-login';
+import { HelpersService } from '../../services/helpers.service';
+import { AppState } from '../types';
+import { Store } from '@ngrx/store';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Injectable()
 export class UsersEffects {
@@ -110,5 +119,17 @@ export class UsersEffects {
       })
     )),
     catchError(() => of(editPasswordFailure({error: 'Что-то пошло не так'})))
+  ));
+
+  loginGoogle = createEffect(() => this.actions.pipe(
+    ofType(loginGoogleRequest),
+    mergeMap(({userData}) => this.usersService.loginGoogle(userData).pipe(
+      map(user => loginGoogleSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackbar('Успешная регистрация через Google!');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(loginGoogleFailure)
+    ))
   ));
 }

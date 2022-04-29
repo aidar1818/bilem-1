@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import {
   CodeUserData,
   EditPasswordData,
-  EmailData, LoginFacebookUser,
+  EmailData,
+  googleLoginUserData,
+  LoginFacebookUser,
   LoginUserData,
   RegisterUserData,
   User
@@ -33,6 +35,10 @@ export class UsersService {
 
   loginWithFacebook(userData: LoginFacebookUser) {
     return this.http.post<User>(env.apiUrl + '/users/facebookLogin', userData);
+  }
+
+  loginGoogle(userData: googleLoginUserData){
+    return this.http.post<User>(environment.apiUrl + '/users/googleLogin', userData);
   }
 
   recoveryPassword(email: EmailData) {

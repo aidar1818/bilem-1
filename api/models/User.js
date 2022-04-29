@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
     },
     facebookId: String,
+    googleId: String,
     code: String
 });
 

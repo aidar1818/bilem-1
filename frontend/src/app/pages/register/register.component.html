@@ -7,7 +7,7 @@
     style="margin-top: 20px"
     (ngSubmit)="register()"
   >
-    <div *ngIf="error | async" class="error">
+    <div *ngIf="(error | async)" class="error">
       {{ (error | async)?.errors }}
     </div>
     <mat-form-field appearance="outline">

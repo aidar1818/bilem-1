@@ -24,6 +24,14 @@ export interface LoginFacebookUser {
   name: string,
 }
 
+export interface googleLoginUserData {
+  authToken: string,
+  id: string,
+  email: string,
+  name: string,
+  accessToken: string
+}
+
 export interface CodeUserData {
   email: string,
   code: string

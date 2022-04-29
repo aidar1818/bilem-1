@@ -2,15 +2,26 @@ import { UsersState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
   editPasswordFailure,
-  editPasswordRequest, editPasswordSuccess,
+  editPasswordRequest,
+  editPasswordSuccess,
   loginFacebookFailure,
-  loginFacebookRequest, loginFacebookSuccess,
+  loginFacebookRequest,
+  loginFacebookSuccess,
+  loginGoogleFailure,
+  loginGoogleRequest,
+  loginGoogleSuccess,
   loginUserFailure,
   loginUserRequest,
-  loginUserSuccess, logoutUser,
+  loginUserSuccess,
+  logoutUser,
   registerUserFailure,
   registerUserRequest,
-  registerUserSuccess, sendEmailRequest, sendEmailSuccess, sendUserCodeFailure, sendUserCodeRequest, sendUserCodeSuccess
+  registerUserSuccess,
+  sendEmailRequest,
+  sendEmailSuccess,
+  sendUserCodeFailure,
+  sendUserCodeRequest,
+  sendUserCodeSuccess
 } from './users.actions';
 
 const initialState: UsersState = {
@@ -23,7 +34,8 @@ const initialState: UsersState = {
   loginFacebookError: null,
   code: null,
   codeError: null,
-  userEmail: null
+  userEmail: null,
+  googleLoading: false
 };
 
 export const usersReducer = createReducer(
@@ -31,7 +43,6 @@ export const usersReducer = createReducer(
   on(registerUserRequest, state => ({
     ...state,
     registerLoading: true,
-    registerError: null
   })),
   on(registerUserSuccess, (state, {user}) => ({
     ...state,
@@ -77,5 +88,9 @@ export const usersReducer = createReducer(
 
   on(editPasswordRequest, state => ({...state, loginLoading: true, loginError: null})),
   on(editPasswordSuccess, state => ({...state, loginLoading: false})),
-  on(editPasswordFailure, state => ({...state, loginLoading: false}))
-)
+  on(editPasswordFailure, state => ({...state, loginLoading: false})),
+
+  on(loginGoogleRequest, state => ({...state, googleLoading: true, loginError: null})),
+  on(loginGoogleSuccess, (state, {user}) => ({...state, googleLoading: false, user})),
+  on(loginGoogleFailure, (state, {error}) => ({...state, googleLoading: false, loginError: error})),
+);

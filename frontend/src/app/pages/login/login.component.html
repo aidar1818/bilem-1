@@ -63,6 +63,9 @@
 
     <p style="font-size: 16px">Войдите с помощью социальных сетей:</p>
 
-    <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <input class="fb" fxFlex="30" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
+      <input class="fb" fxFlex="30" type="image" src="assets/icons/google.svg" alt="google logo" (click)="googleLogin()">
+    </div>
   </form>
 </app-centered-card>

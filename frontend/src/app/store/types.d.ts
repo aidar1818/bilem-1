@@ -14,7 +14,8 @@ export type UsersState = {
   loginFacebookError: null | LoginError,
   code: string | null,
   codeError: string | null,
-  userEmail: string | null
+  userEmail: string | null,
+  googleLoading: boolean,
 };
 
 export type CategoriesState = {
