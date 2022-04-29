@@ -90,7 +90,7 @@ router.post('/search', async (req, res, next) => {
     if (req.body.is_free) {
       query.is_free = req.body.is_free;
     }
-    const courses = await Course.find(query);
+    const courses = await Course.find(query).populate('author', 'displayName');
     const responseCourses = courses.filter(course => course.title.toLowerCase().includes(req.body.title));
 
     return res.send(responseCourses);

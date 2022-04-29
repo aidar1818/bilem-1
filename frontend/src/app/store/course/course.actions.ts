@@ -36,7 +36,7 @@ export const searchCoursesRequest = createAction(
 );
 export const searchCoursesSuccess = createAction(
   '[Courses] Search Success',
-  props<{courses: Course[]}>()
+  props<{searchCourses: Course[]}>()
 );
 export const searchCoursesFailure = createAction(
   '[Courses] Search Failure',

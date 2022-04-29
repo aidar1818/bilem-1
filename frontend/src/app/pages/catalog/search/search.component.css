@@ -1,0 +1,11 @@
+.example-card {
+  max-width: 70%;
+  margin: 15px auto 50px;
+}
+
+.example-card:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 5px 2px lightgray;
+  -moz-box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 5px 2px lightgray;
+}

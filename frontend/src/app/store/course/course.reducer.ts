@@ -9,6 +9,7 @@ import {
 
 const initialState: CourseState = {
   courses: [],
+  searchCourses: [],
   fetchLoading: false,
   fetchLoadingError: null,
   fetchPersonalLoading: false,
@@ -52,6 +53,6 @@ export const courseReducer = createReducer(
   })),
 
   on(searchCoursesRequest, state => ({...state, fetchLoading: true})),
-  on(searchCoursesSuccess, (state, {courses}) => ({...state, fetchLoading: false, courses})),
+  on(searchCoursesSuccess, (state, {searchCourses}) => ({...state, fetchLoading: false, searchCourses})),
   on(searchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
 );

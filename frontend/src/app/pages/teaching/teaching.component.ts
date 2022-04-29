@@ -1,28 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { SubcategoriesService } from '../../services/subcategories.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-teaching',
   templateUrl: './teaching.component.html',
   styleUrls: ['./teaching.component.css']
 })
-export class TeachingComponent implements OnInit {
-  showCard = false;
+export class TeachingComponent {
 
-  constructor(private subcategoryService: SubcategoriesService) { }
-
-  ngOnInit(): void {
-  }
-
-  showFreeCards() {
-    this.showCard = true;
-  }
-
-  addPaidCourse() {
-    this.subcategoryService.is_free = false;
-  }
-
-  addFreeCourse() {
-    this.subcategoryService.is_free = true;
-  }
 }

@@ -44,6 +44,7 @@ export type SubcategoriesState = {
 
 export type CourseState = {
   courses: Course[],
+  searchCourses: Course[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
   fetchPersonalLoading: boolean,

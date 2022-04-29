@@ -1,0 +1,33 @@
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #coursesArea >
+  <div class="cards" *ngFor="let course of searchCourses | async">
+    <mat-card class="example-card">
+      <mat-card-title-group>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-subtitle>Author: {{ course.author.displayName }}</mat-card-subtitle>
+        <img
+          mat-card-sm-image
+          class="course-image"
+          [src]="course.image | imageForCourse"
+          [alt]="course.title"
+        >
+      </mat-card-title-group>
+      <mat-card-content>
+        <h3>Описание: {{ course.description }}</h3>
+        <div>
+          <p *ngIf="course.is_free">Бесплатно</p>
+          <p *ngIf="!course.is_free"> Цена: {{ course.price }}сом</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
+

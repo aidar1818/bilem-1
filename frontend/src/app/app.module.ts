@@ -54,8 +54,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { MatStepperModule } from '@angular/material/stepper';
 import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { SearchComponent } from './pages/search/search.component';
+import { SearchComponent } from './pages/catalog/search/search.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -98,7 +99,8 @@ const socialConfig: SocialAuthServiceConfig = {
     NewCourseComponent,
     FooterComponent,
     EditSubcategoryComponent,
-    SearchComponent
+    SearchComponent,
+    MainCoursesComponent
   ],
   imports: [
     BrowserModule,
