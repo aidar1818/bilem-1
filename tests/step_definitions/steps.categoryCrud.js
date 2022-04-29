@@ -1,6 +1,6 @@
 const { I } = inject();
 
-Given('навожу курсор на Катергории в разделе toolbar', () => {
+Given('навожу курсор на Категории в разделе toolbar', () => {
     I.moveCursorTo('.dropbtn');
     I.wait(1);
 });

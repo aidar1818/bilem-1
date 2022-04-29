@@ -41,7 +41,6 @@ export class SubcategoriesEffects {
   createSubcategory = createEffect(() => this.actions.pipe(
     ofType(createSubcategoryRequest),
     mergeMap(({subcategoryData}) => this.subcategoriesService.createSubcategory(subcategoryData).pipe(
-
       map(() => createSubcategorySuccess()),
       tap(() => {
         this.helpers.openSnackbar('Успешное создание подкатегории!');
@@ -54,7 +53,12 @@ export class SubcategoriesEffects {
   editSubcategory = createEffect(() => this.actions.pipe(
     ofType(editSubcategoryRequest),
     mergeMap(({id, change}) => this.subcategoriesService.editSubcategory(id, change).pipe(
-      map(subcategory => editSubcategorySuccess({subcategory}))
+      map(subcategory => editSubcategorySuccess({subcategory})),
+      tap(() => {
+        this.helpers.openSnackbar('Название подкатегории изменено!');
+        void this.router.navigate(['/']);
+      }),
+      catchError(() => of(createCategoryFailure({error: 'Неверные данные для создания подкатегории!'})))
     ))
   ));
 

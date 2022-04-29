@@ -23,14 +23,16 @@
               <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray">
                 <p class="category__title">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <span class="material-icons" *appHasRoles="['admin']" (click)="deleteSubcategory(subcategory._id)" >clear</span>
-                  <span class="material-icons" *appHasRoles="['admin']"
+                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']"
+                        (click)="deleteSubcategory(subcategory._id)" >clear</span>
+                  <span class="material-icons edit-subcategory" *appHasRoles="['admin']"
                         [routerLink]="['/edit-subcategory', subcategory._id]"
                   >edit</span>
                 </div>
               </div>
               <div *appHasRoles="['admin']">
-                <a mat-raised-button color="primary" class="add-btn" [routerLink]="['/add-subcategory/', category._id]">
+                <a mat-raised-button color="primary" class="add-sub-btn" [routerLink]="['/add-subcategory/',
+                category._id]">
               <span class="material-icons">
                 add
               </span>

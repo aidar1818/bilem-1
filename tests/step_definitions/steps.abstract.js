@@ -20,6 +20,10 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/teaching/courses');
     case 'Создание категории':
       return I.amOnPage('/add-category');
+    case 'Создание подкатегории':
+      return I.amOnPage('/add-subcategory/626a50f11cdf5999b84dd479');
+    case 'Редактирование подкатегории':
+      return I.amOnPage('/add-subcategory/626a50f31cdf5999b84dd49c');
     default:
       return I.amOnPage('/');
   }
@@ -53,7 +57,7 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
 
 Then('я должен увидеть текст {string}', (text) => {
   I.see(text);
-  I.wait(2);
+  I.wait(3);
 });
 
 

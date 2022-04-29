@@ -21,6 +21,7 @@ exports.config = {
         './step_definitions/steps.abstract.js',
         './step_definitions/steps.recovery.js',
         './step_definitions/steps.categoryCrud.js',
+        './step_definitions/steps.subcategoryCrud.js',
         './step_definitions/steps.course.js',
     ]
   },
