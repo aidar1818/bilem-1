@@ -1,10 +1,21 @@
 <mat-card class="search-block">
-  <form fxLayoutAlign="space-between center" (ngSubmit)="onSubmit()" #f=ngForm>
+  <form fxLayoutAlign="space-between center" (ngSubmit)="onSubmit()" #searchForm=ngForm>
     <mat-form-field appearance="outline">
       <mat-label>Название курса</mat-label>
-      <input matInput type="text" ngModel name="title"/>
+      <input
+        matInput
+        type="text"
+        ngModel
+        name="title"
+      />
+<!--      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">-->
+<!--        <mat-option-->
+<!--          *ngFor="let option of filteredOptions | async"-->
+<!--          [value]="option"-->
+<!--        >{{option.title}}</mat-option>-->
+<!--      </mat-autocomplete>-->
     </mat-form-field>
-    <mat-checkbox ngModel name="is_free">Бесплатные</mat-checkbox>
+    <mat-checkbox ngModel name="is_free" checked>Бесплатные</mat-checkbox>
     <button mat-raised-button type="submit" color="primary">Поиск</button>
   </form>
 </mat-card>
@@ -14,7 +25,7 @@
   <div *ngFor="let course of courses | async | orderBy:'-rate'">
     <mat-card class="example-card" *ngIf="course.is_free">
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
-        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-title><span>{{ course.title }}</span></mat-card-title>
         <img
           mat-card-sm-image
           class="course-image"
@@ -43,7 +54,7 @@
   <div *ngFor="let course of courses | async | orderBy:'-rate'">
     <mat-card class="example-card" *ngIf="course.is_free === false">
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
-        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-title><span>{{ course.title }}</span></mat-card-title>
         <img mat-card-sm-image class="course-image"
              [src]="course.image | imageForCourse"
              alt="icon">

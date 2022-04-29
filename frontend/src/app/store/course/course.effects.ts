@@ -11,7 +11,7 @@ import {
   fetchCoursesSuccess,
   fetchUserCoursesFailure,
   fetchUserCoursesRequest,
-  fetchUserCoursesSuccess,
+  fetchUserCoursesSuccess, searchCoursesRequest, searchCoursesSuccess,
 } from './course.actions';
 import { CourseService } from '../../services/course.service';
 
@@ -50,6 +50,14 @@ export class CourseEffects {
         void this.router.navigate(['/teaching/courses']);
         this.helpers.openSnackbar('Создан новый курс');
       }),
+      this.helpers.catchServerError(createCourseFailure)
+    ))
+  ));
+
+  searchCourses = createEffect(() => this.actions.pipe(
+    ofType(searchCoursesRequest),
+    mergeMap(({courseData}) => this.courseService.search(courseData).pipe(
+      map(courses => searchCoursesSuccess({courses})),
       this.helpers.catchServerError(createCourseFailure)
     ))
   ))

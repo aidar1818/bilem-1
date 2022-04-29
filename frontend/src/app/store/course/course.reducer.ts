@@ -4,7 +4,7 @@ import {
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess, fetchCoursesFailure, fetchCoursesRequest, fetchCoursesSuccess, fetchUserCoursesFailure,
-  fetchUserCoursesRequest, fetchUserCoursesSuccess
+  fetchUserCoursesRequest, fetchUserCoursesSuccess, searchCoursesFailure, searchCoursesRequest, searchCoursesSuccess
 } from './course.actions';
 
 const initialState: CourseState = {
@@ -50,4 +50,8 @@ export const courseReducer = createReducer(
     createLoading: false,
     createError: error
   })),
+
+  on(searchCoursesRequest, state => ({...state, fetchLoading: true})),
+  on(searchCoursesSuccess, (state, {courses}) => ({...state, fetchLoading: false, courses})),
+  on(searchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
 );

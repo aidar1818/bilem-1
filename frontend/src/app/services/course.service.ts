@@ -50,5 +50,26 @@ export class CourseService {
 
   addModules(moduleData: Module, id: string) {
     return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);
+  };
+
+  search(courseData: {}) {
+    return this.http.post<Course[]>(env.apiUrl + `/courses/search`, courseData).pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.author,
+            courseData.students,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.rate,
+          );
+        });
+      })
+    );
   }
 }

@@ -60,7 +60,7 @@
       </span>
       <input
         type="text"
-       [formControl]="myControl"
+        [formControl]="myControl"
         [matAutocomplete]="auto"
         placeholder="Поиск"
       >
@@ -82,7 +82,7 @@
 <ng-template #userMenu>
   <nav>
     <button mat-icon-button [matMenuTriggerFor]="menu" class="avatar">
-      <mat-icon>account_circle</mat-icon>
+      <mat-icon>{{ (user | async)?.displayName?.charAt(0) }}</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item disabled>{{ (user | async)?.displayName }}</button>

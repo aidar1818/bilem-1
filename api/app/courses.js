@@ -84,6 +84,21 @@ router.post('/course/:id', auth, permit('user', 'admin'), async (req, res, next)
   }
 });
 
+router.post('/search', async (req, res, next) => {
+  try {
+    const query = {};
+    if (req.body.is_free) {
+      query.is_free = req.body.is_free;
+    }
+    const courses = await Course.find(query);
+    const responseCourses = courses.filter(course => course.title.toLowerCase().includes(req.body.title));
+
+    return res.send(responseCourses);
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);

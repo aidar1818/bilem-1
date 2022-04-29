@@ -6,8 +6,9 @@
   position: relative;
 }
 
-.example-card mat-card-title {
+.example-card mat-card-title span{
   margin-top: 10px;
+  font-size: 18px;
 }
 
 .example-card:hover {
@@ -60,5 +61,10 @@ h1 {
 
 .search-block mat-form-field {
   width: 65%;
+}
+
+mat-option{
+  padding: 3px;
+  font-size: 13px;
 }
 

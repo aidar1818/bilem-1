@@ -30,3 +30,16 @@ export const createCourseFailure = createAction(
   props<{error: string}>()
 );
 
+export const searchCoursesRequest = createAction(
+  '[Courses] Search Request',
+  props<{courseData: {}}>()
+);
+export const searchCoursesSuccess = createAction(
+  '[Courses] Search Success',
+  props<{courses: Course[]}>()
+);
+export const searchCoursesFailure = createAction(
+  '[Courses] Search Failure',
+  props<{error: string}>()
+);
+
