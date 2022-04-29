@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
@@ -11,7 +11,7 @@ import { registerUserRequest } from '../../store/users/users.actions';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   error: Observable<null | RegisterError>;
   errorSub!: Subscription;
@@ -22,8 +22,23 @@ export class RegisterComponent {
     this.loading = store.select(state => state.users.registerLoading);
   }
 
+  ngAfterViewInit(): void {
+    this.errorSub = this.error.subscribe(error => {
+      if (error) {
+        const msg = error.errors.email.message;
+        this.form.form.get('email')?.setErrors({serverError: msg});
+      } else {
+        this.form.form.get('email')?.setErrors({});
+      }
+    });
+  }
+
   register() {
     const userData: RegisterUserData = this.form.value;
     this.store.dispatch(registerUserRequest({userData}));
+  }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
   }
 }

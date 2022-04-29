@@ -3,7 +3,7 @@
   <div *ngFor="let course of courses | async | orderBy:'-rate'">
     <mat-card class="example-card" *ngIf="course.is_free">
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
-        <mat-card-title><span>{{ course.title }}</span></mat-card-title>
+        <mat-card-title style="max-width: 260px"><span>{{ course.title }}</span></mat-card-title>
         <img
           mat-card-sm-image
           class="course-image"

@@ -7,9 +7,6 @@
     style="margin-top: 20px"
     (ngSubmit)="register()"
   >
-    <div *ngIf="(error | async)" class="error">
-      {{ (error | async)?.errors }}
-    </div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input
@@ -23,7 +20,7 @@
         Пожалуйста, введите корректный адрес.
       </mat-error>
       <mat-error *ngIf="email.touched && email.hasError('serverError')">
-        {{ email.getError('serverError') }}
+        Пользователь с таким "email" уже зарегистрирован.
       </mat-error>
     </mat-form-field>
 
