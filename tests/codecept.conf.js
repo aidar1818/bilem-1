@@ -20,7 +20,8 @@ exports.config = {
     steps: [
         './step_definitions/steps.abstract.js',
         './step_definitions/steps.recovery.js',
-        './step_definitions/steps.categoryCrud.js'
+        './step_definitions/steps.categoryCrud.js',
+        './step_definitions/steps.course.js',
     ]
   },
   plugins: {
