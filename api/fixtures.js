@@ -30,7 +30,7 @@ const run = async () => {
   });
 
   const [programming, finance, design, business, personalGrowth, marketing, art, beauty, photo, fitness, music,
-    exam, schoolLessons, smm] = await Category.create({
+    exam, schoolLessons] = await Category.create({
     title: 'Программирование'
   }, {
     title: 'Финансы и бухгалтерский учет'
@@ -56,8 +56,6 @@ const run = async () => {
     title: 'Подготовка к экзаменам'
   }, {
     title: 'Школьные дисциплины'
-  }, {
-    title: 'SMM'
   });
 
   const [web, analysis, mobileGameDev, gameDev, dataBase, testing, devWithoutCode, economic, accounting,
@@ -66,7 +64,11 @@ const run = async () => {
     businessAnalysis, personnel, industry, electricCommerce, jurisprudence, immovability, personalChange,
     personalProductivity, leadership, parentingAndRelationships, happy, esotericPractices, confidence,
     digital, smmMarketing, marketingBasics, drawing, watercolorPainting, pencilDrawing, painting,sketching,
-    drawingPerson, portraitArt, acrylicPainting, pottery, ielts, toefl, pmp, sit, ege, nct, ort] = await Subcategory.create({
+    drawingPerson, portraitArt, acrylicPainting, pottery, ielts, toefl, pmp, sit, ege, nct, ort, makeUp, beauties, skinCare,
+    nailDesign, cosmetics, hairStyle, perfume, digitalPhotography, photography, photoVideoTools, mobilography,
+    fitnessCourse, health, sport, diet, yoga, mentalHealth, dance, meditation, musicTools, musicalProduction, musicFundamentals,
+    vocals, musicSoftware, mathematics, russianlanguage, kyrgyzlanguage, chemistry, biology, physics, story, economy,
+    literatureOfTheRussianLanguage, literatureOfTheKyrgyzLanguage, english, geography, geometry] = await Subcategory.create({
     category: programming,
     title: 'Веб-разработка',
   }, {
@@ -246,7 +248,118 @@ const run = async () => {
   },{
     category: exam,
     title: 'ОРТ',
-  },);
+  },{
+    category: beauty,
+    title: 'Визаж и макияж',
+  },{
+    category: beauty,
+    title: 'Красота',
+  },{
+    category: beauty,
+    title: 'Уход за кожей',
+  },{
+    category: beauty,
+    title: 'Дизайн маникюра',
+  },{
+    category: beauty,
+    title: 'Косметика',
+  },{
+    category: beauty,
+    title: 'Укладка волос',
+  },{
+    category: beauty,
+    title: 'Духи и парфюмерия',
+  }, {
+    category: photo,
+    title: 'Цифровая фотография',
+  }, {
+    category: photo,
+    title: 'Фотография',
+  }, {
+    category: photo,
+    title: 'Инструменты для фотографии и видео',
+  }, {
+    category: photo,
+    title: 'Мобилография',
+  }, {
+    category: fitness,
+    title: 'Фитнесс',
+  }, {
+    category: fitness,
+    title: 'Здоровье',
+  }, {
+    category: fitness,
+    title: 'Спорт',
+  }, {
+    category: fitness,
+    title: 'Питание и диета',
+  }, {
+    category: fitness,
+    title: 'Йога',
+  }, {
+    category: fitness,
+    title: 'Психическое здоровье',
+  }, {
+    category: fitness,
+    title: 'Танцы',
+  }, {
+    category: fitness,
+    title: 'Медитация',
+  },{
+    category: music,
+    title: 'Инструменты',
+  },{
+    category: music,
+    title: 'Музыкальное производство',
+  },{
+    category: music,
+    title: 'Основы музыки',
+  },{
+    category: music,
+    title: 'Вокал',
+  },{
+    category: music,
+    title: 'Музыкальное ПО',
+  },{
+    category: schoolLessons,
+    title: 'Математика',
+  },{
+    category: schoolLessons,
+    title: 'Русский язык',
+  },{
+    category: schoolLessons,
+    title: 'Кыргызский язык',
+  },{
+    category: schoolLessons,
+    title: 'Химия',
+  },{
+    category: schoolLessons,
+    title: 'Биология',
+  },{
+    category: schoolLessons,
+    title: 'Физика',
+  },{
+    category: schoolLessons,
+    title: 'История',
+  },{
+    category: schoolLessons,
+    title: 'Экономика',
+  },{
+    category: schoolLessons,
+    title: 'Литература русского языка',
+  },{
+    category: schoolLessons,
+    title: 'Литература кыргызкого языка',
+  },{
+    category: schoolLessons,
+    title: 'Английский язык',
+  },{
+    category: schoolLessons,
+    title: 'География',
+  },{
+    category: schoolLessons,
+    title: 'Геометрия',
+  });
 
   const [java, cryptoRegency, javaScript, jScript, uxUi, tradingCourse, designIn, designBasic, ieltsCourse, ieltsSpeaking] = await Course.create({
     title: 'Java c нуля',
