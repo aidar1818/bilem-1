@@ -10,11 +10,17 @@
         #title
       />
     </mat-form-field>
-    <mat-checkbox ngModel name="is_free" checked>Бесплатные</mat-checkbox>
-    <button [routerLink]="['/search', title.value]" mat-raised-button type="submit" color="primary">Поиск</button>
+
+    <mat-checkbox ngModel name="is_free" id="checkbox" #is_free checked>Бесплатные</mat-checkbox>
+    <button
+      [routerLink]="['/search']"
+      [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
+      queryParamsHandling="merge"
+      mat-raised-button type="submit" color="primary">Поиск</button>
   </form>
 </mat-card>
 <hr>
+
 <div class="content">
   <router-outlet></router-outlet>
 </div>

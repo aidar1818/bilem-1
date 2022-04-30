@@ -66,9 +66,11 @@
       >
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option
+          class="course-title"
           *ngFor="let option of filteredOptions | async"
           [value]="option"
-          [routerLink]="['/search', option.title]"
+          [routerLink]="['/search']"
+          [queryParams]="{ 'title': option.title}"
         >{{option.title}}</mat-option>
       </mat-autocomplete>
     </div>

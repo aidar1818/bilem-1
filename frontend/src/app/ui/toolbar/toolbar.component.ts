@@ -103,12 +103,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.store.dispatch(deleteSubcategoryRequest({id}))
   }
 
+  setCategoryId(_id: string) {
+    this.categoryId.emit(_id);
+  }
+
   ngOnDestroy(): void {
     this.categorySubscription.unsubscribe();
     this.subCategorySubscription.unsubscribe();
-  }
-
-  setCategoryId(_id: string) {
-    this.categoryId.emit(_id);
   }
 }

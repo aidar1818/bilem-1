@@ -23,6 +23,7 @@ exports.config = {
         './step_definitions/steps.categoryCrud.js',
         './step_definitions/steps.subcategoryCrud.js',
         './step_definitions/steps.course.js',
+        './step_definitions/steps.searchCourses.js',
     ]
   },
   plugins: {

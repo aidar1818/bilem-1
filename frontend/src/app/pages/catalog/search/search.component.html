@@ -7,11 +7,15 @@
   mode="indeterminate"
 ></mat-progress-spinner>
 
+<div *ngIf="available" class="notAvailable">
+  <p><b>По данному запросу ничего не найдено. Попробуйте изменить параметры поиска.</b></p>
+</div>
+
 <ng-template #coursesArea >
   <div class="cards" *ngFor="let course of searchCourses | async">
     <mat-card class="example-card">
       <mat-card-title-group>
-        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-title class="title">{{ course.title }}</mat-card-title>
         <mat-card-subtitle>Author: {{ course.author.displayName }}</mat-card-subtitle>
         <img
           mat-card-sm-image
@@ -23,7 +27,7 @@
       <mat-card-content>
         <h3>Описание: {{ course.description }}</h3>
         <div>
-          <p *ngIf="course.is_free">Бесплатно</p>
+          <p *ngIf="course.is_free" class="free">Бесплатно</p>
           <p *ngIf="!course.is_free"> Цена: {{ course.price }}сом</p>
         </div>
       </mat-card-content>

@@ -28,7 +28,7 @@ const routes: Routes = [
         component: MainCoursesComponent,
       },
       {
-        path: 'search/:title',
+        path: 'search',
         component: SearchComponent,
       }
     ]
