@@ -1,5 +1,36 @@
 <div class="main">
-  <app-sidebar></app-sidebar>
+  <app-sidebar>
+    <a mat-button routerLink="new" class="addBtn" fxLayoutAlign="center center">
+      <span class="material-icons">add</span>
+      Новый курс
+    </a>
+    <mat-nav-list  role="navigation">
+      <a mat-list-item routerLink="myCourses">
+        <span class="material-icons mat-list-icon">
+          cast_for_education
+        </span>
+        Мое обучение
+      </a>
+      <a mat-list-item routerLink="courses">
+        <span class="material-icons mat-list-icon">
+          menu_book
+        </span>
+        Курсы
+      </a>
+      <a mat-list-item routerLink="lessons">
+        <span class="material-icons mat-list-icon">
+          school
+        </span>
+        Уроки
+      </a>
+      <a mat-list-item routerLink="notifications">
+        <span class="material-icons mat-list-icon">
+          notifications_active
+        </span>
+        Уведомления
+      </a>
+    </mat-nav-list>
+  </app-sidebar>
   <div class="router">
     <router-outlet></router-outlet>
   </div>
