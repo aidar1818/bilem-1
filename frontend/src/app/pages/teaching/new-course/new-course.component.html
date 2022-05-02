@@ -1,41 +1,44 @@
-<div class="title">
-  <h1>
-    Создайте любые онлайн-курсы на конструкторе Bilem
-  </h1>
+<div class="main">
+  <div class="title">
+    <h1>
+      Создайте любые онлайн-курсы на конструкторе Bilem
+    </h1>
+    <button class="btn" mat-raised-button (click)="showFreeCards()">Создать курс</button>
+  </div>
 
-  <button class="btn" mat-raised-button (click)="showFreeCards()">Создать курс</button>
-</div>
-
-<div class="box" fxLayout="row" fxLayoutAlign="center" *ngIf="showCard === true">
-  <mat-card>
-    <mat-card-title>
-      Платный курс
-    </mat-card-title>
-    <hr>
-    <div>
-      Создать платный курс
-    </div>
-    <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addPaidCourse()" fxLayoutAlign="center center">
+  <div class="box" fxLayout="row" *ngIf="showCard === true">
+    <mat-card>
+      <mat-card-title>
+        Платный курс
+      </mat-card-title>
+      <hr>
+      <div>
+        Создать платный курс
+      </div>
+      <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addPaidCourse()"
+              fxLayoutAlign="center center">
       <span class="material-icons" style="margin-right: 10px">
         add
       </span>
-      Создать платный курс
-    </button>
-  </mat-card>
+        Создать платный курс
+      </button>
+    </mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Бесплатный курс
-    </mat-card-title>
-    <hr>
-    <div>
-      Создать бесплатный курс
-    </div>
-    <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addFreeCourse()" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-card-title>
+        Бесплатный курс
+      </mat-card-title>
+      <hr>
+      <div>
+        Создать бесплатный курс
+      </div>
+      <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addFreeCourse()"
+              fxLayoutAlign="center center">
       <span class="material-icons" style="margin-right: 10px">
         add
       </span>
-      Создать бесплатный курс
-    </button>
-  </mat-card>
+        Создать бесплатный курс
+      </button>
+    </mat-card>
+  </div>
 </div>

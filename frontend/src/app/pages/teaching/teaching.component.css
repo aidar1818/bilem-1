@@ -5,15 +5,3 @@
   min-height: calc(100vh - 145px);
 }
 
-.nav {
-  width: 250px;
-  margin-right: 50px;
-  padding-top: 40px;
-  background-color: #eaecf0;
-}
-
-mat-list-item {
-  color: #85233E;
-}
-
-
