@@ -43,3 +43,26 @@ export const searchCoursesFailure = createAction(
   props<{error: string}>()
 );
 
+export const addLearningCourseRequest = createAction(
+  '[Users] Add Learning Course Request',
+  props<{id: string}>()
+);
+export const addLearningCourseSuccess = createAction(
+  '[Users] Add Learning Course Success',
+);
+export const addLearningCourseFailure = createAction(
+  '[Users] Add Learning Course Failure',
+  props<{error: string}>()
+);
+
+export const addFavoriteCourseRequest = createAction(
+  '[Users] Add Favorite Course Request',
+  props<{id: string}>()
+);
+export const addFavoriteCourseSuccess = createAction(
+  '[Users] Add Favorite Course Success',
+);
+export const addFavoriteCourseFailure = createAction(
+  '[Users] Add Favorite Course Failure',
+  props<{error: string}>()
+);5

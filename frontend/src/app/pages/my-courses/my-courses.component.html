@@ -1,0 +1,22 @@
+<div class="main">
+  <app-sidebar class="nav">
+    <mat-nav-list  role="navigation">
+      <a mat-list-item routerLink="learning">
+        <span class="material-icons mat-list-icon">
+          menu_book
+        </span>
+        Мои курсы
+      </a>
+      <a mat-list-item routerLink="favorite">
+        <span class="material-icons mat-list-icon">
+          favorite
+        </span>
+        Хочу пройти
+      </a>
+    </mat-nav-list>
+  </app-sidebar>
+  <div class="router">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

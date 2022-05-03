@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
-const Course = require('./Course');
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -35,8 +35,14 @@ const UserSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin'],
     },
-    myCourses: [Course],
-    favoriteCourses: [Course],
+    myCourses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
+    favoriteCourses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
     facebookId: String,
     googleId: String,
     code: String
@@ -48,9 +54,7 @@ UserSchema.pre('save', async function(next) {
     if (!this.isModified('password')) return next();
 
     const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-    const hash = await bcrypt.hash(this.password, salt);
-
-    this.password = hash;
+    this.password = await bcrypt.hash(this.password, salt);
     next();
 });
 

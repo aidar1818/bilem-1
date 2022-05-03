@@ -6,6 +6,10 @@ import { Module } from '../models/module.model';
 
 export type UsersState = {
   user: null | User,
+  fetchLoading: boolean,
+  fetchLoadingError: null | string,
+  addLoading: boolean,
+  addError: null | string,
   registerLoading: boolean,
   registerError: null | RegisterError,
   loginLoading: boolean,

@@ -4,6 +4,9 @@ import {
   editPasswordFailure,
   editPasswordRequest,
   editPasswordSuccess,
+  fetchUserFailure,
+  fetchUserRequest,
+  fetchUserSuccess,
   loginFacebookFailure,
   loginFacebookRequest,
   loginFacebookSuccess,
@@ -23,9 +26,21 @@ import {
   sendUserCodeRequest,
   sendUserCodeSuccess
 } from './users.actions';
+import {
+  addFavoriteCourseFailure,
+  addFavoriteCourseRequest,
+  addFavoriteCourseSuccess,
+  addLearningCourseFailure,
+  addLearningCourseRequest,
+  addLearningCourseSuccess
+} from '../course/course.actions';
 
 const initialState: UsersState = {
   user: null,
+  fetchLoading: false,
+  fetchLoadingError: null,
+  addLoading: false,
+  addError: null,
   registerLoading: false,
   registerError: null,
   loginLoading: false,
@@ -93,4 +108,38 @@ export const usersReducer = createReducer(
   on(loginGoogleRequest, state => ({...state, googleLoading: true, loginError: null})),
   on(loginGoogleSuccess, (state, {user}) => ({...state, googleLoading: false, user})),
   on(loginGoogleFailure, (state, {error}) => ({...state, googleLoading: false, loginError: error})),
+
+  on(addLearningCourseRequest, state => ({
+    ...state,
+    addLoading: true,
+    addError: null
+  })),
+  on(addLearningCourseSuccess, state => ({
+    ...state,
+    addLoading: false
+  })),
+  on(addLearningCourseFailure, (state, {error}) => ({
+    ...state,
+    addLoading: false,
+    addError: error
+  })),
+
+  on(addFavoriteCourseRequest, state => ({
+    ...state,
+    addLoading: true,
+    addError: null
+  })),
+  on(addFavoriteCourseSuccess, state => ({
+    ...state,
+    addLoading: false
+  })),
+  on(addFavoriteCourseFailure, (state, {error}) => ({
+    ...state,
+    addLoading: false,
+    addError: error
+  })),
+
+  on(fetchUserRequest, state => ({...state, fetchLoading: true})),
+  on(fetchUserSuccess, (state, {user}) => ({...state, fetchLoading: false, user})),
+  on(fetchUserFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
 );

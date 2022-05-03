@@ -1,0 +1,39 @@
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<div *ngIf="!favoriteCourses[0]">
+  <h1>Добавьте интересные вам курсы в список желаний, чтобы вернуться к ним позже.</h1>
+</div>
+
+<ng-template #coursesArea>
+  <div fxLayout="column" class="cards" *ngFor="let course of favoriteCourses">
+    <mat-card fxLayout="row" class="card favorite" fxLayoutAlign="space-between">
+      <img
+        fxFlex="20"
+        [src]="course.image | imageForCourse"
+        [alt]="course.title"
+      >
+      <div fxFlex="70">
+        <mat-card-title-group>
+          <mat-card-title class="title">{{ course.title }}</mat-card-title>
+          <mat-card-subtitle><p>{{ course.author.displayName }}</p></mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content>
+          <p *ngIf="!course.is_free"><b>{{ course.price }}сом</b></p>
+          <p *ngIf="course.is_free"><b>Бесплатно</b></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="accent" *ngIf="!course.is_free">Купить курс</button>
+          <button mat-stroked-button color="primary" *ngIf="course.is_free">Пройти курс</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</ng-template>
+

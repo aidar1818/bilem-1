@@ -125,10 +125,15 @@ router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
 router.post('/addCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
-    user.myCourses = req.body.course;
+    user.myCourses.push(req.body.course);
     await user.save();
-
     return res.send({message: 'Course added!'});
+    // const course = await Course.findById(req.body.course);
+    // const cor = user.myCourses.find(c => c._id = cour);
+    // if (!cor){
+    // }
+    // return res.status(404).send({message: `Курс уже добавлен!`});
+
   } catch (error) {
     next(error);
   }
@@ -137,10 +142,13 @@ router.post('/addCourse', auth, async (req, res, next) => {
 router.post('/addFavoriteCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
-    user.favoriteCourses = req.body.favoriteCourse;
+    user.favoriteCourses.push(req.body.favoriteCourse);
     await user.save();
-
     return res.send({message: 'Course added!'});
+    // const course = await Course.findById(req.body.course);
+    // if (!user.myCourses.find(c => c._id = course._id)){
+    // }
+    // return res.status(404).send({message: `Курс уже добавлен!`});
   } catch (error) {
     next(error);
   }

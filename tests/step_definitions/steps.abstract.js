@@ -24,8 +24,10 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/add-subcategory/626a50f11cdf5999b84dd479');
     case 'Редактирование подкатегории':
       return I.amOnPage('/add-subcategory/626a50f31cdf5999b84dd49c');
-    case 'Курс':
-      return I.amOnPage('/course/:id');
+    case 'Мои курсы':
+      return I.amOnPage('/myCourses/learning');
+    case 'Хочу пройти':
+      return I.amOnPage('/myCourses/favorite');
     default:
       return I.amOnPage('/');
   }
@@ -52,6 +54,14 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       return I.click(buttonText);
     case 'Создать курс':
       return I.click(buttonText);
+      case 'Поступить на курс':
+        I.click(buttonText);
+        I.wait(1);
+        break;
+      case 'Хочу пройти':
+       I.click(buttonText);
+       I.wait(1);
+       break;
     default:
       return I.click(buttonText);
   }

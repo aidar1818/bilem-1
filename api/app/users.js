@@ -7,9 +7,18 @@ const axios = require('axios');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const {customAlphabet} = require('nanoid');
+const auth = require("../middleware/auth");
 const nanoid = customAlphabet('1234567890', 6);
 
 const router = express.Router();
+
+router.get('/', auth, async (req, res, next) => {
+  try {
+    return res.send(req.user);
+  } catch (e) {
+    next(e);
+  }
+});
 
 router.post('/', async (req, res, next) => {
   try {
@@ -203,8 +212,6 @@ router.put('/editPassword', async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router;
 

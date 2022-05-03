@@ -9,6 +9,18 @@ import {
   User
 } from '../../models/user.models';
 
+export const fetchUserRequest = createAction(
+  '[Users] Fetch User Request',
+);
+export const fetchUserSuccess = createAction(
+  '[Users] Fetch User Success',
+  props<{user: User}>()
+);
+export const fetchUserFailure = createAction(
+  '[Users] Fetch User Failure',
+  props<{error: string}>()
+);
+
 export const registerUserRequest = createAction(
   '[Users] Register Request',
   props<{userData: RegisterUserData}>()

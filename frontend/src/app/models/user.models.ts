@@ -1,9 +1,15 @@
-export interface User {
-  _id: string,
-  email: string,
-  token: string,
-  displayName: string,
-  role: string,
+import { Course } from './course.model';
+
+export class User {
+  constructor(
+    public _id: string,
+    public email: string,
+    public token: string,
+    public displayName: string,
+    public role: string,
+    public myCourses: Course[],
+    public favoriteCourses: Course[],
+  ) {}
 }
 
 export interface RegisterUserData {

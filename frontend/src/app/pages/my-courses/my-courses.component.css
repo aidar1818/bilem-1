@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  min-height: calc(100vh - 145px);
+}
+
+.nav {
+  width: 18rem;
+  margin-right: 50px;
+  padding: 40px 10px;
+  background-color: #FCFCFC;
+}
+
+mat-nav-list a{
+  color: #85233E;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.mat-list-icon {
+  margin-right: 12px;
+}
+
+
+

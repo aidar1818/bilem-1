@@ -56,4 +56,20 @@ export class UsersService {
   editPassword(password: EditPasswordData) {
     return this.http.put(environment.apiUrl + `/users/editPassword`, password);
   }
+
+  getUser() {
+    return this.http.get<User>(env.apiUrl + '/users').pipe(
+      map(response => {
+        return new User(
+          response._id,
+          response.email,
+          response.token,
+          response.displayName,
+          response.role,
+          response.myCourses,
+          response.favoriteCourses,
+        );
+      })
+    );
+  }
 }

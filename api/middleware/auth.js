@@ -7,7 +7,12 @@ const auth = async (req, res, next) => {
         return res.status(401).send({error: 'No token!'});
     }
 
-    const user = await User.findOne({token});
+    const user = await User.findOne({token}).populate(
+        {
+                path: 'myCourses favoriteCourses',
+                populate: 'author subcategory'
+            }
+    );
 
     if (!user) {
         return res.status(401).send({error: 'This token is incorrect!'});

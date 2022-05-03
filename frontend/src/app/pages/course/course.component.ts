@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from '../../models/course.model';
+import { addFavoriteCourseRequest, addLearningCourseRequest } from '../../store/course/course.actions';
 
 @Component({
   selector: 'app-course',
@@ -23,4 +24,11 @@ export class CourseComponent implements OnInit {
     });
   }
 
+  addLearningCourse(id: string) {
+    this.store.dispatch(addLearningCourseRequest({id}))
+  }
+
+  addFavoriteCourse(id: string) {
+    this.store.dispatch(addFavoriteCourseRequest({id}))
+  }
 }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {
   editPasswordFailure,
   editPasswordRequest,
-  editPasswordSuccess,
+  editPasswordSuccess, fetchUserFailure, fetchUserRequest, fetchUserSuccess,
   loginFacebookFailure,
   loginFacebookRequest,
   loginFacebookSuccess,
@@ -42,6 +42,14 @@ export class UsersEffects {
     private store: Store<AppState>,
     private auth: SocialAuthService,
   ) {}
+
+  getUser = createEffect(() => this.actions.pipe(
+    ofType(fetchUserRequest),
+    mergeMap(() => this.usersService.getUser().pipe(
+      map(user => fetchUserSuccess({user})),
+      this.helpers.catchServerError(fetchUserFailure)
+    ))
+  ))
 
   registerUser = createEffect(() => this.actions.pipe(
     ofType(registerUserRequest),
