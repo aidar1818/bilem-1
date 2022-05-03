@@ -25,4 +25,6 @@ export class MainCoursesComponent implements OnInit {
 
     this.store.dispatch(fetchCoursesRequest());
   }
+
+
 }

@@ -57,6 +57,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchComponent } from './pages/catalog/search/search.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
+import { CourseComponent } from './pages/course/course.component';
 import {SidebarComponent} from "./ui/sidebar/sidebar.component";
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -101,6 +102,8 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterComponent,
     EditSubcategoryComponent,
     SearchComponent,
+    MainCoursesComponent,
+    CourseComponent,
     MainCoursesComponent,
     SidebarComponent
   ],

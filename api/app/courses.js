@@ -38,6 +38,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const course = await Course.findById(req.params.id).populate('author', 'displayName');
+    return res.send(course);
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.post('/', auth, upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title) {

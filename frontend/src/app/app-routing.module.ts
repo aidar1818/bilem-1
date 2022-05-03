@@ -17,6 +17,8 @@ import { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory
 import { SubcategoryResolverService } from './pages/subcategories/subcategory-resolver.service';
 import { SearchComponent } from './pages/catalog/search/search.component';
 import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
+import { CourseComponent } from './pages/course/course.component';
+import { CourseResolverService } from './pages/course/course-resolver.service';
 
 const routes: Routes = [
   {
@@ -93,6 +95,13 @@ const routes: Routes = [
     data: {roles: ['admin']},
     resolve: {
       subcategory: SubcategoryResolverService
+    }
+  },
+  {
+    path: 'course/:id',
+    component: CourseComponent,
+    resolve: {
+      course: CourseResolverService
     }
   }
 ];

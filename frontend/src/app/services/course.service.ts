@@ -24,6 +24,7 @@ export class CourseService {
             courseData._id,
             courseData.title,
             courseData.description,
+            courseData.information,
             courseData.author,
             courseData.students,
             courseData.subcategory,
@@ -60,6 +61,7 @@ export class CourseService {
             courseData._id,
             courseData.title,
             courseData.description,
+            courseData.information,
             courseData.author,
             courseData.students,
             courseData.subcategory,
@@ -69,6 +71,26 @@ export class CourseService {
             courseData.rate,
           );
         });
+      })
+    );
+  }
+
+  getCourseById(id: string) {
+    return this.http.get<Course>(env.apiUrl + '/courses/' + id).pipe(
+      map(response => {
+        return new Course(
+          response._id,
+          response.title,
+          response.description,
+          response.information,
+          response.author,
+          response.students,
+          response.subcategory,
+          response.price,
+          response.image,
+          response.is_free,
+          response.rate,
+        );
       })
     );
   }

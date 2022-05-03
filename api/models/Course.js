@@ -49,7 +49,12 @@ const CourseSchema = new Schema({
     required: true,
   },
   description: {
-    type: String
+    type: String,
+    required: true,
+  },
+  information: {
+    type: String,
+    required: true,
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -79,7 +84,7 @@ const CourseSchema = new Schema({
   is_published: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 
 const Course = mongoose.model('Course', CourseSchema);

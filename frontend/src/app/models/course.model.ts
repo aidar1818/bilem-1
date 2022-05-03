@@ -5,6 +5,7 @@ export class Course {
     public _id: string,
     public title: string,
     public description: string,
+    public information: string,
     public author: User,
     public students: User[],
     public subcategory: string,

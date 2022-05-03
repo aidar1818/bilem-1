@@ -1,0 +1,33 @@
+<div class="about">
+  <div class="title">
+    <h1 class="course-title">{{ course.title }}</h1>
+    <p> {{ course.description }} </p>
+    <div fxLayout="row" class="rate">
+      <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
+      <p>{{ course.rate }} / 5</p>
+    </div>
+  </div>
+  <img
+    class="image"
+    [src]="course.image | imageForCourse"
+    [alt]="course.title"
+  >
+</div>
+
+<div fxLayout="row" class="box">
+  <div fxFlex="70">
+    <div>
+      <h2>О курсе</h2>
+      <p>{{ course.information }}</p>
+    </div>
+  </div>
+  <div class="buttons" fxLayout="column">
+    <p *ngIf="course.is_free">Бесплатно</p>
+    <p *ngIf="!course.is_free">{{ course.price }} сом</p>
+
+    <button mat-raised-button class="" *ngIf="course.is_free">Поступить на курс</button>
+    <button mat-raised-button *ngIf="!course.is_free">Купить</button>
+    <button mat-stroked-button *ngIf="!course.is_free" >Попробовать бесплатно</button>
+    <button mat-button class="favorite" ><mat-icon>favorite</mat-icon> Хочу пройти</button>
+  </div>
+</div>
