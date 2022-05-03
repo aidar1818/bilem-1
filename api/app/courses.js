@@ -122,4 +122,28 @@ router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
   }
 });
 
+router.post('/addCourse', auth, async (req, res, next) => {
+  try {
+    const user = req.user;
+    user.myCourses = req.body.course;
+    await user.save();
+
+    return res.send({message: 'Course added!'});
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/addFavoriteCourse', auth, async (req, res, next) => {
+  try {
+    const user = req.user;
+    user.favoriteCourses = req.body.favoriteCourse;
+    await user.save();
+
+    return res.send({message: 'Course added!'});
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

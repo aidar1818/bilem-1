@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
+const Course = require('./Course');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -34,6 +35,8 @@ const UserSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin'],
     },
+    myCourses: [Course],
+    favoriteCourses: [Course],
     facebookId: String,
     googleId: String,
     code: String

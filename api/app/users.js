@@ -172,8 +172,6 @@ router.post('/recovery', async (req, res, next) => {
     updateUser.code = mailOptions.text;
     await updateUser.save();
 
-    console.log(updateUser)
-
     return res.send(updateUser);
   } catch (error) {
     next(error)
@@ -205,6 +203,8 @@ router.put('/editPassword', async (req, res, next) => {
     next(error);
   }
 });
+
+
 
 module.exports = router;
 

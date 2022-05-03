@@ -1,5 +1,8 @@
 <div class="main">
-  <app-sidebar>
+  <app-sidebar class="nav">
+    <div class="sidebar_icon">
+      <span class="material-icons school">school</span>
+    </div>
     <a mat-button routerLink="new" class="addBtn" fxLayoutAlign="center center">
       <span class="material-icons">add</span>
       Новый курс
@@ -22,12 +25,6 @@
           school
         </span>
         Уроки
-      </a>
-      <a mat-list-item routerLink="notifications">
-        <span class="material-icons mat-list-icon">
-          notifications_active
-        </span>
-        Уведомления
       </a>
     </mat-nav-list>
   </app-sidebar>

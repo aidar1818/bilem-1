@@ -37,16 +37,20 @@
 }
 
 .addModule{
-  background: #E6B1A8;
-  width: 15rem;
-  margin-left: 7rem;
-  font-size: 18px;
-  padding: 8px;
+  background: #85233E;
+  margin-left: 6.5rem;
+  padding: 8px 30px;
+  width: 13rem;
+  color: white;
 }
 
 .saveBtn{
-  width: 15rem;
-  padding: 10px;
-  margin: 5rem;
+  width: 13rem;
+  padding: 5px 30px;
+  margin: 20px 0 0 6.5rem;
+  transition: 0.5s;
+  border: 1px solid #85233E;
+  color: #85233E;
 }
+
 

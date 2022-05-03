@@ -23,8 +23,6 @@
               </mat-form-field>
               <span class="material-icons btnDelete" (click)="removeModule(moduleIndex)">delete</span>
 
-
-
               <div formArrayName="lessons">
                 <div
                   *ngFor="let lesson of getLessonsControls(moduleIndex).controls; let lessonIndex = index"
@@ -54,8 +52,11 @@
             </mat-card>
         </div>
       </div>
-      <button mat-raised-button type="button" (click)="addModule()" class="addModule">Добавить модуль</button>
-      <button mat-raised-button class="saveBtn" type="submit">Сохранить</button>
+      <button mat-raised-button type="button" (click)="addModule()" class="addModule">
+        <span class="material-icons">add</span>
+        Добавить модуль
+      </button>
+      <button mat-button class="saveBtn" type="submit">Сохранить</button>
     </form>
   </div>
 </div>
