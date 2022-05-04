@@ -91,7 +91,7 @@ const run = async () => {
     title: 'Разработка без кода',
   }, {
     category: finance,
-    title: 'Экономика',
+    title: 'Экономика.финансы',
   }, {
     category: finance,
     title: 'Бухгалтерский учет и отчетность',
@@ -343,7 +343,7 @@ const run = async () => {
     title: 'История',
   },{
     category: schoolLessons,
-    title: 'Экономика',
+    title: 'Экономика.школьная',
   },{
     category: schoolLessons,
     title: 'Литература русского языка',

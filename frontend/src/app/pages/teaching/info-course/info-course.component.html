@@ -1,0 +1,40 @@
+<div class="main">
+  <app-sidebar class="nav">
+    <div class="sidebarTitle">
+      <img class="img" [src]="urlImg | imageForCourse" alt="course image">
+      <h2>
+        <i>Курс: {{ courseInfo?.title }}</i>
+      </h2>
+    </div>
+
+    <mat-nav-list  role="navigation">
+      <a mat-list-item [routerLink]="['/syllabus/program/', courseInfo?._id, courseInfo?.title]">
+        <span class="material-icons mat-list-icon">
+          menu_book
+        </span>
+        Содержание
+      </a>
+    </mat-nav-list>
+  </app-sidebar>
+
+  <div class="programContent">
+    <h2>Программа курса</h2>
+
+    <button mat-raised-button class="editBtn">Редактировать содержание</button>
+
+    <div class="cards" *ngFor="let module of courseInfo?.modules; let i = index">
+      <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
+
+        <div fxLayout="column" fxLayoutAlign="space-between" class="title-course">
+          <h2>
+            <i>{{ i + 1 }}. {{ module.title }}</i>
+          </h2>
+          <span *ngFor="let lesson of module.lessons; let index = index" class="lessonTitle">
+            <i>{{ index + 1 }}. {{ lesson.title }}</i>
+        </span>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

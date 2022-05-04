@@ -12,6 +12,9 @@ import {
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess,
+  fetchCourseInfoFailure,
+  fetchCourseInfoRequest,
+  fetchCourseInfoSuccess,
   fetchCoursesFailure,
   fetchCoursesRequest,
   fetchCoursesSuccess,
@@ -41,6 +44,14 @@ export class CourseEffects {
     mergeMap(() => this.courseService.fetchCourses().pipe(
       map(courses => fetchCoursesSuccess({courses})),
       catchError(() => of(fetchCoursesFailure({error: 'Something wrong'})))
+    ))
+  ));
+
+  fetchCourseInfo = createEffect(() => this.actions.pipe(
+    ofType(fetchCourseInfoRequest),
+    mergeMap(({id}) => this.courseService.getCourseById(id).pipe(
+      map(course => fetchCourseInfoSuccess({course})),
+      catchError(() => of(fetchCourseInfoFailure({error: 'Something wrong'})))
     ))
   ));
 

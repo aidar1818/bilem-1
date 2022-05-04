@@ -1,5 +1,15 @@
 import { User } from './user.models';
 
+export interface Lesson {
+  title: string,
+  description: string
+}
+
+export interface Module {
+  title: string,
+  lessons: Lesson[]
+}
+
 export class Course {
   constructor(
     public _id: string,
@@ -8,6 +18,7 @@ export class Course {
     public information: string,
     public author: User,
     public students: User[],
+    public modules: Module[],
     public subcategory: string,
     public price: number,
     public image: string,

@@ -19,6 +19,7 @@ import { SearchComponent } from './pages/catalog/search/search.component';
 import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
 import { CourseComponent } from './pages/course/course.component';
 import { CourseResolverService } from './pages/course/course-resolver.service';
+import { InfoCourseComponent } from './pages/teaching/info-course/info-course.component';
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
@@ -122,7 +123,13 @@ const routes: Routes = [
     resolve: {
       course: CourseResolverService
     }
-  }
+  },
+  {
+    path: 'syllabus/program/:id/:title',
+    component: InfoCourseComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin', 'user']}
+  },
 ];
 
 @NgModule({

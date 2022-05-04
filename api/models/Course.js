@@ -54,7 +54,7 @@ const CourseSchema = new Schema({
   },
   information: {
     type: String,
-    required: true,
+    // required: true,
   },
   author: {
     type: Schema.Types.ObjectId,

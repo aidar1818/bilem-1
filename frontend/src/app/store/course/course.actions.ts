@@ -5,6 +5,17 @@ export const fetchCoursesRequest = createAction('[Courses] Fetch Request');
 export const fetchCoursesSuccess = createAction('[Courses] Fetch Success', props<{courses: Course[]}>());
 export const fetchCoursesFailure = createAction('[Courses] Fetch Failure', props<{error: string}>());
 
+export const fetchCourseInfoRequest = createAction(
+  '[Course] Fetch Request',
+  props<{id: string}>());
+export const fetchCourseInfoSuccess = createAction(
+  '[Course] Fetch Success',
+  props<{course: Course}>());
+export const fetchCourseInfoFailure = createAction(
+  '[Course] Fetch Failure',
+  props<{error: string}>());
+
+
 export const fetchUserCoursesRequest = createAction(
   '[UserCourses] Fetch Request',
   props<{id: string}>()

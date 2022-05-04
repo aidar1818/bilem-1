@@ -59,9 +59,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
 import { CourseComponent } from './pages/course/course.component';
 import {SidebarComponent} from "./ui/sidebar/sidebar.component";
-import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
-import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
+import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
+import { InfoCourseComponent } from './pages/teaching/info-course/info-course.component';
+import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
+
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -108,6 +110,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MainCoursesComponent,
     CourseComponent,
     MainCoursesComponent,
+    SidebarComponent,
+    InfoCourseComponent,
     SidebarComponent,
     MyCoursesComponent,
     FavoriteCoursesComponent,
