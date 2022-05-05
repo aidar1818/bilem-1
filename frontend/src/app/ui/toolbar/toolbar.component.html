@@ -87,9 +87,24 @@
       <mat-icon>{{ (user | async)?.displayName?.charAt(0) }}</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item disabled>{{ (user | async)?.displayName }}</button>
-      <a mat-menu-item>Profile</a>
-      <button mat-menu-item (click)="logout()">Logout</button>
+      <a mat-menu-item routerLink="/profile" fxLayoutAlign="start center">
+        <span class="material-icons">
+          person
+        </span>
+        Профиль
+      </a>
+      <a mat-menu-item routerLink="/userSettings/editProfile" fxLayoutAlign="start center">
+        <span class="material-icons">
+          settings
+        </span>
+        Настройки
+      </a>
+      <button mat-menu-item (click)="logout()" fxLayoutAlign="start center">
+        <span class="material-icons">
+          logout
+        </span>
+        Выйти
+      </button>
     </mat-menu>
   </nav>
 </ng-template>

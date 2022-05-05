@@ -194,6 +194,17 @@ mat-option{
   font-size: 13px;
 }
 
+.mat-menu-item {
+  min-width: 160px !important;
+  color: #85233E;
+  font-size: 0.8rem;
+}
+
+.mat-menu-item span {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
 
 
 

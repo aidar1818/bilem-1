@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
 const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const SocialNetworksSchema = new Schema({
+    link: String,
+});
+
+const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
@@ -43,6 +47,8 @@ const UserSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Course'
     }],
+    aboutMe: String,
+    socialNetworks: [SocialNetworksSchema],
     facebookId: String,
     googleId: String,
     code: String

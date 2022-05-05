@@ -49,5 +49,4 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.courseSub.unsubscribe();
     this.querySub.unsubscribe();
   }
-
 }

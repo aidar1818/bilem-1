@@ -213,5 +213,24 @@ router.put('/editPassword', async (req, res, next) => {
   }
 });
 
+router.put('/userEditProfile', auth, async (req, res, next) => {
+  try {
+    const update = {
+      email: req.user.email,
+      displayName: req.user.displayName,
+      aboutMe: req.user.aboutMe,
+      socialNetworks: req.user.socialNetworks,
+    };
+
+    const user = await User.findByIdAndUpdate({_id: req.user._id}, update);
+
+    await user.save();
+
+    return res.send(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
 

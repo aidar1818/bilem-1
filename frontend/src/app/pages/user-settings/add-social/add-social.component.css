@@ -1,0 +1,29 @@
+mat-form-field{
+  width: 50%;
+}
+
+h1{
+  border-bottom: 1px solid #eeeeee;
+}
+
+span{
+  opacity: 0.7;
+}
+
+p{
+  padding-bottom: 25px;
+  font-size: 18px;
+}
+
+img{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+button{
+  margin: 20px 0;
+  color: white;
+  background: #8a2440;
+  width: 15rem;
+}

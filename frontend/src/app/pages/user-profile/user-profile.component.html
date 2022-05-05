@@ -1,0 +1,21 @@
+<div class="content card">
+  <div class="text-center">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div class="avatar">
+        {{ (user | async)?.displayName?.charAt(0) }}
+      </div>
+      <h2 class="displayName">{{ userData?.displayName }}</h2>
+    </div>
+    <div class="text-content">
+      <a routerLink="myCourse">Мои курсы</a>
+    </div>
+
+    <h3>Ссылки на социальные сети</h3>
+    <ul class="social-list">
+      <li><i class="fa fa-facebook"></i></li>
+    </ul>
+    <div class="buttons">
+      <button mat-raised-button routerLink="/userSettings/editProfile">Настройки</button>&nbsp;
+    </div>
+  </div>
+</div>

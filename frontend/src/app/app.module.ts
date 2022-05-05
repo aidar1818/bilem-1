@@ -66,7 +66,10 @@ import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { CourseCardsComponent } from './ui/course-cards/course-cards.component';
 import { CourseCardComponent } from './ui/course-cards/course-card/course-card.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
-
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';
+import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -118,6 +121,11 @@ const socialConfig: SocialAuthServiceConfig = {
     SidebarComponent,
     MyCoursesComponent,
     FavoriteCoursesComponent,
+    LearningCoursesComponent,
+    UserSettingsComponent,
+    UserProfileComponent,
+    EditProfileComponent,
+    AddSocialComponent,
     LearningCoursesComponent,
     CourseCardsComponent,
     CourseCardComponent,

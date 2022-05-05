@@ -1,0 +1,137 @@
+<div>
+  <h1>Ссылки на социальные сети</h1>
+  <p>Эти ссылки будут отображаться в вашем профиле:</p>
+  <form
+    #f="ngForm"
+    fxLayout="column"
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+  >
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-fb.svg" alt="facebook logo"/>
+      <span>https://www.facebook.com/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-github.svg" alt="facebook logo"/>
+      <span>https://github.com/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-vk.svg" alt="facebook logo"/>
+      <span>https://vk.com/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-tw.svg" alt="facebook logo"/>
+      <span>https://twitter.com/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-instagram.svg" alt="facebook logo"/>
+      <span>https://www.instagram.com/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-skype.svg" alt="facebook logo"/>
+      <span>Skype ID</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-tme.svg" alt="facebook logo"/>
+      <span>https://t.me/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <span class="material-icons">
+        public
+      </span>
+      <span>Website</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <img src="assets/icons/form-youtube.svg" alt="facebook logo"/>
+      <span>https://www.youtube.com/channel/</span>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          name="fb"
+          matInput
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <button
+      type="submit"
+      mat-raised-button
+      [disabled]="f.invalid"
+    >
+      Сохранить изменения
+    </button>
+  </form>
+</div>

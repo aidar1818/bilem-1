@@ -1,0 +1,44 @@
+.content{
+  max-width: 1100px;
+  margin: 30px auto 0;
+}
+
+.nav{
+  margin-right: 50px;
+}
+
+.forms{
+  margin-top: 20px;
+  width: 60%;
+}
+
+ul{
+  list-style: none;
+}
+
+li {
+  padding: 10px 0;
+  color: #8a2440;
+}
+
+li a {
+  color: #8a2440;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+li a:hover{
+  text-decoration: underline;
+}
+
+li a:focus{
+  color: #000000;
+}
+
+li span {
+  margin-right: 10px;
+  font-size: 21px;
+}
+
+
+

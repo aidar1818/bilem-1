@@ -1,0 +1,102 @@
+.content{
+  width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 15px;
+  text-align: left;
+  background-color: #eee;
+}
+
+.card{
+  padding: 20px;
+  border:none;
+  position:relative;
+  overflow:hidden;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:4px;
+  height:100%;
+  opacity: 0.3;
+  background-color:#85233E;
+  transform:scaleY(1);
+  transition:all 0.7s;
+  transform-origin: bottom
+}
+
+.card:after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:4px;
+  height:100%;
+  background-color: #85233E;
+  transform:scaleY(0);
+  transition:all 0.7s;
+  transform-origin: bottom
+}
+
+.card:hover::after{
+  transform:scaleY(1);
+}
+
+.avatar{
+  background: #1466C6;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  margin: 0 30px 15px 0;
+  color: white;
+  font-size: 34px;
+}
+
+.text-center{
+  width: 35%;
+  margin-left: 20px;
+}
+
+.fonts{
+  font-size:11px;
+}
+
+.social-list{
+  display:flex;
+  list-style:none;
+  justify-content:center;
+  padding:0;
+}
+
+.social-list li{
+  padding:10px;
+  color:#85233E;
+  font-size:19px;
+}
+
+
+.buttons button:nth-child(1){
+  border:1px solid #85233E !important;
+  color:#85233E;
+  height:40px;
+}
+
+.buttons button:nth-child(1):hover{
+  border:1px solid #85233E !important;
+  color:#fff;
+  height:40px;
+  background-color:#85233E;
+}
+
+.buttons button:nth-child(2){
+  border:1px solid #85233E !important;
+  background-color:#85233E;
+  color:#fff;
+  height:40px;
+}

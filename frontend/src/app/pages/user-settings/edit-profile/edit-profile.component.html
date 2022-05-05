@@ -1,0 +1,54 @@
+<div>
+  <h1>Редактирование профиля</h1>
+  <form
+    #f="ngForm"
+    fxLayout="column"
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        name="email"
+        autocomplete="username"
+        required
+        matInput
+        ngModel
+        #email="ngModel"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ваше имя</mat-label>
+      <input
+        type="text"
+        name="displayName"
+        autocomplete="username"
+        required
+        matInput
+        ngModel
+        #displayName="ngModel"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Обо мне</mat-label>
+      <textarea
+        rows="8"
+        name="aboutMe"
+        matInput
+        ngModel
+        #aboutMe="ngModel"
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      [disabled]="f.invalid"
+    >
+      Сохранить изменения
+    </button>
+  </form>
+</div>

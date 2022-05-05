@@ -30,7 +30,6 @@ export class EditSubcategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
     });

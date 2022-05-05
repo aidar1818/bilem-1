@@ -7,6 +7,7 @@ export class User {
     public token: string,
     public displayName: string,
     public role: string,
+    public aboutMe: string,
     public myCourses: Course[],
     public favoriteCourses: Course[],
   ) {}

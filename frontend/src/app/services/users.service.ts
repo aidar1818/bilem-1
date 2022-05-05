@@ -66,6 +66,7 @@ export class UsersService {
           response.token,
           response.displayName,
           response.role,
+          response.aboutMe,
           response.myCourses,
           response.favoriteCourses,
         );

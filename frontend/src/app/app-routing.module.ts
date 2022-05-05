@@ -23,6 +23,10 @@ import { InfoCourseComponent } from './pages/teaching/info-course/info-course.co
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
+import {UserSettingsComponent} from "./pages/user-settings/user-settings.component";
+import {UserProfileComponent} from "./pages/user-profile/user-profile.component";
+import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';
+import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
 
 const routes: Routes = [
@@ -43,6 +47,13 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'recovery', component: RecoveryComponent},
+  {path: 'newPassword', component: NewPasswordComponent},
+  {path: 'profile', component: UserProfileComponent},
+  {path: 'userSettings', component: UserSettingsComponent, children: [
+      {path: 'editProfile', component: EditProfileComponent},
+      {path: 'addSocialNetworks', component: AddSocialComponent},
+      {path: 'newPassword', component: NewPasswordComponent},
+    ]},
   {path: 'newPassword', component: NewPasswordComponent},
   {
     path: 'teaching',

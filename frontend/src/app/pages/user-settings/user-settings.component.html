@@ -1,0 +1,21 @@
+<div fxLayout="row" class="content">
+  <div class="nav">
+    <ul>
+      <li fxLayoutAlign="start center">
+        <span class="material-icons">manage_accounts</span>
+        <a routerLink="editProfile">Редактировать профиль</a>
+      </li>
+      <li fxLayoutAlign="start center">
+        <span class="material-icons">public</span>
+        <a routerLink="addSocialNetworks">Ссылки на социальные сети</a>
+      </li>
+      <li fxLayoutAlign="start center">
+        <span class="material-icons">vpn_key</span>
+        <a routerLink="newPassword">Изменить пароль</a>
+      </li>
+    </ul>
+  </div>
+  <div class="forms">
+    <router-outlet></router-outlet>
+  </div>
+</div>
