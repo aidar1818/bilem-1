@@ -125,7 +125,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'syllabus/program/:id/:title',
+    path: 'syllabus/program/:id',
     component: InfoCourseComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin', 'user']}

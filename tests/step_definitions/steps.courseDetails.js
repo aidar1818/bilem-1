@@ -10,7 +10,33 @@ Given('я вижу название курса', () => {
     I.wait(1);
 });
 
-Given('я вижу кнопку {string}', (text) => {
-    I.see(text, {css: '.buttons button'});
-    I.wait(1);
+Given('я кликаю по карточке курса {string}', (text) => {
+    I.click(`//a//i[contains(text(),'${text}')]`);
 });
+
+Given('я вижу название курса {string}', (text) => {
+    I.see(text);
+});
+
+Given('я вижу кнопку {string}', (text) => {
+    switch (text) {
+        case 'Поступить на курс':
+            I.see();
+            I.wait(1);
+            break;
+        case 'Хочу пройти':
+            I.see(text);
+            I.wait(1);
+            break;
+        case 'Редактировать содержание':
+            I.see(text);
+            I.wait(1);
+            break;
+        default:
+            break;
+    }
+});
+
+Given('я нахожусь на странице', (page) => {
+    I.amOnPage(page);
+})

@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.course-card {
+  text-decoration: none;
+}
+
 .card  {
   width: 500px;
   margin-bottom: 16px;

@@ -362,7 +362,7 @@ const run = async () => {
   });
 
   const [java, cryptoRegency, javaScript, jScript, uxUi, tradingCourse, designIn, designBasic, ieltsCourse, ieltsSpeaking] = await Course.create({
-    title: 'Java c нуля',
+    title: 'Java с нуля',
     description: 'веб-разработка',
     information: 'Курс по программированию на языке Java для учеников центров Легасофт и IT-CUBE города Смоленска 14 - 16 лет. Курс рассчитан для новичков в программировании. За 4 модуля вы обучитесь основам программирования,  напишите несколько проектов, работая в команде, и узнаете несколько технологий, которые используют профессиональные разработчики.',
     author: user,

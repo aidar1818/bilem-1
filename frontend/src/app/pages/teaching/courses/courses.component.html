@@ -13,22 +13,24 @@
 
 <ng-template #coursesArea>
   <div class="cards" *ngFor="let course of courses | async">
-    <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
-      <div class="unpublished" *ngIf="!course.is_published">
-        <span class="unpublished-text">Unpublished</span>
-      </div>
-      <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
-      <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
-        <h2>
-          <i>Курс: {{ course.title }}</i>
-        </h2>
-        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editCourse">more_vert</mat-icon></button>
-      </div>
-    </mat-card>
-    <mat-menu #menu="matMenu">
-      <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
-      <button mat-button color="warn">Удалить</button>
-    </mat-menu>
+    <a  [routerLink]="['/syllabus/program/', course._id]" class="course-card">
+      <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
+        <div class="unpublished" *ngIf="!course.is_published">
+          <span class="unpublished-text">Unpublished</span>
+        </div>
+        <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
+        <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
+          <h2>
+            <i>Курс: {{ course.title }}</i>
+          </h2>
+          <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editCourse">more_vert</mat-icon></button>
+        </div>
+      </mat-card>
+      <mat-menu #menu="matMenu">
+        <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
+        <button mat-button color="warn">Удалить</button>
+      </mat-menu>
+    </a>
   </div>
 </ng-template>
 
