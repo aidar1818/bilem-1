@@ -30,9 +30,15 @@
             <h2>
               <i>{{ i + 1 }}. {{ module.title }}</i>
             </h2>
-            <span *ngFor="let lesson of module.lessons; let index = index" class="lessonTitle">
-            <i>{{ index + 1 }}. {{ lesson.title }}</i>
-        </span>
+            <div>
+              <div  *ngFor="let lesson of module.lessons; let index = index"
+                    class="lessonTitle" fxLayout="row" fxLayoutAlign="space-between start">
+                <p style="margin-bottom: 20px"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>
+                <a [routerLink]="['/edit-lesson/', lesson._id,]" mat-stroked-button class="lessonEditBtn">
+                  <span class="material-icons main-color">edit</span>
+                </a>
+              </div>
+            </div>
           </div>
         </mat-card>
       </a>

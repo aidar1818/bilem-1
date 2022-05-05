@@ -97,4 +97,15 @@ footer {
   transform: rotate(45deg) translate(30%, 45%);
 }
 
+.main-color-back {
+  background-color: #85233E;
+  color: #dddddd;
+}
+
+.main-color {
+  color:  #85233E;
+}
+
+
+
 

@@ -1,7 +1,7 @@
 import { LoginError, RegisterError, User } from '../models/user.models';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
-import { Course } from '../models/course.model';
+import { Course, Lesson } from '../models/course.model';
 import { Module } from '../models/module.model';
 
 export type UsersState = {
@@ -68,12 +68,21 @@ export type ModuleState = {
   createError: null | string,
   removeLoading: boolean,
   removeError: null | string,
-}
+};
+
+export type LessonsState = {
+  createLessonLoading: boolean,
+  createLessonError: null | string,
+  fetchLoading: boolean,
+  fetchLoadingError: null | string,
+  lesson: Lesson | null,
+};
 
 export type AppState = {
   users: UsersState,
   categories: CategoriesState,
   subcategories: SubcategoriesState,
   courses: CourseState,
-  modules: ModuleState
+  modules: ModuleState,
+  lessons: LessonsState
 };

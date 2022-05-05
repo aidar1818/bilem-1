@@ -26,6 +26,7 @@ exports.config = {
         './step_definitions/steps.searchCourses.js',
         './step_definitions/steps.courseDetails.js',
         './step_definitions/steps.myCourses.js',
+        './step_definitions/steps.lessons.js',
     ]
   },
   plugins: {

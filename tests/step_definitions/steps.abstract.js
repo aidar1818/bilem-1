@@ -46,6 +46,11 @@ Given('нажимаю на кнопку формы {string}', (buttonText) => {
   I.wait(1);
 });
 
+Given('я нажимаю на ссылку {string}', (linkTitle) => {
+  I.click(linkTitle);
+  I.wait(1);
+});
+
 Given('нажимаю на кнопку {string}', (buttonText) => {
   switch (buttonText) {
     case 'Редактировать':

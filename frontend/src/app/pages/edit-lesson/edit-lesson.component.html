@@ -1,0 +1,65 @@
+<mat-progress-spinner
+  *ngIf="(fetchLessonDataLoading | async) else lessonEditForm"
+></mat-progress-spinner>
+<div class="error" *ngIf="fetchLessonDataError | async">{{ fetchLessonDataError | async}}</div>
+<ng-template #lessonEditForm>
+  <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 40px">
+    <mat-card class="form-card" fxFlex="50%">
+      <mat-card-title style="text-align: center">Редактирование урока</mat-card-title>
+      <mat-card-content>
+        <form
+          #f="ngForm"
+          fxLayout="column"
+          autocomplete="off"
+          style="margin-top: 20px"
+          (ngSubmit)="editLesson()"
+        >
+          <div class="error" *ngIf="error | async">{{ error | async}}</div>
+          <mat-form-field appearance="outline">
+            <mat-label>Название урока</mat-label>
+            <input type="text" name="title" required matInput ngModel #title="ngModel"/>
+            <mat-error *ngIf="title.touched && title.hasError('required')">
+              Данное поле является обязательным!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Описание</mat-label>
+            <textarea matInput
+                      [required]="!f.value.video"
+                      name="description"
+                      ngModel
+                      #description="ngModel"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="10"
+            ></textarea>
+            <mat-error *ngIf="description.touched && description.hasError('required')">
+              Данное поле является обязательным!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Ссылка на видео</mat-label>
+            <input
+              type="text"
+              name="video"
+              [required]="!f.value.description"
+              matInput
+              ngModel
+              #video="ngModel"
+            />
+            <mat-error *ngIf="video.touched && video.hasError('required')">
+              Данное поле является обязательным!
+            </mat-error>
+          </mat-form-field>
+          <button
+            type="submit"
+            mat-raised-button
+            class="main-color-back"
+            [disabled]="f.invalid || (loading | async)"
+          >
+            Сохранить изменения
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

@@ -65,6 +65,7 @@ import { InfoCourseComponent } from './pages/teaching/info-course/info-course.co
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { CourseCardsComponent } from './ui/course-cards/course-cards.component';
 import { CourseCardComponent } from './ui/course-cards/course-card/course-card.component';
+import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -120,6 +121,7 @@ const socialConfig: SocialAuthServiceConfig = {
     LearningCoursesComponent,
     CourseCardsComponent,
     CourseCardComponent,
+    EditLessonComponent,
   ],
   imports: [
     BrowserModule,

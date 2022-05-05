@@ -1,8 +1,12 @@
 import { User } from './user.models';
 
-export interface Lesson {
-  title: string,
-  description: string
+export class Lesson {
+  constructor(
+    public _id: string,
+    public title: string,
+    public description: string | null,
+    public video: string | null
+  ) {}
 }
 
 export interface Module {

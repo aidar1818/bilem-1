@@ -23,6 +23,7 @@ import { InfoCourseComponent } from './pages/teaching/info-course/info-course.co
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
+import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
 
 const routes: Routes = [
   {
@@ -127,6 +128,12 @@ const routes: Routes = [
   {
     path: 'syllabus/program/:id',
     component: InfoCourseComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin', 'user']}
+  },
+  {
+    path: 'edit-lesson/:id',
+    component: EditLessonComponent,
     canActivate: [RoleGuardService],
     data: {roles: ['admin', 'user']}
   },

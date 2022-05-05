@@ -204,4 +204,64 @@ router.post('/addFavoriteCourse', auth, async (req, res, next) => {
   }
 });
 
+router.post('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+  try {
+    if(!req.body.title) {
+      return res.status(400).send({message: 'Название урока является обязательным полем!'});
+    }
+
+    const course = await Course.findOne({"modules.lessons._id": req.params.id});
+
+    if(!course) {
+      return res.status(404).send({message: `Курс не найден!`});
+    }
+
+    for(let i = 0; i < course.modules.length; i++) {
+      for(let j = 0; j < course.modules[i].lessons.length; j++) {
+        if((course.modules[i].lessons[j]._id).toString() === req.params.id) {
+          course.modules[i].lessons[j].title = req.body.title;
+          if(req.body.description) {
+            course.modules[i].lessons[j].description = req.body.description;
+          }
+          if(req.body.video) {
+            course.modules[i].lessons[j].video = req.body.video;
+          }
+        }
+      }
+    }
+
+    await course.save();
+    return res.send(course);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+  try {
+    const course = await Course.findOne({"modules.lessons._id": req.params.id});
+
+    if(!course) {
+      return res.status(404).send({message: `Курс не найден!`});
+    }
+
+    for(let i = 0; i < course.modules.length; i++) {
+      for(let j = 0; j < course.modules[i].lessons.length; j++) {
+        if((course.modules[i].lessons[j]._id).toString() === req.params.id) {
+          const lesson = {
+            _id: course.modules[i].lessons[j]._id,
+            title: course.modules[i].lessons[j].title,
+            description: course.modules[i].lessons[j].description,
+            video: course.modules[i].lessons[j].video,
+          };
+          return res.send(lesson);
+        }
+      }
+    }
+
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

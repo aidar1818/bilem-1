@@ -12,6 +12,8 @@ import { courseReducer } from './course/course.reducer';
 import { CourseEffects } from './course/course.effects';
 import { modulesReducer } from './modules/modules.reducer';
 import { ModulesEffects } from './modules/modules.effects';
+import { lessonsReducer } from './lessons/lessons.reducer';
+import { LessonsEffects } from './lessons/lessons.effects';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -27,10 +29,11 @@ const reducers = {
   categories: categoriesReducer,
   subcategories: subcategoriesReducer,
   courses: courseReducer,
-  modules: modulesReducer
+  modules: modulesReducer,
+  lessons: lessonsReducer
 };
 
-const effects = [UsersEffects, CategoriesEffects, SubcategoriesEffects, CourseEffects, ModulesEffects];
+const effects = [UsersEffects, CategoriesEffects, SubcategoriesEffects, CourseEffects, ModulesEffects, LessonsEffects];
 
 @NgModule({
   imports: [

@@ -9,22 +9,24 @@ const LessonSchema = new Schema({
   description: {
     type: String,
     validate: {
-      validator: function () {
-        if((!this.isModified('description') && this.video)) return true;
-        if(!this.description && !this.video) return false;
+      validator: async function (value) {
+        if (!this.isModified('description')) return true;
+
+        return Boolean(value || this.image);
       },
-      message: 'Должно присутствовать либо описание, либо видео урока!'
-    }
+      message: 'Должно присутствовать либо описание, либо видео урока!',
+    },
   },
   video: {
     type: String,
     validate: {
-      validator: function () {
-        if((!this.isModified('video') && this.description)) return true;
-        if(!this.video && !this.description) return false;
+      validator: async function (value) {
+        if (!this.isModified('video')) return true;
+
+        return Boolean(value || this.description);
       },
-      message: 'Должно присутствовать либо видео, либо описание урока!'
-    }
+      message: 'Должно присутствовать либо видео, либо описание урока!',
+    },
   }
 });
 
@@ -54,7 +56,6 @@ const CourseSchema = new Schema({
   },
   information: {
     type: String,
-    // required: true,
   },
   author: {
     type: Schema.Types.ObjectId,
