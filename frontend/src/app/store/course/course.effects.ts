@@ -20,7 +20,12 @@ import {
   fetchCoursesSuccess,
   fetchUserCoursesFailure,
   fetchUserCoursesRequest,
-  fetchUserCoursesSuccess,
+  fetchUserCoursesSuccess, publishCourseFailure,
+  publishCourseRequest,
+  publishCourseSuccess,
+  removeCourseFailure,
+  removeCourseRequest,
+  removeCourseSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
   searchCoursesSuccess,
@@ -104,6 +109,36 @@ export class CourseEffects {
         this.helpers.openSnackbar('Добавлен в список желаний');
       }),
       this.helpers.catchServerError(addLearningCourseFailure)
+    ))
+  ));
+
+  removeCourse = createEffect(() => this.actions.pipe(
+    ofType(removeCourseRequest),
+    mergeMap(({id}) => this.courseService.removeCourse(id).pipe(
+      map(() => removeCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchCoursesRequest());
+        this.helpers.openSnackbar('Успешно удалено');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Курс не удален');
+        return of(removeCourseFailure());
+      })
+    ))
+  ));
+
+  publishCourse = createEffect(() => this.actions.pipe(
+    ofType(publishCourseRequest),
+    mergeMap(({id}) => this.courseService.publishCourse(id).pipe(
+      map(() => publishCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchCoursesRequest());
+        this.helpers.openSnackbar('Успешно опубликовано');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Курс не опубликован');
+        return of(publishCourseFailure());
+      })
     ))
   ));
 }

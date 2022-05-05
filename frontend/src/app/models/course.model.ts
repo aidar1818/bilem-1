@@ -24,6 +24,7 @@ export class Course {
     public image: string,
     public is_free: boolean,
     public rate: number,
+    public is_published: boolean,
   ) {}
 }
 

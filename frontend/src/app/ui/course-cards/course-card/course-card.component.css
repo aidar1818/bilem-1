@@ -1,0 +1,70 @@
+.card-wrapper {
+  width: 20rem;
+  height: 170px;
+  border-radius: 25px;
+  margin: 7px;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-wrapper mat-card-title a {
+  max-width: 260px;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 18px;
+  color: black;
+}
+
+.card-wrapper mat-card-title a:hover {
+  text-decoration: underline;
+}
+
+.card-wrapper:hover {
+  -webkit-box-shadow: 0 0 5px 2px lightgray;
+  -moz-box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 5px 2px lightgray;
+}
+
+.rating-img {
+  height: 20px;
+}
+
+.course-card {
+  height: 100%;
+}
+
+.course-image {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+}
+
+.course-content {
+  position: absolute;
+  bottom: 30px;
+}
+
+.price {
+  color: green;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+h1 {
+  margin-left: 4rem;
+  margin-top: 25px;
+  font-size: 2.5rem;
+}
+
+.subscribers {
+  height: 20px;
+  margin-left: 5px;
+}
+
+.admin-btns {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+

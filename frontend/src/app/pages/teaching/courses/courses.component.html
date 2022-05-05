@@ -13,9 +13,11 @@
 
 <ng-template #coursesArea>
   <div class="cards" *ngFor="let course of courses | async">
-    <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card"
-              [routerLink]="['/syllabus/program/', course._id, course.title]">
-      <img class="img" [src]="course.image | imageForCourse" [alt]="course.title">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
+      <div class="unpublished" *ngIf="!course.is_published">
+        <span class="unpublished-text">Unpublished</span>
+      </div>
+      <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
       <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
         <h2>
           <i>Курс: {{ course.title }}</i>

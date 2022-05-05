@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
 
 .error {
   background-color: red;
@@ -70,6 +77,24 @@ footer {
   bottom: 0;
   width: 100%;
   height: 80px;
+}
+
+.unpublished {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  color: #fff;
+  border-style: solid;
+  border-width: 0 80px 80px 0;
+  border-color: transparent #E6B1A8 transparent transparent;
+}
+
+.unpublished-text {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg) translate(30%, 45%);
 }
 
 

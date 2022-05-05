@@ -63,6 +63,8 @@ import { LearningCoursesComponent } from './pages/my-courses/learning-courses/le
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
 import { InfoCourseComponent } from './pages/teaching/info-course/info-course.component';
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
+import { CourseCardsComponent } from './ui/course-cards/course-cards.component';
+import { CourseCardComponent } from './ui/course-cards/course-card/course-card.component';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -115,7 +117,9 @@ const socialConfig: SocialAuthServiceConfig = {
     SidebarComponent,
     MyCoursesComponent,
     FavoriteCoursesComponent,
-    LearningCoursesComponent
+    LearningCoursesComponent,
+    CourseCardsComponent,
+    CourseCardComponent,
   ],
   imports: [
     BrowserModule,

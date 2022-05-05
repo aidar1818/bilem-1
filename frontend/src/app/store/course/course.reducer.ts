@@ -13,6 +13,11 @@ import {
   fetchUserCoursesFailure,
   fetchUserCoursesRequest,
   fetchUserCoursesSuccess,
+  publishCourseFailure, publishCourseRequest,
+  publishCourseSuccess,
+  removeCourseFailure,
+  removeCourseRequest,
+  removeCourseSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
   searchCoursesSuccess
@@ -29,7 +34,7 @@ const initialState: CourseState = {
   createLoading: false,
   createError: null,
   removeLoading: false,
-  removeError: null,
+  publishLoading: false,
 };
 
 export const courseReducer = createReducer(
@@ -71,4 +76,12 @@ export const courseReducer = createReducer(
   on(searchCoursesRequest, state => ({...state, fetchLoading: true})),
   on(searchCoursesSuccess, (state, {searchCourses}) => ({...state, fetchLoading: false, searchCourses})),
   on(searchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+
+  on(removeCourseRequest, state => ({...state, removeLoading: true})),
+  on(removeCourseSuccess, state => ({...state, removeLoading: false})),
+  on(removeCourseFailure, state => ({...state, removeLoading: false})),
+
+  on(publishCourseRequest, state => ({...state, publishLoading: true})),
+  on(publishCourseSuccess, state => ({...state, publishLoading: false})),
+  on(publishCourseFailure, state => ({...state, publishLoading: false})),
 );

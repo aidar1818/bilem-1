@@ -3,6 +3,7 @@ const multer = require('multer');
 const {nanoid} = require('nanoid');
 const auth = require("../middleware/auth");
 const permit = require("../middleware/permit");
+const roles = require('../middleware/roles');
 const Course = require("../models/Course");
 const config = require("../config");
 const path = require("path");
@@ -19,28 +20,49 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 
-router.get('/', async (req, res, next) => {
+router.get('/', roles, async (req, res, next) => {
   try {
     if (req.query.user) {
       const userCourses = await Course.find({author: req.query.user}).populate('author', 'displayName');
       return res.send(userCourses);
     }
 
+    let coursesBySubcategory;
+
     if (req.query.subcategory) {
-      const coursesBySubcategory = await Course.find({subcategory: req.query.subcategory});
+      if (req.user && req.user.role === 'admin') {
+        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory});
+      } else {
+        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory, is_published: true});
+      }
       return res.send(coursesBySubcategory);
     }
 
-    const courses = await Course.find();
-    return res.send(courses);
-  } catch (e) {
+    if (req.user && req.user.role === 'admin') {
+      const courses = await Course.find();
+      return res.send(courses);
+    } else {
+      const courses = await Course.find({is_published: true});
+      return res.send(courses);
+    }
+  } catch
+    (e) {
     next(e);
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', roles, async (req, res, next) => {
   try {
-    const course = await Course.findById(req.params.id).populate('author', 'displayName');
+    let course;
+
+    if (req.user && req.user.role === 'admin') {
+      course = await Course.findById(req.params.id).populate('author', 'displayName');
+    }
+
+    if ((req.user && req.user.role === 'user') || !req.user) {
+      [course] = await Course.find({_id: req.params.id, is_published: true}).populate('author', 'displayName');
+    }
+
     return res.send(course);
   } catch (e) {
     next(e);
@@ -58,18 +80,12 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
       description: req.body.description,
       author: req.user._id,
       subcategory: req.body.subcategory,
-      image: null,
+      image: req.file ? req.file.filename : null,
       is_free: req.body.is_free,
+      is_published: req.user.role === 'admin',
+      price: req.body.price ? req.body.price : null
     });
 
-    if (req.body.price) {
-      course.price = req.body.price;
-    }
-
-    if (req.file) {
-      course.image = req.file.filename;
-    }
-
     await course.save();
 
     return res.send(course);
@@ -78,13 +94,22 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
   }
 });
 
-router.post('/course/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+router.post('/course/:id', auth, async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);
-    if(!course) {
+
+    if (!course) {
       return res.status(404).send({message: `Course is not found`});
     }
-    course.modules = req.body.modules;
+
+    if (req.user.role === 'admin') {
+      course.modules = req.body.modules;
+    } else if (course.author.toString() === req.user._id.toString()) {
+      course.modules = req.body.modules;
+    } else {
+      return res.status(403).send({message: `Access is restricted`});
+    }
+
     await course.save();
 
     return res.send(course);
@@ -93,13 +118,33 @@ router.post('/course/:id', auth, permit('user', 'admin'), async (req, res, next)
   }
 });
 
-router.post('/search', async (req, res, next) => {
+router.post('/:id/publish', auth, permit('admin'), async (req, res, next) => {
+  try {
+    await Course.updateOne({_id: req.params.id}, {is_published: true});
+    return res.send({message: 'Updated successful'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.post('/search', roles, async (req, res, next) => {
   try {
     const query = {};
+    let courses;
+
     if (req.body.is_free) {
       query.is_free = req.body.is_free;
     }
-    const courses = await Course.find(query).populate('author', 'displayName');
+
+    if (req.user && req.user.role === 'admin') {
+      courses = await Course.find(query).populate('author', 'displayName');
+    }
+
+    if ((req.user && req.user.role === 'user') || !req.user) {
+      query.is_published = true;
+      courses = await Course.find(query).populate('author', 'displayName');
+    }
+
     const responseCourses = courses.filter(course => course.title.toLowerCase().includes(req.body.title));
 
     return res.send(responseCourses);
@@ -108,13 +153,18 @@ router.post('/search', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);
     if (!course) {
       return res.status(404).send({message: `Not found!`});
     }
-    await Course.deleteOne({_id: req.params.id});
+
+    if (req.user.role === 'admin' || course.author.toString() === req.user._id.toString()) {
+      await Course.deleteOne({_id: req.params.id});
+    } else {
+      return res.status(403).send({message: `Access is restricted`});
+    }
 
     return res.send({message: `Course deleted!`});
   } catch (e) {

@@ -29,6 +29,7 @@ export class CourseService {
             courseData.image,
             courseData.is_free,
             courseData.rate,
+            courseData.is_published,
           );
         });
       })
@@ -52,6 +53,7 @@ export class CourseService {
             courseData.image,
             courseData.is_free,
             courseData.rate,
+            courseData.is_published,
           );
         });
       })
@@ -90,6 +92,7 @@ export class CourseService {
             courseData.image,
             courseData.is_free,
             courseData.rate,
+            courseData.is_published,
           );
         });
       })
@@ -112,6 +115,7 @@ export class CourseService {
           response.image,
           response.is_free,
           response.rate,
+          response.is_published,
         );
       })
     );
@@ -131,5 +135,13 @@ export class CourseService {
         return response;
       })
     );
+  }
+
+  removeCourse(artistId: string) {
+    return this.http.delete(env.apiUrl + '/courses/' + artistId);
+  }
+
+  publishCourse(id: string) {
+    return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});
   }
 }

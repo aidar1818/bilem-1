@@ -1,0 +1,53 @@
+<mat-card class="card-wrapper" *ngIf="course['is_free'] === is_free">
+  <div [routerLink]="['/course', course['_id']]" class="course-card" fxLayout="column"
+       fxLayoutAlign="space-between">
+    <div>
+      <div class="unpublished" *ngIf="!course.is_published">
+        <span class="unpublished-text">Unpublished</span>
+      </div>
+      <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
+        <mat-card-title>
+          <a [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
+        </mat-card-title>
+        <img
+          mat-card-sm-image
+          class="course-image"
+          [src]="course.image | imageForCourse"
+          alt="icon"
+        >
+      </mat-card-title-group>
+    </div>
+    <div>
+      <div>
+        <div fxLayout="row">
+          <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
+          <p style="margin-top: 3px; margin-left: 5px">{{ course.rate }}</p>
+          <img
+            class="subscribers"
+            src="assets/icons/subscriber.png"
+            alt="subscribers"
+          >
+          <p style="margin-top: 3px; margin-left: 5px">Students</p>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <p class="price" style="color: blueviolet" *ngIf="!course.is_free">{{ course['price'] }}</p>
+        <p class="price" *ngIf="course.is_free">Бесплатно</p>
+      </div>
+    </div>
+    <div *appHasRoles="['admin']" class="admin-btns">
+      <button mat-raised-button color="warn" (click)="removeCourse(course._id, $event)">
+        <mat-spinner *ngIf="(removeLoading | async) && course['_id'] === toBeDeletedCourse"
+                     diameter="30"></mat-spinner>
+        <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse">Удалить</span>
+      </button>&nbsp;
+
+      <button mat-raised-button color="primary" (click)="publishCourse(course._id, $event)"
+              *ngIf="!course['is_published']">
+        <mat-spinner diameter="30"
+                     *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
+        <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse">Опубликовать</span>
+      </button>
+    </div>
+  </div>
+</mat-card>

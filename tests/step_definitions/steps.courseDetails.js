@@ -1,7 +1,7 @@
 const { I } = inject();
 
 Given('я кликаю по карточке курса', () => {
-    I.click('.example-card a');
+    I.click('.card-wrapper a');
     I.wait(1);
 });
 

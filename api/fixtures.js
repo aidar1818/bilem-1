@@ -91,7 +91,7 @@ const run = async () => {
     title: 'Разработка без кода',
   }, {
     category: finance,
-    title: 'Экономика.финансы',
+    title: 'Экономика. Финансы',
   }, {
     category: finance,
     title: 'Бухгалтерский учет и отчетность',
@@ -343,7 +343,7 @@ const run = async () => {
     title: 'История',
   },{
     category: schoolLessons,
-    title: 'Экономика.школьная',
+    title: 'Экономика. Школьные предметы',
   },{
     category: schoolLessons,
     title: 'Литература русского языка',
@@ -400,7 +400,7 @@ const run = async () => {
     image: null,
     is_free: false,
     rate: 0.0,
-    is_published: false
+    is_published: true
   },{
     title: 'Продвинутая Java',
     description: 'Веб-разработка',
@@ -440,7 +440,7 @@ const run = async () => {
     image: null,
     is_free: false,
     rate: 0.0,
-    is_published: false
+    is_published: true
   }, {
     title: 'Полное руководство по торговле криптовалютой для начинающих',
     description: 'Криптовалюты - это легко. Мой курс отвечает на самые основополагающие вопросы об устройстве и использовании криптовалют. Для вас он станет крепким фундаментом в понимании криптовалютного рынка.' +
@@ -481,7 +481,7 @@ const run = async () => {
     image: null,
     is_free: true,
     rate: 4.7,
-    is_published: false
+    is_published: true
   }, {
     title: 'Java Script',
     description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
@@ -521,7 +521,7 @@ const run = async () => {
     image: null,
     is_free: true,
     rate: 4.7,
-    is_published: false
+    is_published: true
   },{
     title: 'Java Script с нуля',
     description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
@@ -561,7 +561,7 @@ const run = async () => {
     image: null,
     is_free: false,
     rate: 5,
-    is_published: false
+    is_published: true
   },{
     title: 'UX/UI',
     description: 'Веб-дизайн',
@@ -601,7 +601,7 @@ const run = async () => {
     image: null,
     is_free: false,
     rate: 4.7,
-    is_published: false
+    is_published: true
   }, {
     title: 'Трейдинг 2022',
     description: 'Трейдинг',
@@ -641,7 +641,7 @@ const run = async () => {
     image: null,
     is_free: true,
     rate: 5,
-    is_published: false
+    is_published: true
   },  {
     title: 'Дизайн интерьера',
     description: 'Пошаговое руководство по созданию интерьера',
@@ -681,7 +681,7 @@ const run = async () => {
     image: null,
     is_free: false,
     rate: 3.5,
-    is_published: false
+    is_published: true
   }, {
     title: 'Основы дизайна интерьера',
     description: 'Узнайте как создать интерьер самостоятельно с любым бюджетом',

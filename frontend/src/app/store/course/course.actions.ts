@@ -76,4 +76,12 @@ export const addFavoriteCourseSuccess = createAction(
 export const addFavoriteCourseFailure = createAction(
   '[Users] Add Favorite Course Failure',
   props<{error: string}>()
-);5
+);
+
+export const removeCourseRequest = createAction('[Course] Remove Request', props<{ id: string }>());
+export const removeCourseSuccess = createAction('[Course] Remove Success');
+export const removeCourseFailure = createAction('[Course] Remove Failure');
+
+export const publishCourseRequest = createAction('[Course] Publish Request', props<{ id: string }>());
+export const publishCourseSuccess = createAction('[Course] Publish Success');
+export const publishCourseFailure = createAction('[Course] Publish Failure');

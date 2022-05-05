@@ -57,7 +57,7 @@ export type CourseState = {
   createLoading: boolean,
   createError: null | string,
   removeLoading: boolean,
-  removeError: null | string,
+  publishLoading: boolean,
 };
 
 export type ModuleState = {
