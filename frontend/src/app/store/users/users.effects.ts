@@ -3,9 +3,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import {
+  addSocialNetworksFailure,
+  addSocialNetworksRequest,
   editPasswordFailure,
   editPasswordRequest,
-  editPasswordSuccess, fetchUserFailure, fetchUserRequest, fetchUserSuccess,
+  editPasswordSuccess,
+  editProfileFailure,
+  editProfileRequest,
+  editProfileSuccess,
+  fetchUserFailure,
+  fetchUserRequest,
+  fetchUserSuccess,
   loginFacebookFailure,
   loginFacebookRequest,
   loginFacebookSuccess,
@@ -93,8 +101,8 @@ export class UsersEffects {
       return this.usersService.logout().pipe(
         map(() => logoutUser()),
         tap(async () => {
-          await this.auth.signOut();
           await this.router.navigate(['/']);
+          await this.auth.signOut();
           this.helpers.openSnackbar('Выход из аккаунта');
         })
       );
@@ -123,7 +131,8 @@ export class UsersEffects {
     mergeMap( ({password}) => this.usersService.editPassword(password).pipe(
       map(() => editPasswordSuccess()),
       tap(() => {
-        void this.router.navigate(['/login']);
+        this.helpers.openSnackbar('Пароль обновлён');
+        void this.router.navigate(['/profile']);
       })
     )),
     catchError(() => of(editPasswordFailure({error: 'Что-то пошло не так'})))
@@ -139,5 +148,29 @@ export class UsersEffects {
       }),
       this.helpers.catchServerError(loginGoogleFailure)
     ))
+  ));
+
+  editProfile = createEffect(() => this.actions.pipe(
+    ofType(editProfileRequest),
+    mergeMap( ({userData}) => this.usersService.editProfile(userData).pipe(
+      map(user => editProfileSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackbar('Ваш профиль обновлён');
+        void this.router.navigate(['/profile']);
+      })
+    )),
+    catchError(() => of(editProfileFailure({error: 'Что-то пошло не так'})))
+  ));
+
+  addSocialNetworks = createEffect(() => this.actions.pipe(
+    ofType(addSocialNetworksRequest),
+    mergeMap( ({socialNetworks}) => this.usersService.addSocialNetworks(socialNetworks).pipe(
+      map(user => editProfileSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackbar('Ссылки на соцсети обновлены');
+        void this.router.navigate(['/profile']);
+      })
+    )),
+    catchError(() => of(addSocialNetworksFailure({error: 'Что-то пошло не так'})))
   ));
 }

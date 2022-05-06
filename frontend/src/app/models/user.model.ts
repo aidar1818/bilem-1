@@ -10,6 +10,7 @@ export class User {
     public aboutMe: string,
     public myCourses: Course[],
     public favoriteCourses: Course[],
+    public socialNetworks: [],
   ) {}
 }
 
@@ -37,6 +38,26 @@ export interface googleLoginUserData {
   email: string,
   name: string,
   accessToken: string
+}
+
+export interface socialNetworks {
+  userId: string,
+  fb: string,
+  github: string,
+  vk: string,
+  tw: string,
+  instagram: string,
+  skype: string,
+  tme: string,
+  website: string,
+  youtube: string,
+}
+
+export interface profileUserData{
+  _id: string,
+  email: string,
+  displayName: string,
+  aboutMe: string
 }
 
 export interface CodeUserData {

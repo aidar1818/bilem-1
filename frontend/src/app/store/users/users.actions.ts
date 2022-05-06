@@ -3,9 +3,9 @@ import {
   CodeUserData, EditPasswordData,
   EmailData, googleLoginUserData,
   LoginError, LoginFacebookUser,
-  LoginUserData,
+  LoginUserData, profileUserData,
   RegisterError,
-  RegisterUserData,
+  RegisterUserData, socialNetworks,
   User
 } from '../../models/user.model';
 
@@ -77,5 +77,24 @@ export const editPasswordFailure = createAction('[User] EditPassword Failure', p
 export const loginGoogleRequest = createAction('[Users] LoginGoogle Request', props<{userData: googleLoginUserData}>());
 export const loginGoogleSuccess = createAction('[Users] LoginGoogle Success', props<{user: User}>());
 export const loginGoogleFailure = createAction('[Users] LoginGoogle Failure', props<{error: null | LoginError}>());
+
+export const editProfileRequest = createAction(
+  '[User] EditProfile Request', props<{userData: profileUserData}>()
+);
+export const editProfileSuccess = createAction(
+  '[User] EditProfile Success', props<{user: User}>()
+);
+export const editProfileFailure = createAction(
+  '[User] EditProfile Failure', props<{error: null | string}>()
+);
+
+export const addSocialNetworksRequest = createAction(
+  '[User] AddSocialNetworks Request', props<{socialNetworks: socialNetworks}>());
+export const addSocialNetworksSuccess = createAction(
+  '[User] AddSocialNetworks Success', props<{user: User}>()
+);
+export const addSocialNetworksFailure = createAction(
+  '[User] AddSocialNetworks Failure', props<{error: null | string}>()
+);
 
 

@@ -215,14 +215,39 @@ router.put('/editPassword', async (req, res, next) => {
 
 router.put('/userEditProfile', auth, async (req, res, next) => {
   try {
-    const update = {
-      email: req.user.email,
-      displayName: req.user.displayName,
-      aboutMe: req.user.aboutMe,
-      socialNetworks: req.user.socialNetworks,
-    };
+    const user = await User.findById(req.body._id);
+    const update = req.body;
+    user.email = update.email;
+    user.displayName = update.displayName;
+    user.aboutMe = update.aboutMe;
 
-    const user = await User.findByIdAndUpdate({_id: req.user._id}, update);
+    await user.save();
+
+    return res.send(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/addSocialNetworks', auth, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.body.userId);
+
+    if(!user) {
+      return res.status(400).send({error: "Пользователь с таким ID не найден!"});
+    }
+
+    user.socialNetworks = {
+      fb: req.body.fb,
+      github: req.body.github,
+      vk: req.body.vk,
+      tw: req.body.tw,
+      instagram: req.body.instagram,
+      skype: req.body.skype,
+      tme: req.body.tme,
+      website: req.body.website,
+      youtube: req.body.youtube,
+    };
 
     await user.save();
 

@@ -1,9 +1,11 @@
 import { UsersState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
+  addSocialNetworksFailure,
+  addSocialNetworksRequest, addSocialNetworksSuccess,
   editPasswordFailure,
   editPasswordRequest,
-  editPasswordSuccess,
+  editPasswordSuccess, editProfileFailure, editProfileRequest, editProfileSuccess,
   fetchUserFailure,
   fetchUserRequest,
   fetchUserSuccess,
@@ -50,7 +52,11 @@ const initialState: UsersState = {
   code: null,
   codeError: null,
   userEmail: null,
-  googleLoading: false
+  googleLoading: false,
+  editProfileLoading: false,
+  editProfileError: null,
+  addSocialNetworksLoading: false,
+  addSocialNetworksError: null
 };
 
 export const usersReducer = createReducer(
@@ -97,7 +103,7 @@ export const usersReducer = createReducer(
   on(sendEmailRequest, state => ({...state, loginLoading: true})),
   on(sendEmailSuccess, (state, {user}) => ({...state, loginLoading: false, userEmail: user.email})),
 
-  on(sendUserCodeRequest, state => ({...state, loginLoading: true})),
+  on(sendUserCodeRequest, state => ({...state, loginLoading: true, codeError: null})),
   on(sendUserCodeSuccess, (state, {code}) => ({...state, loginLoading: false, code: code})),
   on(sendUserCodeFailure, (state, {error}) => ({...state, loginLoading: false, codeError: error})),
 
@@ -139,7 +145,33 @@ export const usersReducer = createReducer(
     addError: error
   })),
 
-  on(fetchUserRequest, state => ({...state, fetchLoading: true})),
-  on(fetchUserSuccess, (state, {user}) => ({...state, fetchLoading: false, user})),
-  on(fetchUserFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+  on(fetchUserRequest, state => ({
+    ...state, fetchLoading: true
+  })),
+  on(fetchUserSuccess, (state, {user}) => ({
+    ...state, fetchLoading: false, user
+  })),
+  on(fetchUserFailure, (state, {error}) => ({
+    ...state, fetchLoading: false, fetchLoadingError: error
+  })),
+
+  on(editProfileRequest, state => ({
+    ...state, editProfileLoading: true
+  })),
+  on(editProfileSuccess, (state, {user}) => ({
+    ...state, editProfileLoading: false, user
+  })),
+  on(editProfileFailure, (state, {error}) => ({
+    ...state, editProfileLoading: false, editProfileError: error
+  })),
+
+  on(addSocialNetworksRequest, state => ({
+    ...state, addSocialNetworksLoading: true
+  })),
+  on(addSocialNetworksSuccess, (state, {user}) => ({
+    ...state, addSocialNetworksLoading: false, user
+  })),
+  on(addSocialNetworksFailure, (state, {error}) => ({
+    ...state, addSocialNetworksLoading: false, addSocialNetworksError: error
+  }))
 );

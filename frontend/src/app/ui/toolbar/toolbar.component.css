@@ -1,5 +1,5 @@
 .toolbar{
-  background: #111116;
+  background: #3F3F40;
   color: white;
 }
 
@@ -204,6 +204,10 @@ mat-option{
   font-size: 20px;
   display: inline-block;
   margin-right: 10px;
+}
+
+mat-icon{
+  text-transform: uppercase;
 }
 
 

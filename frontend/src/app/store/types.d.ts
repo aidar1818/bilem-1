@@ -21,6 +21,10 @@ export type UsersState = {
   codeError: string | null,
   userEmail: string | null,
   googleLoading: boolean,
+  editProfileLoading: boolean,
+  editProfileError: null | string,
+  addSocialNetworksLoading: boolean,
+  addSocialNetworksError: null | string,
 };
 
 export type CategoriesState = {

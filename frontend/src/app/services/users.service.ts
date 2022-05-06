@@ -6,13 +6,12 @@ import {
   EmailData,
   googleLoginUserData,
   LoginFacebookUser,
-  LoginUserData,
-  RegisterUserData,
+  LoginUserData, profileUserData,
+  RegisterUserData, socialNetworks,
   User
 } from '../models/user.model';
 import { environment, environment as env } from '../../environments/environment';
 import { map } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +68,44 @@ export class UsersService {
           response.aboutMe,
           response.myCourses,
           response.favoriteCourses,
+          response.socialNetworks,
+        );
+      })
+    );
+  }
+
+  editProfile(userData: profileUserData) {
+    console.log(userData)
+    return this.http.put<User>(env.apiUrl + '/users/userEditProfile', userData).pipe(
+      map(response => {
+        return new User(
+          response._id,
+          response.email,
+          response.token,
+          response.displayName,
+          response.role,
+          response.aboutMe,
+          response.myCourses,
+          response.favoriteCourses,
+          response.socialNetworks,
+        );
+      })
+    );
+  }
+
+  addSocialNetworks(socialNetworks: socialNetworks) {
+    return this.http.post<User>(env.apiUrl + '/users/addSocialNetworks', socialNetworks).pipe(
+      map(response => {
+        return new User(
+          response._id,
+          response.email,
+          response.token,
+          response.displayName,
+          response.role,
+          response.aboutMe,
+          response.myCourses,
+          response.favoriteCourses,
+          response.socialNetworks
         );
       })
     );

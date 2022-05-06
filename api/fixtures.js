@@ -22,7 +22,23 @@ const run = async () => {
         password: '123asdA!',
         displayName: 'User',
         token: nanoid(),
-        role: 'user'
+        role: 'user',
+        aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
+            '\n' +
+            'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube\n' +
+            '\n' +
+            'С 2017 г. лектор культурной платформы "Синхронизация", куратор Школы лекторов фонда «Эволюция», модератор "Бранч с ученым" от Политеха',
+        socialNetworks: [{
+          fb: 'https://www.facebook.com',
+          github: 'https://github.com',
+          vk: 'https://vk.com',
+          tw: 'https://twitter.com',
+          instagram: 'https://www.instagram.com',
+          skype: 'https://www.skype.com',
+          tme: 'https://t.me',
+          website: 'http://localhost:4200',
+          youtube: 'https://www.youtube.com',
+        }]
       },
       {
         email: 'user2@bilem.com',
@@ -43,7 +59,16 @@ const run = async () => {
         password: '123asdA!',
         displayName: 'User 4',
         token: nanoid(),
-        role: 'user'
+        role: 'user',
+        aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
+            '\n' +
+            'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube',
+        socialNetworks: [{
+          fb: 'https://www.facebook.com',
+          github: 'https://github.com',
+          vk: 'https://vk.com',
+          tw: 'https://twitter.com',
+        }]
       },
       {
         email: 'admin@bilem.com',

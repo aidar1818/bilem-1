@@ -31,7 +31,7 @@ footer {
   align-items: center;
   height: 50px;
   padding: 15px;
-  background: #CAC6BF;
+  background: #3F3F40;
 }
 
 .footer-logo:hover {
@@ -39,13 +39,13 @@ footer {
 }
 
 .footer-nav a {
-  color: #000;
+  color: white;
   text-decoration: none;
   margin: 0 10px;
 }
 
 .footer-nav a:hover {
-  color: #fff
+  color: #ccc
 }
 
 .logo {
@@ -59,7 +59,7 @@ footer {
 }
 
 .footer-text {
-  color: #000;
+  color: #fff;
 }
 
 .wrapper {

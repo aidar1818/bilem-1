@@ -4,7 +4,15 @@ const { nanoid } = require('nanoid');
 const Schema = mongoose.Schema;
 
 const SocialNetworksSchema = new Schema({
-    link: String,
+    fb: String,
+    github: String,
+    vk: String,
+    tw: String,
+    instagram: String,
+    skype: String,
+    tme: String,
+    website: String,
+    youtube: String,
 });
 
 const UserSchema = new Schema({

@@ -14,20 +14,19 @@ import { EditPasswordData } from '../../models/user.model';
 export class NewPasswordComponent implements OnDestroy{
   loading!: Observable<boolean>;
   @ViewChild('f') form!: NgForm;
-  userEmail: Observable<string | null>;
+  userEmail: Observable<string | undefined>;
   email!: string;
   emailSub!: Subscription;
 
   constructor(private store: Store<AppState>) {
     this.loading = store.select(state => state.users.loginLoading);
-    this.userEmail = store.select(state => state.users.userEmail);
-  }
-
-  onSubmit() {
+    this.userEmail = store.select(state => state.users.user?.email);
     this.emailSub = this.userEmail.subscribe(email => {
       this.email = <string>email;
     })
+  }
 
+  onSubmit() {
     const password: EditPasswordData = {
       password: this.form.value.password,
       email: this.email

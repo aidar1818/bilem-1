@@ -1,21 +1,60 @@
-<div class="content card">
+<div class="content card" fxLayoutAlign="space-between">
   <div class="text-center">
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="start center" class="name-menu">
       <div class="avatar">
         {{ (user | async)?.displayName?.charAt(0) }}
       </div>
       <h2 class="displayName">{{ userData?.displayName }}</h2>
     </div>
     <div class="text-content">
-      <a routerLink="myCourse">Мои курсы</a>
+      <a mat-raised-button color="primary" routerLink="/myCourses/learning">Мои курсы</a>
     </div>
 
-    <h3>Ссылки на социальные сети</h3>
-    <ul class="social-list">
-      <li><i class="fa fa-facebook"></i></li>
+    <h3>Ссылки на социальные сети:</h3>
+    <ul *ngFor="let link of socialNetworks">
+      <li *ngIf="link.fb">
+        <img src="assets/icons/form-fb.svg" alt="facebook logo"/>
+        <a [href]="link.fb" target="_blank">{{ link.fb }}</a>
+      </li>
+      <li *ngIf="link.github">
+        <img src="assets/icons/form-github.svg" alt="github logo"/>
+        <a [href]="link.github" target="_blank">{{ link.github }}</a>
+      </li>
+      <li *ngIf="link.vk">
+        <img src="assets/icons/form-vk.svg" alt="vk logo"/>
+        <a [href]="link.vk" target="_blank">{{ link.vk }}</a>
+      </li>
+      <li *ngIf="link.tw">
+        <img src="assets/icons/form-tw.svg" alt="tw logo"/>
+        <a [href]="link.tw" target="_blank">{{ link.tw }}</a>
+      </li>
+      <li *ngIf="link.instagram">
+        <img src="assets/icons/form-instagram.svg" alt="instagram logo"/>
+        <a [href]="link.instagram" target="_blank">{{ link.instagram }}</a>
+      </li>
+      <li *ngIf="link.skype">
+        <img src="assets/icons/form-skype.svg" alt="skype logo"/>
+        <a [href]="link.skype" target="_blank">{{ link.skype }}</a>
+      </li>
+      <li *ngIf="link.tme">
+        <img src="assets/icons/form-tme.svg" alt="tme logo"/>
+        <a [href]="link.tme" target="_blank">{{ link.tme }}</a>
+      </li>
+      <li *ngIf="link.website">
+        <span class="material-icons">public</span>
+        <a [href]="link.website" target="_blank">{{ link.website }}</a>
+      </li>
+      <li *ngIf="link.youtube">
+        <img src="assets/icons/form-youtube.svg" alt="youtube logo"/>
+        <a [href]="link.youtube" target="_blank">{{ link.youtube }}</a>
+      </li>
     </ul>
     <div class="buttons">
-      <button mat-raised-button routerLink="/userSettings/editProfile">Настройки</button>&nbsp;
+      <button mat-raised-button routerLink="/userSettings/editProfile">Настройки профиля</button>&nbsp;
     </div>
+  </div>
+  <div>
+    <h2>Обо мне</h2>
+    <div class="aboutMe">{{ userData?.aboutMe }}</div>
   </div>
 </div>
