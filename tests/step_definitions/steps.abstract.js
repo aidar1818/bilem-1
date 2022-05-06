@@ -1,4 +1,4 @@
-const { I } = inject();
+const {I} = inject();
 
 Given('я нахожусь на странице {string}', (page) => {
   switch (page) {
@@ -6,18 +6,12 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/register');
     case 'Восстановление пароля':
       return I.amOnPage('/recovery');
-    case 'Логин':
-      return I.amOnPage('/login');
     case 'Редактирование пароля':
       return I.amOnPage('/newPassword');
     case 'Курсы':
       return I.amOnPage('/teaching/courses');
-    case 'Новый курс':
-      return I.amOnPage('/teaching/new');
     case 'Создание нового модуля':
       return I.amOnPage('/editModule/:id');
-    case 'Преподавание':
-      return I.amOnPage('/teaching/courses');
     case 'Создание категории':
       return I.amOnPage('/add-category');
     case 'Создание подкатегории':
@@ -59,16 +53,14 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       I.click('button span mat-icon[id=editCourse]');
       I.wait(1);
       return I.click(buttonText);
-    case 'Создать курс':
-      return I.click(buttonText);
-      case 'Поступить на курс':
-        I.click(buttonText);
-        I.wait(1);
-        break;
-      case 'Хочу пройти':
-       I.click(buttonText);
-       I.wait(1);
-       break;
+    case 'Поступить на курс':
+      I.click(buttonText);
+      I.wait(1);
+      break;
+    case 'Хочу пройти':
+      I.click(buttonText);
+      I.wait(1);
+      break;
     default:
       return I.click(buttonText);
   }
@@ -82,8 +74,13 @@ Given('я должен увидеть элемент страницы с сод�
 });
 
 Then('я должен увидеть текст {string}', (text) => {
-  I.see(text);
-  I.wait(3);
+  switch (text) {
+    case 'Содержимое успешно отредактировано':
+      I.see(text);
+      return I.amOnPage('/teaching/courses');
+    default:
+      return I.see(text);
+  }
 });
 
 Given('вижу элемент страницы {string}', (elemText) => {

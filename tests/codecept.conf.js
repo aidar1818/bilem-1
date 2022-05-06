@@ -18,15 +18,16 @@ exports.config = {
   gherkin: {
     features: './features/*.feature',
     steps: [
-        './step_definitions/steps.abstract.js',
-        './step_definitions/steps.recovery.js',
-        './step_definitions/steps.categoryCrud.js',
-        './step_definitions/steps.subcategoryCrud.js',
-        './step_definitions/steps.course.js',
-        './step_definitions/steps.searchCourses.js',
-        './step_definitions/steps.courseDetails.js',
-        './step_definitions/steps.myCourses.js',
-        './step_definitions/steps.lessons.js',
+      './step_definitions/steps.abstract.js',
+      './step_definitions/steps.recovery.js',
+      './step_definitions/steps.categoryCrud.js',
+      './step_definitions/steps.subcategoryCrud.js',
+      './step_definitions/steps.course.js',
+      './step_definitions/steps.searchCourses.js',
+      './step_definitions/steps.courseDetails.js',
+      './step_definitions/steps.myCourses.js',
+      './step_definitions/steps.lessons.js',
+      './step_definitions/steps.auth.js',
         './step_definitions/steps.coursesByCategory.js',
     ]
   },
@@ -37,9 +38,9 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-      pattern: 'wait.*',
-      timeout: 0
-    },
+    pattern: 'wait.*',
+    timeout: 0
+  },
     {
       pattern: 'amOnPage',
       timeout: 0
