@@ -60,6 +60,30 @@ export class CourseService {
     );
   }
 
+  getCoursesByCategory(id: string) {
+    return this.http.get<Course[]>(env.apiUrl + '/courses?category=' + id).pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.information,
+            courseData.author,
+            courseData.students,
+            courseData.modules,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.rate,
+            courseData.is_published,
+          );
+        });
+      })
+    );
+  }
+
   createCourse(courseData: CourseData) {
     const formData = new FormData();
 

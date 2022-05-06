@@ -28,6 +28,8 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/myCourses/learning');
     case 'Хочу пройти':
       return I.amOnPage('/myCourses/favorite');
+    case 'Курсы по категории':
+      return I.amOnPage('/categories/6274899434f34673897be04f');
     default:
       return I.amOnPage('/');
   }

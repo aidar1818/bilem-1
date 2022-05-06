@@ -14,7 +14,7 @@ import {
   createCourseSuccess,
   fetchCourseInfoFailure,
   fetchCourseInfoRequest,
-  fetchCourseInfoSuccess,
+  fetchCourseInfoSuccess, fetchCoursesByCategoryFailure, fetchCoursesByCategoryRequest, fetchCoursesByCategorySuccess,
   fetchCoursesFailure,
   fetchCoursesRequest,
   fetchCoursesSuccess,
@@ -66,6 +66,16 @@ export class CourseEffects {
       map(courses => fetchUserCoursesSuccess({courses})),
       catchError(() => of(fetchUserCoursesFailure({
         error: 'Something went wrong'
+      })))
+    ))
+  ));
+
+  fetchCoursesByCategory = createEffect(() => this.actions.pipe(
+    ofType(fetchCoursesByCategoryRequest),
+    mergeMap(({id}) => this.courseService.getCoursesByCategory(id).pipe(
+      map(courses => fetchCoursesByCategorySuccess({courses})),
+      catchError(() => of(fetchCoursesByCategoryFailure({
+        error: 'Something wrong'
       })))
     ))
   ));

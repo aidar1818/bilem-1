@@ -10,7 +10,7 @@
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
           <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
-            <p class="category__title">{{ category.title }}</p>
+            <p class="category__title" [routerLink]="['/categories', category._id]">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <span class="material-icons subcategory">chevron_right</span>
               <span class="material-icons delete" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">

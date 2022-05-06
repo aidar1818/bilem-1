@@ -14,6 +14,10 @@ export const fetchCategoriesFailure = createAction(
   props<{error: string}>()
 );
 
+export const fetchCategoryByIdRequest = createAction('[Category] Fetch Request', props<{id: string}>());
+export const fetchCategoryByIdSuccess = createAction('[Category] Fetch Success', props<{category: Category}>());
+export const fetchCategoryByIdFailure = createAction('[Category] Fetch Failure', props<{error: string}>());
+
 export const createCategoryRequest = createAction('[Category] Create Request',
   props<{ categoryData: CreateCategoryData }>()
 );

@@ -14,7 +14,7 @@ import {
   editCategoryRequest, editCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
-  fetchCategoriesSuccess
+  fetchCategoriesSuccess, fetchCategoryByIdFailure, fetchCategoryByIdRequest, fetchCategoryByIdSuccess
 } from './categories.actions';
 import { AppState } from '../types';
 import { Store } from '@ngrx/store';
@@ -36,6 +36,14 @@ export class CategoriesEffects {
       this.helpers.catchServerError(fetchCategoriesFailure)
     ))
   ))
+
+  fetchCategoryById = createEffect(() => this.actions.pipe(
+    ofType(fetchCategoryByIdRequest),
+    mergeMap(({id}) => this.categoriesService.fetchCategoryById(id).pipe(
+      map(category => fetchCategoryByIdSuccess({category})),
+      catchError(() => of(fetchCategoryByIdFailure({error: 'Something wrong'})))
+    ))
+  ));
 
   createCategory = createEffect(() => this.actions.pipe(
     ofType(createCategoryRequest),

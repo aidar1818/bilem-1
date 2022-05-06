@@ -71,6 +71,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { StarsDirective } from './directives/stars.directive';
+import { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -131,7 +132,8 @@ const socialConfig: SocialAuthServiceConfig = {
     CourseCardsComponent,
     CourseCardComponent,
     EditLessonComponent,
-    StarsDirective
+    StarsDirective,
+    CoursesByCategoryComponent
   ],
   imports: [
     BrowserModule,

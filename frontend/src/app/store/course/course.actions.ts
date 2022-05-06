@@ -29,6 +29,10 @@ export const fetchUserCoursesFailure = createAction(
   props<{error: string}>()
 );
 
+export const fetchCoursesByCategoryRequest = createAction('[Courses] Fetch Request', props<{id: string}>());
+export const fetchCoursesByCategorySuccess = createAction('[Courses] Fetch Success', props<{courses: Course[]}>());
+export const fetchCoursesByCategoryFailure = createAction('[Courses] Fetch Failure', props<{error: string}>());
+
 export const createCourseRequest = createAction(
   '[Course] Create Request',
   props<{courseData: CourseData}>()

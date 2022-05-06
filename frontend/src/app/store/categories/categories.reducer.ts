@@ -10,13 +10,16 @@ import {
   editCategoryRequest, editCategorySuccess,
   fetchCategoriesFailure,
   fetchCategoriesRequest,
-  fetchCategoriesSuccess
+  fetchCategoriesSuccess, fetchCategoryByIdFailure, fetchCategoryByIdRequest, fetchCategoryByIdSuccess
 } from './categories.actions';
 
 const initialState: CategoriesState = {
   categories: [],
+  category: null,
   fetchLoading: false,
   fetchLoadingError: null,
+  fetchByIdLoading: false,
+  fetchByIdLoadingError: null,
   createLoading: false,
   createError: null,
   editLoading: false,
@@ -42,6 +45,11 @@ export const categoriesReducer = createReducer(
     fetchLoading: false,
     fetchLoadingError: error
   })),
+
+  on(fetchCategoryByIdRequest, state => ({...state, fetchByIdLoading: true, fetchByIdLoadingError: null})),
+  on(fetchCategoryByIdSuccess, (state, {category}) => ({...state, fetchByIdLoading: false, category})),
+  on(fetchCategoryByIdFailure, (state, {error}) => ({...state, fetchByIdLoading: false, fetchByIdLoadingError: error})),
+
   on(createCategoryRequest, state => ({...state, createLoading: true})),
   on(createCategorySuccess, state => ({...state, createLoading: false})),
   on(createCategoryFailure, (state, {error}) => ({

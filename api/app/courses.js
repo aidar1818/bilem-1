@@ -7,6 +7,7 @@ const roles = require('../middleware/roles');
 const Course = require("../models/Course");
 const config = require("../config");
 const path = require("path");
+const Subcategory = require("../models/Subcategory");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -25,6 +26,18 @@ router.get('/', roles, async (req, res, next) => {
     if (req.query.user) {
       const userCourses = await Course.find({author: req.query.user}).populate('author', 'displayName');
       return res.send(userCourses);
+    }
+
+    let coursesByCategory;
+
+    if (req.query.category) {
+      const subcategories = await Subcategory.find({category: req.query.category});
+      if (req.user && req.user.role === 'admin') {
+        coursesByCategory = await Course.find({subcategory: subcategories}).populate('author', 'displayName');
+      } else {
+        coursesByCategory = await Course.find({subcategory: subcategories, is_published: true}).populate('author', 'displayName');
+      }
+      return res.send(coursesByCategory);
     }
 
     let coursesBySubcategory;

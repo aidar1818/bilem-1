@@ -6,7 +6,7 @@ import {
   createCourseSuccess,
   fetchCourseInfoFailure,
   fetchCourseInfoRequest,
-  fetchCourseInfoSuccess,
+  fetchCourseInfoSuccess, fetchCoursesByCategoryFailure, fetchCoursesByCategoryRequest, fetchCoursesByCategorySuccess,
   fetchCoursesFailure,
   fetchCoursesRequest,
   fetchCoursesSuccess,
@@ -31,6 +31,8 @@ const initialState: CourseState = {
   fetchLoadingError: null,
   fetchPersonalLoading: false,
   fetchPersonalLoadingError: null,
+  fetchSortLoading: false,
+  fetchSortLoadingError: null,
   createLoading: false,
   createError: null,
   removeLoading: false,
@@ -58,6 +60,11 @@ export const courseReducer = createReducer(
     fetchPersonalLoading: false,
     fetchPersonalLoadingError: error
   })),
+
+  on(fetchCoursesByCategoryRequest, state => ({...state, fetchSortLoading: true})),
+  on(fetchCoursesByCategorySuccess, (state, {courses}) => ({...state, fetchSortLoading: false, courses})),
+  on(fetchCoursesByCategoryFailure, (state, {error}) => ({...state, fetchSortLoading: false, fetchSortLoadingError: error})),
+
   on(createCourseRequest, state => ({
     ...state,
     createLoading: true,

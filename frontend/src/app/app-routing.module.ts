@@ -28,6 +28,7 @@ import {UserProfileComponent} from "./pages/user-profile/user-profile.component"
 import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
+import { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
       {path: 'newPassword', component: NewPasswordComponent},
     ]},
   {path: 'newPassword', component: NewPasswordComponent},
+  {path: 'categories/:id', component: CoursesByCategoryComponent},
   {
     path: 'teaching',
     component: TeachingComponent,

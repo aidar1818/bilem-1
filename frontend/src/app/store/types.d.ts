@@ -25,8 +25,11 @@ export type UsersState = {
 
 export type CategoriesState = {
   categories: Category[],
+  category: Category | null,
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchByIdLoading: boolean,
+  fetchByIdLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   editLoading: boolean,
@@ -55,6 +58,8 @@ export type CourseState = {
   fetchLoadingError: null | string,
   fetchPersonalLoading: boolean,
   fetchPersonalLoadingError: null | string,
+  fetchSortLoading: boolean,
+  fetchSortLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   removeLoading: boolean,

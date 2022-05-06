@@ -19,6 +19,10 @@ export class CategoriesService {
     return this.http.get<Category | null>(env.apiUrl + '/categories/' + id);
   }
 
+  fetchCategoryById(id: string) {
+    return this.http.get<Category>(env.apiUrl + '/categories/' + id);
+  }
+
   createNewCategory(categoryData: CreateCategoryData) {
     return this.http.post<Category>(env.apiUrl + '/categories', categoryData);
   }
