@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { map, Observable, startWith, Subscription } from 'rxjs';
-import { User } from '../../models/user.models';
+import { User } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { logoutUserRequest } from '../../store/users/users.actions';

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
-import { User } from '../../../models/user.models';
+import { User } from '../../../models/user.model';
 import { Observable } from 'rxjs';
 
 @Component({

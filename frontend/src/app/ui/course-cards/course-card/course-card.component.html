@@ -7,7 +7,7 @@
       </div>
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
         <mat-card-title>
-          <a [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
+          <a class="course-title" [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
         </mat-card-title>
         <img
           mat-card-sm-image
@@ -31,8 +31,9 @@
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between">
-        <p class="price" style="color: blueviolet" *ngIf="!course.is_free">{{ course['price'] }}</p>
-        <p class="price" *ngIf="course.is_free">Бесплатно</p>
+        <p class="price" style="color: blueviolet" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
+        <p class="price" *ngIf="course.is_free && !learning">Бесплатно</p>
+        <p class="price" style="color: gray" *ngIf="learning">Вы уже записаны</p>
       </div>
     </div>
     <div *appHasRoles="['admin']" class="admin-btns">

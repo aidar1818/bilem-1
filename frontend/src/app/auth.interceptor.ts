@@ -8,7 +8,7 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 import { AppState } from './store/types';
 import { Store } from '@ngrx/store';
-import { User } from './models/user.models';
+import { User } from './models/user.model';
 import { HelpersService } from './services/helpers.service';
 import { logoutUser } from './store/users/users.actions';
 import { Router } from '@angular/router';

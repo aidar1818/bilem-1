@@ -4,7 +4,7 @@ import { Course } from '../../../models/course.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
 import { fetchUserCoursesRequest } from '../../../store/course/course.actions';
-import { User } from '../../../models/user.models';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-courses',

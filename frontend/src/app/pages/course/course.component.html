@@ -2,9 +2,9 @@
   <div class="title">
     <h1 class="course-title">{{ course.title }}</h1>
     <p> {{ course.description }} </p>
-    <div fxLayout="row" class="rate">
+    <div fxLayout="row" class="rate" *ngIf="review">
       <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
-      <p>{{ course.rate }} / 5</p>
+      <p>{{ review }} / 5</p>
     </div>
   </div>
   <img
@@ -16,18 +16,149 @@
 
 <div fxLayout="row" class="box">
   <div fxFlex="70">
-    <div>
+    <div class="about-card">
       <h2>О курсе</h2>
       <p>{{ course.information }}</p>
     </div>
+
+    <div class="about-card">
+      <h2>Преподватель</h2>
+      <p>{{ course.author.displayName }}</p>
+    </div>
+
+    <div class="about-card">
+      <h2>Программа курса</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let module of course.modules, let a = index">
+          <h3 matLine> {{ a + 1 }}. {{ module.title }} </h3>
+          <p matLine *ngFor="let les of module.lessons, let b = index">
+            <span> {{ a + 1 }}.{{ b + 1 }}. {{les.title}} </span>
+          </p>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="about-card" *ngIf="review">
+      <h2>Отзывы прошедших курс</h2>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="rating">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFill="40">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p class="rate-review">{{ review }}</p>
+            <img class="rating-img-md" src="assets/icons/raiting.png" alt="rating">
+          </div>
+          <div>
+            <p>Из 5</p>
+          </div>
+        </div>
+        <div fxFill="60">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="stars-sm">
+              <div>
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+              </div>
+              <div>
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+              </div>
+              <div>
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+              </div>
+              <div>
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+              </div>
+              <div>
+                <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
+              </div>
+            </div>
+            <div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(5)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(4)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(3)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(2)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(1)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p *ngIf="allReview === 1">из {{allReview}} отзыва</p>
+            <p *ngIf="allReview > 1">из {{allReview}} отзывов</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="review-user" *ngFor="let rev of reviewsArr">
+          <img
+            *starsRepeat="rev.rate"
+            class="rating-img-md"
+            src="assets/icons/raiting.png" alt="rating"
+          />
+          <p class="review-text">{{ rev.text }}</p>
+          <p  class="review-author">{{ rev.user.displayName }}</p>
+          <p>{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="buttons" fxLayout="column">
     <p *ngIf="course.is_free">Бесплатно</p>
     <p *ngIf="!course.is_free">{{ course.price }} сом</p>
-
-    <button mat-raised-button class="" *ngIf="course.is_free" (click)="addLearningCourse(course._id)">Поступить на курс</button>
-    <button mat-raised-button *ngIf="!course.is_free" (click)="addLearningCourse(course._id)">Купить</button>
-    <button mat-stroked-button *ngIf="!course.is_free" >Попробовать бесплатно</button>
-    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)" ><mat-icon>favorite</mat-icon> Хочу пройти</button>
+    
+    <button mat-raised-button class="" *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">Поступить на курс</button>
+    <button mat-raised-button *ngIf="!course.is_free && !learning" (click)="addLearningCourse(course._id)">Купить</button>
+    <button mat-stroked-button *ngIf="!course.is_free && !learning" >Попробовать бесплатно</button>
+    <button mat-stroked-button *ngIf="learning" >Продолжить</button>
+    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)"  *ngIf="!favorite">
+      <mat-icon>favorite</mat-icon> Хочу пройти
+    </button>
   </div>
 </div>

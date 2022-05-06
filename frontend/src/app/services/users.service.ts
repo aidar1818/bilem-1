@@ -9,7 +9,7 @@ import {
   LoginUserData,
   RegisterUserData,
   User
-} from '../models/user.models';
+} from '../models/user.model';
 import { environment, environment as env } from '../../environments/environment';
 import { map } from 'rxjs';
 

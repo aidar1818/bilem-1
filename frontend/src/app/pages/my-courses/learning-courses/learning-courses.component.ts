@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
-import { User } from '../../../models/user.models';
+import { User } from '../../../models/user.model';
 import { fetchUserRequest } from '../../../store/users/users.actions';
 import { Course } from '../../../models/course.model';
 

@@ -1,8 +1,9 @@
-import { LoginError, RegisterError, User } from '../models/user.models';
+import { LoginError, RegisterError, User } from '../models/user.model';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
 import { Course, Lesson } from '../models/course.model';
 import { Module } from '../models/module.model';
+import { Review } from '../models/review.model';
 
 export type UsersState = {
   user: null | User,
@@ -78,11 +79,18 @@ export type LessonsState = {
   lesson: Lesson | null,
 };
 
+export type ReviewsState = {
+  reviews: Review[],
+  fetchLoading: boolean,
+  fetchLoadingError: null | string,
+};
+
 export type AppState = {
   users: UsersState,
   categories: CategoriesState,
   subcategories: SubcategoriesState,
   courses: CourseState,
   modules: ModuleState,
-  lessons: LessonsState
+  lessons: LessonsState,
+  reviews: ReviewsState
 };

@@ -5,6 +5,7 @@ const {nanoid} = require("nanoid");
 const Category = require("./models/Category");
 const Subcategory = require("./models/Subcategory");
 const Course = require("./models/Course");
+const Review = require("./models/Review");
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -15,19 +16,43 @@ const run = async () => {
     await mongoose.connection.db.dropCollection(coll.name);
   }
 
-  const [user, admin] = await User.create({
-    email: 'user@bilem.com',
-    password: '123asdA!',
-    displayName: 'User',
-    token: nanoid(),
-    role: 'user'
-  }, {
-    email: 'admin@bilem.com',
-    password: '123asdA!',
-    displayName: 'Admin',
-    token: nanoid(),
-    role: 'admin'
-  });
+  const [user, user2, user3, user4, admin] = await User.create(
+      {
+        email: 'user@bilem.com',
+        password: '123asdA!',
+        displayName: 'User',
+        token: nanoid(),
+        role: 'user'
+      },
+      {
+        email: 'user2@bilem.com',
+        password: '123asdA!',
+        displayName: 'User 2',
+        token: nanoid(),
+        role: 'user'
+      },
+      {
+        email: 'user3@bilem.com',
+        password: '123asdA!',
+        displayName: 'User 3',
+        token: nanoid(),
+        role: 'user'
+      },
+      {
+        email: 'user4@bilem.com',
+        password: '123asdA!',
+        displayName: 'User 4',
+        token: nanoid(),
+        role: 'user'
+      },
+      {
+        email: 'admin@bilem.com',
+        password: '123asdA!',
+        displayName: 'Admin',
+        token: nanoid(),
+        role: 'admin'
+      },
+  );
 
   const [programming, finance, design, business, personalGrowth, marketing, art, beauty, photo, fitness, music,
     exam, schoolLessons] = await Category.create({
@@ -365,7 +390,7 @@ const run = async () => {
     title: 'Java с нуля',
     description: 'веб-разработка',
     information: 'Курс по программированию на языке Java для учеников центров Легасофт и IT-CUBE города Смоленска 14 - 16 лет. Курс рассчитан для новичков в программировании. За 4 модуля вы обучитесь основам программирования,  напишите несколько проектов, работая в команде, и узнаете несколько технологий, которые используют профессиональные разработчики.',
-    author: user,
+    author: user2,
     subcategory: web,
     modules: [
       {
@@ -405,7 +430,7 @@ const run = async () => {
     title: 'Продвинутая Java',
     description: 'Веб-разработка',
     information: 'Данный курс предназначен для тех, кто только начинает изучать Java. Мы начнем с самых азов: компиляция и запуск Java-программ, синтаксис языка, система типов, основы объектно-ориентированного программирования. Далее обсудим наиболее важные классы стандартной библиотеки, включая нововведения Java 8. Для закрепления знаний в курсе предусмотрены контрольные вопросы и практические задания.',
-    author: user,
+    author: user3,
     subcategory: web,
     modules: [
       {
@@ -486,7 +511,7 @@ const run = async () => {
     title: 'Java Script',
     description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
     information: 'Цель данного курса - познакомить слушателей с основами программирования на JavaScript и подготовить их для практического применения данного инструмента.',
-    author: user,
+    author: user2,
     subcategory: web,
     modules: [
       {
@@ -606,7 +631,7 @@ const run = async () => {
     title: 'Трейдинг 2022',
     description: 'Трейдинг',
     information: 'Курс подготовлен профессиональными трейдерами — это значит, что мы зарабатываем с торговли на финансовых рынках. Все специалисты торгуют как на свои средства, так и на средства инвесторов.',
-    author: user,
+    author: user3,
     subcategory: trading,
     modules: [
       {
@@ -646,7 +671,7 @@ const run = async () => {
     title: 'Дизайн интерьера',
     description: 'Пошаговое руководство по созданию интерьера',
     information: 'Задачи и цели: Ознакомить учащихся с основными качествами интерьера, его особенностями; Воспитывать эстетический вкус на основе композиционного построения интерьера; Развивать самостоятельную деятельность при выполнении практической работы;',
-    author: user,
+    author: user2,
     subcategory: interior,
     modules: [
       {
@@ -845,6 +870,50 @@ const run = async () => {
     rate: 3.7,
     is_published: false
   });
+
+  await Review.create(
+    {
+      user: user2,
+      course: javaScript,
+      text: 'Отличный курс',
+      rate: 5
+    },
+    {
+      user: user3,
+      course: javaScript,
+      text: 'Всем советую',
+      rate: 4
+    },
+    {
+      user: user4,
+      course: javaScript,
+      text: 'Зря время потерял',
+      rate: 2
+    },
+    {
+      user: user,
+      course: jScript,
+      text: 'Отличный курс',
+      rate: 5
+    },
+    {
+      user: user4,
+      course: jScript,
+      text: 'Всем советую',
+      rate: 5
+    },
+    {
+      user: user3,
+      course: jScript,
+      text: 'Зря время потерял',
+      rate: 2
+    },{
+      user: user2,
+      course: designIn,
+      text: 'Отличный курс',
+      rate: 5
+    }
+  )
 
   await mongoose.connection.close();
 };

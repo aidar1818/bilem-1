@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { googleLoginUserData, LoginError, LoginFacebookUser, LoginUserData } from '../../models/user.models';
+import { googleLoginUserData, LoginError, LoginFacebookUser, LoginUserData } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';

@@ -5,15 +5,9 @@ const users = require('./app/users');
 const subcategories = require('./app/subcategories');
 const categories = require('./app/categories');
 const courses = require('./app/courses');
+const reviews = require('./app/reviews');
 const config = require('./config');
 const app = express();
-
-const whitelist = [
-    'http://localhost:4200',
-    'https://localhost:4200',
-    'http://localhost:4210',
-    'https://localhost:4210',
-];
 
 const corsOptions = {
     origin: (origin, callback) => {
@@ -32,6 +26,7 @@ app.use('/users', users);
 app.use('/subcategories', subcategories);
 app.use('/categories', categories);
 app.use('/courses', courses);
+app.use('/reviews', reviews);
 
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);

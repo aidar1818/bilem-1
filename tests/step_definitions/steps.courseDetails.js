@@ -18,10 +18,14 @@ Given('я вижу название курса {string}', (text) => {
     I.see(text);
 });
 
+Given('я вижу название {string}', (text) => {
+    I.see(text);
+});
+
 Given('я вижу кнопку {string}', (text) => {
     switch (text) {
         case 'Поступить на курс':
-            I.see();
+            I.see(text);
             I.wait(1);
             break;
         case 'Хочу пройти':

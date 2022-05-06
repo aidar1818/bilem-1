@@ -2,7 +2,7 @@ import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } fr
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/types';
 import { Observable, Subscription } from 'rxjs';
-import { User } from '../models/user.models';
+import { User } from '../models/user.model';
 
 
 @Directive({

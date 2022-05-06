@@ -7,7 +7,7 @@ import {
   RegisterError,
   RegisterUserData,
   User
-} from '../../models/user.models';
+} from '../../models/user.model';
 
 export const fetchUserRequest = createAction(
   '[Users] Fetch User Request',

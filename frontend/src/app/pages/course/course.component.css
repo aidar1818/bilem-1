@@ -66,3 +66,48 @@
   font-size: 30px;
   right: 150px;
 }
+
+.about-card {
+  margin-bottom: 50px;
+}
+
+.rating {
+  width: 200px;
+}
+
+.rate-review {
+  margin: 20px 5px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+.rating-img-md {
+  height: 25px;
+}
+
+.rating-img-sm {
+  height: 10px;
+}
+.stars-sm {
+  margin-right: 5px;
+}
+
+.progress {
+  width: 100px;
+  margin: 15px;
+}
+
+.review-user {
+  padding: 15px;
+  border-left: 2px solid #85233E;
+  border-bottom: 2px solid #85233E;
+  margin-bottom: 30px;
+}
+
+.review-text {
+  margin: 15px 0;
+  font-size: 25px;
+}
+
+.review-author {
+  color: #7422ff;
+}

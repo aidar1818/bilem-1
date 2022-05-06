@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { NgForm } from '@angular/forms';
 import { editPasswordRequest } from '../../store/users/users.actions';
-import { EditPasswordData } from '../../models/user.models';
+import { EditPasswordData } from '../../models/user.model';
 
 @Component({
   selector: 'app-new-password',

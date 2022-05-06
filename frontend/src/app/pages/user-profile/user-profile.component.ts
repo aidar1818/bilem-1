@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/types";
 import {Observable} from "rxjs";
-import {User} from "../../models/user.models";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-user-profile',
