@@ -11,6 +11,7 @@ export class Lesson {
 
 export interface Module {
   title: string,
+  _id: string,
   lessons: Lesson[]
 }
 

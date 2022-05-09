@@ -28,7 +28,8 @@ exports.config = {
       './step_definitions/steps.myCourses.js',
       './step_definitions/steps.lessons.js',
       './step_definitions/steps.auth.js',
-        './step_definitions/steps.coursesByCategory.js',
+      './step_definitions/steps.coursesByCategory.js',
+      './step_definitions/steps.lessonsSidebar.js',
         './step_definitions/steps.footer.js',
     ]
   },

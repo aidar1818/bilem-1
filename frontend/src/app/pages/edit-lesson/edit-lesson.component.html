@@ -1,10 +1,8 @@
-<mat-progress-spinner
-  *ngIf="(fetchLessonDataLoading | async) else lessonEditForm"
-></mat-progress-spinner>
-<div class="error" *ngIf="fetchLessonDataError | async">{{ fetchLessonDataError | async}}</div>
-<ng-template #lessonEditForm>
+
+<div>
+  <div class="error" *ngIf="fetchLessonDataError | async">{{ fetchLessonDataError | async}}</div>
   <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 40px">
-    <mat-card class="form-card" fxFlex="50%">
+    <mat-card class="form-card" fxFlex="70">
       <mat-card-title style="text-align: center">Редактирование урока</mat-card-title>
       <mat-card-content>
         <form
@@ -62,4 +60,9 @@
       </mat-card-content>
     </mat-card>
   </div>
-</ng-template>
+</div>
+
+
+
+
+

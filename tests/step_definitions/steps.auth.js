@@ -1,7 +1,7 @@
 const { I } = inject();
 
 Given('я залогиненный {string}', (role) => {
-  I.amOnPage('/login');
+  I.retry(3).amOnPage('/login');
 
   const email = role === 'администратор' ? 'admin@bilem.com' : 'user@bilem.com';
   const table = {

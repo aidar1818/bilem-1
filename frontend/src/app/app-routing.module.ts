@@ -29,6 +29,7 @@ import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-pr
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
 import { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';
+import { LessonsSidebarComponent } from './pages/lessons-sidebar/lessons-sidebar.component';
 import { FooterContactsComponent } from './pages/footer/footer-contacts/footer-contacts.component';
 import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.component';
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
@@ -155,10 +156,13 @@ const routes: Routes = [
     data: {roles: ['admin', 'user']}
   },
   {
-    path: 'edit-lesson/:id',
-    component: EditLessonComponent,
+    path: 'edit-lesson/:courseId',
+    component: LessonsSidebarComponent,
     canActivate: [RoleGuardService],
-    data: {roles: ['admin', 'user']}
+    data: {roles: ['admin', 'user']},
+    children: [
+      {path: ':lessonId', component: EditLessonComponent}
+    ]
   },
 ];
 

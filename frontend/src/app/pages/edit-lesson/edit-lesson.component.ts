@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { NgForm } from '@angular/forms';
 import { createLessonRequest, fetchLessonRequest } from '../../store/lessons/lessons.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Lesson } from '../../models/course.model';
 
@@ -12,13 +12,14 @@ import { Lesson } from '../../models/course.model';
   templateUrl: './edit-lesson.component.html',
   styleUrls: ['./edit-lesson.component.css']
 })
-export class EditLessonComponent implements OnInit {
+export class EditLessonComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   loading: Observable<boolean>;
   error: Observable<string | null>;
   lesson: Observable<Lesson | null>;
   fetchLessonDataLoading: Observable<boolean>;
   fetchLessonDataError: Observable<string | null>;
+  lessonSub!: Subscription;
   lessonId = '';
 
   constructor(
@@ -34,20 +35,23 @@ export class EditLessonComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.lessonId = params['id'];
-    });
-    this.store.dispatch(fetchLessonRequest({lessonId: this.lessonId}));
+      this.lessonId = params['lessonId'];
 
-    this.lesson.subscribe(lesson => {
-      this.setFormValue({
-        title: lesson?.title,
-        description: lesson?.description,
-        video: lesson?.video
+      this.store.dispatch(fetchLessonRequest({lessonId: this.lessonId}));
+
+      this.lessonSub = this.lesson.subscribe(lesson => {
+        if (lesson) {
+          this.setFormValue({
+            title: lesson?.title,
+            description: lesson?.description,
+            video: lesson?.video
+          });
+        }
       });
     });
   }
 
-  setFormValue(value: {[key: string] : any}) {
+  setFormValue(value: { [key: string]: any }) {
     setTimeout(() => {
       this.form.form.patchValue(value);
     })
@@ -62,4 +66,9 @@ export class EditLessonComponent implements OnInit {
     };
     this.store.dispatch(createLessonRequest({lessonData}));
   }
+
+  ngOnDestroy() {
+    this.lessonSub.unsubscribe();
+  }
 }
+

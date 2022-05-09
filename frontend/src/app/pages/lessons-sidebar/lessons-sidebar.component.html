@@ -1,0 +1,29 @@
+<div class="main-div">
+  <div class="lessonSidebar">
+    <h3 *ngIf="courseInfo">
+      <i><a [routerLink]="['/syllabus/program/', courseInfo?._id]">{{ courseInfo.title }}</a></i>
+    </h3>
+    <ol class="modulesList">
+      <li *ngFor="let module of modules; let i = index" class="listElem">{{ module.title }}
+        <ol class="lessonsList">
+          <li *ngFor="let lesson of module.lessons">
+            <a
+              class="lessonTitle"
+              [routerLink]="[ lesson._id ]"
+              [ngStyle]="{'background-color': lessonId === lesson._id  ? '#85233E' : 'inherit' }"
+            >
+              {{ lesson.title }}
+            </a>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div fxFlex="100%">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+
+

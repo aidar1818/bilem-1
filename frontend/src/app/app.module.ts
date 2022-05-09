@@ -17,7 +17,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CenteredCardComponent } from './ui/centered-card/centered-card.component';
-import { FlexModule } from '@angular/flex-layout';
+import { ExtendedModule, FlexModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -72,6 +72,7 @@ import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-pr
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { StarsDirective } from './directives/stars.directive';
 import { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';
+import { LessonsSidebarComponent } from './pages/lessons-sidebar/lessons-sidebar.component';
 import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.component';
 import { FooterContactsComponent } from './pages/footer/footer-contacts/footer-contacts.component';
 import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.component';
@@ -140,41 +141,44 @@ const socialConfig: SocialAuthServiceConfig = {
     EditLessonComponent,
     StarsDirective,
     CoursesByCategoryComponent,
+    LessonsSidebarComponent,
+    CoursesByCategoryComponent,
     FooterHelpComponent,
     FooterContactsComponent,
     FooterAboutComponent,
     FooterDevelopmentComponent,
     FooterVacancyComponent
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        SocialLoginModule,
-        AppStoreModule,
-        BrowserAnimationsModule,
-        FlexModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatProgressBarModule,
-        MatDialogModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatMenuModule,
-        MatSelectModule,
-        MatProgressSpinnerModule,
-        MatListModule,
-        MatStepperModule,
-        OrderModule,
-        MatAutocompleteModule,
-        MatCheckboxModule,
-        MatExpansionModule,
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    SocialLoginModule,
+    AppStoreModule,
+    BrowserAnimationsModule,
+    FlexModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatStepperModule,
+    OrderModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    ExtendedModule,
+    MatExpansionModule,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: 'SocialAuthServiceConfig', useValue: socialConfig }

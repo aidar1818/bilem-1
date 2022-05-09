@@ -34,7 +34,8 @@
               <div  *ngFor="let lesson of module.lessons; let index = index"
                     class="lessonTitle" fxLayout="row" fxLayoutAlign="space-between start">
                 <p style="margin-bottom: 20px"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>
-                <a [routerLink]="['/edit-lesson/', lesson._id,]" mat-stroked-button class="lessonEditBtn">
+                <a [routerLink]="[ '/edit-lesson/', courseInfo?._id, lesson._id]" mat-stroked-button
+                   class="lessonEditBtn">
                   <span class="material-icons main-color">edit</span>
                 </a>
               </div>
