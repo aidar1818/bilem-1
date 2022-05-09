@@ -24,6 +24,16 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/myCourses/favorite');
     case 'Курсы по категории':
       return I.amOnPage('/categories/6274899434f34673897be04f');
+    case 'Помощь':
+      return I.amOnPage('/help');
+    case 'Контакты':
+      return I.amOnPage('/contacts');
+    case 'О проекте':
+      return I.amOnPage('/about-project');
+    case 'Разработка':
+      return I.amOnPage('/team');
+    case 'Вакансии':
+      return I.amOnPage('/vacancy');
     default:
       return I.amOnPage('/');
   }

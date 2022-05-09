@@ -1,0 +1,22 @@
+.header {
+  height: 80px;
+}
+
+.title {
+  color: #444;
+  font-size: 28px;
+  font-family: Impact, fantasy;
+  font-weight: 600;
+  height: 80px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.text {
+  font-style: italic;
+  font-family: DejaVu Sans Mono, monospace;
+}

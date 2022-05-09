@@ -29,6 +29,11 @@ import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-pr
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
 import { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';
+import { FooterContactsComponent } from './pages/footer/footer-contacts/footer-contacts.component';
+import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.component';
+import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
+import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.component';
+import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 
 const routes: Routes = [
   {
@@ -57,6 +62,11 @@ const routes: Routes = [
     ]},
   {path: 'newPassword', component: NewPasswordComponent},
   {path: 'categories/:id', component: CoursesByCategoryComponent},
+  {path: 'contacts', component: FooterContactsComponent},
+  {path: 'about-project', component: FooterAboutComponent},
+  {path: 'team', component: FooterDevelopmentComponent},
+  {path: 'help', component: FooterHelpComponent},
+  {path: 'vacancy', component: FooterVacancyComponent},
   {
     path: 'teaching',
     component: TeachingComponent,
