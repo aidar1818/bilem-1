@@ -14,6 +14,10 @@ export const fetchSubcategoriesByCategoryFailure = createAction(
   props<{error: string}>()
 );
 
+export const fetchSubcategoryByIdRequest = createAction('[Subcategory] FetchById Request', props<{id: string}>());
+export const fetchSubcategoryByIdSuccess = createAction('[Subcategory] FetchById Success', props<{subcategory: Subcategory}>());
+export const fetchSubcategoryByIdFailure = createAction('[Subcategory] FetchById Failure', props<{error: string}>());
+
 export const createSubcategoryRequest = createAction('[Subcategory] Create Request',
   props<{ subcategoryData: CreateSubcategoryData }>()
 );

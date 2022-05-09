@@ -33,6 +33,10 @@ export const fetchCoursesByCategoryRequest = createAction('[Courses] FetchByCate
 export const fetchCoursesByCategorySuccess = createAction('[Courses] FetchByCategory Success', props<{courses: Course[]}>());
 export const fetchCoursesByCategoryFailure = createAction('[Courses] FetchByCategory Failure', props<{error: string}>());
 
+export const fetchCoursesBySubcategoryRequest = createAction('[Courses] FetchBySubcategory Request', props<{id: string}>());
+export const fetchCoursesBySubcategorySuccess = createAction('[Courses] FetchBySubcategory Success', props<{courses: Course[]}>());
+export const fetchCoursesBySubcategoryFailure = createAction('[Courses] FetchBySubcategory Failure', props<{error: string}>());
+
 export const createCourseRequest = createAction(
   '[Course] Create Request',
   props<{courseData: CourseData}>()

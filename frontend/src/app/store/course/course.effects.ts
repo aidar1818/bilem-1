@@ -14,13 +14,18 @@ import {
   createCourseSuccess,
   fetchCourseInfoFailure,
   fetchCourseInfoRequest,
-  fetchCourseInfoSuccess, fetchCoursesByCategoryFailure, fetchCoursesByCategoryRequest, fetchCoursesByCategorySuccess,
+  fetchCourseInfoSuccess,
+  fetchCoursesByCategoryFailure,
+  fetchCoursesByCategoryRequest,
+  fetchCoursesByCategorySuccess, fetchCoursesBySubcategoryFailure,
+  fetchCoursesBySubcategoryRequest, fetchCoursesBySubcategorySuccess,
   fetchCoursesFailure,
   fetchCoursesRequest,
   fetchCoursesSuccess,
   fetchUserCoursesFailure,
   fetchUserCoursesRequest,
-  fetchUserCoursesSuccess, publishCourseFailure,
+  fetchUserCoursesSuccess,
+  publishCourseFailure,
   publishCourseRequest,
   publishCourseSuccess,
   removeCourseFailure,
@@ -75,6 +80,16 @@ export class CourseEffects {
     mergeMap(({id}) => this.courseService.getCoursesByCategory(id).pipe(
       map(courses => fetchCoursesByCategorySuccess({courses})),
       catchError(() => of(fetchCoursesByCategoryFailure({
+        error: 'Something wrong'
+      })))
+    ))
+  ));
+
+  fetchCoursesBySubcategory = createEffect(() => this.actions.pipe(
+    ofType(fetchCoursesBySubcategoryRequest),
+    mergeMap(({id}) => this.courseService.getCoursesBySubcategory(id).pipe(
+      map(courses => fetchCoursesBySubcategorySuccess({courses})),
+      catchError(() => of(fetchCoursesBySubcategoryFailure({
         error: 'Something wrong'
       })))
     ))

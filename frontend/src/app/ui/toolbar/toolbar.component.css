@@ -181,6 +181,11 @@
   margin: 0;
 }
 
+.subcategory__title {
+  width: 70%;
+  margin: 0;
+}
+
 .add-btn {
   padding: 0!important;
 }

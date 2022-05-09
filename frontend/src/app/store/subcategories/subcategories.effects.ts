@@ -13,7 +13,10 @@ import {
   editSubcategorySuccess,
   fetchSubcategoriesByCategoryFailure,
   fetchSubcategoriesByCategoryRequest,
-  fetchSubcategoriesByCategorySuccess
+  fetchSubcategoriesByCategorySuccess,
+  fetchSubcategoryByIdFailure,
+  fetchSubcategoryByIdRequest,
+  fetchSubcategoryByIdSuccess
 } from './subcategories.actions';
 import { SubcategoriesService } from '../../services/subcategories.service';
 import { createCategoryFailure } from '../categories/categories.actions';
@@ -35,6 +38,14 @@ export class SubcategoriesEffects {
     mergeMap(({id}) => this.subcategoriesService.getSubcategories(id).pipe(
       map(subcategories => fetchSubcategoriesByCategorySuccess({subcategories})),
       this.helpers.catchServerError(fetchSubcategoriesByCategoryFailure)
+    ))
+  ));
+
+  fetchSubcategoryById = createEffect(() => this.actions.pipe(
+    ofType(fetchSubcategoryByIdRequest),
+    mergeMap(({id}) => this.subcategoriesService.getSubcategoryById(id).pipe(
+      map(subcategory => fetchSubcategoryByIdSuccess({subcategory})),
+      catchError(() => of(fetchSubcategoryByIdFailure({error: 'Something wrong'})))
     ))
   ));
 

@@ -24,6 +24,8 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/myCourses/favorite');
     case 'Курсы по категории':
       return I.amOnPage('/categories/6274899434f34673897be04f');
+    case 'Курсы по подкатегории':
+      return I.amOnPage('/subcategories/6277b25a194df1f175428d13');
     case 'Помощь':
       return I.amOnPage('/help');
     case 'Контакты':

@@ -35,6 +35,7 @@ import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.c
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
 import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.component';
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
+import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
     ]},
   {path: 'newPassword', component: NewPasswordComponent},
   {path: 'categories/:id', component: CoursesByCategoryComponent},
+  {path: 'subcategories/:id', component: CoursesBySubcategoryComponent},
   {path: 'contacts', component: FooterContactsComponent},
   {path: 'about-project', component: FooterAboutComponent},
   {path: 'team', component: FooterDevelopmentComponent},

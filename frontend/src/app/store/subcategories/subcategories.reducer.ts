@@ -11,13 +11,19 @@ import {
   editSubcategorySuccess,
   fetchSubcategoriesByCategoryFailure,
   fetchSubcategoriesByCategoryRequest,
-  fetchSubcategoriesByCategorySuccess
+  fetchSubcategoriesByCategorySuccess,
+  fetchSubcategoryByIdFailure,
+  fetchSubcategoryByIdRequest,
+  fetchSubcategoryByIdSuccess
 } from './subcategories.actions';
 
 const initialState: SubcategoriesState = {
   subcategories: [],
+  subcategory: null,
   fetchLoading: false,
   fetchLoadingError: null,
+  fetchByIdLoading: false,
+  fetchByIdLoadingError: null,
   createLoading: false,
   createError: null,
   editLoading: false,
@@ -43,6 +49,10 @@ export const subcategoriesReducer = createReducer(
     fetchLoading: false,
     fetchLoadingError: error
   })),
+
+  on(fetchSubcategoryByIdRequest, state => ({...state, fetchByIdLoading: true, fetchByIdLoadingError: null})),
+  on(fetchSubcategoryByIdSuccess, (state, {subcategory}) => ({...state, fetchByIdLoading: false, subcategory})),
+  on(fetchSubcategoryByIdFailure, (state, {error}) => ({...state, fetchByIdLoading: false, fetchByIdLoadingError: error})),
 
   on(createSubcategoryRequest, state => ({...state, createLoading: true})),
   on(createSubcategorySuccess, state => ({...state, createLoading: false})),

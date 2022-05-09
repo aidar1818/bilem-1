@@ -28,7 +28,7 @@ export class SubcategoriesService {
   }
 
   getSubcategoryById(id: string) {
-    return this.http.get<Subcategory | null>(env.apiUrl + '/subcategories/' + id);
+    return this.http.get<Subcategory>(env.apiUrl + '/subcategories/' + id);
   }
 
   createSubcategory(subcategoryData: CreateSubcategoryData) {

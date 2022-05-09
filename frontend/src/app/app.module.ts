@@ -79,6 +79,7 @@ import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.c
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -143,6 +144,7 @@ const socialConfig: SocialAuthServiceConfig = {
     CoursesByCategoryComponent,
     LessonsSidebarComponent,
     CoursesByCategoryComponent,
+    CoursesBySubcategoryComponent,
     FooterHelpComponent,
     FooterContactsComponent,
     FooterAboutComponent,

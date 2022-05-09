@@ -44,8 +44,11 @@ export type CategoriesState = {
 
 export type SubcategoriesState = {
   subcategories: Subcategory[],
+  subcategory: Subcategory | null,
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchByIdLoading: boolean,
+  fetchByIdLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   editLoading: boolean,
@@ -64,6 +67,8 @@ export type CourseState = {
   fetchPersonalLoadingError: null | string,
   fetchSortLoading: boolean,
   fetchSortLoadingError: null | string,
+  fetchBySubcategoryLoading: boolean,
+  fetchBySubcategoryLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   removeLoading: boolean,

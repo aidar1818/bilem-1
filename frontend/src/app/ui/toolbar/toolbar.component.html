@@ -21,7 +21,7 @@
             </div>
             <div class="subcategory-dropdown">
               <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray">
-                <p class="category__title">{{ subcategory.title }}</p>
+                <p class="subcategory__title" [routerLink]="['/subcategories', subcategory._id]">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                   <span class="material-icons remove-subcategory" *appHasRoles="['admin']"
                         (click)="deleteSubcategory(subcategory._id)" >clear</span>

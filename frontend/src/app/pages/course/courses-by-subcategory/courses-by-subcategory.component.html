@@ -1,0 +1,25 @@
+<mat-progress-spinner
+  style="margin: 0 auto"
+  *ngIf="(loading | async) else productsArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #productsArea>
+  <h1 class="category-title">Все курсы в подкатегории: «{{ (subcategory | async)?.title }}»</h1>
+<div class="card" *ngFor="let course of courses | async">
+  <div class="img-wrap">
+    <img height="220" width="220" [src]="course.image | imageForCourse" alt="picture">
+  </div>
+  <div class="content-wrap">
+    <p class="price">{{ course.price }}</p>
+    <h3 class="title">{{ course.title }}</h3>
+    <p class="description">{{ course.description }}</p>
+    <p class="author">{{ course.author.displayName }}</p>
+    <div fxLayout="row">
+      <img class="rating-img" src="assets/icons/raiting.png" alt="rating" style="height: 15px; margin-top: 1px">
+      <p class="rate">{{ course.rate }}</p>
+      <p class="students">(Students)</p>
+    </div>
+  </div>
+</div>
+</ng-template>
