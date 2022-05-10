@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Store } from '@ngrx/store';
@@ -13,6 +13,8 @@ import {
 import { Subcategory } from '../../models/subcategory.model';
 import { Course } from '../../models/course.model';
 import { FormControl } from '@angular/forms';
+import { CourseService } from '../../services/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,24 +22,25 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  @Output() categoryId = new EventEmitter();
   user: Observable<null | User>;
   categories: Observable<Category[]>;
   courses: Observable<Course[]>;
+  coursesBySubcategory!: Course[];
   categoriesArray!: Category[];
-  categorySubscription!: Subscription;
-  subCoursesSubscription!: Subscription;
+  categorySub!: Subscription;
+  coursesSub!: Subscription;
+  subCategorySub!: Subscription;
+  coursesBySubcategorySub!: Subscription;
   subCategories: Observable<Subcategory[]>;
   subCategoriesArray!: Subcategory[];
   coursesArray!: Course[];
-  subCategorySubscription!: Subscription;
   fetchLoadingCategory: Observable<boolean>;
   fetchLoadingError: Observable<null | string>
   myControl = new FormControl();
   courseTitles!: string[];
   filteredOptions!: Observable<Course[]>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private coursesService: CourseService, private router: Router) {
     this.user = store.select(state => state.users.user);
     this.categories = store.select(state => state.categories.categories);
     this.courses = store.select(state => state.courses.courses);
@@ -55,19 +58,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(fetchCategoriesRequest());
 
-    this.categorySubscription = this.categories.subscribe(categories => {
+    this.categorySub = this.categories.subscribe(categories => {
       if (categories) {
         this.categoriesArray = categories;
       }
     });
 
-    this.subCategorySubscription = this.subCategories.subscribe(subCategories => {
-      if (subCategories) {
-        this.subCategoriesArray = subCategories;
-      }
-    });
-
-    this.subCoursesSubscription = this.courses.subscribe(courses => {
+    this.coursesSub = this.courses.subscribe(courses => {
       if (courses) {
         this.coursesArray = courses;
       }
@@ -96,19 +93,54 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   fetchSubCategory(id: string) {
+
     this.store.dispatch(fetchSubcategoriesByCategoryRequest({id}));
+    this.subCategorySub = this.subCategories.subscribe(subCategories => {
+      if (subCategories) {
+        this.subCategoriesArray = subCategories;
+      }
+    });
+  }
+
+  fetchSubCategoryCourses(id: string) {
+    this.coursesBySubcategorySub = this.coursesService.getCoursesBySubcategory(id).subscribe(courses => {
+      this.coursesBySubcategory = courses;
+    });
   }
 
   deleteSubcategory(id: string) {
     this.store.dispatch(deleteSubcategoryRequest({id}))
   }
 
-  setCategoryId(_id: string) {
-    this.categoryId.emit(_id);
+  show() {
+    const drop = <HTMLElement>document.querySelector('.dropdown-content');
+    drop.style.display = 'block';
+  }
+
+  hide() {
+    const drop = <HTMLElement>document.querySelector('.dropdown-content');
+    drop.style.display = 'none';
+  }
+
+  getCourse(id: string) {
+    this.hide();
+    void this.router.navigate([`/course/${id}`]);
+  }
+
+  getCategoryCourses(id: string) {
+    this.hide();
+    void this.router.navigate([`/categories/${id}`]);
+  }
+
+  getSubcategoryCourses(id: string) {
+    this.hide();
+    void this.router.navigate([`/subcategories/${id}`]);
   }
 
   ngOnDestroy(): void {
-    this.categorySubscription.unsubscribe();
-    this.subCategorySubscription.unsubscribe();
+    this.categorySub.unsubscribe();
+    this.subCategorySub.unsubscribe();
+    this.coursesSub.unsubscribe();
+    this.coursesBySubcategorySub.unsubscribe();
   }
 }

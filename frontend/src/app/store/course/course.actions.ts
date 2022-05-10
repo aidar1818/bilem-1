@@ -29,9 +29,9 @@ export const fetchUserCoursesFailure = createAction(
   props<{error: string}>()
 );
 
-export const fetchCoursesByCategoryRequest = createAction('[Courses] FetchByCategory Request', props<{id: string}>());
-export const fetchCoursesByCategorySuccess = createAction('[Courses] FetchByCategory Success', props<{courses: Course[]}>());
-export const fetchCoursesByCategoryFailure = createAction('[Courses] FetchByCategory Failure', props<{error: string}>());
+export const fetchCoursesByCategoryRequest = createAction('[Courses] Fetch ByCategory Request', props<{id: string}>());
+export const fetchCoursesByCategorySuccess = createAction('[Courses] Fetch ByCategory Success', props<{courses: Course[]}>());
+export const fetchCoursesByCategoryFailure = createAction('[Courses] Fetch ByCategory Failure', props<{error: string}>());
 
 export const fetchCoursesBySubcategoryRequest = createAction('[Courses] FetchBySubcategory Request', props<{id: string}>());
 export const fetchCoursesBySubcategorySuccess = createAction('[Courses] FetchBySubcategory Success', props<{courses: Course[]}>());

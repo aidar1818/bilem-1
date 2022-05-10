@@ -78,6 +78,14 @@
   display: inline-block;
 }
 
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -95,16 +103,6 @@
   padding-top: 5px;
 }
 
-.content:first-child:hover{
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.content:last-child:hover{
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
 .content {
   display: flex;
   flex-direction: row;
@@ -118,6 +116,34 @@
   width: 300px;
 }
 
+.content span {
+  margin-right: 10px;
+  cursor: pointer
+}
+
+.content:hover {
+  background-color: whitesmoke;
+}
+
+.content:hover .subcategory-dropdown {
+  display: block;
+}
+
+.content:hover, .subcategory-content:hover, .course-content:hover {
+  color: red;
+}
+
+.content:first-child:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.content:last-child:hover{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+
 .subcategory-dropdown {
   position: absolute;
   left: 20rem;
@@ -128,6 +154,7 @@
   z-index: 1;
   border-radius: 10px;
   cursor: pointer;
+  padding: 0 10px;
 }
 
 .subcategory-content {
@@ -155,25 +182,43 @@
   border-bottom-right-radius: 10px;
 }
 
-.content:hover .subcategory-dropdown {
+.subcategory-content:hover .course-dropdown {
   display: block;
 }
 
-.content span {
-  margin-right: 10px;
-  cursor: pointer
+.course-dropdown {
+  position: absolute;
+  left: 96%;
+  display: none;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.content:hover {
+.course-content {
+  position: relative;
+  color: black;
+  font-size: 13px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  padding: 3px 10px;
+}
+
+.course-content:hover {
   background-color: whitesmoke;
 }
 
-.dropdown-content a:hover {
-  background-color: #ddd;
+.course-content:first-child:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.course-content:last-child:hover{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .category__title {
@@ -214,6 +259,13 @@ mat-option{
 mat-icon{
   text-transform: uppercase;
 }
+
+
+
+
+
+
+
 
 
 

@@ -44,9 +44,9 @@ router.get('/', roles, async (req, res, next) => {
 
     if (req.query.subcategory) {
       if (req.user && req.user.role === 'admin') {
-        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory}).populate('author', 'displayName');
+        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory}).populate('author', 'displayName').limit(10);
       } else {
-        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory, is_published: true}).populate('author', 'displayName');
+        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory, is_published: true}).populate('author', 'displayName').limit(10);
       }
       return res.send(coursesBySubcategory);
     }

@@ -6,39 +6,49 @@
   <div fxLayoutAlign="space-between center">
     <a routerLink="/" class="logo">bilem.</a>
     <nav class="page-nav">
-      <div class="dropdown">
+      <div class="dropdown" (mouseenter)="show()" (mouseleave)="hide()">
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
           <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
-            <p class="category__title" [routerLink]="['/categories', category._id]">{{ category.title }}</p>
+            <p class="category__title" (click)="getCategoryCourses(category._id)">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <span class="material-icons subcategory">chevron_right</span>
               <span class="material-icons delete" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
                 clear
               </span>
-              <span class="material-icons edit" *appHasRoles="['admin']"
-                    [routerLink]="['/edit-category', category._id]">edit</span>
+              <span class="material-icons edit" *appHasRoles="['admin']" [routerLink]="['/edit-category', category._id]">
+                edit
+              </span>
             </div>
             <div class="subcategory-dropdown">
-              <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray">
-                <p class="subcategory__title" [routerLink]="['/subcategories', subcategory._id]">{{ subcategory.title }}</p>
+              <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray" (mouseenter)="fetchSubCategoryCourses(subcategory._id)">
+                <p class="subcategory__title" (click)="getSubcategoryCourses(subcategory._id)">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']"
-                        (click)="deleteSubcategory(subcategory._id)" >clear</span>
-                  <span class="material-icons edit-subcategory" *appHasRoles="['admin']"
-                        [routerLink]="['/edit-subcategory', subcategory._id]"
-                  >edit</span>
+                  <span class="material-icons subcategory">chevron_right</span>
+                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']" (click)="deleteSubcategory(subcategory._id)">
+                    clear
+                  </span>
+                  <span class="material-icons edit-subcategory" *appHasRoles="['admin']" [routerLink]="['/edit-subcategory', subcategory._id]">
+                    edit
+                  </span>
+                </div>
+                <div class="course-dropdown">
+                  <div class="course-content"  *ngFor="let course of coursesBySubcategory">
+                    <p class="category__title" (click)="getCourse(course._id)">{{ course.title }}</p>
+                  </div>
                 </div>
               </div>
+
               <div *appHasRoles="['admin']">
                 <a mat-raised-button color="primary" class="add-sub-btn" [routerLink]="['/add-subcategory/',
                 category._id]">
-              <span class="material-icons">
-                add
-              </span>
+                  <span class="material-icons">
+                    add
+                  </span>
                 </a>
               </div>
             </div>
+
           </div>
           <div *appHasRoles="['admin']">
             <a mat-raised-button color="primary" class="add-btn" routerLink="/add-category">
@@ -48,8 +58,7 @@
             </a>
           </div>
         </div>
-      </div>
-      <a routerLink="myCourses/learning">Мои курсы</a>
+      </div>      <a routerLink="myCourses/learning">Мои курсы</a>
       <a routerLink="teaching/courses">Преподавание</a>
     </nav>
   </div>
