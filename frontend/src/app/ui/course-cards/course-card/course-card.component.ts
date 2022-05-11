@@ -5,6 +5,8 @@ import { AppState } from '../../../store/types';
 import { publishCourseRequest, removeCourseRequest } from '../../../store/course/course.actions';
 import { Course } from '../../../models/course.model';
 import { User } from '../../../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'app-course-card',
@@ -26,7 +28,7 @@ export class CourseCardComponent implements OnInit {
   publishSub!: Subscription;
   toBePublishCourse = '';
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, public dialog: MatDialog) {
     this.user = store.select(state => state.users.user);
     this.removeLoading = store.select(state => state.courses.removeLoading);
     this.publishLoading = store.select(state => state.courses.publishLoading);
@@ -46,6 +48,14 @@ export class CourseCardComponent implements OnInit {
       if (!isPublish) {
         this.toBePublishCourse = '';
       }
+    });
+  }
+
+  openDialogCourseDelete(event: Event, id: string, title: string): void {
+    event.stopPropagation();
+    this.toBeDeletedCourse = id;
+    this.dialog.open(ModalComponent, {
+      data: {title: `курс "${title}"`, id, type: 'Курс'},
     });
   }
 

@@ -15,7 +15,6 @@ Given('нажимаю на кнопку редактировать', () => {
 });
 
 Given('я очищаю поле {string}', (field) => {
-    console.log(field)
     I.clearField(field);
     I.wait(5);
 });

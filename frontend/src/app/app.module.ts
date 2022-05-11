@@ -80,6 +80,8 @@ import { FooterDevelopmentComponent } from './pages/footer/footer-development/fo
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
+import { ModalComponent } from './ui/modal/modal.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -149,7 +151,8 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterContactsComponent,
     FooterAboutComponent,
     FooterDevelopmentComponent,
-    FooterVacancyComponent
+    FooterVacancyComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -180,6 +183,7 @@ const socialConfig: SocialAuthServiceConfig = {
     MatCheckboxModule,
     ExtendedModule,
     MatExpansionModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

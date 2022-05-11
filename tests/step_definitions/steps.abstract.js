@@ -73,6 +73,10 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       I.click(buttonText);
       I.wait(1);
       break;
+    case 'Удалить':
+      I.click(buttonText);
+      I.wait(3);
+      break;
     default:
       return I.click(buttonText);
   }

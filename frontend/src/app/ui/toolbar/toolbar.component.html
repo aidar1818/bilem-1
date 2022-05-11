@@ -13,7 +13,7 @@
             <p class="category__title" (click)="getCategoryCourses(category._id)">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <span class="material-icons subcategory">chevron_right</span>
-              <span class="material-icons delete" *appHasRoles="['admin']" (click)="deleteCategory(category._id)">
+              <span class="material-icons delete" *appHasRoles="['admin']" (click)="openDialogCategoryDelete(category._id, category.title)">
                 clear
               </span>
               <span class="material-icons edit" *appHasRoles="['admin']" [routerLink]="['/edit-category', category._id]">
@@ -25,7 +25,7 @@
                 <p class="subcategory__title" (click)="getSubcategoryCourses(subcategory._id)">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                   <span class="material-icons subcategory">chevron_right</span>
-                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']" (click)="deleteSubcategory(subcategory._id)">
+                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']" (click)="openDialogSubcategoryDelete(subcategory._id, subcategory.title)">
                     clear
                   </span>
                   <span class="material-icons edit-subcategory" *appHasRoles="['admin']" [routerLink]="['/edit-subcategory', subcategory._id]">

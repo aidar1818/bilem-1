@@ -1,0 +1,12 @@
+<div class="modal">
+  <h1 mat-dialog-title>Удалить {{data.title}}</h1>
+  <div class="modal-content">
+    <mat-checkbox #check id="check">
+      Я понимаю, что удалю навсегда и не смогу вернуть данные
+    </mat-checkbox>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">Нет, отменить</button>
+    <button mat-raised-button color="warn" (click)="onDelete(data.id, data.type!)" [disabled]="!check.checked">Удалить</button>
+  </div>
+</div>

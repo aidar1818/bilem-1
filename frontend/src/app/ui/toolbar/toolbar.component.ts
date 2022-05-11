@@ -5,16 +5,15 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { logoutUserRequest } from '../../store/users/users.actions';
 import { Category } from '../../models/category.model';
-import { deleteCategoryRequest, fetchCategoriesRequest } from '../../store/categories/categories.actions';
-import {
-  deleteSubcategoryRequest,
-  fetchSubcategoriesByCategoryRequest
-} from '../../store/subcategories/subcategories.actions';
+import { fetchCategoriesRequest } from '../../store/categories/categories.actions';
+import { fetchSubcategoriesByCategoryRequest } from '../../store/subcategories/subcategories.actions';
 import { Subcategory } from '../../models/subcategory.model';
 import { Course } from '../../models/course.model';
 import { FormControl } from '@angular/forms';
 import { CourseService } from '../../services/course.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -40,7 +39,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   courseTitles!: string[];
   filteredOptions!: Observable<Course[]>;
 
-  constructor(private store: Store<AppState>, private coursesService: CourseService, private router: Router) {
+  constructor(
+    private store: Store<AppState>,
+    private coursesService: CourseService,
+    private router: Router,
+    public dialog: MatDialog
+    ) {
     this.user = store.select(state => state.users.user);
     this.categories = store.select(state => state.categories.categories);
     this.courses = store.select(state => state.courses.courses);
@@ -74,6 +78,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     })
   }
 
+  openDialogCategoryDelete(id: string, title: string): void {
+    this.dialog.open(ModalComponent, {
+      data: {title: `категорию "${title}"`, id, type: 'Категория'},
+    });
+  }
+
+  openDialogSubcategoryDelete(id: string, title: string): void {
+    this.dialog.open(ModalComponent, {
+      data: {title: `подкатегорию "${title}"`, id, type: 'Подкатегория'},
+    });
+  }
+
   displayFn(course: Course): string {
     return course && course.title ? course.title : '';
   }
@@ -88,9 +104,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.store.dispatch(logoutUserRequest());
   }
 
-  deleteCategory(id: string) {
-    this.store.dispatch(deleteCategoryRequest({id}))
-  }
 
   fetchSubCategory(id: string) {
 
@@ -106,10 +119,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.coursesBySubcategorySub = this.coursesService.getCoursesBySubcategory(id).subscribe(courses => {
       this.coursesBySubcategory = courses;
     });
-  }
-
-  deleteSubcategory(id: string) {
-    this.store.dispatch(deleteSubcategoryRequest({id}))
   }
 
   show() {
