@@ -14,15 +14,18 @@ import { Router } from '@angular/router';
 export class DialogExamplePasswordComponent implements OnDestroy{
   @ViewChild('f') form!: NgForm;
   codeObservable: Observable<string | null>;
-  email: Observable<string | null>;
+  email: Observable<string | undefined>;
   emailSub!: Subscription;
   codeSub!: Subscription;
   code!: string | null;
-  userEmail!: string;
+  userEmail!: string | undefined;
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.codeObservable = store.select(state => state.users.code);
-    this.email = store.select(state => state.users.userEmail);
+    this.email = store.select(state => state.users.user?.email);
+    this.email.subscribe(email => {
+      this.userEmail = email;
+    })
   }
 
   onSubmit() {
@@ -37,7 +40,7 @@ export class DialogExamplePasswordComponent implements OnDestroy{
     })
 
     const userCheckCodeData = {
-      email: this.userEmail,
+      email: <string>this.userEmail,
       code: this.form.value.code
     };
 

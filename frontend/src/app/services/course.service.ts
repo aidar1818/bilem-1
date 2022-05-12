@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment, environment as env } from '../../environments/environment';
-import { Course, CourseData, Lesson } from '../models/course.model';
+import { Course, CourseData } from '../models/course.model';
 import { map } from 'rxjs';
-import { Module } from '../models/module.model';
+import { Lesson, Lessons, Module } from '../models/module.model';
 
 
 @Injectable({
@@ -193,12 +193,12 @@ export class CourseService {
     return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});
   }
 
-  addLesson(lessonData: Lesson) {
+  addLesson(lessonData: Lessons) {
     return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);
   }
 
   getLessonData(lessonId: string) {
-    return this.http.get<Lesson | null>(env.apiUrl + `/courses/lesson/${lessonId}`)
+    return this.http.get<Lessons | null>(env.apiUrl + `/courses/lesson/${lessonId}`)
       .pipe(map(result => {
         if(!result) {
           return null;

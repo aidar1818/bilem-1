@@ -101,7 +101,7 @@ export const usersReducer = createReducer(
   })),
 
   on(sendEmailRequest, state => ({...state, loginLoading: true})),
-  on(sendEmailSuccess, (state, {user}) => ({...state, loginLoading: false, userEmail: user.email})),
+  on(sendEmailSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
 
   on(sendUserCodeRequest, state => ({...state, loginLoading: true, codeError: null})),
   on(sendUserCodeSuccess, (state, {code}) => ({...state, loginLoading: false, code: code})),

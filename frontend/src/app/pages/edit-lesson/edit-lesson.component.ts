@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { createLessonRequest, fetchLessonRequest } from '../../store/lessons/lessons.actions';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Lesson } from '../../models/course.model';
+import { Lesson } from '../../models/module.model';
 
 @Component({
   selector: 'app-edit-lesson',

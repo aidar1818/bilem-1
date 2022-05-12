@@ -1,18 +1,10 @@
 import { User } from './user.model';
-
-export class Lesson {
-  constructor(
-    public _id: string,
-    public title: string,
-    public description: string | null,
-    public video: string | null
-  ) {}
-}
+import { Lessons } from './module.model';
 
 export interface Module {
   title: string,
   _id: string,
-  lessons: Lesson[]
+  lessons: Lessons[]
 }
 
 export class Course {

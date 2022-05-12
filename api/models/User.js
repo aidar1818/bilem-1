@@ -26,7 +26,7 @@ const UserSchema = new Schema({
                 const user = await User.findOne({email: value});
                 return !user;
             },
-            message: 'This user is already registered'
+            message: 'Этот пользователь уже зарегастрирован'
         }
     },
     password: {

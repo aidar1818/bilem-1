@@ -1,8 +1,8 @@
 import { LoginError, RegisterError, User } from '../models/user.model';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
-import { Course, Lesson } from '../models/course.model';
-import { Module } from '../models/module.model';
+import { Course } from '../models/course.model';
+import { Lesson, Module } from '../models/module.model';
 import { Review } from '../models/review.model';
 
 export type UsersState = {

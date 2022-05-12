@@ -15,7 +15,6 @@
         required
         matInput
         ngModel
-        #email="ngModel"
       />
     </mat-form-field>
 
@@ -28,18 +27,17 @@
         required
         matInput
         ngModel
-        #displayName="ngModel"
       />
     </mat-form-field>
 
+    <p>Расскажите немного о себе</p>
     <mat-form-field appearance="outline">
       <mat-label>Обо мне</mat-label>
       <textarea
-        rows="8"
+        rows="9"
         name="aboutMe"
         matInput
         ngModel
-        #aboutMe="ngModel"
       ></textarea>
     </mat-form-field>
 
@@ -47,8 +45,7 @@
       type="submit"
       mat-raised-button
       [disabled]="f.invalid"
-    >
-      Сохранить изменения
+    >Сохранить изменения
     </button>
   </form>
 </div>

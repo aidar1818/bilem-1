@@ -41,10 +41,15 @@ export class UsersService {
   }
 
   recoveryPassword(email: EmailData) {
-    return this.http.post<User>(environment.apiUrl + `/users/recovery`, email);
+    return this.http.post<User>(environment.apiUrl + `/users/recovery`, email).pipe(
+      map(response => {
+        return response;
+      })
+    );
   }
 
   sendCode(userData: CodeUserData) {
+    console.log(userData)
     return this.http.post<string>(environment.apiUrl + `/users/checkCode`, userData).pipe(
       map(response => {
         return response;
@@ -75,7 +80,6 @@ export class UsersService {
   }
 
   editProfile(userData: profileUserData) {
-    console.log(userData)
     return this.http.put<User>(env.apiUrl + '/users/userEditProfile', userData).pipe(
       map(response => {
         return new User(

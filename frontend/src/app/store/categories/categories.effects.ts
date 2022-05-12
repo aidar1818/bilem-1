@@ -81,6 +81,4 @@ export class CategoriesEffects {
       this.helpers.catchServerError(deleteCategoryFailure)
     ))
   ));
-
-
 }

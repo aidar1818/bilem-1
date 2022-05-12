@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { HelpersService } from '../../services/helpers.service';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { map, mergeMap, tap } from 'rxjs';
 import { CourseService } from '../../services/course.service';
 import { createModuleFailure, createModuleRequest, createModuleSuccess } from './modules.actions';
 

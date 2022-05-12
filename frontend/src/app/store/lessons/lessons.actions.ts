@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Lesson } from '../../models/course.model';
+import { Lesson } from '../../models/module.model';
 
 export const createLessonRequest = createAction(
   '[Lesson] Create Request',
