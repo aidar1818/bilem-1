@@ -7,10 +7,16 @@ import {
   createLessonFailure,
   createLessonRequest,
   createLessonSuccess,
+  deleteLessonFailure,
+  deleteLessonRequest,
+  deleteLessonSuccess,
   fetchLessonFailure,
   fetchLessonRequest,
   fetchLessonSuccess
 } from './lessons.actions';
+import { fetchUserCoursesRequest } from '../course/course.actions';
+import { AppState } from '../types';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class LessonsEffects {
@@ -18,6 +24,7 @@ export class LessonsEffects {
     private actions: Actions,
     private courseService: CourseService,
     private helpers: HelpersService,
+    private store: Store<AppState>,
   ) {}
 
   addLesson = createEffect(() => this.actions.pipe(
@@ -38,4 +45,22 @@ export class LessonsEffects {
       catchError(() => of(fetchLessonFailure({error: 'Невозможно загрузить данные урока!'})))
     ))
   ));
+
+  deleteLesson = createEffect(() => this.actions.pipe(
+    ofType(deleteLessonRequest),
+    mergeMap(({id}) => this.courseService.removeLesson(id).pipe(
+      map(() => deleteLessonSuccess()),
+      tap(() => {
+        let userId : string = '';
+        let user = this.store.select(state => state.users.user);
+        user.subscribe(user => {
+          userId = user ? user._id : '';
+        });
+        this.store.dispatch(fetchUserCoursesRequest({id: userId}));
+        this.helpers.openSnackbar('Урок успешно удален!');
+      }),
+      this.helpers.catchServerError(deleteLessonFailure)
+    ))
+  ));
+
 }

@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   createLessonFailure,
   createLessonRequest,
-  createLessonSuccess,
+  createLessonSuccess, deleteLessonFailure, deleteLessonRequest, deleteLessonSuccess,
   fetchLessonFailure,
   fetchLessonRequest,
   fetchLessonSuccess
@@ -15,6 +15,8 @@ const initialState: LessonsState = {
   fetchLoading: false,
   fetchLoadingError: null,
   lesson: null,
+  removeLoading: false,
+  removeError: null,
 };
 
 export const lessonsReducer = createReducer(
@@ -47,4 +49,8 @@ export const lessonsReducer = createReducer(
     fetchLoading: false,
     fetchLoadingError: error
   })),
+
+  on(deleteLessonRequest, state => ({...state, removeLoading: true})),
+  on(deleteLessonSuccess, state => ({...state, removeLoading: false})),
+  on(deleteLessonFailure, (state, {error}) => ({...state, removeLoading: false, removeError: error})),
 );

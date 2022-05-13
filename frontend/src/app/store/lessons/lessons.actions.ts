@@ -25,3 +25,15 @@ export const fetchLessonFailure = createAction(
   '[Lesson] Fetch Failure',
   props<{ error: string }>()
 );
+
+export const deleteLessonRequest = createAction(
+  '[Lesson] Delete Request',
+  props<{ id: string }>()
+);
+export const deleteLessonSuccess = createAction(
+  '[Lesson] Delete Success'
+);
+export const deleteLessonFailure = createAction(
+  '[Lesson] Delete Failure',
+  props<{ error: string }>()
+);

@@ -84,6 +84,7 @@ import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { ModalComponent } from './ui/modal/modal.component';
+import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -156,7 +157,8 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterDevelopmentComponent,
     FooterVacancyComponent,
     LessonComponent,
-    ModalComponent
+    ModalComponent,
+    LessonsComponent
   ],
   imports: [
     BrowserModule,

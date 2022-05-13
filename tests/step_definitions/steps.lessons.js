@@ -9,3 +9,8 @@ Given('я нажимаю на ссылку редактирования урок
   I.click('.lessonEditBtn');
   I.wait(1);
 });
+
+Given('я должен увидеть уроки которые создал', () => {
+  I.seeElementInDOM('.user__lesson');
+  I.wait(1);
+});

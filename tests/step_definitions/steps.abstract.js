@@ -77,6 +77,18 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       I.click(buttonText);
       I.wait(3);
       break;
+    case 'Вертикальное троеточие':
+      I.click('button mat-icon[id=editLesson]');
+      I.wait(1);
+      break;
+    case 'Редактировать урок':
+      I.click('.lessonEditBtn');
+      I.wait(1);
+      break;
+    case 'Удалить урок':
+      I.click('.lessonRemoveBtn');
+      I.wait(1);
+      break;
     default:
       return I.click(buttonText);
   }

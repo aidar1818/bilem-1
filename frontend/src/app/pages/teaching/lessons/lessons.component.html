@@ -1,0 +1,32 @@
+<h1>Уроки</h1>
+
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<mat-progress-spinner
+    *ngIf="(loading | async) else lessonsArea"
+    mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #lessonsArea>
+  <div *ngFor="let course of courses | async">
+    <div *ngFor="let module of course.modules">
+      <div *ngFor="let lesson of module.lessons">
+        <mat-card fxLayout="row" class="card user__lesson">
+          <img class="card__img" [src]="course.image | imageForCourse" [alt]="course.title"/>
+          <div fxLayout="column" class="card__info">
+            <span class="card__lesson-title">{{ lesson.title }}</span>
+            <span class="card__course-title">{{ course.title }}</span>
+          </div>
+          <button class="card__btn" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editLesson">more_vert</mat-icon></button>
+        </mat-card>
+        <mat-menu #menu="matMenu">
+          <button mat-button color="primary" class="lessonEditBtn" [routerLink]="['/edit-lesson', course._id, lesson._id]">Редактировать</button>
+          <button mat-button color="warn" class="lessonRemoveBtn" (click)="deleteLesson(lesson._id)">Удалить</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

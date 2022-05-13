@@ -231,4 +231,8 @@ export class CourseService {
       })
     );
   }
+
+  removeLesson(id: string) {
+    return this.http.delete(env.apiUrl + '/courses/lesson/' + id);
+  }
 }

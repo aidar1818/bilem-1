@@ -30,8 +30,8 @@ exports.config = {
       './step_definitions/steps.auth.js',
       './step_definitions/steps.coursesByCategory.js',
       './step_definitions/steps.lessonsSidebar.js',
-        './step_definitions/steps.footer.js',
-        './step_definitions/steps.modal.js',
+      './step_definitions/steps.footer.js',
+      './step_definitions/steps.modal.js',
     ]
   },
   plugins: {

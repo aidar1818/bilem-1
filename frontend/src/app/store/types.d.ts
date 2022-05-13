@@ -93,6 +93,8 @@ export type LessonsState = {
   fetchLoading: boolean,
   fetchLoadingError: null | string,
   lesson: Lesson | null,
+  removeLoading: boolean,
+  removeError: null | string,
 };
 
 export type ReviewsState = {

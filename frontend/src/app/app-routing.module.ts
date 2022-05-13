@@ -37,6 +37,7 @@ import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.comp
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { LessonComponent } from './ui/lesson/lesson.component';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
+import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
       {
         path: 'new',
         component: NewCourseComponent,
+      },
+      {
+        path: 'lessons',
+        component: LessonsComponent,
       }
     ]
   },

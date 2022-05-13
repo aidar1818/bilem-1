@@ -298,4 +298,26 @@ router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) 
   }
 });
 
+router.delete('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+  try {
+    const course = await Course.findOne({'modules.lessons._id': req.params.id});
+    if(!course) {
+      return res.status(404).send({error: 'Курс с данным уроком не был найден'});
+    }
+
+    if(req.user.role === 'admin' || course.author.toString() === req.user._id.toString()) {
+      await Course.findOneAndUpdate({'modules.lessons._id': req.params.id}, {
+        $pull : {'modules.$.lessons' : { _id: req.params.id}}
+      });
+    } else {
+      return res.status(403).send({message: `Доступ ограничен`});
+    }
+
+    return res.send({message: `Урок успешно удален`});
+
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;
