@@ -9,6 +9,9 @@ import {
   addLearningCourseFailure,
   addLearningCourseRequest,
   addLearningCourseSuccess,
+  createCommentFailure,
+  createCommentRequest,
+  createCommentSuccess,
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess,
@@ -40,6 +43,7 @@ import {
 import { CourseService } from '../../services/course.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../types';
+import { fetchLessonRequest } from '../lessons/lessons.actions';
 
 @Injectable()
 export class CourseEffects {
@@ -49,7 +53,8 @@ export class CourseEffects {
     private courseService: CourseService,
     private router: Router,
     private helpers: HelpersService,
-  ) {}
+  ) {
+  }
 
   fetchCourses = createEffect(() => this.actions.pipe(
     ofType(fetchCoursesRequest),
@@ -167,5 +172,20 @@ export class CourseEffects {
         return of(publishCourseFailure());
       })
     ))
+  ));
+
+  addComment = createEffect(() => this.actions.pipe(
+    ofType(createCommentRequest),
+    mergeMap(({commentData}) => this.courseService.addComment(commentData).pipe(
+      map(() => createCommentSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchLessonRequest({lessonId: commentData.lessonId}));
+        this.helpers.openSnackbar('Комментарий добавлен!');
+      }),
+      catchError((error) => {
+        this.helpers.openSnackbar('Что то пошло не так');
+        return of(createCommentFailure({error}));
+      }),
+    )),
   ));
 }

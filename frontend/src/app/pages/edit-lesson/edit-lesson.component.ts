@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { createLessonRequest, fetchLessonRequest } from '../../store/lessons/lessons.actions';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Lesson } from '../../models/module.model';
+import { Lesson } from '../../models/course.model';
 
 @Component({
   selector: 'app-edit-lesson',
@@ -63,6 +63,7 @@ export class EditLessonComponent implements OnInit, OnDestroy {
       title: this.form.value.title,
       description: this.form.value.description,
       video: this.form.value.video,
+      comments: [],
     };
     this.store.dispatch(createLessonRequest({lessonData}));
   }
@@ -71,4 +72,3 @@ export class EditLessonComponent implements OnInit, OnDestroy {
     this.lessonSub.unsubscribe();
   }
 }
-

@@ -12,7 +12,7 @@
   style="margin: 20px 20px;"
 ></mat-progress-spinner>
 
-<ng-template #coursesArea >
+<ng-template #coursesArea>
   <div fxLayout="column" class="cards" *ngFor="let course of learningCourses">
     <mat-card fxLayout="row" class="card learning" fxLayoutAlign="space-between">
       <img
@@ -25,7 +25,8 @@
           <mat-card-title class="title">{{ course.title }}</mat-card-title>
         </mat-card-title-group>
         <mat-card-content>
-          <button mat-stroked-button color="primary">Продолжить</button>
+          <a mat-stroked-button color="primary"
+             [routerLink]="['/course', 'lessons', course._id, course.modules[0].lessons[0]._id]">Продолжить</a>
           <button mat-stroked-button color="warn">Покинуть</button>
         </mat-card-content>
       </div>

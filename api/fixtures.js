@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const config = require("./config");
-const User = require("./models/User");
-const {nanoid} = require("nanoid");
-const Category = require("./models/Category");
-const Subcategory = require("./models/Subcategory");
-const Course = require("./models/Course");
-const Review = require("./models/Review");
+const config = require('./config');
+const User = require('./models/User');
+const {nanoid} = require('nanoid');
+const Category = require('./models/Category');
+const Subcategory = require('./models/Subcategory');
+const Course = require('./models/Course');
+const Review = require('./models/Review');
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -17,66 +17,66 @@ const run = async () => {
   }
 
   const [user, user2, user3, user4, admin] = await User.create(
-      {
-        email: 'user@bilem.com',
-        password: '123asdA!',
-        displayName: 'User',
-        token: nanoid(),
-        role: 'user',
-        aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
-            '\n' +
-            'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube\n' +
-            '\n' +
-            'С 2017 г. лектор культурной платформы "Синхронизация", куратор Школы лекторов фонда «Эволюция», модератор "Бранч с ученым" от Политеха',
-        socialNetworks: [{
-          fb: 'https://www.facebook.com',
-          github: 'https://github.com',
-          vk: 'https://vk.com',
-          tw: 'https://twitter.com',
-          instagram: 'https://www.instagram.com',
-          skype: 'https://www.skype.com',
-          tme: 'https://t.me',
-          website: 'http://localhost:4200',
-          youtube: 'https://www.youtube.com',
-        }]
-      },
-      {
-        email: 'user2@bilem.com',
-        password: '123asdA!',
-        displayName: 'User 2',
-        token: nanoid(),
-        role: 'user'
-      },
-      {
-        email: 'user3@bilem.com',
-        password: '123asdA!',
-        displayName: 'User 3',
-        token: nanoid(),
-        role: 'user'
-      },
-      {
-        email: 'user4@bilem.com',
-        password: '123asdA!',
-        displayName: 'User 4',
-        token: nanoid(),
-        role: 'user',
-        aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
-            '\n' +
-            'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube',
-        socialNetworks: [{
-          fb: 'https://www.facebook.com',
-          github: 'https://github.com',
-          vk: 'https://vk.com',
-          tw: 'https://twitter.com',
-        }]
-      },
-      {
-        email: 'admin@bilem.com',
-        password: '123asdA!',
-        displayName: 'Admin',
-        token: nanoid(),
-        role: 'admin'
-      },
+    {
+      email: 'user@bilem.com',
+      password: '123asdA!',
+      displayName: 'User',
+      token: nanoid(),
+      role: 'user',
+      aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
+        '\n' +
+        'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube\n' +
+        '\n' +
+        'С 2017 г. лектор культурной платформы "Синхронизация", куратор Школы лекторов фонда «Эволюция», модератор "Бранч с ученым" от Политеха',
+      socialNetworks: [{
+        fb: 'https://www.facebook.com',
+        github: 'https://github.com',
+        vk: 'https://vk.com',
+        tw: 'https://twitter.com',
+        instagram: 'https://www.instagram.com',
+        skype: 'https://www.skype.com',
+        tme: 'https://t.me',
+        website: 'http://localhost:4200',
+        youtube: 'https://www.youtube.com',
+      }]
+    },
+    {
+      email: 'user2@bilem.com',
+      password: '123asdA!',
+      displayName: 'User 2',
+      token: nanoid(),
+      role: 'user'
+    },
+    {
+      email: 'user3@bilem.com',
+      password: '123asdA!',
+      displayName: 'User 3',
+      token: nanoid(),
+      role: 'user'
+    },
+    {
+      email: 'user4@bilem.com',
+      password: '123asdA!',
+      displayName: 'User 4',
+      token: nanoid(),
+      role: 'user',
+      aboutMe: 'Изучаю память в лаборатории когнитивных исследований НИУ ВШЭ, работаю над кандидатской диссертацией.\n' +
+        '\n' +
+        'Дважды ездила на стажировку в Гарвард (Harvard Medical School, Harvard Psychology Department), училась по обмену на медицинском факультете университета Хельсинки. Instagram Tik-Tok YouTube',
+      socialNetworks: [{
+        fb: 'https://www.facebook.com',
+        github: 'https://github.com',
+        vk: 'https://vk.com',
+        tw: 'https://twitter.com',
+      }]
+    },
+    {
+      email: 'admin@bilem.com',
+      password: '123asdA!',
+      displayName: 'Admin',
+      token: nanoid(),
+      role: 'admin'
+    },
   );
 
   const [programming, finance, design, business, personalGrowth, marketing, art, beauty, photo, fitness, music,
@@ -109,11 +109,11 @@ const run = async () => {
   });
 
   const [web, analysis, mobileGameDev, gameDev, dataBase, testing, devWithoutCode, economic, accounting,
-    financing, trading, taxes, cryptocurrency,webDesign, graphDesign, designTools, interface, interior, motion, trheeD,
+    financing, trading, taxes, cryptocurrency, webDesign, graphDesign, designTools, interface, interior, motion, trheeD,
     entrepreneurship, interaction, management, sales, strategies, operations, projectManagement, commercialLaw,
     businessAnalysis, personnel, industry, electricCommerce, jurisprudence, immovability, personalChange,
     personalProductivity, leadership, parentingAndRelationships, happy, esotericPractices, confidence,
-    digital, smmMarketing, marketingBasics, drawing, watercolorPainting, pencilDrawing, painting,sketching,
+    digital, smmMarketing, marketingBasics, drawing, watercolorPainting, pencilDrawing, painting, sketching,
     drawingPerson, portraitArt, acrylicPainting, pottery, ielts, toefl, pmp, sit, ege, nct, ort, makeUp, beauties, skinCare,
     nailDesign, cosmetics, hairStyle, perfume, digitalPhotography, photography, photoVideoTools, mobilography,
     fitnessCourse, health, sport, diet, yoga, mentalHealth, dance, meditation, musicTools, musicalProduction, musicFundamentals,
@@ -133,10 +133,10 @@ const run = async () => {
   }, {
     category: programming,
     title: 'Проектирование и разработка баз данных',
-  },  {
+  }, {
     category: programming,
     title: 'Тестирование программного обеспечения',
-  },  {
+  }, {
     category: programming,
     title: 'Разработка без кода',
   }, {
@@ -166,19 +166,19 @@ const run = async () => {
   }, {
     category: design,
     title: 'Инструменты дизайна',
-  },{
+  }, {
     category: design,
     title: 'Дизайн пользовательского интерфейса',
-  },{
+  }, {
     category: design,
     title: 'Дизайн интерьеров',
-  },{
+  }, {
     category: design,
     title: 'Motion дизайн',
-  },{
+  }, {
     category: design,
     title: '3D',
-  },{
+  }, {
     category: business,
     title: 'Предпринимательство',
   }, {
@@ -223,100 +223,100 @@ const run = async () => {
   }, {
     category: personalGrowth,
     title: 'Личностные изменения',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Личная продуктивность',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Лидерство',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Воспитания и отношения',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Счастье',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Эзотерические практики',
-  },{
+  }, {
     category: personalGrowth,
     title: 'Самооценка и уверенность',
-  },{
+  }, {
     category: marketing,
     title: 'Интернет маркетинг',
-  },{
+  }, {
     category: marketing,
     title: 'SMM',
-  },{
+  }, {
     category: marketing,
     title: 'Основы маркетинга',
-  },{
+  }, {
     category: art,
     title: 'Рисование',
-  },{
+  }, {
     category: art,
     title: 'Акварельная живопись',
-  },{
+  }, {
     category: art,
     title: 'Карандашный рисунок',
-  },{
+  }, {
     category: art,
     title: 'Живопись',
-  },{
+  }, {
     category: art,
     title: 'Создание эскизов',
-  },{
+  }, {
     category: art,
     title: 'Рисование человека',
-  },{
+  }, {
     category: art,
     title: 'Портретное искусство',
-  },{
+  }, {
     category: art,
     title: 'Акриловая живопись',
-  },{
+  }, {
     category: art,
     title: 'Гончарное искусство',
   }, {
     category: exam,
     title: 'IELTS',
-  },{
+  }, {
     category: exam,
     title: 'TOEFL',
-  },{
+  }, {
     category: exam,
     title: 'PMP',
-  },{
+  }, {
     category: exam,
     title: 'SIT',
-  },{
+  }, {
     category: exam,
     title: 'ЕГЭ',
-  },{
+  }, {
     category: exam,
     title: 'НЦТ',
-  },{
+  }, {
     category: exam,
     title: 'ОРТ',
-  },{
+  }, {
     category: beauty,
     title: 'Визаж и макияж',
-  },{
+  }, {
     category: beauty,
     title: 'Красота',
-  },{
+  }, {
     category: beauty,
     title: 'Уход за кожей',
-  },{
+  }, {
     category: beauty,
     title: 'Дизайн маникюра',
-  },{
+  }, {
     category: beauty,
     title: 'Косметика',
-  },{
+  }, {
     category: beauty,
     title: 'Укладка волос',
-  },{
+  }, {
     category: beauty,
     title: 'Духи и парфюмерия',
   }, {
@@ -355,58 +355,58 @@ const run = async () => {
   }, {
     category: fitness,
     title: 'Медитация',
-  },{
+  }, {
     category: music,
     title: 'Инструменты',
-  },{
+  }, {
     category: music,
     title: 'Музыкальное производство',
-  },{
+  }, {
     category: music,
     title: 'Основы музыки',
-  },{
+  }, {
     category: music,
     title: 'Вокал',
-  },{
+  }, {
     category: music,
     title: 'Музыкальное ПО',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Математика',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Русский язык',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Кыргызский язык',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Химия',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Биология',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Физика',
-  },{
+  }, {
     category: schoolLessons,
     title: 'История',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Экономика. Школьные предметы',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Литература русского языка',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Литература кыргызкого языка',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Английский язык',
-  },{
+  }, {
     category: schoolLessons,
     title: 'География',
-  },{
+  }, {
     category: schoolLessons,
     title: 'Геометрия',
   });
@@ -423,11 +423,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'tDKF2KrFDF0',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'Zf8kizU6S1M',
           },
         ]
       },
@@ -437,11 +450,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'tDKF2KrFDF0',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'AM_WxaR6Spc',
           },
         ]
       }
@@ -451,7 +464,7 @@ const run = async () => {
     is_free: false,
     rate: 0.0,
     is_published: true
-  },{
+  }, {
     title: 'Продвинутая Java',
     description: 'Веб-разработка',
     information: 'Данный курс предназначен для тех, кто только начинает изучать Java. Мы начнем с самых азов: компиляция и запуск Java-программ, синтаксис языка, система типов, основы объектно-ориентированного программирования. Далее обсудим наиболее важные классы стандартной библиотеки, включая нововведения Java 8. Для закрепления знаний в курсе предусмотрены контрольные вопросы и практические задания.',
@@ -463,11 +476,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'iM445BnBhpw',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: '0Cdsk2BeNA8',
           },
         ]
       },
@@ -477,11 +503,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'FqcJt4_tKEw',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: '0L57GpJJK2I',
           },
         ]
       }
@@ -494,7 +520,7 @@ const run = async () => {
   }, {
     title: 'Полное руководство по торговле криптовалютой для начинающих',
     description: 'Криптовалюты - это легко. Мой курс отвечает на самые основополагающие вопросы об устройстве и использовании криптовалют. Для вас он станет крепким фундаментом в понимании криптовалютного рынка.' +
-        ' А так же поможет защититься от мошенников и повысит вашу финансовую грамотность.',
+      ' А так же поможет защититься от мошенников и повысит вашу финансовую грамотность.',
     information: 'Курс об эффективности не технических решений в кибербезопасности. Организации тратят огромные деньги на информационную безопасность своих систем, но преступники разбивают эту дорогую броню с помощью законов психологии. Эффективность существующих форм обучения сравнительно мала. Через месяц сотрудники совершают те же ошибки.',
     author: user,
     subcategory: cryptocurrency,
@@ -504,11 +530,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Превью курса',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'EadeOYFAzJ4',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'F11biNXkcC4',
           },
         ]
       },
@@ -518,11 +557,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'x6GSUrdTfDY',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'l1bK8sELZVI',
           },
         ]
       }
@@ -544,11 +583,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'HuPK6AwgzJc',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'CxgOKJh4zWE',
           },
         ]
       },
@@ -558,11 +610,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'wdViO9OcQzs',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'Bluxbh9CaQ0',
           },
         ]
       }
@@ -572,7 +624,7 @@ const run = async () => {
     is_free: true,
     rate: 4.7,
     is_published: true
-  },{
+  }, {
     title: 'Java Script с нуля',
     description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
     information: 'Цель данного курса - познакомить слушателей с основами программирования на JavaScript и подготовить их для практического применения данного инструмента.',
@@ -584,11 +636,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'nyd2_NHpyek',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'rubOd5v9kxc',
           },
         ]
       },
@@ -598,11 +663,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'FX2fiUvrYP4',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'egZOlsEEJ7Q',
           },
         ]
       }
@@ -612,7 +677,7 @@ const run = async () => {
     is_free: false,
     rate: 5,
     is_published: true
-  },{
+  }, {
     title: 'UX/UI',
     description: 'Веб-дизайн',
     information: 'UX/UI дизайн и аналитика – новые направления в области информационных технологий, которые ближе всего стоят к профессии веб-разработчик. Дизайнер интерфейсов проектирует взаимодействие пользователя с сайтом, приложением или каким-либо информационным сервисом и создает визуальные элементы, переходы, систему и прототип интуитивно понятного интерфейса. Данная профессия включает в себя постоянное взаимодействие со множеством инструментов для прототипирования, которые включают в себя такие программы, как Figma, InVision Studio, Sketch, Adobe Illustrator, Adobe After Effects, ColorHexa, Fontjoy и др',
@@ -624,11 +689,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'mciwdFc2Ut8',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'RMbIoRXZhbA'
           },
         ]
       },
@@ -638,11 +716,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'JJLvj1AnGkU',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'kEvV71dfFDk',
           },
         ]
       }
@@ -664,11 +742,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'w0XqvluPP_w',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'k4tIm1yQsok'
           },
         ]
       },
@@ -678,11 +769,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'Ms0RZ67KPTY',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'N_jRhRjcOYo',
           },
         ]
       }
@@ -692,7 +783,7 @@ const run = async () => {
     is_free: true,
     rate: 5,
     is_published: true
-  },  {
+  }, {
     title: 'Дизайн интерьера',
     description: 'Пошаговое руководство по созданию интерьера',
     information: 'Задачи и цели: Ознакомить учащихся с основными качествами интерьера, его особенностями; Воспитывать эстетический вкус на основе композиционного построения интерьера; Развивать самостоятельную деятельность при выполнении практической работы;',
@@ -704,11 +795,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'gGZbfjr5GsY',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'kR-kxeq9nyA',
           },
         ]
       },
@@ -718,11 +822,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'SHb4TELxeAo',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: '43yT1FIZ06c',
           },
         ]
       }
@@ -744,11 +848,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'YnjPDKPaeIc',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'qp-IRNzmfsY',
           },
         ]
       },
@@ -758,11 +875,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'S21jy9zSDkA'
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: '_Xpa-X3C3Ss'
           },
         ]
       },
@@ -772,11 +889,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: '82eLiXmIHd8',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'JIxVZo899Jg',
           },
         ]
       }
@@ -798,11 +915,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'T7iB9fdVHNM',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: '4cOl9QnQLZE',
           },
         ]
       },
@@ -812,11 +942,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'u10oO5WbqDE',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'T7iB9fdVHNM',
           },
         ]
       },
@@ -826,11 +956,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'y1T43fQf55I',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: '3GDWXTBJpfc',
           },
         ]
       }
@@ -852,11 +982,24 @@ const run = async () => {
         lessons: [
           {
             title: 'Lesson 1',
-            description: 'Lesson 1 description here'
+            description: 'Lesson 1 description here',
+            video: 'Zzo1UQdY5GY',
+            comments: [
+              {
+                user: user,
+                text: 'Отличный урок!',
+              },{
+                user: user2,
+                text: 'Интересная тема!',
+              },{
+                user: user3,
+                text: 'Если честно я не очень поняла...',
+              },
+            ]
           },
           {
             title: 'Lesson 2',
-            video: 'Lesson 2 video url here'
+            video: 'c39vD7wycPc',
           },
         ]
       },
@@ -866,11 +1009,11 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: '4udSGtJ6Bhg',
           },
           {
             title: 'Main info full lesson 2',
-            video: 'Full lesson 2  video url here'
+            video: 'vM2L8xBACao',
           },
         ]
       },
@@ -880,7 +1023,7 @@ const run = async () => {
           {
             title: 'Main info full lesson 1',
             description: 'Full lesson 1 description here',
-            video: 'Video url'
+            video: 'lobOq-oiE0U',
           },
           {
             title: 'Main info full lesson 2',
@@ -932,7 +1075,7 @@ const run = async () => {
       course: jScript,
       text: 'Зря время потерял',
       rate: 2
-    },{
+    }, {
       user: user2,
       course: designIn,
       text: 'Отличный курс',

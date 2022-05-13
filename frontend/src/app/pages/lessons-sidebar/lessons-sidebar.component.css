@@ -1,19 +1,15 @@
 .main-div {
-  display: flex;
-  flex-direction: row;
-  align-self: stretch;
   min-height: calc(100vh - 145px);
 }
 
 .lessonSidebar {
   width: 18rem;
-  margin-right: 20px;
   padding: 40px 30px;
   background-color: #3F3F40;
   color: white;
 }
 
-.lessonSidebar a  {
+.lessonSidebar a {
   text-decoration: none;
   color: inherit;
   padding: 0 5px;
@@ -48,4 +44,8 @@ ol li {
 ol li:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
+}
+
+.module-title {
+  position: relative;
 }

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Course, CourseData } from '../../models/course.model';
+import { CommentData, Course, CourseData } from '../../models/course.model';
 
 export const fetchCoursesRequest = createAction('[Courses] Fetch Request');
 export const fetchCoursesSuccess = createAction('[Courses] Fetch Success', props<{courses: Course[]}>());
@@ -93,3 +93,7 @@ export const removeCourseFailure = createAction('[Course] Remove Failure');
 export const publishCourseRequest = createAction('[Course] Publish Request', props<{ id: string }>());
 export const publishCourseSuccess = createAction('[Course] Publish Success');
 export const publishCourseFailure = createAction('[Course] Publish Failure');
+
+export const createCommentRequest = createAction('[Comment] Create Request', props<{commentData: CommentData}>());
+export const createCommentSuccess = createAction('[Comment] Create Success');
+export const createCommentFailure = createAction('[Comment] Create Failure', props<{error: string}>());

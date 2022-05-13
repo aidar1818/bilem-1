@@ -1,0 +1,64 @@
+<div class="main-block clearfix">
+  <div class="lesson-info">
+    <p class="title"><strong>{{ lessonData?.title }}</strong></p>
+
+    <iframe class="video" width="560" height="315" [src]="lessonData.video | youTubeVideo"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            *ngIf="lessonData?.video">
+    </iframe>
+
+    <p>{{ lessonData?.description }}</p>
+  </div>
+
+  <div class="comments">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <p style="margin: 0">Комментариев: <strong>{{ lessonData?.comments ? lessonData.comments.length : '' }}</strong>
+      </p>
+      <button mat-raised-button>Следующий урок</button>
+    </div>
+    <form
+      #f="ngForm"
+      fxLayout="column"
+      autocomplete="off"
+      style="margin-top: 20px"
+      (ngSubmit)="addComment()"
+      class="comment-form"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Комментарий:</mat-label>
+        <input type="text" name="text" required matInput ngModel #text="ngModel"/>
+        <mat-error *ngIf="text.touched && text.hasError('required')">
+          Данное поле является обязательным!
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="start">
+        <button
+          type="submit"
+          mat-raised-button
+          class="main-color-back"
+          [disabled]="f.invalid"
+        >
+          Оставить комментарий
+        </button>
+      </div>
+    </form>
+
+    <ng-container *ngIf="lesson | async">
+      <mat-card *ngFor="let c of lessonData.comments" class="comment-card">
+        <mat-card-content>
+          <div fxLayout="row">
+            <p>{{ c.user.displayName }}</p>&nbsp;
+            <p class="text-muted">( {{ c.datetime.substr(11, 5) }}     {{ c.datetime.substr(0, 10)}} )</p>
+          </div>
+          <p>{{ c.text }}</p>
+        </mat-card-content>
+      </mat-card>
+
+    </ng-container>
+
+
+  </div>
+</div>

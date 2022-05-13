@@ -150,7 +150,7 @@
             src="assets/icons/raiting.png" alt="rating"
           />
           <p class="review-text">{{ rev.text }}</p>
-          <p  class="review-author">{{ rev.user.displayName }}</p>
+          <p class="review-author">{{ rev.user.displayName }}</p>
           <p>{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
         </div>
       </div>
@@ -161,12 +161,18 @@
     <p *ngIf="course.is_free">Бесплатно</p>
     <p *ngIf="!course.is_free">{{ course.price }} сом</p>
 
-    <button mat-raised-button class="" *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">Поступить на курс</button>
-    <button mat-raised-button *ngIf="!course.is_free && !learning" (click)="addLearningCourse(course._id)">Купить</button>
-    <button mat-stroked-button *ngIf="!course.is_free && !learning" >Попробовать бесплатно</button>
-    <button mat-stroked-button *ngIf="learning" >Продолжить</button>
-    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)"  *ngIf="!favorite">
-      <mat-icon>favorite</mat-icon> Хочу пройти
+    <button mat-raised-button class="" *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">
+      Поступить на курс
+    </button>
+    <button mat-raised-button *ngIf="!course.is_free && !learning" (click)="addLearningCourse(course._id)">Купить
+    </button>
+    <button mat-stroked-button *ngIf="!course.is_free && !learning">Попробовать бесплатно</button>
+    <button mat-stroked-button *ngIf="learning"
+            [routerLink]="['/course', 'lessons', course._id, course.modules[0].lessons[0]._id]">Продолжить
+    </button>
+    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)" *ngIf="!favorite">
+      <mat-icon>favorite</mat-icon>
+      Хочу пройти
     </button>
   </div>
 </div>

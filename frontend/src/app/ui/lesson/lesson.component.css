@@ -1,0 +1,44 @@
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.main-block {
+  position: relative;
+  height: 100%;
+}
+
+.lesson-info {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.title {
+  padding-top: 16px;
+}
+
+.video {
+  margin-bottom: 16px;
+}
+
+.comments {
+  box-sizing: border-box;
+  width: 100%;
+  background: #f3f4f6;
+  border-top: 1px solid #dedede;
+  padding: 16px;
+  margin-top: auto;
+}
+
+.comment-form {
+  margin-bottom: 16px;
+}
+
+.comment-card {
+  margin-bottom: 16px;
+}
+
+.text-muted {
+  color: grey;
+}

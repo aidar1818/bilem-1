@@ -1,6 +1,6 @@
-<div class="main-div">
-  <div class="lessonSidebar">
-    <h3 *ngIf="courseInfo">
+<div class="main-div" fxLayout="row">
+  <div class="lessonSidebar" fxFlex="20%">
+    <h3 *ngIf="courseInfo" class="module-title">
       <i><a [routerLink]="['/syllabus/program/', courseInfo?._id]">{{ courseInfo.title }}</a></i>
     </h3>
     <ol class="modulesList">
@@ -19,7 +19,7 @@
       </li>
     </ol>
   </div>
-  <div fxFlex="100%">
+  <div fxFlex="80%">
     <router-outlet></router-outlet>
   </div>
 </div>

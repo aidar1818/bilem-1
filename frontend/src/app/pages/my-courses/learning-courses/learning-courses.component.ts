@@ -30,8 +30,9 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
       if (user) {
         this.learningCourses = user.myCourses;
       }
-    })
+    });
   }
+
   ngOnDestroy() {
     this.userSub.unsubscribe()
   }

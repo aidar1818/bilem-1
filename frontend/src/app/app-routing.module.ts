@@ -23,8 +23,8 @@ import { InfoCourseComponent } from './pages/teaching/info-course/info-course.co
 import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
-import {UserSettingsComponent} from "./pages/user-settings/user-settings.component";
-import {UserProfileComponent} from "./pages/user-profile/user-profile.component";
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';
 import { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';
 import { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';
@@ -35,6 +35,7 @@ import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.c
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
 import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.component';
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
+import { LessonComponent } from './ui/lesson/lesson.component';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 
 const routes: Routes = [
@@ -57,11 +58,13 @@ const routes: Routes = [
   {path: 'recovery', component: RecoveryComponent},
   {path: 'newPassword', component: NewPasswordComponent},
   {path: 'profile', component: UserProfileComponent},
-  {path: 'userSettings', component: UserSettingsComponent, children: [
+  {
+    path: 'userSettings', component: UserSettingsComponent, children: [
       {path: 'editProfile', component: EditProfileComponent},
       {path: 'addSocialNetworks', component: AddSocialComponent},
       {path: 'newPassword', component: NewPasswordComponent},
-    ]},
+    ]
+  },
   {path: 'newPassword', component: NewPasswordComponent},
   {path: 'categories/:id', component: CoursesByCategoryComponent},
   {path: 'subcategories/:id', component: CoursesBySubcategoryComponent},
@@ -166,10 +169,20 @@ const routes: Routes = [
       {path: ':lessonId', component: EditLessonComponent}
     ]
   },
+  {
+    path: 'course/lessons/:courseId',
+    component: LessonsSidebarComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin', 'user']},
+    children: [
+      {path: ':lessonId', component: LessonComponent},
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

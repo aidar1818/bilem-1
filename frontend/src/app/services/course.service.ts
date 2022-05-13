@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment, environment as env } from '../../environments/environment';
-import { Course, CourseData } from '../models/course.model';
+import { CommentData, Course, CourseData, Lesson } from '../models/course.model';
 import { map } from 'rxjs';
-import { Lesson, Lessons, Module } from '../models/module.model';
+import { Module } from '../models/module.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   fetchCourses() {
     return this.http.get<Course[]>(env.apiUrl + '/courses').pipe(
@@ -194,18 +195,40 @@ export class CourseService {
     return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});
   }
 
-  addLesson(lessonData: Lessons) {
+  addLesson(lessonData: Lesson) {
     return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);
   }
 
   getLessonData(lessonId: string) {
-    return this.http.get<Lessons | null>(env.apiUrl + `/courses/lesson/${lessonId}`)
+    return this.http.get<Lesson | null>(env.apiUrl + `/courses/lesson/${lessonId}`)
       .pipe(map(result => {
-        if(!result) {
+        if (!result) {
           return null;
         }
 
-        return new Lesson(result._id, result.title, result.description, result.video);
+        return new Lesson(result._id, result.title, result.description, result.video, result.comments);
       }));
+  }
+
+  addComment(commentData: CommentData) {
+    return this.http.post<Course>(env.apiUrl + `/courses/course/lesson/${commentData.lessonId}/addComment`, commentData).pipe(
+      map(response => {
+        return new Course(
+          response._id,
+          response.title,
+          response.description,
+          response.information,
+          response.author,
+          response.students,
+          response.modules,
+          response.subcategory,
+          response.price,
+          response.image,
+          response.is_free,
+          response.rate,
+          response.is_published,
+        );
+      })
+    );
   }
 }

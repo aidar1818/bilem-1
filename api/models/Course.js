@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Comments = new Schema({
+const CommentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
-  text: String
-})
+  text: {
+    type: String,
+    required: true,
+  },
+  datetime: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 const LessonSchema = new Schema({
   title: {
@@ -36,7 +43,8 @@ const LessonSchema = new Schema({
       },
       message: 'Должно присутствовать либо видео, либо описание урока!',
     },
-  }
+  },
+  comments: [CommentSchema],
 });
 
 const ModuleSchema = new Schema({

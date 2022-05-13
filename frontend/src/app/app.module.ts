@@ -58,7 +58,7 @@ import { SearchComponent } from './pages/catalog/search/search.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';
 import { CourseComponent } from './pages/course/course.component';
-import {SidebarComponent} from "./ui/sidebar/sidebar.component";
+import { SidebarComponent } from './ui/sidebar/sidebar.component';
 import { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';
 import { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';
 import { InfoCourseComponent } from './pages/teaching/info-course/info-course.component';
@@ -79,9 +79,11 @@ import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.c
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { LessonComponent } from './ui/lesson/lesson.component';
+import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { ModalComponent } from './ui/modal/modal.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -121,6 +123,7 @@ const socialConfig: SocialAuthServiceConfig = {
     EditModuleComponent,
     CoursesComponent,
     ImageForCoursePipe,
+    YouTubeVideoPipe,
     NewCourseComponent,
     FooterComponent,
     EditSubcategoryComponent,
@@ -152,6 +155,8 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterAboutComponent,
     FooterDevelopmentComponent,
     FooterVacancyComponent,
+    FooterVacancyComponent,
+    LessonComponent,
     FooterVacancyComponent,
     ModalComponent
   ],
@@ -192,4 +197,5 @@ const socialConfig: SocialAuthServiceConfig = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

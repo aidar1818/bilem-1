@@ -44,7 +44,7 @@ export class LessonsSidebarComponent implements OnInit, OnDestroy {
         this.courseInfo = info;
         this.modules = [];
 
-        for(let i = 0; i < info.modules.length; i++) {
+        for (let i = 0; i < info.modules.length; i++) {
           this.modules.push({
             title: info.modules[i].title,
             _id: info.modules[i]._id,
@@ -52,7 +52,7 @@ export class LessonsSidebarComponent implements OnInit, OnDestroy {
           });
         }
       }
-    })
+    });
   }
 
   ngOnDestroy() {

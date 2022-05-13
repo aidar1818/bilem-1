@@ -2,7 +2,7 @@ import { CodeError, CodeUserData, LoginError, RegisterError, User } from '../mod
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
 import { Course } from '../models/course.model';
-import { Lesson, Module } from '../models/module.model';
+import { Lesson, Module } from '../models/course.model';
 import { Review } from '../models/review.model';
 
 export type UsersState = {
