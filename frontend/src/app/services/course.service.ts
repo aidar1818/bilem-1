@@ -120,6 +120,7 @@ export class CourseService {
   }
 
   addModules(moduleData: Module, id: string) {
+    console.log(moduleData, id);
     return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);
   };
 
@@ -185,8 +186,8 @@ export class CourseService {
     );
   }
 
-  removeCourse(artistId: string) {
-    return this.http.delete(env.apiUrl + '/courses/' + artistId);
+  removeCourse(id: string) {
+    return this.http.delete(env.apiUrl + '/courses/' + id);
   }
 
   publishCourse(id: string) {

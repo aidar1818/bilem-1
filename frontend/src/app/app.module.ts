@@ -152,6 +152,7 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterAboutComponent,
     FooterDevelopmentComponent,
     FooterVacancyComponent,
+    FooterVacancyComponent,
     ModalComponent
   ],
   imports: [

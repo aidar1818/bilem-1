@@ -1,6 +1,8 @@
 .cards {
   display: flex;
   flex-direction: column;
+  position: relative;
+  width: 500px;
 }
 
 .course-card {
@@ -8,7 +10,6 @@
 }
 
 .card  {
-  width: 500px;
   margin-bottom: 16px;
 }
 
@@ -24,6 +25,16 @@
 
 .title-course {
   width: 100%;
+}
+
+.text {
+  font-size: 15px;
+}
+
+.btn-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .content {

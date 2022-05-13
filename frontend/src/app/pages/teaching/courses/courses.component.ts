@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Course } from '../../../models/course.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
-import { fetchUserCoursesRequest } from '../../../store/course/course.actions';
+import { fetchUserCoursesRequest, removeCourseRequest } from '../../../store/course/course.actions';
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -31,5 +31,9 @@ export class CoursesComponent implements OnInit {
     if (this.id) {
       this.store.dispatch(fetchUserCoursesRequest({id: this.id}));
     }
+  }
+
+  deleteCourse(idCourse: string) {
+    this.store.dispatch(removeCourseRequest({id: idCourse}))
   }
 }

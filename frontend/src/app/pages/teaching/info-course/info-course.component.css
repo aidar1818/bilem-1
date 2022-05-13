@@ -1,25 +1,22 @@
+
 .editBtn {
   padding: 3px 30px;
   border-radius: 7px;
   border: 1px solid #85233E;
   color: #85233E;
   margin: 0 0 15px 13px;
-  width: 55%;
+  width: 300px;
 }
 
 .cards {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .card  {
-  width: 500px;
+  width:70%;
   margin-bottom: 16px;
-}
-
-.card:hover {
-  box-shadow: 0 0 5px 2px lightgray;
-  cursor: pointer;
 }
 
 .img {
@@ -93,5 +90,56 @@ mat-nav-list a{
 .programContent {
   padding: 20px;
 }
+
+.lessonTitle {
+  padding: 10px 30px;
+  width: 520px;
+  border: 1px solid #ccc;
+  border-top: none;
+  margin-bottom: 20px;
+  margin-left: auto;
+
+}
+
+.lessonText {
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+  line-height: 30px;
+  margin-bottom: auto;
+}
+
+.lessonText:first-child {
+  padding-top: 10px;
+}
+
+.lessonText:last-child {
+  border-bottom: none;
+}
+
+.title-course {
+  padding-top: 20px;
+  padding-left: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: -16px;
+  width: 600px;
+}
+
+.lessonEditBtn {
+  width: 40px;
+  height: 40px;
+  color: #ccc;
+  margin-left: auto;
+  margin-top: -20px;
+}
+
+.lessonEditBtn:hover {
+  color: black;
+}
+
+.imgModule {
+  padding-bottom: 13px;
+  margin-right: 20px;
+}
+
 
 

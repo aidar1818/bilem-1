@@ -2,18 +2,14 @@
   <h1>Курсы</h1>
 </div>
 
-<div class="error" *ngIf="error | async">
-  {{ error | async }}
-</div>
-
 <mat-progress-spinner
   *ngIf="(loading | async) else coursesArea"
   mode="indeterminate"
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <div class="cards" *ngFor="let course of courses | async">
-    <a  [routerLink]="['/syllabus/program/', course._id]" class="course-card">
+  <div class="cards" *ngFor="let course of courses | async" >
+    <a [routerLink]="['/syllabus/program/', course._id]" class="course-card" >
       <mat-card fxLayout="row" fxLayoutAlign="space-between" class="courseCard card">
         <div class="unpublished" *ngIf="!course.is_published">
           <span class="unpublished-text">Unpublished</span>
@@ -21,16 +17,18 @@
         <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
         <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
           <h2>
-            <i>Курс: {{ course.title }}</i>
+            <p class="text"><i>Курс: {{ course.title }}</i></p>
           </h2>
-          <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editCourse">more_vert</mat-icon></button>
         </div>
       </mat-card>
-      <mat-menu #menu="matMenu">
-        <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
-        <button mat-button color="warn">Удалить</button>
-      </mat-menu>
     </a>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-icon">
+      <mat-icon id="editCourse">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
+      <button mat-button color="warn" (click)="deleteCourse(course._id)">Удалить</button>
+    </mat-menu>
   </div>
 </ng-template>
 

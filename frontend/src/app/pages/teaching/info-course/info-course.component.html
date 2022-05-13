@@ -3,7 +3,7 @@
     <div class="sidebarTitle">
       <img class="img" [src]="urlImg | imageForCourse" alt="course image">
       <h2>
-        <i>Курс: {{ courseInfo?.title }}</i>
+        <p class="text">Курс: {{ courseInfo?.title }}</p>
       </h2>
     </div>
 
@@ -20,28 +20,37 @@
   <div class="programContent">
     <h2>Программа курса</h2>
 
-    <button mat-raised-button class="editBtn">Редактировать содержание</button>
+    <button *ngIf="!text" mat-raised-button class="editBtn"
+            [routerLink]="['/editModule/', courseInfo?._id]">Редактировать содержание</button>
+    <div *ngIf="text">
+      <button *ngIf="text" mat-raised-button class="editBtn"
+              [routerLink]="['/editModule/', courseInfo?._id]">
+        На данном курсе нет модулей.<br>Хотите добавить?</button>
+    </div>
 
     <div class="cards" *ngFor="let module of courseInfo?.modules; let i = index">
       <a>
-        <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
-
-          <div fxLayout="column" fxLayoutAlign="space-between" class="title-course">
-            <h2>
-              <i>{{ i + 1 }}. {{ module.title }}</i>
-            </h2>
-            <div>
-              <div  *ngFor="let lesson of module.lessons; let index = index"
-                    class="lessonTitle" fxLayout="row" fxLayoutAlign="space-between start">
-                <p style="margin-bottom: 20px"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>
-                <a [routerLink]="[ '/edit-lesson/', courseInfo?._id, lesson._id]" mat-stroked-button
-                   class="lessonEditBtn">
-                  <span class="material-icons main-color">edit</span>
-                </a>
-              </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" class="card">
+          <div fxLayout="column" fxLayoutAlign="space-between" >
+            <div class="title-course">
+              <h2>
+                {{ i + 1 }}. {{ module.title }}
+              </h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, harum?</p>
             </div>
           </div>
-        </mat-card>
+        </div>
+        <div class="lessonTitle">
+          <div  *ngFor="let lesson of module.lessons; let index = index" class="lessonText"
+                fxLayout="row" fxLayoutAlign="start center">
+            <img src="assets/icons/bilem.svg" class="imgModule" alt="lesson-icon">
+            <p >{{ i + 1 }}.{{ index + 1 }}.  {{ lesson.title }}</p>
+            <a [routerLink]="[ '/edit-lesson/', courseInfo?._id, lesson._id]" mat-stroked-button
+               class="lessonEditBtn">
+              <span class="material-icons">edit</span>
+            </a>
+          </div>
+        </div>
       </a>
     </div>
   </div>

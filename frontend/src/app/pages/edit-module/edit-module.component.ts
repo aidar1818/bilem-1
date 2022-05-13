@@ -1,23 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { createModuleRequest } from '../../store/modules/modules.actions';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { Course } from '../../models/course.model';
+import { fetchCourseInfoRequest } from '../../store/course/course.actions';
 
 @Component({
   selector: 'app-edit-module',
   templateUrl: './edit-module.component.html',
   styleUrls: ['./edit-module.component.css']
 })
-export class EditModuleComponent implements OnInit {
+export class EditModuleComponent implements OnInit, OnDestroy {
   moduleForm!: FormGroup;
+  course: Observable<Course | null>;
+  courseSub!: Subscription;
+  titleText = true;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute) { }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppState>,
+    private route: ActivatedRoute
+  ) {
+    this.course = store.select(state => state.courses.course);
+  }
 
   ngOnInit(): void {
     this.moduleForm = this.fb.group({
       modules: this.fb.array([])
+    });
+
+    this.route.params.subscribe(params => {
+      let courseId = params['id'];
+      this.store.dispatch(fetchCourseInfoRequest({id: courseId}));
+    });
+
+    this.courseSub = this.course.subscribe(course => {
+      if(course?.modules) {
+        this.titleText = false;
+        for(let i = 0; i < course.modules.length; i++) {
+          const moduleArray = this.modules();
+
+          moduleArray.push( this.fb.group({
+            title: course.modules[i].title,
+            lessons: this.fb.array([])
+          }));
+
+
+          for(let j = 0; j < course.modules[i].lessons.length; j++) {
+            const moduleLessons = moduleArray.at(i).get('lessons') as FormArray;
+            moduleLessons.push(this.fb.group({
+              title: course.modules[i].lessons[j].title
+            }));
+          }
+        }
+      } else {
+        this.titleText = true;
+      }
     });
   }
 
@@ -68,5 +109,9 @@ export class EditModuleComponent implements OnInit {
 
   removeModule(moduleIndex: number) {
     this.modules().removeAt(moduleIndex);
+  }
+
+  ngOnDestroy() {
+    this.courseSub.unsubscribe();
   }
 }
