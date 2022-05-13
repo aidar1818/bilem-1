@@ -61,19 +61,22 @@ export class UsersService {
   }
 
   getUser() {
-    return this.http.get<User>(env.apiUrl + '/users').pipe(
+    return this.http.get<User | null>(env.apiUrl + '/users').pipe(
       map(response => {
-        return new User(
-          response._id,
-          response.email,
-          response.token,
-          response.displayName,
-          response.role,
-          response.aboutMe,
-          response.myCourses,
-          response.favoriteCourses,
-          response.socialNetworks,
-        );
+        if (response) {
+          return new User(
+            response._id,
+            response.email,
+            response.token,
+            response.displayName,
+            response.role,
+            response.aboutMe,
+            response.myCourses,
+            response.favoriteCourses,
+            response.socialNetworks,
+          );
+        }
+        return  null;
       })
     );
   }
@@ -81,17 +84,19 @@ export class UsersService {
   editProfile(userData: profileUserData) {
     return this.http.put<User>(env.apiUrl + '/users/userEditProfile', userData).pipe(
       map(response => {
-        return new User(
-          response._id,
-          response.email,
-          response.token,
-          response.displayName,
-          response.role,
-          response.aboutMe,
-          response.myCourses,
-          response.favoriteCourses,
-          response.socialNetworks,
-        );
+        if (response){
+          return new User(
+            response._id,
+            response.email,
+            response.token,
+            response.displayName,
+            response.role,
+            response.aboutMe,
+            response.myCourses,
+            response.favoriteCourses,
+            response.socialNetworks,
+          );
+        } else return null
       })
     );
   }

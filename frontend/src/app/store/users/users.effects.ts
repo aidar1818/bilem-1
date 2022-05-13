@@ -39,7 +39,7 @@ import { HelpersService } from '../../services/helpers.service';
 import { AppState } from '../types';
 import { Store } from '@ngrx/store';
 import { SocialAuthService } from 'angularx-social-login';
-import { CodeUserData } from '../../models/user.model';
+import { fetchCoursesRequest } from '../course/course.actions';
 
 @Injectable()
 export class UsersEffects {
@@ -103,6 +103,7 @@ export class UsersEffects {
         map(() => logoutUser()),
         tap(async () => {
           await this.router.navigate(['/']);
+          this.store.dispatch(fetchCoursesRequest())
           await this.auth.signOut();
           this.helpers.openSnackbar('Выход из аккаунта');
         })

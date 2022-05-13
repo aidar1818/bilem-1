@@ -33,6 +33,10 @@ export class EditModuleComponent implements OnInit, OnDestroy {
       this.store.dispatch(fetchCourseInfoRequest({id: courseId}));
     });
 
+    this.moduleForm = this.fb.group({
+      modules: this.fb.array([])
+    });
+
     this.courseSub = this.course.subscribe(course => {
       if(course?.modules) {
         this.titleText = false;

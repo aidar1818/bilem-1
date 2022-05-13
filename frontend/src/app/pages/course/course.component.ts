@@ -26,6 +26,7 @@ export class CourseComponent implements OnInit {
   reviewsFetchLoading: Observable<boolean>;
   reviewsSub!: Subscription;
   user: Observable<null | User>;
+  userOne!: User;
   userSub!: Subscription;
   constructor(
     private store: Store<AppState>,
@@ -58,6 +59,7 @@ export class CourseComponent implements OnInit {
 
     this.userSub = this.user.subscribe(user => {
       if (user) {
+        this.userOne= user;
         user.myCourses.forEach(course => {
           if (course._id === this.course._id) {
             this.learning = true;

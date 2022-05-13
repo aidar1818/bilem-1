@@ -157,7 +157,7 @@
     </div>
   </div>
 
-  <div class="buttons" fxLayout="column">
+  <div class="buttons" fxLayout="column" *ngIf="userOne">
     <p *ngIf="course.is_free">Бесплатно</p>
     <p *ngIf="!course.is_free">{{ course.price }} сом</p>
 
@@ -170,7 +170,7 @@
     <button mat-stroked-button *ngIf="learning"
             [routerLink]="['/course', 'lessons', course._id, course.modules[0].lessons[0]._id]">Продолжить
     </button>
-    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)" *ngIf="!favorite">
+    <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)"  *ngIf="!favorite && !learning">
       <mat-icon>favorite</mat-icon>
       Хочу пройти
     </button>

@@ -15,7 +15,7 @@ export const fetchUserRequest = createAction(
 );
 export const fetchUserSuccess = createAction(
   '[Users] Fetch User Success',
-  props<{user: User}>()
+  props<{user: User | null}>()
 );
 export const fetchUserFailure = createAction(
   '[Users] Fetch User Failure',
@@ -83,7 +83,7 @@ export const editProfileRequest = createAction(
   '[User] EditProfile Request', props<{userData: profileUserData}>()
 );
 export const editProfileSuccess = createAction(
-  '[User] EditProfile Success', props<{user: User}>()
+  '[User] EditProfile Success', props<{user: User | null}>()
 );
 export const editProfileFailure = createAction(
   '[User] EditProfile Failure', props<{error: null | string}>()

@@ -4,8 +4,11 @@ const roles = async (req, res, next) => {
   const token = req.get('Authorization');
 
   if (token) {
-    const [user] = await User.find({token});
-    req.user = user;
+    req.user = await User.findOne({token}).populate(
+        {
+          path: 'myCourses favoriteCourses',
+          populate: 'author subcategory'
+        });
   }
 
   next();

@@ -71,17 +71,18 @@ router.get('/:id', roles, async (req, res, next) => {
   try {
     let course;
 
-    if (req.user && req.user.role === 'admin') {
-      course = await Course.findById(req.params.id)
+    course = await Course.findById(req.params.id)
         .populate('author', 'displayName')
         .populate('modules.lessons.comments.user', 'displayName');
-    }
-
-    if ((req.user && req.user.role === 'user') || !req.user) {
-      [course] = await Course.find({_id: req.params.id, is_published: true})
-        .populate('author', 'displayName')
-        .populate('modules.lessons.comments.user', 'displayName');
-    }
+    // if (req.user && req.user.role === 'admin') {
+    //
+    // }
+    //
+    // if ((req.user && req.user.role === 'user') || !req.user) {
+    //   [course] = await Course.find({_id: req.params.id, is_published: true})
+    //     .populate('author', 'displayName')
+    //     .populate('modules.lessons.comments.user', 'displayName');
+    // }
 
     return res.send(course);
   } catch (e) {

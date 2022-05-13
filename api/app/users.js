@@ -8,11 +8,12 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const {customAlphabet} = require('nanoid');
 const auth = require("../middleware/auth");
+const roles = require("../middleware/roles");
 const nanoid = customAlphabet('1234567890', 6);
 
 const router = express.Router();
 
-router.get('/', auth, async (req, res, next) => {
+router.get('/', roles, async (req, res, next) => {
   try {
     return res.send(req.user);
   } catch (e) {
