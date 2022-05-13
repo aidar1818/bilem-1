@@ -16,11 +16,9 @@ import { sendEmailRequest } from '../../store/users/users.actions';
 export class RecoveryComponent {
   @ViewChild('f') form!: NgForm;
   loading: Observable<boolean>;
-  error: Observable<string | null>;
 
   constructor(private store: Store<AppState>, public dialog: MatDialog) {
     this.loading = store.select(state => state.users.loginLoading);
-    this.error = store.select(state => state.users.codeError);
   }
 
   openDialog() {

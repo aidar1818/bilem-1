@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { NgForm } from '@angular/forms';
 import { editPasswordRequest } from '../../store/users/users.actions';
-import { EditPasswordData, User } from '../../models/user.model';
+import { CodeUserData, EditPasswordData, User } from '../../models/user.model';
 
 @Component({
   selector: 'app-new-password',
@@ -14,15 +14,15 @@ import { EditPasswordData, User } from '../../models/user.model';
 export class NewPasswordComponent implements OnDestroy{
   loading!: Observable<boolean>;
   @ViewChild('f') form!: NgForm;
-  user: Observable<User | null>;
+  userEmail: Observable<CodeUserData | null>;
   email!: string | undefined;
   emailSub!: Subscription;
 
   constructor(private store: Store<AppState>) {
     this.loading = store.select(state => state.users.loginLoading);
-    this.user = store.select(state => state.users.user);
-    this.emailSub = this.user.subscribe(user => {
-      this.email = <string>user?.email;
+    this.userEmail = store.select(state => state.users.userData);
+    this.emailSub = this.userEmail.subscribe(email => {
+      this.email = <string>email?.email;
     })
   }
 

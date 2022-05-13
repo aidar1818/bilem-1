@@ -183,7 +183,7 @@ router.post('/recovery', async (req, res, next) => {
     updateUser.code = mailOptions.text;
     await updateUser.save();
 
-    return res.send(updateUser);
+    return res.send({email: updateUser.email, code: updateUser.code});
   } catch (error) {
     next(error)
   }
@@ -194,7 +194,7 @@ router.post('/checkCode', async (req, res, next) => {
     const user = await User.findOne({email: req.body.email});
 
     if (user.code !== req.body.code) {
-      return res.status(400).send({error: 'Incorrect code!'})
+      return res.status(400).send({error: 'Неверный код!'})
     }
 
     return res.send(user.code);

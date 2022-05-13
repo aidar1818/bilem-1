@@ -1,4 +1,4 @@
-import { LoginError, RegisterError, User } from '../models/user.model';
+import { CodeError, CodeUserData, LoginError, RegisterError, User } from '../models/user.model';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
 import { Course } from '../models/course.model';
@@ -18,8 +18,8 @@ export type UsersState = {
   loginFacebookLoading: boolean,
   loginFacebookError: null | LoginError,
   code: string | null,
-  codeError: string | null,
-  userEmail: string | null,
+  codeError: CodeError | null,
+  userData: CodeUserData | null,
   googleLoading: boolean,
   editProfileLoading: boolean,
   editProfileError: null | string,

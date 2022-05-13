@@ -88,3 +88,7 @@ export interface RegisterError {
 export interface LoginError {
   error: string
 }
+
+export interface CodeError {
+  error: string
+}

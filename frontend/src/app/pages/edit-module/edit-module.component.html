@@ -27,7 +27,8 @@
                 <div
                   *ngFor="let lesson of getLessonsControls(moduleIndex).controls; let lessonIndex = index"
                 >
-                  <div [formGroupName]="lessonIndex">
+                  <div [formGroupName]="lessonIndex"
+                  >
                     {{lessonIndex+1}} :
                     <mat-form-field appearance="outline" class="field">
                       <input

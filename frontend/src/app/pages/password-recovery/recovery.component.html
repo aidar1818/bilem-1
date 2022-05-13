@@ -8,9 +8,6 @@
         autocomplete="off"
         (ngSubmit)="onSubmit()"
       >
-        <div *ngIf="error | async" class="error">
-          {{ (error | async) }}
-        </div>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input name="email" required autocomplete="username" matInput email ngModel #email="ngModel"/>

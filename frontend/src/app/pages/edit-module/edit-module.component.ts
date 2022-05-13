@@ -28,10 +28,6 @@ export class EditModuleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.moduleForm = this.fb.group({
-      modules: this.fb.array([])
-    });
-
     this.route.params.subscribe(params => {
       let courseId = params['id'];
       this.store.dispatch(fetchCourseInfoRequest({id: courseId}));
@@ -59,6 +55,10 @@ export class EditModuleComponent implements OnInit, OnDestroy {
       } else {
         this.titleText = true;
       }
+    });
+
+    this.moduleForm = this.fb.group({
+      modules: this.fb.array([])
     });
   }
 

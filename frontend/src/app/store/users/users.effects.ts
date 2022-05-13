@@ -39,6 +39,7 @@ import { HelpersService } from '../../services/helpers.service';
 import { AppState } from '../types';
 import { Store } from '@ngrx/store';
 import { SocialAuthService } from 'angularx-social-login';
+import { CodeUserData } from '../../models/user.model';
 
 @Injectable()
 export class UsersEffects {
@@ -112,7 +113,7 @@ export class UsersEffects {
   sendEmail = createEffect(() => this.actions.pipe(
     ofType(sendEmailRequest),
     mergeMap( ({email}) => this.usersService.recoveryPassword(email).pipe(
-      map(user => sendEmailSuccess({user})),
+      map(userData => sendEmailSuccess({userData})),
     ))
   ));
 
@@ -122,7 +123,7 @@ export class UsersEffects {
       map(code => {
         return sendUserCodeSuccess({code})
       }),
-      catchError(() => of(sendUserCodeFailure({error: 'Вы ввели не актуальный код, попробуйте еще раз отправить форму'})))
+      this.helpers.catchServerError(sendUserCodeFailure)
     ))
   ));
 

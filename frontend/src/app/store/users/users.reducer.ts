@@ -51,7 +51,7 @@ const initialState: UsersState = {
   loginFacebookError: null,
   code: null,
   codeError: null,
-  userEmail: null,
+  userData: null,
   googleLoading: false,
   editProfileLoading: false,
   editProfileError: null,
@@ -101,7 +101,7 @@ export const usersReducer = createReducer(
   })),
 
   on(sendEmailRequest, state => ({...state, loginLoading: true})),
-  on(sendEmailSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
+  on(sendEmailSuccess, (state, {userData}) => ({...state, loginLoading: false, userData: userData})),
 
   on(sendUserCodeRequest, state => ({...state, loginLoading: true, codeError: null})),
   on(sendUserCodeSuccess, (state, {code}) => ({...state, loginLoading: false, code: code})),

@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import {
+  CodeError,
   CodeUserData, EditPasswordData,
   EmailData, googleLoginUserData,
   LoginError, LoginFacebookUser,
@@ -64,11 +65,11 @@ export const logoutUser = createAction('[Users] Logout');
 export const logoutUserRequest = createAction('[Users] Server Logout Request');
 
 export const sendEmailRequest = createAction('[User] SendEmail Request', props<{email: EmailData}>());
-export const sendEmailSuccess = createAction('[User] SendEmail Success',  props<{user: User}>());
+export const sendEmailSuccess = createAction('[User] SendEmail Success',  props<{userData: CodeUserData}>());
 
 export const sendUserCodeRequest = createAction('[User] SendCode Request', props<{userData: CodeUserData}>());
 export const sendUserCodeSuccess = createAction('[User] SendCode Success', props<{code: string}>());
-export const sendUserCodeFailure = createAction('[User] SendCode Failure', props<{error: string}>());
+export const sendUserCodeFailure = createAction('[User] SendCode Failure', props<{error: CodeError | null}>());
 
 export const editPasswordRequest = createAction('[User] EditPassword Request', props<{password: EditPasswordData}>());
 export const editPasswordSuccess = createAction('[User] EditPassword Success');
