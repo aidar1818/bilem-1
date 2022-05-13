@@ -23,6 +23,7 @@ export class CourseComponent implements OnInit {
   favorite = false;
   learning = false;
   reviews: Observable<Review[]>;
+  reviewsFetchLoading: Observable<boolean>;
   reviewsSub!: Subscription;
   user: Observable<null | User>;
   userSub!: Subscription;
@@ -33,6 +34,7 @@ export class CourseComponent implements OnInit {
   ) {
     this.user = store.select(state => state.users.user);
     this.reviews = store.select(state => state.reviews.reviews);
+    this.reviewsFetchLoading = store.select(state => state.reviews.fetchLoading);
   }
 
   ngOnInit(): void {

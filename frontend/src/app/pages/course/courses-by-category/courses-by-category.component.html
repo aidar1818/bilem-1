@@ -1,10 +1,11 @@
 <mat-progress-spinner
-  style="margin: 0 auto"
-  *ngIf="(loading | async) else productsArea"
+  class="main-spinner"
+  *ngIf="(loading | async) else coursesArea"
   mode="indeterminate"
+  style="margin: auto; position: fixed; overflow: visible; top: 0; left: 0; bottom: 0; right: 0;"
 ></mat-progress-spinner>
 
-<ng-template #productsArea>
+<ng-template #coursesArea>
   <h1 class="category-title">Все курсы в категории: «{{ (category | async)?.title }}»</h1>
 <div class="card" *ngFor="let course of courses | async">
   <div class="img-wrap">

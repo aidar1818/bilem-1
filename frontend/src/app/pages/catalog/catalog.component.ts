@@ -4,7 +4,7 @@ import { AppState } from '../../store/types';
 import { searchCoursesRequest } from '../../store/course/course.actions';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -14,12 +14,14 @@ import { Subscription } from 'rxjs';
 export class CatalogComponent implements OnInit, OnDestroy{
   @ViewChild('searchForm') searchForm!: NgForm;
   querySub!: Subscription;
+  searchLoading: Observable<boolean>;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute )
   {
+    this.searchLoading = store.select(state => state.courses.searchLoading);
   }
 
   ngOnInit() {

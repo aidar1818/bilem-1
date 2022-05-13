@@ -2,14 +2,15 @@
   {{ error | async }}
 </div>
 
-<mat-progress-spinner
-  *ngIf="(loading | async) else coursesArea"
-  mode="indeterminate"
-></mat-progress-spinner>
-
 <div *ngIf="!favoriteCourses[0]">
   <h1>Добавьте интересные вам курсы в список желаний, чтобы вернуться к ним позже.</h1>
 </div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
+  style="margin: 20px 20px;"
+></mat-progress-spinner>
 
 <ng-template #coursesArea>
   <div fxLayout="column" class="cards" *ngFor="let course of favoriteCourses">

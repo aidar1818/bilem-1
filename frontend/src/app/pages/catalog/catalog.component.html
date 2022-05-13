@@ -12,11 +12,14 @@
     </mat-form-field>
 
     <mat-checkbox ngModel name="is_free" id="checkbox" #is_free checked>Бесплатные</mat-checkbox>
+    <ng-template #btn>
     <button
       [routerLink]="['/search']"
       [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
       queryParamsHandling="merge"
       mat-raised-button type="submit" color="primary">Поиск</button>
+    </ng-template>
+    <mat-progress-bar mode="indeterminate" *ngIf="(searchLoading | async) else btn" style="width: 74px"></mat-progress-bar>
   </form>
 </mat-card>
 <hr>

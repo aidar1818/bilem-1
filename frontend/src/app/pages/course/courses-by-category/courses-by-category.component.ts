@@ -27,7 +27,7 @@ export class CoursesByCategoryComponent implements OnInit {
   ) {
     this.courses = store.select(state => state.courses.courses);
     this.category = store.select(state => state.categories.category);
-    this.loading = store.select(state => state.courses.fetchLoading);
+    this.loading = store.select(state => state.courses.fetchSortLoading);
     this.error = store.select(state => state.courses.fetchLoadingError);
   }
 

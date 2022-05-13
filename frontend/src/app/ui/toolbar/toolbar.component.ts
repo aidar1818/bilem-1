@@ -31,6 +31,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   subCategorySub!: Subscription;
   coursesBySubcategorySub!: Subscription;
   subCategories: Observable<Subcategory[]>;
+  fetchLoadingSubcategories: Observable<boolean>;
   subCategoriesArray!: Subcategory[];
   coursesArray!: Course[];
   fetchLoadingCategory: Observable<boolean>;
@@ -51,6 +52,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.fetchLoadingCategory = store.select(state => state.categories.fetchLoading);
     this.fetchLoadingError = store.select(state => state.categories.fetchLoadingError);
     this.subCategories = store.select(state => state.subcategories.subcategories);
+    this.fetchLoadingSubcategories = store.select(state => state.subcategories.fetchLoading);
   }
 
   ngOnInit() {

@@ -14,11 +14,13 @@ import { editProfileRequest } from '../../../store/users/users.actions';
 export class EditProfileComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   user: Observable<User | null>;
+  editLoading: Observable<boolean>;
   userSub!: Subscription;
   userData!: User | null;
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
+    this.editLoading = store.select(state => state.users.editProfileLoading);
     this.userSub = this.user.subscribe(user => {
       this.userData = user;
     });

@@ -23,7 +23,7 @@ export class CoursesComponent implements OnInit {
       this.id = user ? user._id : null;
     });
     this.courses = store.select(state => state.courses.courses);
-    this.loading = store.select(state => state.courses.fetchLoading);
+    this.loading = store.select(state => state.courses.fetchPersonalLoading);
     this.error = store.select(state => state.courses.fetchLoadingError);
   }
 

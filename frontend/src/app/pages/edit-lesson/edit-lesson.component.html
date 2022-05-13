@@ -1,9 +1,17 @@
-
 <div>
   <div class="error" *ngIf="fetchLessonDataError | async">{{ fetchLessonDataError | async}}</div>
   <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 40px">
     <mat-card class="form-card" fxFlex="70">
       <mat-card-title style="text-align: center">Редактирование урока</mat-card-title>
+
+      <mat-progress-spinner
+        class="main-spinner"
+        *ngIf="(fetchLessonDataLoading | async) else editArea"
+        mode="indeterminate"
+        style="margin: 20px auto"
+      ></mat-progress-spinner>
+
+      <ng-template #editArea>
       <mat-card-content>
         <form
           #f="ngForm"
@@ -48,6 +56,7 @@
               Данное поле является обязательным!
             </mat-error>
           </mat-form-field>
+          <ng-template #btn>
           <button
             type="submit"
             mat-raised-button
@@ -56,8 +65,11 @@
           >
             Сохранить изменения
           </button>
+          </ng-template>
+          <mat-progress-bar mode="indeterminate" *ngIf="(loading | async) else btn"></mat-progress-bar>
         </form>
       </mat-card-content>
+      </ng-template>
     </mat-card>
   </div>
 </div>

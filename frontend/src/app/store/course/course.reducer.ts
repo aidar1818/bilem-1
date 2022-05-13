@@ -42,6 +42,8 @@ const initialState: CourseState = {
   fetchSortLoadingError: null,
   fetchBySubcategoryLoading: false,
   fetchBySubcategoryLoadingError: null,
+  searchLoading: false,
+  searchLoadingError: null,
   createLoading: false,
   createError: null,
   removeLoading: false,
@@ -93,9 +95,9 @@ export const courseReducer = createReducer(
     createError: error
   })),
 
-  on(searchCoursesRequest, state => ({...state, fetchLoading: true})),
-  on(searchCoursesSuccess, (state, {searchCourses}) => ({...state, fetchLoading: false, searchCourses})),
-  on(searchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+  on(searchCoursesRequest, state => ({...state, searchLoading: true})),
+  on(searchCoursesSuccess, (state, {searchCourses}) => ({...state, searchLoading: false, searchCourses})),
+  on(searchCoursesFailure, (state, {error}) => ({...state, searchLoading: false, searchLoadingError: error})),
 
   on(removeCourseRequest, state => ({...state, removeLoading: true})),
   on(removeCourseSuccess, state => ({...state, removeLoading: false})),

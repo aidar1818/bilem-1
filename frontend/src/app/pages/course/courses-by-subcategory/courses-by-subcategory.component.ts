@@ -27,7 +27,7 @@ export class CoursesBySubcategoryComponent implements OnInit {
   ) {
     this.courses = store.select(state => state.courses.courses);
     this.subcategory = store.select(state => state.subcategories.subcategory);
-    this.loading = store.select(state => state.courses.fetchLoading);
+    this.loading = store.select(state => state.courses.fetchBySubcategoryLoading);
     this.error = store.select(state => state.courses.fetchLoadingError);
   }
 

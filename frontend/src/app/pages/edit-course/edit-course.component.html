@@ -53,7 +53,10 @@
         <app-file-input name="image" ngModel></app-file-input>
       </mat-form-field>
 
+      <ng-template #btn>
       <button type="submit" mat-raised-button [disabled]="f.invalid">Создать курс</button>
+      </ng-template>
+      <mat-progress-bar mode="indeterminate" *ngIf="(loading | async) else btn" style="width: 160px"></mat-progress-bar>
     </form>
 
 </div>

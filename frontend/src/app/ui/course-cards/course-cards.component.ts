@@ -17,9 +17,11 @@ export class CourseCardsComponent implements OnInit, OnDestroy {
   courses!: Observable<Course[]>;
   coursesSub!: Subscription;
   coursesArray!: Course[];
+  loading: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {
     this.courses = store.select(state => state.courses.courses);
+    this.loading = store.select(state => state.courses.fetchLoading);
     this.coursesSub = this.courses.subscribe(courses => {
       this.coursesArray = courses;
     });

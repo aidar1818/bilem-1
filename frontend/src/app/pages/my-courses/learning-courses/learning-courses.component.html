@@ -2,14 +2,15 @@
   {{ error | async }}
 </div>
 
-<mat-progress-spinner
-  *ngIf="(loading | async) else coursesArea"
-  mode="indeterminate"
-></mat-progress-spinner>
-
 <div *ngIf="!learningCourses[0]">
   <h1>Найдите себе первый курс в <a class="notCourses" routerLink="/">нашем каталоге.</a></h1>
 </div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
+  style="margin: 20px 20px;"
+></mat-progress-spinner>
 
 <ng-template #coursesArea >
   <div fxLayout="column" class="cards" *ngFor="let course of learningCourses">

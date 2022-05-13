@@ -69,6 +69,8 @@ export type CourseState = {
   fetchSortLoadingError: null | string,
   fetchBySubcategoryLoading: boolean,
   fetchBySubcategoryLoadingError: null | string,
+  searchLoading: boolean,
+  searchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
   removeLoading: boolean,

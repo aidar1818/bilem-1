@@ -21,11 +21,13 @@ export class EditCourseComponent implements OnInit {
   value!: string;
   categories: Observable<Category[]>;
   subcategories: Observable<Subcategory[]>;
+  loading: Observable<boolean>;
   is_free!: boolean;
 
   constructor(private store: Store<AppState>, private subcategoryService: SubcategoriesService) {
     this.categories = store.select(state => state.categories.categories);
     this.subcategories = store.select(state => state.subcategories.subcategories);
+    this.loading = store.select(state => state.courses.createLoading);
   }
 
   ngOnInit(): void {

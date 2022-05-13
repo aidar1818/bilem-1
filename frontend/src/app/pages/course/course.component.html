@@ -1,3 +1,11 @@
+<mat-progress-spinner
+  class="main-spinner"
+  *ngIf="(reviewsFetchLoading | async) else coursesArea"
+  mode="indeterminate"
+  style="margin: auto; position: fixed; overflow: visible; top: 0; left: 0; bottom: 0; right: 0;"
+></mat-progress-spinner>
+
+<ng-template #coursesArea>
 <div class="about">
   <div class="title">
     <h1 class="course-title">{{ course.title }}</h1>
@@ -152,7 +160,7 @@
   <div class="buttons" fxLayout="column">
     <p *ngIf="course.is_free">Бесплатно</p>
     <p *ngIf="!course.is_free">{{ course.price }} сом</p>
-    
+
     <button mat-raised-button class="" *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">Поступить на курс</button>
     <button mat-raised-button *ngIf="!course.is_free && !learning" (click)="addLearningCourse(course._id)">Купить</button>
     <button mat-stroked-button *ngIf="!course.is_free && !learning" >Попробовать бесплатно</button>
@@ -162,3 +170,4 @@
     </button>
   </div>
 </div>
+</ng-template>

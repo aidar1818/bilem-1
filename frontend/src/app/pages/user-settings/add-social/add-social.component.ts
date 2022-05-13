@@ -16,9 +16,11 @@ export class AddSocialComponent implements OnInit {
   user: Observable<User | null>;
   userData!: User | null;
   socialNetworks!: socialNetworks[] | null;
+  socialLoading: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
+    this.socialLoading = store.select(state => state.users.addSocialNetworksLoading);
     this.user.subscribe(user => {
       this.userData = user;
       this.socialNetworks = <socialNetworks[]>this.userData?.socialNetworks;

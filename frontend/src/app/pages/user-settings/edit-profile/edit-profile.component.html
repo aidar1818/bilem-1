@@ -41,11 +41,14 @@
       ></textarea>
     </mat-form-field>
 
+    <ng-template #btn>
     <button
       type="submit"
       mat-raised-button
       [disabled]="f.invalid"
     >Сохранить изменения
     </button>
+    </ng-template>
+    <mat-progress-bar mode="indeterminate" *ngIf="(editLoading | async) else btn" style="width: 240px"></mat-progress-bar>
   </form>
 </div>

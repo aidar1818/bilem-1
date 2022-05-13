@@ -9,6 +9,14 @@
       <div class="dropdown" (mouseenter)="show()" (mouseleave)="hide()">
         <a class="dropbtn">Категории</a>
         <div class="dropdown-content">
+
+          <mat-progress-spinner
+            *ngIf="(fetchLoadingCategory | async) else categoriesArea"
+            mode="indeterminate"
+            diameter="30"
+          ></mat-progress-spinner>
+
+          <ng-template #categoriesArea>
           <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
             <p class="category__title" (click)="getCategoryCourses(category._id)">{{ category.title }}</p>
             <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -21,6 +29,15 @@
               </span>
             </div>
             <div class="subcategory-dropdown">
+
+              <mat-progress-spinner
+                *ngIf="(fetchLoadingSubcategories | async) else subcategoriesArea"
+                mode="indeterminate"
+                diameter="20"
+                style="margin: 10px 10px"
+              ></mat-progress-spinner>
+
+              <ng-template #subcategoriesArea>
               <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray" (mouseenter)="fetchSubCategoryCourses(subcategory._id)">
                 <p class="subcategory__title" (click)="getSubcategoryCourses(subcategory._id)">{{ subcategory.title }}</p>
                 <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -38,7 +55,7 @@
                   </div>
                 </div>
               </div>
-
+              </ng-template>
               <div *appHasRoles="['admin']">
                 <a mat-raised-button color="primary" class="add-sub-btn" [routerLink]="['/add-subcategory/',
                 category._id]">
@@ -50,6 +67,7 @@
             </div>
 
           </div>
+          </ng-template>
           <div *appHasRoles="['admin']">
             <a mat-raised-button color="primary" class="add-btn" routerLink="/add-category">
               <span class="material-icons" style="margin-right: 10px">
