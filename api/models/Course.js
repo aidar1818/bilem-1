@@ -33,6 +33,9 @@ const LessonSchema = new Schema({
       message: 'Должно присутствовать либо описание, либо видео урока!',
     },
   },
+  image: {
+    type: String
+  },
   video: {
     type: String,
     validate: {
