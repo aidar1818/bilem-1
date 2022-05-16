@@ -85,6 +85,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { ModalComponent } from './ui/modal/modal.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -190,6 +191,7 @@ const socialConfig: SocialAuthServiceConfig = {
     ExtendedModule,
     MatExpansionModule,
     MatTooltipModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

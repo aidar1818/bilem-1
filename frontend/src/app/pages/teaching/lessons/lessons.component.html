@@ -10,9 +10,16 @@
 ></mat-progress-spinner>
 
 <ng-template #lessonsArea>
-  <div *ngFor="let course of courses | async">
+  <form>
+  <mat-form-field appearance="outline" class="search-block">
+    <mat-label>Название урока</mat-label>
+    <input type="text" name="search" [(ngModel)]="searchText" matInput>
+  </mat-form-field>
+  </form>
+
+  <div *ngFor="let course of courses | async ">
     <div *ngFor="let module of course.modules">
-      <div *ngFor="let lesson of module.lessons">
+      <div *ngFor="let lesson of module.lessons | filter : searchText">
         <mat-card fxLayout="row" class="card user__lesson">
           <img class="card__img" [src]="course.image | imageForCourse" [alt]="course.title"/>
           <div fxLayout="column" class="card__info">

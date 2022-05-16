@@ -10,6 +10,8 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/newPassword');
     case 'Курсы':
       return I.amOnPage('/teaching/courses');
+    case 'Уроки':
+      return I.amOnPage('/teaching/lessons');
     case 'Создание нового модуля':
       return I.amOnPage('/editModule/:id');
     case 'Создание категории':

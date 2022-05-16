@@ -18,6 +18,7 @@ export class LessonsComponent implements OnInit {
   courses: Observable<Course[]>;
   loading: Observable<boolean>;
   error: Observable<null | string>
+  searchText = '';
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);

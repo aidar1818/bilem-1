@@ -23,8 +23,11 @@ const upload = multer({storage});
 
 router.get('/', roles, async (req, res, next) => {
   try {
+    const sort = {};
+
     if (req.query.user) {
-      const userCourses = await Course.find({author: req.query.user}).populate('author', 'displayName');
+      sort._id = -1;
+      const userCourses = await Course.find({author: req.query.user}).sort(sort).populate('author', 'displayName');
       return res.send(userCourses);
     }
 
