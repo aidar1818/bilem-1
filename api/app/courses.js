@@ -70,23 +70,10 @@ router.get('/', roles, async (req, res, next) => {
 router.get('/:id', roles, async (req, res, next) => {
   try {
     let course;
-
-    if (req.user) {
-      course = await Course.findById(req.params.id)
-          .populate('author', 'displayName')
-          .populate('modules.lessons.comments.user', 'displayName');
-
-      if (req.user.role === 'admin' || (course.author._id.toString() === req.user._id.toString())) {
-        return res.send(course);
-      }
-    }
-
-    if ((req.user && req.user.role === 'user') || !req.user) {
-      course = await Course.find({_id: req.params.id, is_published: true})
+    course = await Course.findById(req.params.id)
         .populate('author', 'displayName')
         .populate('modules.lessons.comments.user', 'displayName');
-      return res.send(course);
-    }
+    return res.send(course);
 
   } catch (e) {
     next(e);
