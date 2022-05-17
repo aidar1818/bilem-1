@@ -4,6 +4,8 @@ Given('я нахожусь на странице {string}', (page) => {
   switch (page) {
     case 'Регистрация':
       return I.amOnPage('/register');
+    case 'Логин':
+      return I.amOnPage('/login');
     case 'Восстановление пароля':
       return I.amOnPage('/recovery');
     case 'Редактирование пароля':
@@ -89,6 +91,10 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       break;
     case 'Удалить урок':
       I.click('.lessonRemoveBtn');
+      I.wait(1);
+      break;
+    case 'Начать учиться':
+      I.click('.btnGo');
       I.wait(1);
       break;
     default:

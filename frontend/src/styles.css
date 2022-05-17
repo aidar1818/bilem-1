@@ -6,8 +6,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container {
   max-width: 1200px;
-  padding: 0 16px;
+  padding: 0 25px;
   margin: 0 auto;
+}
+
+.activeToolbarNav {
+  color: #6B0D24;
+  font-weight: 700;
+}
+
+.header-toolbar {
+  background: #DADADA;
 }
 
 .error {
@@ -52,12 +61,12 @@ footer {
 .logo {
   width: 100px;
   height: auto;
-  opacity: 0.5;
+  /*opacity: 0.5;*/
 }
 
-.logo:hover {
-  opacity: 1;
-}
+/*.logo:hover {*/
+/*  opacity: 1;*/
+/*}*/
 
 .footer-text {
   color: #fff;

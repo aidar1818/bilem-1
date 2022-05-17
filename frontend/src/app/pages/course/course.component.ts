@@ -3,7 +3,11 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from '../../models/course.model';
-import { addFavoriteCourseRequest, addLearningCourseRequest } from '../../store/course/course.actions';
+import {
+  addFavoriteCourseRequest,
+  addLearningCourseRequest,
+  fetchCourseInfoRequest
+} from '../../store/course/course.actions';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Review } from '../../models/review.model';
@@ -17,6 +21,8 @@ import { fetchUserRequest } from '../../store/users/users.actions';
 })
 export class CourseComponent implements OnInit {
   course!: Course;
+  courseOb: Observable<Course | null>;
+  courseSub!: Subscription;
   reviewsArr: Review[] = [];
   review!: number;
   allReview = 0;
@@ -28,6 +34,7 @@ export class CourseComponent implements OnInit {
   user: Observable<null | User>;
   userOne!: User;
   userSub!: Subscription;
+
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -35,16 +42,20 @@ export class CourseComponent implements OnInit {
   ) {
     this.user = store.select(state => state.users.user);
     this.reviews = store.select(state => state.reviews.reviews);
+    this.courseOb = store.select(state => state.courses.course);
     this.reviewsFetchLoading = store.select(state => state.reviews.fetchLoading);
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
-      this.course = <Course>data['course'];
-    });
 
     this.store.dispatch(fetchUserRequest());
-    this.store.dispatch(fetchReviewsRequest({id: this.course._id}));
+    this.store.dispatch(fetchCourseInfoRequest({id: this.route.snapshot.params['id']}))
+    this.courseSub = this.courseOb.subscribe(c => {
+      if (c) {
+        this.course = c;
+        this.store.dispatch(fetchReviewsRequest({id: this.course._id}));
+      }
+    })
 
     this.reviewsSub = this.reviews.subscribe(reviews => {
       this.reviewsArr = reviews;
@@ -97,7 +108,14 @@ export class CourseComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.reviewsSub.unsubscribe()
-    this.userSub.unsubscribe()
+    if (this.reviewsSub) {
+      this.reviewsSub.unsubscribe()
+    }
+    if (this.userSub) {
+      this.userSub.unsubscribe()
+    }
+    if (this.courseSub) {
+      this.courseSub.unsubscribe()
+    }
   }
 }

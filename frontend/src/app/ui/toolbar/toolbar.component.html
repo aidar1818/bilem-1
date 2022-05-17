@@ -4,80 +4,13 @@
   fxLayoutAlign="space-between center"
 >
   <div fxLayoutAlign="space-between center">
-    <a routerLink="/" class="logo">bilem.</a>
+    <a routerLink="/">
+      <img class="logo" src="./assets/icons/bilemLogo.svg" alt="logo">
+    </a>
     <nav class="page-nav">
-      <div class="dropdown" (mouseenter)="show()" (mouseleave)="hide()">
-        <a class="dropbtn">Категории</a>
-        <div class="dropdown-content">
-
-          <mat-progress-spinner
-            *ngIf="(fetchLoadingCategory | async) else categoriesArea"
-            mode="indeterminate"
-            diameter="30"
-          ></mat-progress-spinner>
-
-          <ng-template #categoriesArea>
-          <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
-            <p class="category__title" (click)="getCategoryCourses(category._id)">{{ category.title }}</p>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <span class="material-icons subcategory">chevron_right</span>
-              <span class="material-icons delete" *appHasRoles="['admin']" (click)="openDialogCategoryDelete(category._id, category.title)">
-                clear
-              </span>
-              <span class="material-icons edit" *appHasRoles="['admin']" [routerLink]="['/edit-category', category._id]">
-                edit
-              </span>
-            </div>
-            <div class="subcategory-dropdown">
-
-              <mat-progress-spinner
-                *ngIf="(fetchLoadingSubcategories | async) else subcategoriesArea"
-                mode="indeterminate"
-                diameter="20"
-                style="margin: 10px 10px"
-              ></mat-progress-spinner>
-
-              <ng-template #subcategoriesArea>
-              <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray" (mouseenter)="fetchSubCategoryCourses(subcategory._id)">
-                <p class="subcategory__title" (click)="getSubcategoryCourses(subcategory._id)">{{ subcategory.title }}</p>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <span class="material-icons subcategory">chevron_right</span>
-                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']" (click)="openDialogSubcategoryDelete(subcategory._id, subcategory.title)">
-                    clear
-                  </span>
-                  <span class="material-icons edit-subcategory" *appHasRoles="['admin']" [routerLink]="['/edit-subcategory', subcategory._id]">
-                    edit
-                  </span>
-                </div>
-                <div class="course-dropdown">
-                  <div class="course-content"  *ngFor="let course of coursesBySubcategory">
-                    <p class="category__title" (click)="getCourse(course._id)">{{ course.title }}</p>
-                  </div>
-                </div>
-              </div>
-              </ng-template>
-              <div *appHasRoles="['admin']">
-                <a mat-raised-button color="primary" class="add-sub-btn" [routerLink]="['/add-subcategory/',
-                category._id]">
-                  <span class="material-icons">
-                    add
-                  </span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-          </ng-template>
-          <div *appHasRoles="['admin']">
-            <a mat-raised-button color="primary" class="add-btn" routerLink="/add-category">
-              <span class="material-icons" style="margin-right: 10px">
-                add
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>      <a routerLink="myCourses/learning">Мои курсы</a>
-      <a routerLink="teaching/courses">Преподавание</a>
+      <a routerLink="/" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Каталог</a>
+      <a routerLink="myCourses/learning" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Мои курсы</a>
+      <a routerLink="teaching/courses" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Преподавание</a>
     </nav>
   </div>
   <div fxLayoutAlign="space-between center">
@@ -90,7 +23,7 @@
         [formControl]="myControl"
         [matAutocomplete]="auto"
         placeholder="Поиск"
-      >
+      />
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option
           class="course-title"
@@ -101,9 +34,8 @@
         >{{option.title}}</mat-option>
       </mat-autocomplete>
     </div>
-    <nav *ngIf="!(user | async) else userMenu">
-      <a mat-button routerLink="register">РЕГИСТРАЦИЯ</a>&nbsp;
-      <a mat-button routerLink="login">ВОЙТИ</a>
+    <nav *ngIf="!(user | async) else userMenu" class="btnNav">
+      <a routerLink="login" class="btnSign">Войти</a>
     </nav>
   </div>
 </mat-toolbar>

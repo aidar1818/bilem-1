@@ -6,7 +6,7 @@
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-<div class="about">
+<div class="about" *ngIf="course">
   <div class="title">
     <h1 class="course-title">{{ course.title }}</h1>
     <p> {{ course.description }} </p>
@@ -22,7 +22,7 @@
   >
 </div>
 
-<div fxLayout="row" class="box">
+<div fxLayout="row" class="box" *ngIf="course">
   <div fxFlex="70">
     <div class="about-card">
       <h2>О курсе</h2>

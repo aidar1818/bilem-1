@@ -150,23 +150,26 @@ export class CourseService {
   }
 
   getCourseById(id: string) {
-    return this.http.get<Course>(env.apiUrl + '/courses/' + id).pipe(
+    return this.http.get<Course | null>(env.apiUrl + '/courses/' + id).pipe(
       map(response => {
-        return new Course(
-          response._id,
-          response.title,
-          response.description,
-          response.information,
-          response.author,
-          response.students,
-          response.modules,
-          response.subcategory,
-          response.price,
-          response.image,
-          response.is_free,
-          response.rate,
-          response.is_published,
-        );
+        if (response) {
+          return new Course(
+            response._id,
+            response.title,
+            response.description,
+            response.information,
+            response.author,
+            response.students,
+            response.modules,
+            response.subcategory,
+            response.price,
+            response.image,
+            response.is_free,
+            response.rate,
+            response.is_published,
+          );
+        }
+        return null;
       })
     );
   }

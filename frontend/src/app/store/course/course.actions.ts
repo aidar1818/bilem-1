@@ -10,7 +10,7 @@ export const fetchCourseInfoRequest = createAction(
   props<{id: string}>());
 export const fetchCourseInfoSuccess = createAction(
   '[Course] Fetch Success',
-  props<{course: Course}>());
+  props<{course: Course | null}>());
 export const fetchCourseInfoFailure = createAction(
   '[Course] Fetch Failure',
   props<{error: string}>());

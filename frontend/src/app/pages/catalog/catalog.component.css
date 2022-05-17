@@ -1,17 +1,299 @@
 .search-block {
-  width: 52%;
-  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 25px;
+  margin: 0 0 36px 0;
+  background: #DADADA;
 }
 
-.search-block mat-form-field {
-  width: 65%;
-}
 
 mat-option{
   padding: 3px;
   font-size: 13px;
 }
 
-.content {
+.content-main {
   padding: 50px 0;
+}
+
+
+.dropbtn {
+  color: #111116;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 20px;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 16px 10px;
+}
+
+.dropdown-content .row span {
+  padding-top: 5px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  color: black;
+  font-size: 13px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  padding: 0 10px;
+  width: 300px;
+}
+
+.content span {
+  margin-right: 10px;
+  cursor: pointer
+}
+
+.content:hover {
+  background-color: whitesmoke;
+}
+
+.content:hover .subcategory-dropdown {
+  display: block;
+}
+
+.content:hover, .subcategory-content:hover, .course-content:hover {
+  color: red;
+}
+
+.content:first-child:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.content:last-child:hover{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+
+.subcategory-dropdown {
+  position: absolute;
+  left: 20rem;
+  display: none;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.subcategory-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: black;
+  font-size: 13px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  padding: 3px 10px;
+}
+
+.subcategory-content:hover {
+  background-color: whitesmoke;
+}
+
+.subcategory-content:first-child:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.subcategory-content:last-child:hover{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.subcategory-content:hover .course-dropdown {
+  display: block;
+}
+
+.course-dropdown {
+  position: absolute;
+  left: 96%;
+  display: none;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.course-content {
+  position: relative;
+  color: black;
+  font-size: 13px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  padding: 3px 10px;
+}
+
+.course-content:hover {
+  background-color: whitesmoke;
+}
+
+.course-content:first-child:hover{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.course-content:last-child:hover{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.category__title {
+  width: 70%;
+  margin: 0;
+}
+
+.subcategory__title {
+  width: 70%;
+  margin: 0;
+}
+
+.add-btn {
+  padding: 0!important;
+}
+
+.add-sub-btn {
+  padding: 0!important;
+}
+
+.mat-menu-item {
+  min-width: 160px !important;
+  color: #85233E;
+  font-size: 0.8rem;
+}
+
+.mat-menu-item span {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+mat-icon{
+  text-transform: uppercase;
+}
+
+
+.form {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin-left: 25px;
+}
+
+.textInput {
+  box-sizing: border-box;
+  width: 265px;
+  height: 34px;
+  border-radius: 4px;
+  background: #fff;
+  border: none;
+}
+
+.textInput::placeholder{
+  padding: 3px 16px 3px 38px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+  color: #DADADA;
+}
+
+
+.checkboxInput {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.checkboxInput + label {
+  margin-left: 475px;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.checkboxInput + label::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #6B0D24;
+  border-radius: 0.25em;
+  margin-right: 11px;
+  background: #6B0D24 no-repeat center center;
+  background-size: 50% 50%;
+}
+
+label {
+  margin-right: 28.5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.15px;
+  color: rgba(17, 17, 22, 0.87);
+}
+
+.checkboxInput:checked + label::before {
+  content: url("src/assets/icons/cheked.png");
+}
+
+.btnSearch {
+  width: 88px;
+  height: 36px;
+  padding: 6px 16px;
+  margin-left: auto;
+  background: #6B0D24;
+  border: #6B0D24;
+  box-shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.14), 0 1px 5px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #FFFFFF;
 }

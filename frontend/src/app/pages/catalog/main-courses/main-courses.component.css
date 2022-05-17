@@ -1,0 +1,56 @@
+.forAnonUserBlock {
+  height: 630px;
+  margin-bottom: 40px;
+}
+.textBlock {
+  width: 580px;
+}
+
+.p1 {
+  margin-bottom: 12px;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  color: #6B0D24;
+}
+
+.title {
+  margin-bottom: 29px;
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 73px;
+  color: #141E32;
+}
+
+.p2 {
+  width: 460px;
+  margin-bottom: 29px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 33px;
+  color: #969696;
+}
+
+
+.btnGo {
+  width: 190px;
+  height: 53px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  color: #FFFFFF;
+  padding: 13px 20.5px;
+  margin-left: auto;
+  background: #111116;
+  border: #111116;
+  border-radius: 10px;
+  cursor: pointer;
+}

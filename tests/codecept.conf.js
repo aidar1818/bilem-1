@@ -32,6 +32,7 @@ exports.config = {
       './step_definitions/steps.lessonsSidebar.js',
       './step_definitions/steps.footer.js',
       './step_definitions/steps.modal.js',
+      './step_definitions/steps.anonUserBlock.js',
     ]
   },
   plugins: {
