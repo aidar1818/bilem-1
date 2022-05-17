@@ -211,6 +211,9 @@ router.post('/addCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
     user.myCourses.push(req.body.course);
+    const course = await Course.findOne({_id: req.body.course});
+    course.students.push(user);
+    await course.save();
     await user.save();
     return res.send({message: 'Course added!'});
   } catch (error) {

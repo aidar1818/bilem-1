@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -18,12 +18,20 @@ export class CourseCardsComponent implements OnInit, OnDestroy {
   coursesSub!: Subscription;
   coursesArray!: Course[];
   loading: Observable<boolean>;
+  popularCourses!: Course[] | null;
+  newCourses!: Course[] | null;
 
   constructor(private store: Store<AppState>) {
     this.courses = store.select(state => state.courses.courses);
     this.loading = store.select(state => state.courses.fetchLoading);
     this.coursesSub = this.courses.subscribe(courses => {
-      this.coursesArray = courses;
+      if(courses) {
+        this.coursesArray = courses;
+        this.popularCourses = courses.filter(course => {
+          return course.students.length >= 1;
+        });
+       this.newCourses = courses.slice(-6);
+      }
     });
   }
 

@@ -38,7 +38,7 @@ export class Course {
     public description: string,
     public information: string,
     public author: User,
-    public students: User[],
+    public students: string[],
     public modules: Module[],
     public subcategory: string,
     public price: number,

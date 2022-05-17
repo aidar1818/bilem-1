@@ -38,6 +38,7 @@ import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vac
 import { LessonComponent } from './ui/lesson/lesson.component';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
+import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 
 const routes: Routes = [
   {
@@ -183,6 +184,10 @@ const routes: Routes = [
       {path: ':lessonId', component: LessonComponent},
     ],
   },
+  {
+    path: 'allCourses',
+    component: AllCoursesComponent
+  }
 ];
 
 @NgModule({

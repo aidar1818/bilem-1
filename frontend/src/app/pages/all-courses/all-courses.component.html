@@ -1,0 +1,22 @@
+<div class="container">
+
+  <mat-progress-spinner
+    *ngIf="(loading | async) else coursesArea"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+
+  <ng-template #coursesArea>
+    <h1>Полный список курсов</h1>
+    <div *ngFor="let course of courses | async">
+      <div  class="card" fxLayoutAlign="row">
+        <img [src]="course.image | imageForCourse" [alt]="course.title">
+        <div class="content">
+          <h3 [routerLink]="['/course', course['_id']]">{{ course.title }}</h3>
+          <p class="description">{{ course.description }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+

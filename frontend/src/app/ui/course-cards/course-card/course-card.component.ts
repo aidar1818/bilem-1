@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
-import { publishCourseRequest, removeCourseRequest } from '../../../store/course/course.actions';
+import {
+  addFavoriteCourseRequest,
+  publishCourseRequest,
+  removeCourseRequest
+} from '../../../store/course/course.actions';
 import { Course } from '../../../models/course.model';
 import { User } from '../../../models/user.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -74,5 +78,10 @@ export class CourseCardComponent implements OnInit {
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
     this.publishSub.unsubscribe();
+  }
+
+  addFavoriteCourse(id: string, event: Event) {
+    event.stopPropagation();
+    this.store.dispatch(addFavoriteCourseRequest({id}));
   }
 }

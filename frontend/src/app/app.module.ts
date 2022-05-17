@@ -80,11 +80,13 @@ import { FooterDevelopmentComponent } from './pages/footer/footer-development/fo
 import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LessonComponent } from './ui/lesson/lesson.component';
-import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { ModalComponent } from './ui/modal/modal.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
+import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -125,7 +127,6 @@ const socialConfig: SocialAuthServiceConfig = {
     EditModuleComponent,
     CoursesComponent,
     ImageForCoursePipe,
-    YouTubeVideoPipe,
     NewCourseComponent,
     FooterComponent,
     EditSubcategoryComponent,
@@ -159,7 +160,9 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterVacancyComponent,
     LessonComponent,
     ModalComponent,
-    LessonsComponent
+    LessonsComponent,
+    YouTubeVideoPipe,
+    AllCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -191,6 +194,7 @@ const socialConfig: SocialAuthServiceConfig = {
     ExtendedModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatTabsModule,
     Ng2SearchPipeModule,
   ],
   providers: [
@@ -199,5 +203,4 @@ const socialConfig: SocialAuthServiceConfig = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

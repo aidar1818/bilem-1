@@ -1,0 +1,18 @@
+#btnArea{
+  text-align: center;
+  margin-top: 15px;
+}
+
+.btn {
+  font-size: 11px;
+  padding-top: 3px;
+  background: #111116;
+  color: white;
+}
+
+.ic_right {
+  font-size: 18px;
+  margin-left: 10px;
+  padding-bottom: 3px;
+}
+

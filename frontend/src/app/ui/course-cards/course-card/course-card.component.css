@@ -25,6 +25,10 @@
   box-shadow: 0 0 5px 2px lightgray;
 }
 
+mat-card-title-group{
+  position: relative;
+}
+
 .rating-img {
   height: 20px;
 }
@@ -66,5 +70,21 @@ h1 {
   position: absolute;
   bottom: 16px;
   right: 16px;
+}
+
+.heart{
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  color: #85233E;
+  transition: 0.4s;
+}
+
+.heart:hover{
+  color: red;
+}
+
+.heart:active{
+  font-size: 35px;
 }
 
