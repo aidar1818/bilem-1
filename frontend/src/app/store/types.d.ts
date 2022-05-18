@@ -4,6 +4,7 @@ import { Subcategory } from '../models/subcategory.model';
 import { Course } from '../models/course.model';
 import { Lesson, Module } from '../models/course.model';
 import { Review } from '../models/review.model';
+import { Statistics } from '../models/statistics.model';
 
 export type UsersState = {
   user: null | User,
@@ -103,6 +104,12 @@ export type ReviewsState = {
   fetchLoadingError: null | string,
 };
 
+export type StatisticsState = {
+  statistics: Statistics | null,
+  fetchLoading: boolean,
+  fetchLoadingError: null | string,
+};
+
 export type AppState = {
   users: UsersState,
   categories: CategoriesState,
@@ -110,5 +117,6 @@ export type AppState = {
   courses: CourseState,
   modules: ModuleState,
   lessons: LessonsState,
-  reviews: ReviewsState
+  reviews: ReviewsState,
+  statistics: StatisticsState,
 };

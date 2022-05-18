@@ -38,6 +38,7 @@ import { LessonComponent } from './ui/lesson/lesson.component';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
 import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,10 @@ const routes: Routes = [
       {
         path: 'lessons',
         component: LessonsComponent,
+      },
+      {
+        path: 'statistics/:userId',
+        component: StatisticsComponent
       }
     ]
   },

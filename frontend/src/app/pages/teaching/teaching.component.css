@@ -7,42 +7,18 @@
 
 .nav {
   width: 18rem;
-  margin-right: 50px;
   padding: 40px 10px;
-  background-color: #FCFCFC;
+  background-color: #FFFFFF;
 }
 
 mat-nav-list a{
-  color: #85233E;
+  color:  #999999;
   font-size: 14px;
   border-radius: 5px;
 }
 
-.sidebar_icon{
-  text-align: center;
-  background: #E6B1A8;
-  border-radius: 10px;
-  width: 93%;
-  margin: 0 auto 20px;
-  opacity: 0.7;
-}
-
-.school{
-  font-size: 3.8rem;
-  width: 4rem;
-}
-
-.addBtn {
-  padding: 3px 30px;
-  border-radius: 7px;
-  border: 1px solid #85233E;
-  color: #85233E;
-  margin: 0 0 0 13px;
-  width: 55%;
-}
-
-.addBtn span{
-  margin-bottom: 5px;
+mat-nav-list a.active {
+  color: #6B0D24;
 }
 
 .mat-list-icon {
@@ -50,9 +26,47 @@ mat-nav-list a{
 }
 
 .router {
-  margin-top: 40px;
-  width: 800px;
+  width: 100%;
+  background-color: #E5E5E5;
+  padding: 30px 20px;
 }
+
+mat-nav-list a:hover {
+  color: #FFFFFF;
+  background-color: #6B0D24;
+}
+
+.avatarDiv {
+  padding: 0 16px;
+}
+
+.avatar {
+  background: #6B0D24;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  position: relative;
+  margin: 5px;
+  text-align: center;
+}
+
+.avatar mat-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+}
+
+.newCourse {
+  margin-top: 25px;
+}
+
+
+
+
 
 
 

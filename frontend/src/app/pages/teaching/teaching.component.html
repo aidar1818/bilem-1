@@ -1,30 +1,37 @@
 <div class="main">
   <app-sidebar class="nav">
-    <div class="sidebar_icon">
-      <span class="material-icons school">school</span>
+    <div fxLayout="row" fxLayoutAlign="start center" class="avatarDiv">
+      <div class="avatar">
+        <mat-icon>{{ userDisplayName.charAt(0) }}</mat-icon>
+      </div>
+      <span style="color: #6D6D6D">{{ userDisplayName }}</span>
     </div>
-    <a mat-button routerLink="new" class="addBtn" fxLayoutAlign="center center">
-      <span class="material-icons">add</span>
-      Новый курс
-    </a>
+
     <mat-nav-list  role="navigation">
-      <a mat-list-item routerLink="myCourses">
+      <a mat-list-item [routerLink]="['statistics', userId]" [routerLinkActive]="['active']" class="statistics">
         <span class="material-icons mat-list-icon">
-          cast_for_education
+          analytics
         </span>
-        Мое обучение
+        Статистика
       </a>
-      <a mat-list-item routerLink="courses">
+      <a mat-list-item routerLink="courses" [routerLinkActive]="['active']">
         <span class="material-icons mat-list-icon">
           menu_book
         </span>
         Курсы
       </a>
-      <a mat-list-item routerLink="lessons">
+      <a mat-list-item routerLink="lessons" [routerLinkActive]="['active']">
         <span class="material-icons mat-list-icon">
           school
         </span>
         Уроки
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="new" [routerLinkActive]="['active']" class="newCourse">
+       <span class="material-icons mat-list-icon">
+         add_circle_outline
+       </span>
+        Новый курс
       </a>
     </mat-nav-list>
   </app-sidebar>
@@ -32,4 +39,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-

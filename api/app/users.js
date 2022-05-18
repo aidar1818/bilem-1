@@ -9,6 +9,7 @@ const nodemailer = require('nodemailer');
 const {customAlphabet} = require('nanoid');
 const auth = require("../middleware/auth");
 const roles = require("../middleware/roles");
+const Course = require("../models/Course");
 const nanoid = customAlphabet('1234567890', 6);
 
 const router = express.Router();
@@ -257,6 +258,37 @@ router.post('/addSocialNetworks', auth, async (req, res, next) => {
     return res.send(user);
   } catch (error) {
     next(error);
+  }
+});
+
+router.get('/statistics/:id', auth, async (req, res, next) => {
+  try {
+    const userCourses = await Course.find({author: req.params.id});
+
+    let allStudents = 0;
+    let allLessons = 0;
+    let allComments = 0;
+
+    for(let i = 0; i < userCourses.length; i++) {
+      const userOnCourse = await User.find({myCourses: userCourses[i]._id.toString()});
+      allStudents += userOnCourse.length;
+      for(let j = 0; j < userCourses[i].modules.length; j++) {
+        allLessons += userCourses[i].modules[j].lessons.length;
+        for(let a = 0; a < userCourses[i].modules[j].lessons.length; a++)
+          allComments += userCourses[i].modules[j].lessons[a].comments.length;
+      }
+    }
+
+    const statistics = {
+      courses: userCourses.length,
+      students: allStudents,
+      lessons: allLessons,
+      comments: allComments
+    };
+
+    return res.send(statistics);
+  } catch (e) {
+    next(e);
   }
 });
 

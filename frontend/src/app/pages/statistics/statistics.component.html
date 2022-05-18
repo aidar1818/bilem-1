@@ -1,0 +1,26 @@
+<p class="titles">Статистика</p>
+<mat-progress-spinner
+  *ngIf="(loading | async) else statisticsArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+<ng-template #statisticsArea>
+  <div *ngIf="statistics" fxLayout="row wrap" fxLayoutAlign="space-between center" class="main-div">
+    <div fxFlex="20" class="statisticsCard">
+      <p>Студентов</p>
+      <p class="numbers">{{ statistics.students }}</p>
+    </div>
+    <div fxFlex="20" class="statisticsCard">
+      <p>Курсов</p>
+      <p class="numbers">{{ statistics.courses }}</p>
+    </div>
+    <div fxFlex="20" class="statisticsCard">
+      <p>Комментариев</p>
+      <p class="numbers">{{ statistics.comments }}</p>
+    </div>
+    <div fxFlex="20" class="statisticsCard">
+      <p>Уроков</p>
+      <p class="numbers">{{ statistics.lessons }}</p>
+    </div>
+  </div>
+</ng-template>
+

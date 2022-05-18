@@ -88,6 +88,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
 import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -160,7 +161,8 @@ const socialConfig: SocialAuthServiceConfig = {
     ModalComponent,
     LessonsComponent,
     YouTubeVideoPipe,
-    AllCoursesComponent
+    AllCoursesComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

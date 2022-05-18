@@ -1,0 +1,24 @@
+.titles {
+  font-size: 18px;
+  line-height: 32px;
+  color: #4C4C4C;
+}
+
+.main-div {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.statisticsCard {
+  background: #6B0D24;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 13px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.numbers {
+  font-size: 30px;
+}
+
