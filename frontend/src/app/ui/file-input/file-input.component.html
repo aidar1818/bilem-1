@@ -5,7 +5,7 @@
   (focusin)="onFocusIn($event)"
   (focusout)="onFocusOut($event)"
 >
-  <input disabled readonly [ngModel]="fileName" />
+  <input class="disabled" disabled readonly [ngModel]="fileName" />
   <button
     [disabled]="disabled"
     type="button"
@@ -13,7 +13,7 @@
     mat-raised-button
     #browseBtn
   >
-    Browse
+    <ng-content></ng-content>
   </button>
   <input type="file" #fileInput (change)="onFileInputChange($event)" />
 </div>

@@ -8,6 +8,7 @@ Given('я создаю {string} курс', (type) => {
   const courseTable = {
     rows: [
       {cells: [{value: 'title'}, {value: 'Программирование для начинающих'}]},
+      {cells: [{value: 'information'}, {value: 'Краткое описание курса'}]},
       {cells: [{value: 'description'}, {value: 'Окунитесь в увлекательный мир программирования!'}]},
     ],
   };
@@ -20,19 +21,23 @@ Given('я создаю {string} курс', (type) => {
     I.fillField(row.cells[0].value, row.cells[1].value);
   });
 
-  I.click('mat-form-field mat-select[name=category]');
+  I.click('div mat-select[name=category]');
   I.click('mat-option:nth-child(1)');
   I.wait(1);
-  I.click('mat-form-field mat-select[name=subcategory]');
+  I.click('div mat-select[name=subcategory]');
   I.click('mat-option:nth-child(1)');
   I.attachFile('div input[type=file]', 'test_data/course.jpg');
+  I.wait(1);
+  I.click('div input[type=checkbox]');
   I.wait(1);
 
   I.click('Создать курс', {css: 'form'});
 
   I.see('Создан новый курс');
+  I.wait(1);
 
   I.see('Программирование для начинающих');
+  I.wait(3);
 
   I.click('button span mat-icon[id=editCourse]');
   I.wait(1);

@@ -1,62 +1,101 @@
-<div class="content">
-  <h1>Создание нового курса</h1>
+<div class="new-course">
+  <h1 class="new-course__title">Создание нового курса</h1>
+  <form fxLayout="column" (ngSubmit)="onSubmit()" #f=ngForm>
+    <div class="form-field">
+      <label class="form-field__label">Название курса</label>
+      <input class="form-field__general" type="text" name="title" required ngModel #title="ngModel">
+      <mat-error *ngIf="title.touched && title.hasError('required')">
+        Введите название курса
+      </mat-error>
+    </div>
 
-    <form fxLayout="column" (ngSubmit)="onSubmit()" #f=ngForm>
-      <mat-form-field>
-        <mat-label>Название курса</mat-label>
-        <input matInput type="text" name="title" required ngModel #title="ngModel">
-      </mat-form-field>
+    <div class="form-field">
+      <label class="form-field__label">Информация о курсе</label>
+      <textarea rows="3" class="form-field__general form-field__textarea" type="text" name="information"  required ngModel #information="ngModel"
+                placeholder="Видно в поиске и на промостарнице сразу после названия курса"></textarea>
+      <mat-error *ngIf="information.touched && information.hasError('required')">
+        Заполните краткое описание курса
+      </mat-error>
+    </div>
 
-      <mat-form-field>
-        <mat-label>Описание</mat-label>
-        <input matInput type="text" name="description" ngModel #description="ngModel">
-      </mat-form-field>
+    <div class="form-field">
+      <label class="form-field__label">Описание курса</label>
+      <textarea rows="5" class="form-field__general form-field__textarea" type="text" name="description" required ngModel #description="ngModel"
+                placeholder="Чем подробнее вы опишите курс, тем лучше :)"></textarea>
+      <mat-error *ngIf="description.touched && description.hasError('required')">
+        Заполните описание курса
+      </mat-error>
+    </div>
 
-      <mat-form-field>
-        <mat-label>Категории</mat-label>
-        <mat-select
-          name="category"
-          required
-          ngModel
-          #category="ngModel"
+    <div class="form-field">
+      <label class="form-field__label">Выберите категорию вашего курса</label>
+      <mat-select
+        class="form-field__general form-field__select"
+        name="category"
+        required
+        ngModel
+        #category="ngModel"
+      >
+        <mat-option
+          *ngFor="let category of categories | async" [value]="category._id"
+          (click)="getSubCategories(category._id)"
         >
-          <mat-option
-            *ngFor="let category of categories | async" [value]="category._id"
-            (click)="getSubCategories(category._id)"
-          >
-            {{ category.title }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+          {{ category.title }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="category.touched && category.hasError('required')">
+        Выберите категорию курса
+      </mat-error>
+    </div>
 
-      <mat-form-field>
-        <mat-label>Предмет</mat-label>
-        <mat-select
-          name="subcategory"
-          required
-          ngModel
-          #subcategory="ngModel"
-        >
-          <mat-option
-            *ngFor="let subcategory of subcategories | async" [value]="subcategory._id"
-          >{{ subcategory.title }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="form-field">
+      <label class="form-field__label">Выберите предмет вашего курса</label>
+      <mat-select
+        class="form-field__general form-field__select"
+        name="subcategory"
+        required
+        ngModel
+        #subcategory="ngModel"
+      >
+        <mat-option
+          *ngFor="let subcategory of subcategories | async" [value]="subcategory._id"
+        >{{ subcategory.title }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="subcategory.touched && subcategory.hasError('required')">
+        Выберите предмет курса
+      </mat-error>
+    </div>
 
-      <mat-form-field *ngIf="!is_free">
-        <mat-label>Цена</mat-label>
-        <input matInput type="number" name="price" ngModel #price="ngModel">
-      </mat-form-field>
+    <div class="form-field" *ngIf="!is_free">
+      <label class="form-field__label">Цена</label>
+      <input class="form-field__general" type="number" name="price" required ngModel #price="ngModel">
+      <mat-error *ngIf="price.touched && price.hasError('required')">
+        Введите стоимость курса
+      </mat-error>
+    </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Image</mat-label>
-        <app-file-input name="image" ngModel></app-file-input>
-      </mat-form-field>
+    <mat-form-field>
+      <label class="form-field__label">Выберите фотографию для вашего курса</label>
+      <app-file-input name="image" ngModel>
+        <div class="download_photo"></div>
+      </app-file-input>
+    </mat-form-field>
 
-      <ng-template #btn>
-      <button type="submit" mat-raised-button [disabled]="f.invalid">Создать курс</button>
-      </ng-template>
-      <mat-progress-bar mode="indeterminate" *ngIf="(loading | async) else btn" style="width: 160px"></mat-progress-bar>
-    </form>
+    <div class="form-field accept" fxLayout="row" fxLayoutAlign="start center">
+      <input type="checkbox" class="custom-checkbox" id="accept" name="accept" required ngModel>
+      <label for="accept">Я ознакомлен с <a href="" (click)="false"> ценовой политикой</a> платформы</label>
+    </div>
 
+    <ng-template #btn>
+      <button class="new-course__btn" type="submit" mat-raised-button [disabled]="f.invalid">Создать курс</button>
+    </ng-template>
+    <mat-progress-bar mode="indeterminate" *ngIf="(loading | async) else btn" style="width: 160px"></mat-progress-bar>
+  </form>
+</div>
+
+<div class="info-block">
+  <button class="info-block__btn btn-accept"></button>
+  <p>Перед тем как создавать новый курс, мы вам советуем прочитать методичку по теме создания курсов на платформе BILEM</p>
+  <a href="" (click)="false">Прочитать</a>
+  <button class="info-block__btn btn-close"></button>
 </div>

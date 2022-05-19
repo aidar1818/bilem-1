@@ -92,6 +92,7 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
     const course = new Course({
       title: req.body.title,
       description: req.body.description,
+      information: req.body.information,
       author: req.user._id,
       subcategory: req.body.subcategory,
       image: req.file ? req.file.filename : null,

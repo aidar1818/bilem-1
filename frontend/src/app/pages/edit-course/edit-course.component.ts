@@ -44,13 +44,13 @@ export class EditCourseComponent implements OnInit {
     const courseData: CourseData = {
       title: course.title,
       description: course.description,
+      information: course.information,
       subcategory: course.subcategory,
       price: course.price? course.price : null,
       image: course.image,
       is_free: this.is_free,
     }
-
-
     this.store.dispatch(createCourseRequest({courseData}));
   }
+
 }

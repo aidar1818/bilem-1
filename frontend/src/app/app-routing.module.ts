@@ -95,8 +95,12 @@ const routes: Routes = [
       },
       {
         path: 'statistics/:userId',
-        component: StatisticsComponent
-      }
+        component: StatisticsComponent,
+      },
+      {
+        path: 'editCourse',
+        component: EditCourseComponent,
+      },
     ]
   },
   {
@@ -114,12 +118,6 @@ const routes: Routes = [
         component: FavoriteCoursesComponent,
       }
     ]
-  },
-  {
-    path: 'editCourse',
-    component: EditCourseComponent,
-    canActivate: [RoleGuardService],
-    data: {roles: ['admin', 'user']}
   },
   {
     path: 'editModule/:id',

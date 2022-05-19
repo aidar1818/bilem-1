@@ -6,7 +6,7 @@
     <button class="btn" mat-raised-button (click)="showFreeCards()">Создать курс</button>
   </div>
 
-  <div class="box" fxLayout="row" *ngIf="showCard === true">
+  <div class="box" fxLayout="row" fxLayoutAlign="space-evenly" *ngIf="showCard === true">
     <mat-card>
       <mat-card-title>
         Платный курс
@@ -15,7 +15,7 @@
       <div>
         Создать платный курс
       </div>
-      <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addPaidCourse()"
+      <button mat-raised-button class="addBtn" routerLink="/teaching/editCourse" (click)="addPaidCourse()"
               fxLayoutAlign="center center">
       <span class="material-icons" style="margin-right: 10px">
         add
@@ -32,7 +32,7 @@
       <div>
         Создать бесплатный курс
       </div>
-      <button mat-raised-button class="addBtn" routerLink="/editCourse" (click)="addFreeCourse()"
+      <button mat-raised-button class="addBtn" routerLink="/teaching/editCourse" (click)="addFreeCourse()"
               fxLayoutAlign="center center">
       <span class="material-icons" style="margin-right: 10px">
         add

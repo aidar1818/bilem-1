@@ -1,7 +1,4 @@
 .file-input-container
-  display: flex
-  margin: -1em
-  padding: 0 1em 0.5em
 
   input
     flex: 1 1
@@ -11,8 +8,16 @@
     outline: none
     font: inherit
 
-  input[type="file"]
+  input
     display: none
 
+  button
+    padding: 0
+
+.mat-raised-button:not([class*=mat-elevation-z])
+  box-shadow: none
+
+.mat-form-field-infix
+  border: none
 
 
