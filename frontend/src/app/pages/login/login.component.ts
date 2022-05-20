@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { googleLoginUserData, LoginError, LoginFacebookUser, LoginUserData } from '../../models/user.model';
@@ -12,7 +12,7 @@ import { loginFacebookRequest, loginGoogleRequest, loginUserRequest } from '../.
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   loading: Observable<boolean>;
   error: Observable<null | LoginError>;

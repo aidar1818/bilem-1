@@ -1,41 +1,58 @@
-<div fxLayout="row" fxLayoutAlign="center">
-  <mat-card class="register-form">
-    <mat-card-title>Восстановление пароля</mat-card-title>
-    <mat-card-content>
-      <form
-        #f="ngForm"
-        fxLayout="column"
-        autocomplete="off"
-        (ngSubmit)="onSubmit()"
-      >
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input name="email" required autocomplete="username" matInput email ngModel #email="ngModel"/>
-          <mat-error
-            *ngIf="email.touched && email.hasError('required')"
-          >Email is required!
-          </mat-error>
-          <mat-error
-            *ngIf="email.touched && email.hasError('email')"
-          >Wrong email address!
-          </mat-error>
-        </mat-form-field>
+<app-auth-forms title="Забыли свой пароль?">
+  <p class="greyDarkText text" style="font-weight: 700">Введите свой e-mail адрес, и мы отправим вам
+    письмо
+    со ссылкой
+    для сброса пароля
+    .</p>
+  <form
+    #f="ngForm"
+    fxLayout="column"
+    autocomplete="off"
+    style="margin-top: 20px"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+      <mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="25">
+          <span class="material-icons">alternate_email</span>
+          <span>e-mail</span>
+        </div>
+      </mat-label>
+      <input
+        type="email" name="email" autocomplete="username"
+        email required matInput ngModel #email="ngModel"
+      />
+      <mat-error *ngIf="email.touched && email.hasError('required')">
+        Введите ваш почтовый адрес.
+      </mat-error>
+      <mat-error *ngIf="email.touched && email.hasError('email')">
+        Пожалуйста, введите корректный адрес.
+      </mat-error>
+    </mat-form-field>
 
-        <ng-template #btn>
-          <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            (click)="openDialog()"
-            [disabled]="f.invalid"
-          >Отправить</button>
-        </ng-template>
-        <mat-progress-bar mode="indeterminate" *ngIf="(loading | async) else btn"></mat-progress-bar>
+    <button
+      type="submit"
+      mat-raised-button
+      class="authBtn"
+      (click)="openDialog()"
+      [disabled]="f.invalid"
+    >
+      Восстановить пароль
+    </button>
+    <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
+    <p fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="greyDarkText authFbGlText">
+                      Войдите с помощью социальных сетей:
+          </span>
+      <input class="fb" type="image" src="assets/icons/gmail.svg" alt="google logo" (click)="googleLogin()">
+      <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
+    </p>
+    <div>
+      <p class="greyDarkText authFbGlText">Уже зарегестрированы? <a routerLink="/login">Войти</a></p>
+    </div>
+  </form>
+</app-auth-forms>
 
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
 
 
 

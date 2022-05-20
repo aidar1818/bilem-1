@@ -124,6 +124,72 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   display: none;
 }
 
+.greyDarkText {
+  color: #393939;
+}
+
+.authText {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  margin-bottom: 30px !important;
+}
+
+.authFormsInputText {
+  color: #161615;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.authLightGreyTextDiv {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #666666;
+  margin-bottom: 50px;
+}
+
+.authFbGlText {
+   font-size: 15px;
+   font-weight: 700;
+   line-height: 22px;
+}
+
+.authFbGlText a {
+  color: inherit;
+}
+
+.fb {
+  height: 39px;
+  width: 39px;
+}
+
+.div p {
+  margin-top: 15px;
+  padding: 0 10px;
+  color: gray;
+  font-weight: 500;
+}
+
+.authBtn {
+  font-size: 12px;
+  background-color: #6B0D24;
+  color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

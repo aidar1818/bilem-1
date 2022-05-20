@@ -1,0 +1,18 @@
+.main-auth-div {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-container {
+  background-color: #F6F6F6;
+  padding: 100px 50px 60px 80px;
+}
+
+.title {
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 93px;
+}
+
+
+

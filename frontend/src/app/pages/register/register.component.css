@@ -5,3 +5,12 @@
 form mat-form-field {
   margin-bottom: 5px;
 }
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #FFFFFF;
+}
+
+::ng-deep .mat-form-field {
+  font-size: 12px;
+}
+

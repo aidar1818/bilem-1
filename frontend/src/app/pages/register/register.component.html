@@ -1,4 +1,5 @@
-<app-centered-card title="Регистрация">
+<app-auth-forms title="Регистрация">
+  <p class="authText greyDarkText">Добро пожаловать!</p>
   <form
     #f="ngForm"
     fxLayout="column"
@@ -7,8 +8,13 @@
     style="margin-top: 20px"
     (ngSubmit)="register()"
   >
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+      <mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="25">
+          <span class="material-icons">alternate_email</span>
+          <span>e-mail</span>
+        </div>
+      </mat-label>
       <input
         type="email" name="email" autocomplete="username"
         email required matInput ngModel #email="ngModel"
@@ -19,13 +25,15 @@
       <mat-error *ngIf="email.touched && email.hasError('email')">
         Пожалуйста, введите корректный адрес.
       </mat-error>
-      <mat-error *ngIf="email.touched && email.hasError('serverError')">
-        Пользователь с таким "email" уже зарегистрирован.
-      </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Имя</mat-label>
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+      <mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="23">
+          <span class="material-icons">person_outline</span>
+          <span>Имя</span>
+        </div>
+      </mat-label>
       <input
         type="text" name="displayName" autocomplete="displayName"
         required matInput ngModel #displayName="ngModel"
@@ -35,25 +43,37 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Пароль</mat-label>
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+      <mat-label>
+        <div fxLayout="row" fxFlex="27" fxLayoutAlign="space-between center">
+          <span class="material-icons">lock</span>
+          <span>Пароль</span>
+        </div>
+      </mat-label>
       <input
-        type="password" name="password" id="password" autocomplete="new-password"
-        required matInput ngModel appPassword minlength="8" #password="ngModel"
+        type="password" name="password" autocomplete="current-password"
+        required matInput ngModel minlength="8" #password="ngModel"
       />
       <mat-error *ngIf="password.touched && password.hasError('required')">
         Введите пароль.
       </mat-error>
       <mat-error *ngIf="password.touched && password.hasError('minlength')">
-        Пароль должен состоять минимум из 8 символов.
-      </mat-error>
-      <mat-error *ngIf="password.touched && password.hasError('password') && password.value.length >= 8" [ngStyle]="{'font-size.px': 10}">
-        Пароль должен содержать: буквы нижнего и верхнего регистра, цифры и символы (#?!@$%^&*-).
+        Пароль должен содержать минимум 8 символов.
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Повтор пароля</mat-label>
+    <mat-form-field
+      appearance="outline"
+      hideRequiredMarker="true"
+      class="authFormsInputText"
+      style="margin-bottom: 20px"
+    >
+      <mat-label>
+        <div fxLayout="row" fxFlex="38" fxLayoutAlign="space-between center">
+          <span class="material-icons">lock</span>
+          <span>Повтор пароля</span>
+        </div>
+      </mat-label>
       <input
         type="password" name="passwordRepeat" id="passwordRepeat" required matInput ngModel
         appPassword #passwordRepeat="ngModel"
@@ -62,15 +82,27 @@
         Пароли не совпадают, попробуйте еще раз.
       </mat-error>
     </mat-form-field>
-
+    <div class="authLightGreyTextDiv">
+      <mat-checkbox>Запомнить меня</mat-checkbox>
+    </div>
     <button
       type="submit"
       mat-raised-button
-      color="primary"
-      style="font-size: 18px"
+      class="authBtn"
       [disabled]="f.invalid"
     >
-      Зарегистрироваться
+      Зарегестрироваться
     </button>
+    <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
+    <p fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="greyDarkText authFbGlText">
+                      Регистрация с помощью социальных сетей:
+          </span>
+      <input class="fb" type="image" src="assets/icons/gmail.svg" alt="google logo" (click)="googleLogin()">
+      <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
+    </p>
+    <div>
+      <p class="greyDarkText authFbGlText">Уже зарегестрированы? <a routerLink="/login">Войти</a></p>
+    </div>
   </form>
-</app-centered-card>
+</app-auth-forms>

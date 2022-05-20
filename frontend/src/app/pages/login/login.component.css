@@ -1,13 +1,7 @@
-.fb {
-  height: 48px;
-  width: 48px;
-  display: block;
-  margin: 0 auto;
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #FFFFFF;
 }
 
-.div p {
-  margin-top: 15px;
-  padding: 0 10px;
-  color: gray;
-  font-weight: 500;
+::ng-deep .mat-form-field {
+  font-size: 12px;
 }

@@ -53,6 +53,16 @@ Given('я ввожу в поля формы:', (table) => {
   I.wait(2);
 });
 
+Given('нажимаю на кнопку формы восстановления "Отправить"', () => {
+  I.click('.authBtn');
+  I.wait(2);
+});
+
+Given('нажимаю на кнопку формы регистрации "Зарегистрироваться"', () => {
+  I.click('.authBtn');
+  I.wait(2);
+});
+
 Given('нажимаю на кнопку формы {string}', (buttonText) => {
   I.click(buttonText, {css: 'form'});
   I.wait(1);
