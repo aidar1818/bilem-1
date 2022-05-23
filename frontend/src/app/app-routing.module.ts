@@ -68,7 +68,7 @@ const routes: Routes = [
     ]
   },
   {path: 'newPassword', component: NewPasswordComponent},
-  {path: 'categories/:id', component: CoursesByCategoryComponent},
+  {path: 'category/:id', component: CoursesByCategoryComponent},
   {path: 'subcategories/:id', component: CoursesBySubcategoryComponent},
   {path: 'contacts', component: FooterContactsComponent},
   {path: 'about-project', component: FooterAboutComponent},

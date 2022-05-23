@@ -9,11 +9,11 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     if(req.query.category) {
-      const subcategoriesByCategory = await Subcategory.find({category: req.query.category});
+      const subcategoriesByCategory = await Subcategory.find({category: req.query.category}).populate('category', 'title');
       return res.send(subcategoriesByCategory);
     }
 
-    const subcategory = await Subcategory.find();
+    const subcategory = await Subcategory.find().populate('category', 'title');
 
     return res.send(subcategory);
   } catch (e) {

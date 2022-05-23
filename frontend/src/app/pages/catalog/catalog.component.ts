@@ -9,10 +9,10 @@ import { fetchCategoriesRequest } from '../../store/categories/categories.action
 import { fetchSubcategoriesByCategoryRequest } from '../../store/subcategories/subcategories.actions';
 import { ModalComponent } from '../../ui/modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CourseService } from '../../services/course.service';
 import { Category } from '../../models/category.model';
 import { Course } from '../../models/course.model';
 import { Subcategory } from '../../models/subcategory.model';
+
 
 @Component({
   selector: 'app-catalog',
@@ -23,13 +23,14 @@ export class CatalogComponent implements OnInit, OnDestroy{
   @ViewChild('searchForm') searchForm!: NgForm;
   querySub!: Subscription;
   searchLoading: Observable<boolean>;
-
+  category!: string;
+  categoriesArr: Category[] = [];
+  subCategoriesArr: Subcategory[] = [];
   categories: Observable<Category[]>;
   courses: Observable<Course[]>;
   coursesBySubcategory!: Course[];
   categoriesArray!: Category[];
   categorySub!: Subscription;
-  coursesSub!: Subscription;
   subCategorySub!: Subscription;
   coursesBySubcategorySub!: Subscription;
   subCategories: Observable<Subcategory[]>;
@@ -43,7 +44,6 @@ export class CatalogComponent implements OnInit, OnDestroy{
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private coursesService: CourseService,
   )
   {
     this.searchLoading = store.select(state => state.courses.searchLoading);
@@ -76,6 +76,13 @@ export class CatalogComponent implements OnInit, OnDestroy{
         this.categoriesArray = categories;
       }
     });
+
+    this.store.dispatch(fetchSubcategoriesByCategoryRequest({id: ''}));
+    this.subCategorySub = this.subCategories.subscribe(subCategories => {
+      if (subCategories) {
+        this.subCategoriesArray = subCategories;
+      }
+    });
   }
 
   openDialogCategoryDelete(id: string, title: string): void {
@@ -90,34 +97,28 @@ export class CatalogComponent implements OnInit, OnDestroy{
     });
   }
 
-  fetchSubCategory(id: string) {
-    this.store.dispatch(fetchSubcategoriesByCategoryRequest({id}));
-    this.subCategorySub = this.subCategories.subscribe(subCategories => {
-      if (subCategories) {
-        this.subCategoriesArray = subCategories;
-      }
-    });
-  }
-
-  fetchSubCategoryCourses(id: string) {
-    this.coursesBySubcategorySub = this.coursesService.getCoursesBySubcategory(id).subscribe(courses => {
-      this.coursesBySubcategory = courses;
-    });
-  }
-
   show() {
-    const drop = <HTMLElement>document.querySelector('.dropdown-content');
-    drop.style.display = 'block';
+    const drop = <HTMLElement>document.querySelector('.dropdown');
+    drop.style.display = 'flex';
+    drop.style.flexDirection = 'row';
   }
 
   hide() {
-    const drop = <HTMLElement>document.querySelector('.dropdown-content');
+    const drop = <HTMLElement>document.querySelector('.dropdown');
     drop.style.display = 'none';
   }
 
-  getCourse(id: string) {
-    this.hide();
-    void this.router.navigate([`/course/${id}`]);
+  showSub(id: string) {
+    this.subCategoriesArr = this.subCategoriesArray.filter(s => s.category._id === id);
+
+    const drop = <HTMLElement>document.querySelector('.subcategories-content');
+    drop.style.display = 'flex';
+    drop.style.flexDirection = 'column';
+  }
+
+  hideSub() {
+    const drop = <HTMLElement>document.querySelector('.subcategories-content');
+    drop.style.display = 'none';
   }
 
   getCategoryCourses(id: string) {

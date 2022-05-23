@@ -1,76 +1,26 @@
 <div class="search-block">
-  <div class="dropdown" (mouseenter)="show()" (mouseleave)="hide()">
+  <div class="categories" (mouseenter)="show()" (mouseleave)="hide()">
     <a class="dropbtn">Категории</a>
-    <div class="dropdown-content">
-
-      <mat-progress-spinner
-        *ngIf="(fetchLoadingCategory | async) else categoriesArea"
-        mode="indeterminate"
-        diameter="30"
-      ></mat-progress-spinner>
-
-      <ng-template #categoriesArea>
-        <div class="content" *ngFor="let category of categoriesArray" (mouseenter)="fetchSubCategory(category._id)">
-          <p class="category__title" (click)="getCategoryCourses(category._id)">{{ category.title }}</p>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="material-icons subcategory">chevron_right</span>
-            <span class="material-icons delete" *appHasRoles="['admin']" (click)="openDialogCategoryDelete(category._id, category.title)">
-              clear
-            </span>
-            <span class="material-icons edit" *appHasRoles="['admin']" [routerLink]="['/edit-category', category._id]">
-              edit
-            </span>
-          </div>
-          <div class="subcategory-dropdown">
-
-            <mat-progress-spinner
-              *ngIf="(fetchLoadingSubcategories | async) else subcategoriesArea"
-              mode="indeterminate"
-              diameter="20"
-              style="margin: 10px 10px"
-            ></mat-progress-spinner>
-
-            <ng-template #subcategoriesArea>
-              <div class="subcategory-content" *ngFor="let subcategory of subCategoriesArray" (mouseenter)="fetchSubCategoryCourses(subcategory._id)">
-                <p class="subcategory__title" (click)="getSubcategoryCourses(subcategory._id)">{{ subcategory.title }}</p>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                  <span class="material-icons subcategory">chevron_right</span>
-                  <span class="material-icons remove-subcategory" *appHasRoles="['admin']" (click)="openDialogSubcategoryDelete(subcategory._id, subcategory.title)">
-                  clear
-                </span>
-                  <span class="material-icons edit-subcategory" *appHasRoles="['admin']" [routerLink]="['/edit-subcategory', subcategory._id]">
-                  edit
-                </span>
-                </div>
-                <div class="course-dropdown">
-                  <div class="course-content"  *ngFor="let course of coursesBySubcategory">
-                    <p class="category__title" (click)="getCourse(course._id)">{{ course.title }}</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <div *appHasRoles="['admin']">
-              <a mat-raised-button color="primary" class="add-sub-btn" [routerLink]="['/add-subcategory/',
-              category._id]">
-                <span class="material-icons">
-                  add
-                </span>
-              </a>
-            </div>
-          </div>
-
+    <div class="dropdown">
+      <div class="categories-content">
+        <div *ngFor="let category of categoriesArray" class="linkCat" (mouseenter)="showSub(category._id)">
+          <a class="routeLinks" [routerLink]="['category', category._id]">{{ category.title }}</a>
+          <span class="material-icons chevron-icon">chevron_right</span>
         </div>
-      </ng-template>
-      <div *appHasRoles="['admin']">
-        <a mat-raised-button color="primary" class="add-btn" routerLink="/add-category">
-            <span class="material-icons" style="margin-right: 10px">
-              add
-            </span>
-        </a>
+      </div>
+      <div class="subcategories-content" (mouseleave)="hideSub()">
+        <div *ngFor="let subcategory of subCategoriesArr" class="linkCat">
+          <a class="routeLinks" [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
+        </div>
       </div>
     </div>
   </div>
+
+
   <form (ngSubmit)="onSubmit()" #searchForm=ngForm class="form">
+    <span class="material-icons search-icon">
+        search
+      </span>
     <input
       class="textInput"
       type="text"

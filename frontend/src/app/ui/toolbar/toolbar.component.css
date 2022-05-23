@@ -49,9 +49,6 @@ a.activeToolbarNav {
   outline: none;
 }
 
-.search input:focus .search-icon {
-  display: none;
-}
 
 .search input::placeholder{
   padding: 9px 78px 8px 56px;
@@ -74,7 +71,6 @@ a.activeToolbarNav {
   bottom: 14.63%;
   color: #ccc;
 }
-
 
 .btnSign {
   box-sizing: border-box;
