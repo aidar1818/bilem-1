@@ -270,8 +270,7 @@ router.get('/statistics/:id', auth, async (req, res, next) => {
     let allComments = 0;
 
     for(let i = 0; i < userCourses.length; i++) {
-      const userOnCourse = await User.find({myCourses: userCourses[i]._id.toString()});
-      allStudents += userOnCourse.length;
+      allStudents += userCourses[i].students.length;
       for(let j = 0; j < userCourses[i].modules.length; j++) {
         allLessons += userCourses[i].modules[j].lessons.length;
         for(let a = 0; a < userCourses[i].modules[j].lessons.length; a++)
