@@ -6,6 +6,7 @@ import { createLessonRequest, fetchLessonRequest } from '../../store/lessons/les
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Lesson } from '../../models/course.model';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-edit-lesson',
@@ -21,6 +22,36 @@ export class EditLessonComponent implements OnInit, OnDestroy {
   fetchLessonDataError: Observable<string | null>;
   lessonSub!: Subscription;
   lessonId = '';
+  htmlContent = '';
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    minHeight: '5rem',
+    maxHeight: '15rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    sanitize: true,
+    toolbarPosition: 'bottom',
+    defaultFontName: 'Comic Sans MS',
+    defaultFontSize: '5',
+    defaultParagraphSeparator: 'p',
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ]
+  };
 
   constructor(
     private store: Store<AppState>,

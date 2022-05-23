@@ -19,6 +19,7 @@ export class LessonComponent implements OnInit, OnDestroy {
   lesson: Observable<Lesson | null>;
   lessonSub!: Subscription;
   lessonData!: Lesson;
+  textDescription = '';
 
   constructor(private route: ActivatedRoute,
               private store: Store<AppState>) {
@@ -35,6 +36,13 @@ export class LessonComponent implements OnInit, OnDestroy {
     this.lessonSub = this.lesson.subscribe(lessonData => {
       if (lessonData) {
         this.lessonData = lessonData;
+
+        let parser = new DOMParser(),
+          doc = parser.parseFromString(this.lessonData.description!, 'text/html'),
+          text = doc.body.textContent;
+        const infoDiv: any = document.getElementById('info');
+        infoDiv.innerHTML = this.lessonData.description;
+        this.textDescription = <string>text;
       }
     });
   }

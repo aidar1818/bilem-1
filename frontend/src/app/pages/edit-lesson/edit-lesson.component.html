@@ -28,20 +28,22 @@
               Данное поле является обязательным!
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Описание</mat-label>
-            <textarea matInput
-                      [required]="!f.value.video"
-                      name="description"
-                      ngModel
-                      #description="ngModel"
-                      cdkTextareaAutosize
-                      cdkAutosizeMinRows="10"
-            ></textarea>
+
+          <div class="NgxEditor__Wrapper">
+            <angular-editor
+              #description="ngModel"
+              [placeholder]="'Добавьте описание...'"
+              [(ngModel)]="htmlContent"
+              name="description"
+              [required]="!f.value.video"
+              [config]="config"
+            ></angular-editor>
             <mat-error *ngIf="description.touched && description.hasError('required')">
               Данное поле является обязательным!
             </mat-error>
-          </mat-form-field>
+          </div>
+          <div id="htmlDiv" style="display:none;" class="html" [innerHTML]="htmlContent"></div>
+
           <mat-form-field appearance="outline">
             <mat-label>Ссылка на видео</mat-label>
             <input

@@ -90,6 +90,7 @@ import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { AuthFormsComponent } from './ui/auth-forms/auth-forms.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -198,6 +199,7 @@ const socialConfig: SocialAuthServiceConfig = {
     MatTooltipModule,
     MatTabsModule,
     Ng2SearchPipeModule,
+    AngularEditorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
