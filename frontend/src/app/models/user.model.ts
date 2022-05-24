@@ -8,10 +8,18 @@ export class User {
     public displayName: string,
     public role: string,
     public aboutMe: string,
-    public myCourses: Course[],
+    public myCourses: MyCourses[],
     public favoriteCourses: Course[],
     public socialNetworks: [],
-  ) {}
+  ) {
+  }
+}
+
+export interface MyCourses {
+  course: Course,
+  passedLessons: [],
+  timestamp: Date,
+  progress: number,
 }
 
 export interface RegisterUserData {
@@ -53,7 +61,7 @@ export interface socialNetworks {
   youtube: string,
 }
 
-export interface profileUserData{
+export interface profileUserData {
   _id: string,
   email: string,
   displayName: string,

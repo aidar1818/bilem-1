@@ -42,7 +42,7 @@ export class CourseCardComponent implements OnInit {
     this.userSub = this.user.subscribe(user => {
       if (user) {
         user.myCourses.forEach(course => {
-          if (course._id === this.course._id) {
+          if (course.course._id === this.course._id) {
             this.learning = true;
           }
         });

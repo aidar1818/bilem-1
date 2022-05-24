@@ -25,10 +25,19 @@ export class Lesson {
   }
 }
 
+export interface LessonData {
+  _id: string,
+  title: string,
+  description: string | null,
+  video: string | null,
+  comments: Comment[],
+  timestamp: string,
+}
+
 export interface Module {
   title: string,
   _id: string,
-  lessons: Lesson[]
+  lessons: LessonData[]
 }
 
 export class Course {

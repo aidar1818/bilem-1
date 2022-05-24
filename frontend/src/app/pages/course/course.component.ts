@@ -47,15 +47,14 @@ export class CourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.store.dispatch(fetchUserRequest());
-    this.store.dispatch(fetchCourseInfoRequest({id: this.route.snapshot.params['id']}))
+    this.store.dispatch(fetchCourseInfoRequest({id: this.route.snapshot.params['id']}));
     this.courseSub = this.courseOb.subscribe(c => {
       if (c) {
         this.course = c;
         this.store.dispatch(fetchReviewsRequest({id: this.course._id}));
       }
-    })
+    });
 
     this.reviewsSub = this.reviews.subscribe(reviews => {
       this.reviewsArr = reviews;
@@ -66,30 +65,32 @@ export class CourseComponent implements OnInit {
       });
 
       this.review = parseFloat((i / reviews.length).toFixed(1));
-    })
+    });
 
     this.userSub = this.user.subscribe(user => {
       if (user) {
-        this.userOne= user;
+        this.userOne = user;
         user.myCourses.forEach(course => {
-          if (course._id === this.course._id) {
-            this.learning = true;
+          if (this.course) {
+            if (course.course._id === this.route.snapshot.params['id']) {
+              this.learning = true;
+            }
           }
         });
         user.favoriteCourses.forEach(course => {
-          if (course._id === this.course._id) {
+          if (course && course._id === this.route.snapshot.params['id']) {
             this.favorite = true;
           }
         });
       }
-    })
+    });
   }
 
   star(i: number) {
     let count = 0
     this.reviewsArr.forEach(r => {
       if (i === r.rate) {
-        count ++
+        count++
       }
     });
 
@@ -109,13 +110,13 @@ export class CourseComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.reviewsSub) {
-      this.reviewsSub.unsubscribe()
+      this.reviewsSub.unsubscribe();
     }
     if (this.userSub) {
-      this.userSub.unsubscribe()
+      this.userSub.unsubscribe();
     }
     if (this.courseSub) {
-      this.courseSub.unsubscribe()
+      this.courseSub.unsubscribe();
     }
   }
 }

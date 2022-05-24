@@ -9,13 +9,28 @@
   height: 100%;
 }
 
+.main-block-inner {
+  padding: 30px 50px;
+}
+
+.main-block-top {
+  border: 1px solid #C4C4C4;
+  padding: 30px 40px;
+}
+
 .lesson-info {
-  padding: 0 16px;
   margin-bottom: 16px;
 }
 
-.title {
-  padding-top: 16px;
+.course-title {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.lesson-title {
+  font-size: 32px;
+  margin-bottom: 30px;
 }
 
 .video {
@@ -27,7 +42,7 @@
   width: 100%;
   background: #f3f4f6;
   border-top: 1px solid #dedede;
-  padding: 16px;
+  padding: 30px 50px 15px 50px;
   margin-top: auto;
 }
 
@@ -41,4 +56,9 @@
 
 .text-muted {
   color: grey;
+}
+
+.btn {
+  color: #fff;
+  background: #6B0D24;
 }

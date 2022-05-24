@@ -202,9 +202,10 @@ const socialConfig: SocialAuthServiceConfig = {
     AngularEditorModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: 'SocialAuthServiceConfig', useValue: socialConfig }
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: 'SocialAuthServiceConfig', useValue: socialConfig}
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

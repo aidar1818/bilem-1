@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
 
     const user = await User.findOne({token}).populate(
         {
-                path: 'myCourses favoriteCourses',
+                path: 'myCourses.course favoriteCourses',
                 populate: 'author subcategory'
             }
     );

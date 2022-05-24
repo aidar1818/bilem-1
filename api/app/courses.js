@@ -5,6 +5,7 @@ const auth = require('../middleware/auth');
 const permit = require('../middleware/permit');
 const roles = require('../middleware/roles');
 const Course = require('../models/Course');
+const User = require('../models/User');
 const config = require('../config');
 const path = require('path');
 const Subcategory = require('../models/Subcategory');
@@ -52,7 +53,10 @@ router.get('/', roles, async (req, res, next) => {
       if (req.user && req.user.role === 'admin') {
         coursesBySubcategory = await Course.find({subcategory: req.query.subcategory}).populate('author', 'displayName').limit(10);
       } else {
-        coursesBySubcategory = await Course.find({subcategory: req.query.subcategory, is_published: true}).populate('author', 'displayName').limit(10);
+        coursesBySubcategory = await Course.find({
+          subcategory: req.query.subcategory,
+          is_published: true
+        }).populate('author', 'displayName').limit(10);
       }
       return res.send(coursesBySubcategory);
     }
@@ -74,8 +78,8 @@ router.get('/:id', roles, async (req, res, next) => {
   try {
     let course;
     course = await Course.findById(req.params.id)
-        .populate('author', 'displayName')
-        .populate('modules.lessons.comments.user', 'displayName');
+      .populate('author', 'displayName')
+      .populate('modules.lessons.comments.user', 'displayName');
     return res.send(course);
 
   } catch (e) {
@@ -211,7 +215,7 @@ router.delete('/:id', auth, async (req, res, next) => {
 router.post('/addCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
-    user.myCourses.push(req.body.course);
+    user.myCourses.push({passedLessons: [], course: req.body.course});
     const course = await Course.findOne({_id: req.body.course});
     course.students.push(user);
     await course.save();
@@ -275,6 +279,32 @@ router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) 
       return res.status(404).send({message: `Курс не найден!`});
     }
 
+    const user = await User.findOne({_id: req.user._id});
+
+    let courseIndex;
+    let lessonsArray = [];
+
+    for (let i = 0; i < course.modules.length; i++) {
+      for (let j = 0; j < course.modules[i].lessons.length; j++) {
+        lessonsArray.push(course.modules[i].lessons[j]._id);
+      }
+    }
+
+    for (let i = 0; i < user.myCourses.length; i++) {
+      if (course._id.toString() === user.myCourses[i].course.toString()) {
+        courseIndex = i;
+      }
+    }
+
+    const lessonIsExists = user.myCourses[courseIndex].passedLessons.find(lesson => lesson._id.toString() === req.params.id);
+
+    if (!lessonIsExists) {
+      user.myCourses[courseIndex].passedLessons.push(req.params.id);
+      user.myCourses[courseIndex].timestamp = Date.now();
+      user.myCourses[courseIndex].passedLessons[user.myCourses[courseIndex].passedLessons.length - 1].timestamp = Date.now();
+      user.myCourses[courseIndex].progress = (Math.round(user.myCourses[courseIndex].passedLessons.length * 100 / lessonsArray.length));
+    }
+
     for (let i = 0; i < course.modules.length; i++) {
       for (let j = 0; j < course.modules[i].lessons.length; j++) {
         if ((course.modules[i].lessons[j]._id).toString() === req.params.id) {
@@ -285,11 +315,11 @@ router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) 
             video: course.modules[i].lessons[j].video,
             comments: course.modules[i].lessons[j].comments.reverse(),
           };
+          await user.save();
           return res.send(lesson);
         }
       }
     }
-
   } catch (e) {
     next(e);
   }
@@ -298,13 +328,13 @@ router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) 
 router.delete('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
   try {
     const course = await Course.findOne({'modules.lessons._id': req.params.id});
-    if(!course) {
+    if (!course) {
       return res.status(404).send({error: 'Курс с данным уроком не был найден'});
     }
 
-    if(req.user.role === 'admin' || course.author.toString() === req.user._id.toString()) {
+    if (req.user.role === 'admin' || course.author.toString() === req.user._id.toString()) {
       await Course.findOneAndUpdate({'modules.lessons._id': req.params.id}, {
-        $pull : {'modules.$.lessons' : { _id: req.params.id}}
+        $pull: {'modules.$.lessons': {_id: req.params.id}}
       });
     } else {
       return res.status(403).send({message: `Доступ ограничен`});

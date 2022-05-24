@@ -1,7 +1,21 @@
+.cards-wrap {
+  padding-top: 46px;
+}
+
 .cards {
-  width: 800px;
-  padding: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 32px;
+}
+
+.card-top {
+  margin-bottom: 16px;
+}
+
+.card-title {
+  margin-bottom: 0;
 }
 
 .notCourses {
@@ -19,7 +33,93 @@
   box-shadow: 0 0 27px 8px rgba(7, 9, 7, 0.19);
 }
 
-button {
-  margin: 0 10px;
+.continue-btn {
+  color: #fff;
+  background: #85233E;
+}
+
+.leave-btn {
+  color: #85233E;
+}
+
+.progress {
+  color: #85233E;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #85233E;
+  border-radius: 15px;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #D3DAE2;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 15px;
+}
+
+.mat-progress-bar {
+  height: 14px;
+}
+
+.loader {
+  margin: 20px 20px;
+}
+
+.recent-course-card {
+  margin-bottom: 16px;
+}
+
+.recent-course-card:hover {
+  background: #85233E;
+  color: #fff;
+}
+
+recent-course-card-inner {
+  margin: 0;
+}
+
+.recent-course-card_title {
+  color: #081131;
+  font-size: 17px;
+}
+
+.recent-course-card:hover .recent-course-card_title {
+  color: #fff;
+}
+
+.recent-course-card_content {
+  color: #9DA6BA;
+}
+
+.recent-course-card:hover .recent-course-card_content {
+  color: #fff;
+}
+
+.recent-course-card:hover .recent-course-link {
+  color: #fff;
+}
+
+.progress-content {
+  max-width: 35px;
+  color: #6B0D24;
+  position: relative;
+  top: -25%;
+  left: 55%;
+  transform: translate(-50%, -55%);
+  margin: 0;
+}
+
+.recent-course-card:hover .progress-content {
+  color: #fff;
+}
+
+::ng-deep .mat-progress-spinner circle {
+  stroke: #85233E !important;
+}
+
+.recent-course-card:hover ::ng-deep .mat-progress-spinner circle {
+  stroke: #fff !important;
 }
 

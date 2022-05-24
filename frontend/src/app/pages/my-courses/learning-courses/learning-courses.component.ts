@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
-import { User } from '../../../models/user.model';
+import { MyCourses, User } from '../../../models/user.model';
 import { fetchUserRequest } from '../../../store/users/users.actions';
-import { Course } from '../../../models/course.model';
 
 @Component({
   selector: 'app-learning-courses',
@@ -14,7 +13,10 @@ import { Course } from '../../../models/course.model';
 export class LearningCoursesComponent implements OnInit, OnDestroy {
   user: Observable<null | User>;
   userSub!: Subscription;
-  learningCourses: Course[] = [];
+  userData!: User;
+
+  learningCourses: MyCourses[] = [];
+  lastCourses: MyCourses[] = [];
   loading: Observable<boolean>
   error: Observable<null | string>
 
@@ -25,15 +27,27 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(fetchUserRequest())
+    this.store.dispatch(fetchUserRequest());
     this.userSub = this.user.subscribe(user => {
       if (user) {
-        this.learningCourses = user.myCourses;
+        const coursesCopy = [...user.myCourses];
+        const courses = coursesCopy.sort((a: MyCourses, b: MyCourses) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+        this.lastCourses = courses.slice(0, 4);
+        this.learningCourses = courses;
       }
     });
   }
 
+  getCourseTitle(courseTitle: string) {
+    if (courseTitle.length > 30) {
+      return courseTitle.substring(0, 30) + '...';
+    } else {
+      return courseTitle;
+    }
+  }
+
   ngOnDestroy() {
-    this.userSub.unsubscribe()
+    this.userSub.unsubscribe();
   }
 }
