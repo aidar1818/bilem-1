@@ -6,7 +6,7 @@ Given('я залогиненный {string}', (role) => {
   const email = role === 'администратор' ? 'admin@bilem.com' : 'user@bilem.com';
   const table = {
     rows: [
-      {cells: [{value: 'e-mail'}, {value: email}]},
+      {cells: [{value: 'email'}, {value: email}]},
       {cells: [{value: 'Пароль'}, {value: '123asdA!'}]},
     ],
   };
