@@ -18,8 +18,15 @@
         </div>
       </mat-label>
       <input
-        type="email" name="email" autocomplete="username"
-        email required matInput ngModel #email="ngModel"
+        class="email"
+        type="email"
+        name="email"
+        autocomplete="username"
+        email
+        required
+        matInput
+        ngModel
+        #email="ngModel"
       />
       <mat-error *ngIf="email.touched && email.hasError('required')">
         Введите ваш почтовый адрес.
