@@ -142,6 +142,7 @@ mat-option{
 }
 
 .checkboxInput + label {
+  box-sizing: border-box !important;
   margin-left: 475px;
   display: inline-flex;
   align-items: center;

@@ -36,18 +36,18 @@
         ngModel
         name="is_free"
         id="is_free"
-        placeholder="Название курса или автора"
         #is_free
       />
       <label for="is_free">Бесплатные</label>
     </div>
 
     <ng-template #btn>
-    <button
-      [routerLink]="['/search']"
-      [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
-      queryParamsHandling="merge"
-      type="submit" class="btnSearch">Искать</button>
+      <button
+        [routerLink]="['/search']"
+        [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
+        queryParamsHandling="merge"
+        type="submit" class="btnSearch">Искать
+      </button>
     </ng-template>
     <mat-progress-bar mode="indeterminate" *ngIf="(searchLoading | async) else btn" style="width: 74px"></mat-progress-bar>
   </form>
