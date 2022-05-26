@@ -42,7 +42,7 @@
         <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse"  fxLayout="row" fxLayoutAlign="center" ><mat-icon>delete</mat-icon></span>
       </button>&nbsp;
 
-      <button mat-icon-button color="primary" (click)="publishCourse(course._id, $event)" matTooltip="Опубликовать" matTooltipPosition="above"
+      <button class="publish" mat-icon-button color="primary" (click)="publishCourse(course._id, $event)" matTooltip="Опубликовать" matTooltipPosition="above"
               *ngIf="!course['is_published']">
         <mat-spinner diameter="30" *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
         <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse"  fxLayout="row" fxLayoutAlign="center" ><mat-icon>visibility</mat-icon></span>

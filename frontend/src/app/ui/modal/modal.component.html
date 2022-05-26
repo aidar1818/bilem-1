@@ -7,6 +7,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button (click)="onNoClick()">Нет, отменить</button>
-    <button mat-raised-button color="warn" (click)="onDelete(data.id, data.type!)" [disabled]="!check.checked">Удалить</button>
+    <button class="remove" mat-raised-button color="warn" (click)="onDelete(data.id, data.type!)" [disabled]="!check.checked">Удалить</button>
   </div>
 </div>

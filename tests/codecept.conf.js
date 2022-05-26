@@ -19,7 +19,21 @@ exports.config = {
     features: './features/*.feature',
     steps: [
       './step_definitions/steps.abstract.js',
+      './step_definitions/steps.recovery.js',
+      './step_definitions/steps.subcategoryCrud.js',
+      './step_definitions/steps.categoryCrud.js',
+      './step_definitions/steps.course.js',
+      './step_definitions/steps.searchCourses.js',
+      './step_definitions/steps.courseDetails.js',
+      './step_definitions/steps.myCourses.js',
+      './step_definitions/steps.lessons.js',
       './step_definitions/steps.auth.js',
+      './step_definitions/steps.coursesByCategory.js',
+      './step_definitions/steps.lessonsSidebar.js',
+      './step_definitions/steps.footer.js',
+      './step_definitions/steps.modal.js',
+      './step_definitions/steps.anonUserBlock.js',
+      './step_definitions/steps.statistics.js',
     ]
   },
   plugins: {

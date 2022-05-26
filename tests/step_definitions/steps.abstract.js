@@ -32,14 +32,18 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/subcategories/6277b25a194df1f175428d13');
     case 'Помощь':
       return I.amOnPage('/help');
-    case 'Контакты':
+    case 'Связаться с нами':
       return I.amOnPage('/contacts');
     case 'О проекте':
       return I.amOnPage('/about-project');
     case 'Разработка':
       return I.amOnPage('/team');
-    case 'Вакансии':
-      return I.amOnPage('/vacancy');
+    case 'Конфиденциальность':
+      return I.amOnPage('/confidentiality');
+    case 'Условия':
+      return I.amOnPage('/conditions');
+    case 'Тарифы':
+      return I.amOnPage('/tariffs');
     default:
       return I.amOnPage('/');
   }
@@ -105,6 +109,16 @@ Given('нажимаю на кнопку {string}', (buttonText) => {
       break;
     case 'Начать учиться':
       I.click('.btnGo');
+      I.wait(1);
+      break;
+    case 'Опубликовать курс':
+      I.click('.publish');
+      I.wait(1);
+      break;
+    case 'Удалить курс':
+      I.click('.deleteCourse');
+      I.click('#check');
+      I.click('.remove');
       I.wait(1);
       break;
     default:

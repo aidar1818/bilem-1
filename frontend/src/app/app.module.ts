@@ -77,7 +77,6 @@ import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.comp
 import { FooterContactsComponent } from './pages/footer/footer-contacts/footer-contacts.component';
 import { FooterAboutComponent } from './pages/footer/footer-about/footer-about.component';
 import { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';
-import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LessonComponent } from './ui/lesson/lesson.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -91,6 +90,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { AuthFormsComponent } from './ui/auth-forms/auth-forms.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FooterConfidentilaityComponent } from './pages/footer/footer-confidentilaity/footer-confidentilaity.component';
+import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tariffs.component';
+import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -158,7 +160,6 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterContactsComponent,
     FooterAboutComponent,
     FooterDevelopmentComponent,
-    FooterVacancyComponent,
     LessonComponent,
     ModalComponent,
     LessonsComponent,
@@ -166,6 +167,9 @@ const socialConfig: SocialAuthServiceConfig = {
     AllCoursesComponent,
     StatisticsComponent,
     AuthFormsComponent,
+    FooterConfidentilaityComponent,
+    FooterConditionsComponent,
+    FooterTariffsComponent,
   ],
   imports: [
     BrowserModule,

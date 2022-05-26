@@ -161,7 +161,7 @@
     <p *ngIf="course.is_free">Бесплатно</p>
     <p *ngIf="!course.is_free">{{ course.price }} сом</p>
 
-    <button mat-raised-button class="" *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">
+    <button mat-raised-button *ngIf="course.is_free && !learning" (click)="addLearningCourse(course._id)">
       Поступить на курс
     </button>
     <button mat-raised-button *ngIf="!course.is_free && !learning" (click)="addLearningCourse(course._id)">Купить

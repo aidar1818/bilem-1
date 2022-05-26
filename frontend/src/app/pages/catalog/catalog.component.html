@@ -4,13 +4,13 @@
     <div class="dropdown">
       <div class="categories-content">
         <div *ngFor="let category of categoriesArray" class="linkCat" (mouseenter)="showSub(category._id)">
-          <a class="routeLinks" [routerLink]="['category', category._id]">{{ category.title }}</a>
+          <a class="routeLinks category__title" [routerLink]="['category', category._id]">{{ category.title }}</a>
           <span class="material-icons chevron-icon">chevron_right</span>
         </div>
       </div>
       <div class="subcategories-content" (mouseleave)="hideSub()">
         <div *ngFor="let subcategory of subCategoriesArr" class="linkCat">
-          <a class="routeLinks" [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
+          <a class="routeLinks subcategory__title" [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
         </div>
       </div>
     </div>
