@@ -17,7 +17,7 @@
     <div fxFlex="60%">
       <h3 class="page-title" *ngIf="learningCourses.length">Все курсы</h3>
       <div fxLayout="column" class="cards" *ngFor="let course of learningCourses">
-        <mat-card class="card">
+        <mat-card class="card learning">
           <div class="card-top" fxLayout="row" fxLayoutAlign="space-between center">
             <div fxFlex="60%">
               <mat-card-title class="card-title">{{ course.course.title }}</mat-card-title>
