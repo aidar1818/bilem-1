@@ -17,6 +17,8 @@ module.exports = {
         'https://localhost:4200',
         'http://localhost:4210',
         'https://localhost:4210',
+        'http://134.122.65.122',
+        'https://134.122.65.122',
     ],
     rootPath,
     uploadPath: path.join(rootPath, 'public/uploads'),
@@ -33,3 +35,5 @@ module.exports = {
         appSecret: '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'
     },
 };
+
+
