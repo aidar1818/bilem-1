@@ -44,6 +44,12 @@ Given('я нахожусь на странице {string}', (page) => {
       return I.amOnPage('/conditions');
     case 'Тарифы':
       return I.amOnPage('/tariffs');
+    case 'Преподавание':
+      return I.amOnPage('/teaching/courses');
+    case `Программа курса 'Java Script с нуля'`:
+      return I.amOnPage('/syllabus/program/6290707eaaaccde01e1f8193');
+    case 'Статистика':
+      return I.amOnPage('/teaching/statistics/6290707aaaaccde01e1f8032');
     default:
       return I.amOnPage('/');
   }

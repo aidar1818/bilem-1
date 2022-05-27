@@ -11,7 +11,7 @@ Given('я вижу название курса', () => {
 });
 
 Given('я кликаю по карточке курса {string}', (text) => {
-    I.click(`//a//i[contains(text(),'${text}')]`);
+    I.click(text);
 });
 
 Given('я вижу название курса {string}', (text) => {
