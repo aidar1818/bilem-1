@@ -17,6 +17,7 @@
   text-indent: 30px;
   font-size: 40px;
   letter-spacing: 3px;
+  text-transform: none;
 }
 
 .title p {

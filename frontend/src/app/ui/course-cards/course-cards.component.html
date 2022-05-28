@@ -6,24 +6,24 @@
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <h1>{{ title }}</h1>
-  <mat-tab-group mat-align-tabs="start" color="warn">
+  <h1 class="cards-title">{{ title }}</h1>
+  <mat-tab-group mat-align-tabs="start" class="courses-block">
     <mat-tab label="ПОПУЛЯРНЫЕ КУРСЫ">
-      <div fxLayout="row wrap" fxLayoutAlign="start" class="container" *ngIf="courses">
+      <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
         <div *ngFor="let course of popularCourses | orderBy:'-rate'">
           <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
         </div>
       </div>
     </mat-tab>
     <mat-tab label="НОВЫЕ КУРСЫ">
-      <div fxLayout="row wrap" fxLayoutAlign="start" class="container" *ngIf="courses">
+      <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses">
         <div *ngFor="let course of newCourses | orderBy:'-rate'">
           <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
         </div>
       </div>
     </mat-tab>
   </mat-tab-group>
-  <div id="btnArea">
+  <div class="btn-area">
     <button mat-raised-button class="btn" routerLink="allCourses">
       ПОСМОТРЕТЬ ВСЕ КУРСЫ
       <span class="material-icons ic_right">arrow_forward</span>

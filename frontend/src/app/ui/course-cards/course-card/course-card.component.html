@@ -8,44 +8,52 @@
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
         <mat-card-title>
           <a class="course-title" [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
+          <p class="course-author">Author</p>
         </mat-card-title>
-        <span class="material-icons heart" (click)="addFavoriteCourse(course._id, $event)">
-          favorite_border
-        </span>
-        <img
-          mat-card-sm-image
-          class="course-image"
-          [src]="course.image | imageForCourse"
-          alt="icon"
-        >
+        <div>
+          <img
+            mat-card-sm-image
+            class="course-image"
+            [src]="course.image | imageForCourse"
+            alt="icon"
+          >
+          <span class="material-icons heart" (click)="addFavoriteCourse(course._id, $event)">
+              favorite_border
+            </span>
+        </div>
       </mat-card-title-group>
     </div>
-    <div>
-      <div>
-        <div fxLayout="row">
-          <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
-          <p style="margin-top: 3px; margin-left: 5px">{{ course.rate }}</p>
-          <span class="material-icons">person</span>
-          <p style="margin-top: 3px; margin-left: 5px">{{ course.students.length }}</p>
-        </div>
-      </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
       <div fxLayout="row" fxLayoutAlign="space-between">
-        <p class="price" style="color: blueviolet" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
+        <p class="price" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
         <p class="price" *ngIf="course.is_free && !learning">Бесплатно</p>
         <p class="price" style="color: gray" *ngIf="learning">Вы уже записаны</p>
       </div>
+      <div>
+        <div fxLayout="row">
+          <i class="material-icons" style="color: #9999998A;">star</i>
+          <p class="course-rate-text">{{ course.rate }}</p>
+          <i class="material-icons" style="color: #9999998A;">person</i>
+          <p class="course-rate-text">{{ course.students.length }}</p>
+        </div>
+      </div>
     </div>
     <div *appHasRoles="['admin']" class="admin-btns">
-      <button mat-icon-button color="warn" class="deleteCourse" (click)="openDialogCourseDelete($event, course._id, course.title)" matTooltip="Удалить" matTooltipPosition="above">
+      <button mat-icon-button color="warn" class="deleteCourse"
+              (click)="openDialogCourseDelete($event, course._id, course.title)" matTooltip="Удалить"
+              matTooltipPosition="above">
         <mat-spinner *ngIf="(removeLoading | async) && course['_id'] === toBeDeletedCourse"
                      diameter="30"></mat-spinner>
-        <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse"  fxLayout="row" fxLayoutAlign="center" ><mat-icon>delete</mat-icon></span>
+        <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse" fxLayout="row"
+              fxLayoutAlign="center"><mat-icon>delete</mat-icon></span>
       </button>&nbsp;
 
-      <button class="publish" mat-icon-button color="primary" (click)="publishCourse(course._id, $event)" matTooltip="Опубликовать" matTooltipPosition="above"
+      <button class="publish" mat-icon-button color="primary" (click)="publishCourse(course._id, $event)"
+              matTooltip="Опубликовать" matTooltipPosition="above"
               *ngIf="!course['is_published']">
         <mat-spinner diameter="30" *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
-        <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse"  fxLayout="row" fxLayoutAlign="center" ><mat-icon>visibility</mat-icon></span>
+        <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse" fxLayout="row"
+              fxLayoutAlign="center"><mat-icon>visibility</mat-icon></span>
       </button>
     </div>
   </div>

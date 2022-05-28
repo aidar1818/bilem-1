@@ -1,6 +1,8 @@
 .card-wrapper {
-  width: 20rem;
-  height: 170px;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.5px;
+  width: 368px;
+  height: 210px;
   border-radius: 25px;
   margin: 7px;
   position: relative;
@@ -15,17 +17,13 @@
   color: black;
 }
 
-.card-wrapper mat-card-title a:hover {
-  text-decoration: underline;
-}
-
 .card-wrapper:hover {
   -webkit-box-shadow: 0 0 5px 2px lightgray;
   -moz-box-shadow: 0 0 5px 2px lightgray;
   box-shadow: 0 0 5px 2px lightgray;
 }
 
-mat-card-title-group{
+mat-card-title-group {
   position: relative;
 }
 
@@ -37,9 +35,27 @@ mat-card-title-group{
   height: 100%;
 }
 
+.course-rate-text {
+  color: rgba(153, 153, 153, 54%);
+  font-size: 12px;
+  margin: 3px 5px 0 5px;
+}
+
+.mat-card-title .course-title {
+  display: block;
+  font-size: 20px !important;
+  margin-bottom: 13px !important;
+}
+
+.mat-card-title .course-author {
+  font-size: 16px !important;
+  font-weight: 400;
+  color: #999;
+}
+
 .course-image {
-  height: 60px;
-  width: 60px;
+  width: 96px;
+  height: 96px;
   border-radius: 10px;
 }
 
@@ -49,8 +65,8 @@ mat-card-title-group{
 }
 
 .price {
-  color: green;
-  font-size: 16px;
+  color: #6B0D24;
+  font-size: 20px;
   font-weight: 500;
   margin: 0;
 }
@@ -72,19 +88,19 @@ h1 {
   right: 16px;
 }
 
-.heart{
+.heart {
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: -6px;
+  right: -1px;
   color: #85233E;
   transition: 0.4s;
 }
 
-.heart:hover{
+.heart:hover {
   color: red;
 }
 
-.heart:active{
+.heart:active {
   font-size: 35px;
 }
 
