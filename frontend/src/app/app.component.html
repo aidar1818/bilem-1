@@ -1,4 +1,4 @@
-<div class="header-toolbar">
+<div *ngIf="!isLoginPage() && !isRegisterPage() && !isRecoveryPage()" class="header-toolbar">
   <div class="container">
     <app-toolbar></app-toolbar>
   </div>
@@ -8,9 +8,8 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<div class="footerBlock">
+<div *ngIf="!isLoginPage() && !isRegisterPage() && !isRecoveryPage()" class="footerBlock">
   <div class="container">
     <app-footer></app-footer>
   </div>
 </div>
-

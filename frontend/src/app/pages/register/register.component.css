@@ -2,10 +2,6 @@
   color: red;
 }
 
-form mat-form-field {
-  margin-bottom: 5px;
-}
-
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   background-color: #FFFFFF;
 }
@@ -14,3 +10,6 @@ form mat-form-field {
   font-size: 12px;
 }
 
+.social input {
+  margin-left: 5px;
+}

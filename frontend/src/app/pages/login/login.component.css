@@ -5,3 +5,7 @@
 ::ng-deep .mat-form-field {
   font-size: 12px;
 }
+
+.social input {
+  margin-left: 10px;
+}

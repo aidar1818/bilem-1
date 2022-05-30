@@ -4,7 +4,6 @@
     #f="ngForm"
     fxLayout="column"
     autocomplete="off"
-    style="margin-top: 20px"
     (ngSubmit)="onSubmit()"
   >
     <div *ngIf="error | async" class="error">
@@ -35,8 +34,7 @@
         Пожалуйста, введите корректный адрес.
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText" style="margin-bottom:
-       20px">
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
       <mat-label>
         <div fxLayout="row" fxFlex="27" fxLayoutAlign="space-between center">
           <span class="material-icons">lock</span>
@@ -66,7 +64,7 @@
       Войти
     </button>
     <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
-    <p fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="social" fxLayout="row" fxLayoutAlign="space-between center">
           <span class="greyDarkText authFbGlText">
                       Войдите с помощью социальных сетей:
           </span>

@@ -179,7 +179,6 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   font-weight: 700;
   font-size: 30px;
   line-height: 45px;
-  margin-bottom: 30px !important;
 }
 
 .authFormsInputText {
@@ -194,7 +193,6 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   font-size: 12px;
   line-height: 18px;
   color: #666666;
-  margin-bottom: 50px;
 }
 
 .authFbGlText {

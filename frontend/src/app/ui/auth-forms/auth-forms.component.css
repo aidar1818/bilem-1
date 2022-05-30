@@ -5,7 +5,9 @@
 
 .form-container {
   background-color: #F6F6F6;
-  padding: 100px 50px 60px 80px;
+  padding: 0 50px 0 50px;
+  height: 100vh;
+  margin: 0;
 }
 
 .title {

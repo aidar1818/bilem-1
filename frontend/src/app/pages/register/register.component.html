@@ -5,7 +5,6 @@
     fxLayout="column"
     autocomplete="off"
     [appIdentical]="['password', 'passwordRepeat']"
-    style="margin-top: 20px"
     (ngSubmit)="register()"
   >
     <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
@@ -66,7 +65,6 @@
       appearance="outline"
       hideRequiredMarker="true"
       class="authFormsInputText"
-      style="margin-bottom: 20px"
     >
       <mat-label>
         <div fxLayout="row" fxFlex="38" fxLayoutAlign="space-between center">
@@ -91,10 +89,10 @@
       class="authBtn"
       [disabled]="f.invalid"
     >
-      Зарегистрироваться
+      Зарегестрироваться
     </button>
     <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
-    <p fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="social" fxLayout="row" fxLayoutAlign="space-between center">
           <span class="greyDarkText authFbGlText">
                       Регистрация с помощью социальных сетей:
           </span>
@@ -102,7 +100,7 @@
       <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
     </p>
     <div>
-      <p class="greyDarkText authFbGlText">Уже зарегистрированы? <a routerLink="/login">Войти</a></p>
+      <p class="greyDarkText authFbGlText">Уже зарегестрированы? <a routerLink="/login">Войти</a></p>
     </div>
   </form>
 </app-auth-forms>
