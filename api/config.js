@@ -19,6 +19,8 @@ module.exports = {
         'https://localhost:4210',
         'http://134.122.65.122',
         'https://134.122.65.122',
+        'http://bilem-online.ddnsfree.com',
+        'https://bilem-online.ddnsfree.com',
     ],
     rootPath,
     uploadPath: path.join(rootPath, 'public/uploads'),
