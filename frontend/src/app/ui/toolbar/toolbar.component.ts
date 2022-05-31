@@ -15,6 +15,8 @@ import { FormControl } from '@angular/forms';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   user: Observable<null | User>;
+  userSub!: Subscription;
+  userId = '';
   courses: Observable<Course[]>;
   coursesSub!: Subscription;
   coursesBySubcategorySub!: Subscription;
@@ -42,6 +44,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.coursesArray = courses;
       }
     });
+
+    this.userSub = this.user.subscribe(user => {
+      if(user) {
+        this.userId = user._id;
+      }
+    });
   }
 
 
@@ -62,5 +70,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.coursesSub.unsubscribe();
+    this.userSub.unsubscribe();
   }
 }

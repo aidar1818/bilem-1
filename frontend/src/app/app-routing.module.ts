@@ -61,7 +61,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'recovery', component: RecoveryComponent},
   {path: 'newPassword', component: NewPasswordComponent},
-  {path: 'profile', component: UserProfileComponent},
+  {path: 'profile/:id', component: UserProfileComponent},
   {
     path: 'userSettings', component: UserSettingsComponent, children: [
       {path: 'editProfile', component: EditProfileComponent},

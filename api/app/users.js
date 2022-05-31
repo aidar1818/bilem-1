@@ -49,7 +49,7 @@ router.post('/sessions', async (req, res, next) => {
 
     if (!user) {
       return res.status(400).send(
-          {error: 'Вам необходимо зарегестрироваться!'}
+        {error: 'Вам необходимо зарегестрироваться!'}
       );
     }
 
@@ -237,7 +237,7 @@ router.post('/addSocialNetworks', auth, async (req, res, next) => {
   try {
     const user = await User.findById(req.body.userId);
 
-    if(!user) {
+    if (!user) {
       return res.status(400).send({error: "Пользователь с таким ID не найден!"});
     }
 
@@ -269,11 +269,11 @@ router.get('/statistics/:id', auth, async (req, res, next) => {
     let allLessons = 0;
     let allComments = 0;
 
-    for(let i = 0; i < userCourses.length; i++) {
+    for (let i = 0; i < userCourses.length; i++) {
       allStudents += userCourses[i].students.length;
-      for(let j = 0; j < userCourses[i].modules.length; j++) {
+      for (let j = 0; j < userCourses[i].modules.length; j++) {
         allLessons += userCourses[i].modules[j].lessons.length;
-        for(let a = 0; a < userCourses[i].modules[j].lessons.length; a++)
+        for (let a = 0; a < userCourses[i].modules[j].lessons.length; a++)
           allComments += userCourses[i].modules[j].lessons[a].comments.length;
       }
     }
@@ -290,6 +290,52 @@ router.get('/statistics/:id', auth, async (req, res, next) => {
     next(e);
   }
 });
+
+router.get('/profile/:id', auth,async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const userCourses = await Course.find({author: req.params.id});
+    let courses = 0;
+    const courseInfo = [];
+
+    for (let i = 0; i < userCourses.length; i++) {
+      if (userCourses[i].is_published) {
+        courses++;
+
+        const info = {
+          title: userCourses[i].title,
+          image: userCourses[i].image,
+          students: userCourses[i].students.length,
+          rate: userCourses[i].rate,
+          is_free: userCourses[i].is_free,
+          price: userCourses[i].price,
+          currentStudent: false,
+        };
+
+        for(let j = 0; j < userCourses[i].students.length; j++) {
+          if((userCourses[i].students[j]._id).toString() === req.user._id.toString()) {
+            info.currentStudent = true;
+          }
+        }
+
+        courseInfo.push(info);
+      }
+    }
+
+    const fullData = {
+      authorName: user.displayName,
+      authorAbout: user.aboutMe,
+      authorSocialNetworks: user.socialNetworks,
+      publishedCourses: courses,
+      courses: courseInfo,
+    };
+
+    return res.send(fullData);
+  } catch (e) {
+    next(e);
+  }
+});
+
 
 module.exports = router;
 

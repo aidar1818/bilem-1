@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {Store} from "@ngrx/store";
-import {AppState} from "../../store/types";
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/types';
 import { Observable, Subscription } from 'rxjs';
-import { socialNetworks, User } from '../../models/user.model';
+import { User, UserProfileData } from '../../models/user.model';
+import { ActivatedRoute } from '@angular/router';
+import { fetchUserProfileRequest } from '../../store/users/users.actions';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,30 +12,33 @@ import { socialNetworks, User } from '../../models/user.model';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
+  userProfileData: Observable<null | UserProfileData>;
+  userProfileDataObject!: UserProfileData | null;
+  userProfileSub!: Subscription;
   user: Observable<null | User>;
-  social: Observable<null | socialNetworks[]>;
-  userData!: User | null;
-  userSub!: Subscription;
-  socialSub!: Subscription;
-  socialNetworks!: socialNetworks[] | null;
+  userId: string = '';
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>,  private route: ActivatedRoute,) {
+    this.userProfileData = store.select(state => state.users.userProfileData);
     this.user = store.select(state => state.users.user);
-    this.social = <Observable<socialNetworks[]>>store.select(state => state.users.user?.socialNetworks);
   }
 
   ngOnInit(): void {
-    this.userSub = this.user.subscribe(user => {
-      this.userData = user;
-    })
-    this.socialSub = this.social.subscribe(links => {
-      this.socialNetworks = links;
-    })
+    this.route.params.subscribe(params => {
+       this.userId = params['id'];
+      this.store.dispatch(fetchUserProfileRequest({userId: this.userId}));
+    });
+
+    this.userProfileSub = this.userProfileData.subscribe(profile => {
+      if(profile) {
+        this.userProfileDataObject = profile;
+      }
+    });
+
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
-    this.socialSub.unsubscribe();
+    this.userProfileSub.unsubscribe();
   }
 
 

@@ -1,4 +1,4 @@
-import { CodeError, CodeUserData, LoginError, RegisterError, User } from '../models/user.model';
+import { CodeError, CodeUserData, LoginError, RegisterError, User, UserProfileData } from '../models/user.model';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
 import { Course } from '../models/course.model';
@@ -26,6 +26,9 @@ export type UsersState = {
   editProfileError: null | string,
   addSocialNetworksLoading: boolean,
   addSocialNetworksError: null | string,
+  userProfileData: null | UserProfileData,
+  fetchUserProfileDataLoading: boolean,
+  fetchUserProfileDataError: null | string,
 };
 
 export type CategoriesState = {

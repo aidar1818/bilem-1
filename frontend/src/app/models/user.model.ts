@@ -100,3 +100,33 @@ export interface LoginError {
 export interface CodeError {
   error: string
 }
+
+export interface ProfileCourseData {
+  title: string,
+  image: string,
+  students: number,
+  rate: number,
+  is_free: boolean,
+  price: number,
+  currentStudent: boolean,
+}
+
+export class UserProfileData {
+  constructor(
+    public authorName: string,
+    public authorAbout: string,
+    public authorSocialNetworks: [{
+      fb: string,
+      github: string,
+      vk: string,
+      tw: string,
+      instagram: string,
+      skype: string,
+      tme: string,
+      website: string,
+      youtube: string,
+    }],
+    public publishedCourses: number,
+    public courses: ProfileCourseData[],
+  ) {}
+}

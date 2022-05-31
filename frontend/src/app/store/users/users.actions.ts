@@ -1,13 +1,19 @@
 import { createAction, props } from '@ngrx/store';
 import {
   CodeError,
-  CodeUserData, EditPasswordData,
-  EmailData, googleLoginUserData,
-  LoginError, LoginFacebookUser,
-  LoginUserData, profileUserData,
+  CodeUserData,
+  EditPasswordData,
+  EmailData,
+  googleLoginUserData,
+  LoginError,
+  LoginFacebookUser,
+  LoginUserData,
+  profileUserData,
   RegisterError,
-  RegisterUserData, socialNetworks,
-  User
+  RegisterUserData,
+  socialNetworks,
+  User,
+  UserProfileData
 } from '../../models/user.model';
 
 export const fetchUserRequest = createAction(
@@ -97,5 +103,15 @@ export const addSocialNetworksSuccess = createAction(
 export const addSocialNetworksFailure = createAction(
   '[User] AddSocialNetworks Failure', props<{error: null | string}>()
 );
+
+export const fetchUserProfileRequest = createAction(
+  '[UserProfile] Fetch Request',
+  props<{userId: string}>());
+export const fetchUserProfileSuccess = createAction(
+  '[UserProfile] Fetch Success',
+  props<{userProfileData: UserProfileData}>());
+export const fetchUserProfileFailure = createAction(
+  '[UserProfile] Fetch Failure',
+  props<{error: string}>());
 
 

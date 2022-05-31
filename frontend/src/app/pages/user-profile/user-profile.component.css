@@ -1,147 +1,195 @@
-.content{
-  width: 1000px;
+.mainDiv {
+  background-color: #FCFCFC;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+}
+
+.userInfo1 {
+  padding: 40px 10px;
+}
+
+.coursesInfo {
+  color: #A1A1A1;
+  font-size: 16px;
+  line-height: 14px;
+  margin-bottom: 60px;
+}
+
+.avatar{
+  background: #000000;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  margin: 0 30px 30px 0;
+  color: white;
+  font-size: 34px;
+  text-transform: uppercase;
+}
+
+.userName {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.aboutUser {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+
+.userInfo2 {
+  padding: 40px 10px 40px 0;
+}
+
+.coursesTitle {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.content {
   margin: 20px auto 30px;
   padding: 0 15px;
   text-align: left;
   background-color: #FCFCFC;
 }
 
-.card{
+.card {
   padding: 20px;
   border:none;
-  position:relative;
   overflow:hidden;
   border-radius:8px;
   cursor:pointer;
 }
 
-.card:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:4px;
-  height:100%;
-  opacity: 0.3;
-  background-color:#85233E;
-  transform:scaleY(1);
-  transition:all 0.7s;
-  transform-origin: bottom
-}
-
-.card:after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:4px;
-  height:100%;
-  background-color: #85233E;
-  transform:scaleY(0);
-  transition:all 0.7s;
-  transform-origin: bottom
-}
-
-.name-menu{
-  border-bottom: 1px solid #eeeeee;
-  width: 80%;
-  margin-bottom: 15px;
-}
-
-.card:hover::after{
-  transform:scaleY(1);
-}
-
-.avatar{
-  background: #1466C6;
-  border-radius: 10px;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  line-height: 80px;
-  margin: 0 30px 15px 0;
-  color: white;
-  font-size: 34px;
-  text-transform: uppercase;
-}
-
-.text-center{
-  min-width: 40%;
-  margin: 0 0 0 20px;
-}
-
-h3{
-  border-bottom: 1px solid #eeeeee;
-  width: 80%;
-}
-
-.fonts{
+.fonts {
   font-size:11px;
 }
 
-.text-content{
+.text-content {
   margin: 0 0 8px;
 }
 
-.text-content a{
+.text-content a {
   font-size: 14px;
   color: white;
   background: #1466C6;
 }
 
-ul{
+ul {
   list-style:none;
   padding: 0;
-  border-bottom: 1px solid #eeeeee;
   width: 80%;
+  margin-bottom: 40px;
 }
 
-ul li{
+ul li {
   font-size:13px;
   display: flex;
   align-items: center;
   padding: 3px;
 }
 
-li a{
-  margin-left: 25px;
+li a {
+  margin-left: 15px;
   font-size: 14px;
-  color: #1466C6;
+  line-height: 14px;
+  color: #000000 !important;
   text-decoration: none;
 }
 
-li a:hover{
+li a:hover {
   text-decoration: underline;
 }
 
-img{
+img {
   width: 25px;
   height: 25px;
 }
 
-.buttons button:nth-child(1){
-  border: 1px solid #85233E !important;
-  color:#85233E;
-  height:40px;
-  border-radius: 40px;
+.card-wrapper {
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.5px;
+  height: 210px;
+  border-radius: 25px;
+  margin: 7px 15px 7px 0;
+  cursor: pointer;
 }
 
-.buttons button:nth-child(1):hover{
-  border:1px solid #85233E !important;
-  color:#fff;
-  height:40px;
-  background-color:#85233E;
+.card-wrapper mat-card-title a {
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 18px;
+  color: black;
 }
 
-.buttons button:nth-child(2){
-  border:1px solid #85233E !important;
-  background-color:#85233E;
-  color:#fff;
-  height:40px;
+.card-wrapper:hover {
+  -webkit-box-shadow: 0 0 5px 2px lightgray;
+  -moz-box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 5px 2px lightgray;
 }
 
-.aboutMe{
-  line-height: 2.5;
-  opacity: 0.8;
-  display: inline-block;
+.rating-img {
+  height: 20px;
 }
+
+.course-card {
+  height: 100%;
+}
+
+.course-rate-text {
+  color: rgba(153, 153, 153, 54%);
+  font-size: 12px;
+  margin: 3px 5px 0 5px;
+}
+
+.mat-card-title .course-title {
+  display: block;
+  font-size: 20px !important;
+  margin-bottom: 13px !important;
+}
+
+.mat-card-title .course-author {
+  font-size: 16px !important;
+  font-weight: 400;
+  color: #999;
+}
+
+.course-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+}
+
+.course-content {
+  bottom: 30px;
+}
+
+.price {
+  color: #6B0D24;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+h1 {
+  margin-left: 4rem;
+  margin-top: 25px;
+  font-size: 2.5rem;
+}
+
+.subscribers {
+  height: 20px;
+  margin-left: 5px;
+}
+
+
+
+
+
+
+
+

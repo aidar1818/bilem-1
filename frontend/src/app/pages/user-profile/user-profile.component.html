@@ -1,60 +1,99 @@
-<div class="content card" fxLayoutAlign="space-between">
-  <div class="text-center">
-    <div fxLayout="row" fxLayoutAlign="start center" class="name-menu">
-      <div class="avatar">
-        {{ (user | async)?.displayName?.charAt(0) }}
-      </div>
-      <h2 class="displayName">{{ userData?.displayName }}</h2>
+<div class="mainDiv" fxLayout="row" *ngIf="userProfileDataObject">
+  <div fxFlex="25" class="userInfo1">
+    <div class="avatar">
+      {{ userProfileDataObject!.authorName.charAt(0) }}
     </div>
-    <div class="text-content">
-      <a mat-raised-button color="primary" routerLink="/myCourses/learning">Мои курсы</a>
-    </div>
+    <p class="coursesInfo">{{ userProfileDataObject.publishedCourses }} курса опубликовано</p>
 
-    <h3>Ссылки на социальные сети:</h3>
-    <ul *ngFor="let link of socialNetworks">
+    <ul *ngFor="let link of userProfileDataObject.authorSocialNetworks">
       <li *ngIf="link.fb">
         <img src="assets/icons/form-fb.svg" alt="facebook logo"/>
-        <a [href]="link.fb" target="_blank">{{ link.fb }}</a>
+        <a [href]="link.fb" target="_blank">facebook</a>
       </li>
       <li *ngIf="link.github">
         <img src="assets/icons/form-github.svg" alt="github logo"/>
-        <a [href]="link.github" target="_blank">{{ link.github }}</a>
+        <a [href]="link.github" target="_blank">github</a>
       </li>
       <li *ngIf="link.vk">
         <img src="assets/icons/form-vk.svg" alt="vk logo"/>
-        <a [href]="link.vk" target="_blank">{{ link.vk }}</a>
+        <a [href]="link.vk" target="_blank">vk</a>
       </li>
       <li *ngIf="link.tw">
         <img src="assets/icons/form-tw.svg" alt="tw logo"/>
-        <a [href]="link.tw" target="_blank">{{ link.tw }}</a>
+        <a [href]="link.tw" target="_blank">twitter</a>
       </li>
       <li *ngIf="link.instagram">
         <img src="assets/icons/form-instagram.svg" alt="instagram logo"/>
-        <a [href]="link.instagram" target="_blank">{{ link.instagram }}</a>
+        <a [href]="link.instagram" target="_blank">instagram</a>
       </li>
       <li *ngIf="link.skype">
         <img src="assets/icons/form-skype.svg" alt="skype logo"/>
-        <a [href]="link.skype" target="_blank">{{ link.skype }}</a>
+        <a [href]="link.skype" target="_blank">skype</a>
       </li>
       <li *ngIf="link.tme">
         <img src="assets/icons/form-tme.svg" alt="tme logo"/>
-        <a [href]="link.tme" target="_blank">{{ link.tme }}</a>
+        <a [href]="link.tme" target="_blank">telegram</a>
       </li>
       <li *ngIf="link.website">
         <span class="material-icons">public</span>
-        <a [href]="link.website" target="_blank">{{ link.website }}</a>
+        <a [href]="link.website" target="_blank">website</a>
       </li>
       <li *ngIf="link.youtube">
         <img src="assets/icons/form-youtube.svg" alt="youtube logo"/>
-        <a [href]="link.youtube" target="_blank">{{ link.youtube }}</a>
+        <a [href]="link.youtube" target="_blank">youtube</a>
       </li>
     </ul>
-    <div class="buttons">
-      <button mat-raised-button routerLink="/userSettings/editProfile">Настройки профиля</button>&nbsp;
-    </div>
+    <button
+      mat-raised-button
+      routerLink="/userSettings/editProfile"
+      *ngIf="userId === (user | async)!._id"
+    >
+      Настройки профиля
+    </button>
   </div>
-  <div>
-    <h2>Обо мне</h2>
-    <div class="aboutMe">{{ userData?.aboutMe }}</div>
+  <div fxFlex="75" class="userInfo2">
+    <p class="userName">{{ userProfileDataObject!.authorName }}</p>
+    <div class="aboutUser">
+      <p>{{ userProfileDataObject!.authorAbout }}</p>
+    </div>
+    <p class="coursesTitle">Все курсы</p>
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+      <mat-card fxFlex="40" class="card-wrapper" *ngFor="let course of userProfileDataObject.courses">
+        <div class="course-card" fxLayout="column"
+             fxLayoutAlign="space-between">
+          <div>
+            <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
+              <mat-card-title>
+                <a class="course-title">{{ course.title }}</a>
+                <p class="course-author">{{ userProfileDataObject!.authorName }}</p>
+              </mat-card-title>
+              <div>
+                <img
+                  mat-card-sm-image
+                  class="course-image"
+                  [src]="course.image | imageForCourse"
+                  alt="icon"
+                >
+              </div>
+            </mat-card-title-group>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <p class="price" *ngIf="!course.is_free && !course.currentStudent">{{ course.price }} сом</p>
+              <p class="price" *ngIf="course.is_free && !course.currentStudent">Бесплатно</p>
+              <p class="price" style="color: gray" *ngIf="course.currentStudent">Вы записаны</p>
+            </div>
+            <div>
+              <div fxLayout="row">
+                <i class="material-icons" style="color: #9999998A;">star</i>
+                <p class="course-rate-text">{{ course.rate }}</p>
+                <i class="material-icons" style="color: #9999998A;">person</i>
+                <p class="course-rate-text">{{ course.students }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>

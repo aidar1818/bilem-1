@@ -46,7 +46,7 @@
       <mat-icon>{{ (user | async)?.displayName?.charAt(0) }}</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <a mat-menu-item routerLink="/profile" fxLayoutAlign="start center">
+      <a mat-menu-item [routerLink]="['/profile', userId]" fxLayoutAlign="start center">
         <span class="material-icons">
           person
         </span>

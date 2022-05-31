@@ -2,11 +2,18 @@ import { UsersState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
   addSocialNetworksFailure,
-  addSocialNetworksRequest, addSocialNetworksSuccess,
+  addSocialNetworksRequest,
+  addSocialNetworksSuccess,
   editPasswordFailure,
   editPasswordRequest,
-  editPasswordSuccess, editProfileFailure, editProfileRequest, editProfileSuccess,
+  editPasswordSuccess,
+  editProfileFailure,
+  editProfileRequest,
+  editProfileSuccess,
   fetchUserFailure,
+  fetchUserProfileFailure,
+  fetchUserProfileRequest,
+  fetchUserProfileSuccess,
   fetchUserRequest,
   fetchUserSuccess,
   loginFacebookFailure,
@@ -56,7 +63,10 @@ const initialState: UsersState = {
   editProfileLoading: false,
   editProfileError: null,
   addSocialNetworksLoading: false,
-  addSocialNetworksError: null
+  addSocialNetworksError: null,
+  userProfileData: null,
+  fetchUserProfileDataLoading: false,
+  fetchUserProfileDataError: null,
 };
 
 export const usersReducer = createReducer(
@@ -173,5 +183,17 @@ export const usersReducer = createReducer(
   })),
   on(addSocialNetworksFailure, (state, {error}) => ({
     ...state, addSocialNetworksLoading: false, addSocialNetworksError: error
-  }))
+  })),
+
+  on(fetchUserProfileRequest, state => ({...state, fetchUserProfileDataLoading: true})),
+  on(fetchUserProfileSuccess, (state, {userProfileData}) => ({
+    ...state,
+    fetchUserProfileDataLoading: false,
+    userProfileData,
+  })),
+  on(fetchUserProfileFailure, (state, {error}) => ({
+    ...state,
+    fetchUserProfileDataLoading: false,
+    fetchUserProfileDataError: error,
+  })),
 );

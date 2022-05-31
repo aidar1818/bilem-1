@@ -11,7 +11,7 @@ import {
   editProfileFailure,
   editProfileRequest,
   editProfileSuccess,
-  fetchUserFailure,
+  fetchUserFailure, fetchUserProfileFailure, fetchUserProfileRequest, fetchUserProfileSuccess,
   fetchUserRequest,
   fetchUserSuccess,
   loginFacebookFailure,
@@ -40,6 +40,11 @@ import { AppState } from '../types';
 import { Store } from '@ngrx/store';
 import { SocialAuthService } from 'angularx-social-login';
 import { fetchCoursesRequest } from '../course/course.actions';
+import {
+  fetchStatisticsFailure,
+  fetchStatisticsRequest,
+  fetchStatisticsSuccess
+} from '../statistics/statistics.actions';
 
 @Injectable()
 export class UsersEffects {
@@ -174,5 +179,13 @@ export class UsersEffects {
       })
     )),
     catchError(() => of(addSocialNetworksFailure({error: 'Что-то пошло не так'})))
+  ));
+
+  fetchUserProfileData = createEffect(() => this.actions.pipe(
+    ofType(fetchUserProfileRequest),
+    mergeMap(({userId}) => this.usersService.getUserProfileData(userId).pipe(
+      map(userProfileData => fetchUserProfileSuccess({userProfileData})),
+      catchError(() => of(fetchUserProfileFailure({error: 'Невозможно загрузить данные профайла пользователя!'})))
+    ))
   ));
 }

@@ -8,7 +8,7 @@ import {
   LoginFacebookUser,
   LoginUserData, profileUserData,
   RegisterUserData, socialNetworks,
-  User
+  User, UserProfileData
 } from '../models/user.model';
 import { environment, environment as env } from '../../environments/environment';
 import { map } from 'rxjs';
@@ -18,7 +18,8 @@ import { map } from 'rxjs';
 })
 
 export class UsersService {
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {}
 
   registerUser(userData: RegisterUserData) {
     return this.http.post<User>(env.apiUrl + '/users', userData);
@@ -114,6 +115,20 @@ export class UsersService {
           response.myCourses,
           response.favoriteCourses,
           response.socialNetworks
+        );
+      })
+    );
+  }
+
+  getUserProfileData(userId: string) {
+    return this.http.get<UserProfileData>(env.apiUrl + '/users/profile/' + userId).pipe(
+      map(response => {
+        return new UserProfileData(
+          response.authorName,
+          response.authorAbout,
+          response.authorSocialNetworks,
+          response.publishedCourses,
+          response.courses
         );
       })
     );
