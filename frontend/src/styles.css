@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-html, body { height: 100%}
+html, body { height: 100%; }
 
 body {
   margin: 0;
@@ -206,8 +206,8 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
 }
 
 .fb {
-  height: 39px;
-  width: 39px;
+  height: 30px;
+  width: 30px;
 }
 
 .div p {
