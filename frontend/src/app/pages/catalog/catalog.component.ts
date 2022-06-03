@@ -28,7 +28,6 @@ export class CatalogComponent implements OnInit, OnDestroy{
   subCategoriesArr: Subcategory[] = [];
   categories: Observable<Category[]>;
   courses: Observable<Course[]>;
-  coursesBySubcategory!: Course[];
   categoriesArray!: Category[];
   categorySub!: Subscription;
   subCategorySub!: Subscription;

@@ -75,13 +75,13 @@ export class CourseCardComponent implements OnInit {
     this.store.dispatch(publishCourseRequest({id}));
   }
 
-  ngOnDestroy(): void {
-    this.userSub.unsubscribe();
-    this.publishSub.unsubscribe();
-  }
-
   addFavoriteCourse(id: string, event: Event) {
     event.stopPropagation();
     this.store.dispatch(addFavoriteCourseRequest({id}));
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+    this.publishSub.unsubscribe();
   }
 }

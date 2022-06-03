@@ -1,32 +1,25 @@
-<mat-progress-spinner
-  class="main-spinner"
-  *ngIf="(loading | async) else coursesArea"
-  mode="indeterminate"
-  style="margin-bottom: 50px"
-></mat-progress-spinner>
+<h1 class="cards-title">{{ title }}</h1>
+<mat-tab-group mat-align-tabs="start" class="courses-block">
+  <mat-tab label="ПОПУЛЯРНЫЕ КУРСЫ">
+    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
+      <div *ngFor="let course of popularCourses | orderBy:'-rate'">
+        <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="НОВЫЕ КУРСЫ">
+    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses">
+      <div *ngFor="let course of newCourses | orderBy:'-rate'">
+        <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div class="btn-area">
+  <button mat-raised-button class="btn" routerLink="allCourses">
+    ПОСМОТРЕТЬ ВСЕ КУРСЫ
+    <span class="material-icons ic_right">arrow_forward</span>
+  </button>
+</div>
 
-<ng-template #coursesArea>
-  <h1 class="cards-title">{{ title }}</h1>
-  <mat-tab-group mat-align-tabs="start" class="courses-block">
-    <mat-tab label="ПОПУЛЯРНЫЕ КУРСЫ">
-      <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
-        <div *ngFor="let course of popularCourses | orderBy:'-rate'">
-          <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="НОВЫЕ КУРСЫ">
-      <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses">
-        <div *ngFor="let course of newCourses | orderBy:'-rate'">
-          <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
-        </div>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
-  <div class="btn-area">
-    <button mat-raised-button class="btn" routerLink="allCourses">
-      ПОСМОТРЕТЬ ВСЕ КУРСЫ
-      <span class="material-icons ic_right">arrow_forward</span>
-    </button>
-  </div>
-</ng-template>
+
