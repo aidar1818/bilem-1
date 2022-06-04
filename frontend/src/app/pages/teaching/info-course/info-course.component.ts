@@ -16,7 +16,6 @@ export class InfoCourseComponent implements OnInit, OnDestroy{
   courseInfo!: Course | null;
   loading: Observable<boolean>;
   error: Observable<null | string>;
-  url = 'http://localhost:8000/uploads/';
   urlImg!: string;
   courseSub!: Subscription;
   text = false;
@@ -37,7 +36,7 @@ export class InfoCourseComponent implements OnInit, OnDestroy{
         this.text = false;
         this.courseInfo = info;
         if (info.image) {
-          this.urlImg = `${this.url}${info.image}`;
+          this.urlImg = info.image;
         }
       } else {
         this.text = true;

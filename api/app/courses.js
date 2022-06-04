@@ -281,29 +281,32 @@ router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) 
 
     const user = await User.findOne({_id: req.user._id});
 
-    let courseIndex;
-    let lessonsArray = [];
+    if (req.query.action) {
+      let courseIndex;
+      let lessonsArray = [];
 
-    for (let i = 0; i < course.modules.length; i++) {
-      for (let j = 0; j < course.modules[i].lessons.length; j++) {
-        lessonsArray.push(course.modules[i].lessons[j]._id);
+      for (let i = 0; i < course.modules.length; i++) {
+        for (let j = 0; j < course.modules[i].lessons.length; j++) {
+          lessonsArray.push(course.modules[i].lessons[j]._id);
+        }
+      }
+
+      for (let i = 0; i < user.myCourses.length; i++) {
+        if (course._id.toString() === user.myCourses[i].course.toString()) {
+          courseIndex = i;
+        }
+      }
+
+      const lessonIsExists = user.myCourses[courseIndex].passedLessons.find(lesson => lesson._id.toString() === req.params.id);
+
+      if (!lessonIsExists) {
+        user.myCourses[courseIndex].passedLessons.push(req.params.id);
+        user.myCourses[courseIndex].timestamp = Date.now();
+        user.myCourses[courseIndex].passedLessons[user.myCourses[courseIndex].passedLessons.length - 1].timestamp = Date.now();
+        user.myCourses[courseIndex].progress = (Math.round(user.myCourses[courseIndex].passedLessons.length * 100 / lessonsArray.length));
       }
     }
 
-    for (let i = 0; i < user.myCourses.length; i++) {
-      if (course._id.toString() === user.myCourses[i].course.toString()) {
-        courseIndex = i;
-      }
-    }
-
-    const lessonIsExists = user.myCourses[courseIndex].passedLessons.find(lesson => lesson._id.toString() === req.params.id);
-
-    if (!lessonIsExists) {
-      user.myCourses[courseIndex].passedLessons.push(req.params.id);
-      user.myCourses[courseIndex].timestamp = Date.now();
-      user.myCourses[courseIndex].passedLessons[user.myCourses[courseIndex].passedLessons.length - 1].timestamp = Date.now();
-      user.myCourses[courseIndex].progress = (Math.round(user.myCourses[courseIndex].passedLessons.length * 100 / lessonsArray.length));
-    }
 
     for (let i = 0; i < course.modules.length; i++) {
       for (let j = 0; j < course.modules[i].lessons.length; j++) {

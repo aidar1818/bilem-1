@@ -202,8 +202,9 @@ export class CourseService {
     return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);
   }
 
-  getLessonData(lessonId: string) {
-    return this.http.get<Lesson | null>(env.apiUrl + `/courses/lesson/${lessonId}`)
+  getLessonData(lessonId: string, action?: string) {
+    const url = action ? `/courses/lesson/${lessonId}?action=addToPassed` : `/courses/lesson/${lessonId}`;
+    return this.http.get<Lesson | null>(env.apiUrl + url)
       .pipe(map(result => {
         if (!result) {
           return null;

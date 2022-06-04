@@ -39,7 +39,7 @@ export class LessonComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params['lessonId']) {
-        this.store.dispatch(fetchLessonRequest({lessonId: params['lessonId']}));
+        this.store.dispatch(fetchLessonRequest({lessonId: params['lessonId'], action: 'addToPassed'}));
       }
     });
 

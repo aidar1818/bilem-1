@@ -40,7 +40,7 @@ export class LessonsEffects {
 
   getLesson = createEffect(() => this.actions.pipe(
     ofType(fetchLessonRequest),
-    mergeMap(({lessonId}) => this.courseService.getLessonData(lessonId).pipe(
+    mergeMap(({lessonId, action}) => this.courseService.getLessonData(lessonId, action).pipe(
       map(lesson => fetchLessonSuccess({lesson})),
       catchError(() => of(fetchLessonFailure({error: 'Невозможно загрузить данные урока!'})))
     ))

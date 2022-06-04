@@ -15,7 +15,7 @@ export const createLessonFailure = createAction(
 
 export const fetchLessonRequest = createAction(
   '[Lesson] Fetch Request',
-  props<{ lessonId: string }>()
+  props<{ lessonId: string, action?: string }>()
 );
 export const fetchLessonSuccess = createAction(
   '[Lesson] Fetch Success',
