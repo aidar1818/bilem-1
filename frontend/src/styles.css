@@ -87,7 +87,7 @@ footer {
 }
 
 
-.footerTextBlock p{
+.footerTextBlock p {
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -104,7 +104,7 @@ footer {
 }
 
 
-.footer-nav nav{
+.footer-nav nav {
   display: flex;
   flex-direction: column;
   justify-self: start;
@@ -161,7 +161,7 @@ footer {
 }
 
 .main-color {
-  color:  #85233E;
+  color: #85233E;
 }
 
 app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
@@ -196,9 +196,9 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
 }
 
 .authFbGlText {
-   font-size: 15px;
-   font-weight: 700;
-   line-height: 22px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
 }
 
 .authFbGlText a {
@@ -221,6 +221,19 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   font-size: 12px;
   background-color: #6B0D24;
   color: #FFFFFF;
+}
+
+.avatar {
+  background: #1466C6;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  margin: 0 30px 15px 0;
+  color: white;
+  font-size: 34px;
+  text-transform: uppercase;
 }
 
 

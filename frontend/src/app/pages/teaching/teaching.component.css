@@ -1,68 +1,68 @@
 .main {
-    display: flex;
-    flex-direction: row;
-    align-self: stretch;
-    min-height: calc(100vh - 145px);
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  min-height: calc(100vh - 145px);
 }
 
 .nav {
-    width: 18rem;
-    padding: 40px 10px;
-    background-color: #FFFFFF;
-    border-right: 1px solid #E2E2E2;
+  width: 18rem;
+  padding: 40px 10px;
+  background-color: #FFFFFF;
+  border-right: 1px solid #E2E2E2;
 }
 
 mat-nav-list a {
-    color: #999999;
-    font-size: 14px;
-    border-radius: 5px;
+  color: #999999;
+  font-size: 14px;
+  border-radius: 5px;
 }
 
 mat-nav-list a.active {
-    color: #6B0D24;
+  color: #6B0D24;
 }
 
 .mat-list-icon {
-    margin-right: 12px;
+  margin-right: 12px;
 }
 
 .router {
-    width: 100%;
-    background-color: #FAFAFA;
-    padding: 30px 20px;
+  width: 100%;
+  background-color: #FAFAFA;
+  padding: 30px 20px;
 }
 
 mat-nav-list a:hover {
-    color: #FFFFFF;
-    background-color: #6B0D24;
+  color: #FFFFFF;
+  background-color: #6B0D24;
 }
 
 .avatarDiv {
-    padding: 0 16px;
+  padding: 0 16px;
 }
 
 .avatar {
-    background: #6B0D24;
-    border-radius: 5px;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    position: relative;
-    margin: 5px;
-    text-align: center;
+  background: #6B0D24;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  position: relative;
+  margin: 5px;
+  text-align: center;
 }
 
 .avatar mat-icon {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: white;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 15px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
 }
 
 .newCourse {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 

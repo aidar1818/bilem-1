@@ -14,24 +14,35 @@
 
 <ng-template #coursesArea>
   <div fxLayout="column" class="cards" *ngFor="let course of favoriteCourses">
-    <mat-card fxLayout="row" class="card favorite" fxLayoutAlign="space-between">
+    <mat-card fxLayout="row" class="card favorite" fxLayoutAlign="start space-between">
       <img
-        fxFlex="20"
+        class="course-image"
+        fxFlex="12"
         [src]="course.image | imageForCourse"
         [alt]="course.title"
       >
-      <div fxFlex="70">
-        <mat-card-title-group>
-          <mat-card-title class="title">{{ course.title }}</mat-card-title>
-          <mat-card-subtitle><p>{{ course.author.displayName }}</p></mat-card-subtitle>
+      <div fxFlex="73">
+        <mat-card-title-group fxLayout="column" fxLayoutAlign="space-around flex-start" style="height: 100%">
+          <p class="course-author">{{ course.author.displayName }}</p>
+          <p class="title">{{ course.title }}</p>
         </mat-card-title-group>
         <mat-card-content>
           <p *ngIf="!course.is_free"><b>{{ course.price }}сом</b></p>
-          <p *ngIf="course.is_free"><b>Бесплатно</b></p>
         </mat-card-content>
-        <mat-card-actions>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="space-around flex-end">
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="remove-btn">
+            <span class="material-icons">more_vert</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Покинуть курс</button>
+          </mat-menu>
+        </div>
+
+        <mat-card-actions fxFlex="15">
           <button mat-stroked-button color="accent" *ngIf="!course.is_free">Купить курс</button>
-          <button mat-stroked-button color="primary" *ngIf="course.is_free">Пройти курс</button>
+          <button mat-stroked-button color="success" *ngIf="course.is_free">Пройти курс</button>
         </mat-card-actions>
       </div>
     </mat-card>

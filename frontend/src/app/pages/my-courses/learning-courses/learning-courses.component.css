@@ -3,6 +3,7 @@
 }
 
 .cards {
+  width: 565px;
   margin-bottom: 16px;
 }
 
@@ -68,6 +69,7 @@
 }
 
 .recent-course-card {
+  width: 350px;
   margin-bottom: 16px;
 }
 

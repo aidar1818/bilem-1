@@ -1,58 +1,62 @@
-<div class="search-block">
-  <div class="categories" (mouseenter)="show()" (mouseleave)="hide()">
-    <a class="dropbtn">Категории</a>
-    <div class="dropdown">
-      <div class="categories-content">
-        <div *ngFor="let category of categoriesArray" class="linkCat" (mouseenter)="showSub(category._id)">
-          <a class="routeLinks category__title" [routerLink]="['category', category._id]">{{ category.title }}</a>
-          <span class="material-icons chevron-icon">chevron_right</span>
+<div class="container">
+  <div class="search-block">
+    <div class="categories" (mouseenter)="show()" (mouseleave)="hide()">
+      <a class="dropbtn">Категории</a>
+      <div class="dropdown">
+        <div class="categories-content">
+          <div *ngFor="let category of categoriesArray" class="linkCat" (mouseenter)="showSub(category._id)">
+            <a class="routeLinks category__title" [routerLink]="['category', category._id]">{{ category.title }}</a>
+            <span class="material-icons chevron-icon">chevron_right</span>
+          </div>
         </div>
-      </div>
-      <div class="subcategories-content" (mouseleave)="hideSub()">
-        <div *ngFor="let subcategory of subCategoriesArr" class="linkCat">
-          <a class="routeLinks subcategory__title" [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
+        <div class="subcategories-content" (mouseleave)="hideSub()">
+          <div *ngFor="let subcategory of subCategoriesArr" class="linkCat">
+            <a class="routeLinks subcategory__title"
+               [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <form (ngSubmit)="onSubmit()" #searchForm=ngForm class="form">
+    <form (ngSubmit)="onSubmit()" #searchForm=ngForm class="form">
     <span class="material-icons search-icon">
         search
       </span>
-    <input
-      class="textInput"
-      type="text"
-      ngModel
-      name="title"
-      placeholder="Название курса или автора"
-      #title
-    />
-    <div>
       <input
-        class="checkboxInput"
-        type="checkbox"
+        class="textInput"
+        type="text"
         ngModel
-        name="is_free"
-        id="is_free"
-        #is_free
+        name="title"
+        placeholder="Название курса или автора"
+        #title
       />
-      <label for="is_free">Бесплатные</label>
-    </div>
+      <div>
+        <input
+          class="checkboxInput"
+          type="checkbox"
+          ngModel
+          name="is_free"
+          id="is_free"
+          #is_free
+        />
+        <label for="is_free">Бесплатные</label>
+      </div>
 
-    <ng-template #btn>
-      <button
-        [routerLink]="['/search']"
-        [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
-        queryParamsHandling="merge"
-        type="submit" class="btnSearch">Искать
-      </button>
-    </ng-template>
-    <mat-progress-bar mode="indeterminate" *ngIf="(searchLoading | async) else btn" style="width: 74px"></mat-progress-bar>
-  </form>
-</div>
+      <ng-template #btn>
+        <button
+          [routerLink]="['/search']"
+          [queryParams]="{ 'title': title.value, 'is_free': is_free.checked ? true : '' }"
+          queryParamsHandling="merge"
+          type="submit" class="btnSearch">Искать
+        </button>
+      </ng-template>
+      <mat-progress-bar mode="indeterminate" *ngIf="(searchLoading | async) else btn"
+                        style="width: 74px"></mat-progress-bar>
+    </form>
+  </div>
 
-<div class="content-main">
-  <router-outlet></router-outlet>
+  <div class="content-main">
+    <router-outlet></router-outlet>
+  </div>
 </div>

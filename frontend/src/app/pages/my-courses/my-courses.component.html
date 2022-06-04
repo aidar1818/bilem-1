@@ -1,16 +1,21 @@
 <div class="main">
   <app-sidebar class="nav">
-    <mat-nav-list  role="navigation">
+    <div class="user-info" fxLayout="row">
+      <div class="avatar">
+        {{ userData.displayName?.charAt(0) }}
+      </div>
+      <div>
+        <h5 class="user-title">{{ userData.displayName }}</h5>
+        <p class="user-subtitle">{{ userData.myCourses.length + userData.myCourses.length}} курсов</p>
+      </div>
+    </div>
+    <mat-nav-list role="navigation">
       <a mat-list-item routerLink="learning">
-        <span class="material-icons mat-list-icon">
-          menu_book
-        </span>
+        <img src="../../../assets/icons/my-courses.svg" alt="my-courses" class="ic"/>
         Мои курсы
       </a>
       <a mat-list-item routerLink="favorite">
-        <span class="material-icons mat-list-icon">
-          favorite
-        </span>
+        <img src="assets/icons/favorite-courses.svg" alt="favorite-courses" class="ic"/>
         Хочу пройти
       </a>
     </mat-nav-list>

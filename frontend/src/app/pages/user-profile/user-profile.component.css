@@ -59,10 +59,58 @@
 
 .card {
   padding: 20px;
-  border:none;
-  overflow:hidden;
-  border-radius:8px;
-  cursor:pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  opacity: 0.3;
+  background-color: #85233E;
+  transform: scaleY(1);
+  transition: all 0.7s;
+  transform-origin: bottom
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #85233E;
+  transform: scaleY(0);
+  transition: all 0.7s;
+  transform-origin: bottom
+}
+
+.name-menu {
+  border-bottom: 1px solid #eeeeee;
+  width: 80%;
+  margin-bottom: 15px;
+}
+
+.card:hover::after {
+  transform: scaleY(1);
+}
+
+.text-center {
+  min-width: 40%;
+  margin: 0 0 0 20px;
+}
+
+h3 {
+  border-bottom: 1px solid #eeeeee;
+  width: 80%;
 }
 
 .fonts {
@@ -80,14 +128,14 @@
 }
 
 ul {
-  list-style:none;
+  list-style: none;
   padding: 0;
   width: 80%;
   margin-bottom: 40px;
 }
 
 ul li {
-  font-size:13px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   padding: 3px;
@@ -154,8 +202,7 @@ img {
 
 .mat-card-title .course-author {
   font-size: 16px !important;
-  font-weight: 400;
-  color: #999;
+  font-weight: 400;  color: #999;
 }
 
 .course-image {
