@@ -16,7 +16,7 @@ export class MainCoursesComponent implements OnInit, OnDestroy, AfterViewInit {
   courses: Observable<Course[] | null>;
   loadingObservable: Observable<boolean | null>;
   loadingSub!: Subscription;
-  loading!: boolean;
+  loading = false;
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
@@ -33,7 +33,7 @@ export class MainCoursesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() =>{
+    setTimeout(() => {
       this.loading = false;
     }, 0)
   }

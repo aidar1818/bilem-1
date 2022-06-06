@@ -10,8 +10,7 @@ import { Module } from '../models/module.model';
   providedIn: 'root'
 })
 export class CourseService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   fetchCourses() {
     return this.http.get<Course[]>(env.apiUrl + '/courses').pipe(
@@ -121,7 +120,6 @@ export class CourseService {
   }
 
   addModules(moduleData: Module, id: string) {
-    console.log(moduleData, id);
     return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);
   };
 

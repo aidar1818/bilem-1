@@ -21,18 +21,16 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.searchCourses = store.select(state => state.courses.searchCourses);
-    this.loading = store.select(state => state.courses.fetchLoading);
+    this.loading = store.select(state => state.courses.searchLoading);
     this.error = store.select(state => state.courses.fetchLoadingError);
   }
 
   ngOnInit(): void {
-    this.querySub = this.route.queryParams
-      .subscribe(params => {
+    this.querySub = this.route.queryParams.subscribe(params => {
         const title = params['title']?.toLowerCase();
-        this.store.dispatch(searchCoursesRequest(
-          {courseData: {title, is_free: params['is_free']}}));
-        }
-      );
+        this.store.dispatch(searchCoursesRequest({courseData: {title, is_free: params['is_free']}}));
+      }
+    );
 
     this.courseSub = this.searchCourses.subscribe(c => {
       if (c.length === 0) {
