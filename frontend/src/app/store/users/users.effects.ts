@@ -4,7 +4,7 @@ import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import {
   addSocialNetworksFailure,
-  addSocialNetworksRequest,
+  addSocialNetworksRequest, addSocialNetworksSuccess,
   editPasswordFailure,
   editPasswordRequest,
   editPasswordSuccess,
@@ -34,20 +34,20 @@ import {
   sendUserCodeRequest,
   sendUserCodeSuccess
 } from './users.actions';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { catchError, map, mergeMap, Observable, of, tap } from 'rxjs';
 import { HelpersService } from '../../services/helpers.service';
 import { AppState } from '../types';
 import { Store } from '@ngrx/store';
 import { SocialAuthService } from 'angularx-social-login';
 import { fetchCoursesRequest } from '../course/course.actions';
-import {
-  fetchStatisticsFailure,
-  fetchStatisticsRequest,
-  fetchStatisticsSuccess
-} from '../statistics/statistics.actions';
+import { User } from '../../models/user.model';
+
 
 @Injectable()
 export class UsersEffects {
+  user: Observable<User | null>;
+  userData!: User | null;
+
   constructor(
     private actions: Actions,
     private usersService: UsersService,
@@ -55,7 +55,14 @@ export class UsersEffects {
     private helpers: HelpersService,
     private store: Store<AppState>,
     private auth: SocialAuthService,
-  ) {}
+  ) {
+    this.user = store.select(state => state.users.user);
+    this.user.subscribe(user => {
+      if(user) {
+        this.userData = user;
+      }
+    });
+  }
 
   getUser = createEffect(() => this.actions.pipe(
     ofType(fetchUserRequest),
@@ -172,10 +179,10 @@ export class UsersEffects {
   addSocialNetworks = createEffect(() => this.actions.pipe(
     ofType(addSocialNetworksRequest),
     mergeMap( ({socialNetworks}) => this.usersService.addSocialNetworks(socialNetworks).pipe(
-      map(user => editProfileSuccess({user})),
+      map(user => addSocialNetworksSuccess({user})),
       tap(() => {
         this.helpers.openSnackbar('Ссылки на соцсети обновлены');
-        void this.router.navigate(['/profile']);
+        void this.router.navigate(['/profile/' + this.userData?._id]);
       })
     )),
     catchError(() => of(addSocialNetworksFailure({error: 'Что-то пошло не так'})))

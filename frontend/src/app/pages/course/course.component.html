@@ -32,7 +32,7 @@
 
         <div class="about-card">
           <h2>Преподватель</h2>
-          <p>{{ course.author.displayName }}</p>
+          <p><a [routerLink]="['/profile/', course.author._id]">{{ course.author.displayName }}</a></p>
         </div>
 
         <div class="about-card">
