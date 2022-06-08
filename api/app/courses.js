@@ -185,7 +185,13 @@ router.post('/search', roles, async (req, res, next) => {
       courses = await Course.find(query).populate('author', 'displayName');
     }
 
-    const responseCourses = courses.filter(course => course.title.toLowerCase().includes(req.body.title));
+    const responseCourses = courses.filter(course =>
+      course.title.toLowerCase().includes(req.body.title) ||
+      course.author.displayName.toLowerCase().includes(req.body.title) ||
+      course.description.toLowerCase().includes(req.body.title)
+    );
+
+    console.log(responseCourses);
 
     return res.send(responseCourses);
   } catch (e) {
