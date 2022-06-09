@@ -6,158 +6,137 @@
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <div class="about" *ngIf="course">
-    <div class="title">
+  <div class="title-block" *ngIf="course">
+    <div class="container">
       <h1 class="course-title">{{ course.title }}</h1>
-      <p> {{ course.description }} </p>
-      <div fxLayout="row" class="rate" *ngIf="review">
-        <img class="rating-img" src="assets/icons/raiting.png" alt="rating">
-        <p>{{ review }} / 5</p>
+      <div>
+        <iframe class="video" width="270" height="150" src="https://www.youtube.com/embed?v=W6NZfCO5SIk"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="course-info">
+          <div>
+            <img
+              *starsRepeat="review"
+              class="rating-img-sm"
+              src="assets/icons/ic-star-yellow.svg" alt="rating"
+            />
+            <span *ngIf="review">{{ review }}</span>
+            <p>{{ course.students.length }} учащихся</p>
+          </div>
+          <div class="course-info__review">
+            <p *ngIf="allReview === 1">{{allReview}} отзыв</p>
+            <p *ngIf="allReview > 1 && allReview < 5">{{allReview}} отзыва</p>
+            <p *ngIf="allReview > 4">{{allReview}} отзывов</p>
+          </div>
+        </div>
       </div>
     </div>
-    <img
-      class="image"
-      [src]="course.image | imageForCourse"
-      [alt]="course.title"
-    >
   </div>
 
   <div class="container">
-    <div fxLayout="row" class="box" *ngIf="course">
+    <div fxLayout="row" fxLayoutAlign="space-between" class="box" *ngIf="course">
       <div fxFlex="70">
-        <div class="about-card">
+        <div class="about-course">
           <h2>О курсе</h2>
           <p>{{ course.information }}</p>
         </div>
 
-        <div class="about-card">
-          <h2>Преподватель</h2>
-          <p><a [routerLink]="['/profile/', course.author._id]">{{ course.author.displayName }}</a></p>
+        <div class="about-course">
+          <h2>Преподаватели</h2>
+          <p class="author_name">{{ course.author.displayName }}</p>
+          <p>{{ course.author.aboutMe }}</p>
         </div>
 
-        <div class="about-card">
+        <div class="about-course">
           <h2>Программа курса</h2>
-          <mat-list>
-            <mat-list-item *ngFor="let module of course.modules, let a = index">
-              <h3 matLine> {{ a + 1 }}. {{ module.title }} </h3>
-              <p matLine *ngFor="let les of module.lessons, let b = index">
-                <span> {{ a + 1 }}.{{ b + 1 }}. {{les.title}} </span>
-              </p>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          </mat-list>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false" *ngFor="let module of course.modules">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ module.title }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="lesson-title" *ngFor="let les of module.lessons, let a = index">{{ a + 1 }}. {{les.title}}</p>
+          </mat-expansion-panel>
         </div>
 
-        <div class="about-card" *ngIf="review">
+        <div class="about-course review-block" *ngIf="review">
           <h2>Отзывы прошедших курс</h2>
-          <div fxLayout="row" fxLayoutAlign="space-between center" class="rating">
-            <div fxLayout="column" fxLayoutAlign="center center" fxFill="40">
-              <div fxLayout="row" fxLayoutAlign="center center">
-                <p class="rate-review">{{ review }}</p>
-                <img class="rating-img-md" src="assets/icons/raiting.png" alt="rating">
+          <div fxLayout="row" fxLayoutAlign="stretch center" class="rating">
+            <div class="review-rate">
+              <p>{{ review }}</p>
+              <span>Из 5</span>
+            </div>
+            <div class="review-grade">
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(5)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
               </div>
               <div>
-                <p>Из 5</p>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(4)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(3)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(2)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
+              </div>
+              <div>
+                <mat-progress-bar
+                  class="progress"
+                  color="warn"
+                  mode="determinate"
+                  [value]=star(1)
+                  [bufferValue]=allReview>
+                </mat-progress-bar>
               </div>
             </div>
-            <div fxFill="60">
-              <div fxLayout="row" fxLayoutAlign="start center">
-                <div class="stars-sm">
-                  <div>
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                  </div>
-                  <div>
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                  </div>
-                  <div>
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                  </div>
-                  <div>
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                  </div>
-                  <div>
-                    <img class="rating-img-sm" src="assets/icons/raiting.png" alt="rating">
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <mat-progress-bar
-                      class="progress"
-                      color="warn"
-                      mode="determinate"
-                      [value]=star(5)
-                      [bufferValue]=allReview>
-                    </mat-progress-bar>
-                  </div>
-                  <div>
-                    <mat-progress-bar
-                      class="progress"
-                      color="warn"
-                      mode="determinate"
-                      [value]=star(4)
-                      [bufferValue]=allReview>
-                    </mat-progress-bar>
-                  </div>
-                  <div>
-                    <mat-progress-bar
-                      class="progress"
-                      color="warn"
-                      mode="determinate"
-                      [value]=star(3)
-                      [bufferValue]=allReview>
-                    </mat-progress-bar>
-                  </div>
-                  <div>
-                    <mat-progress-bar
-                      class="progress"
-                      color="warn"
-                      mode="determinate"
-                      [value]=star(2)
-                      [bufferValue]=allReview>
-                    </mat-progress-bar>
-                  </div>
-                  <div>
-                    <mat-progress-bar
-                      class="progress"
-                      color="warn"
-                      mode="determinate"
-                      [value]=star(1)
-                      [bufferValue]=allReview>
-                    </mat-progress-bar>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p *ngIf="allReview === 1">из {{allReview}} отзыва</p>
-                <p *ngIf="allReview > 1">из {{allReview}} отзывов</p>
-              </div>
+            <div class="review-amount">
+              <p *ngIf="allReview === 1">из {{allReview}} отзыва</p>
+              <p *ngIf="allReview > 1">из {{allReview}} отзывов</p>
             </div>
           </div>
-          <div>
-            <div class="review-user" *ngFor="let rev of reviewsArr">
+        </div>
+        <div>
+          <div class="review-user" *ngFor="let rev of reviewsArr">
+            <p class="review-author">{{ rev.user.displayName }}</p>
+            <p class="review-text">{{ rev.text }}</p>
+            <div class="img-block">
               <img
                 *starsRepeat="rev.rate"
                 class="rating-img-md"
-                src="assets/icons/raiting.png" alt="rating"
+                src="assets/icons/ic-star.svg" alt="rating"
               />
-              <p class="review-text">{{ rev.text }}</p>
-              <p class="review-author">{{ rev.user.displayName }}</p>
-              <p>{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
             </div>
+            <p class="review-datetime">{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
           </div>
         </div>
       </div>
-
       <div class="buttons" fxLayout="column" *ngIf="userOne">
         <p *ngIf="course.is_free">Бесплатно</p>
         <p *ngIf="!course.is_free">{{ course.price }} сом</p>
@@ -171,11 +150,12 @@
         <button mat-stroked-button *ngIf="learning"
                 [routerLink]="['/course', 'lessons', course._id, course.modules[0].lessons[0]._id]">Продолжить
         </button>
-        <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)" *ngIf="!favorite && !learning">
-          <mat-icon>favorite</mat-icon>
+        <button mat-button class="favorite" (click)="addFavoriteCourse(course._id)" *ngIf="!favorite || !learning">
           Хочу пройти
         </button>
       </div>
     </div>
   </div>
+
+
 </ng-template>

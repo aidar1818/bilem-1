@@ -34,6 +34,7 @@ export class CourseComponent implements OnInit {
   user: Observable<null | User>;
   userOne!: User;
   userSub!: Subscription;
+  panelOpenState = false;
 
   constructor(
     private store: Store<AppState>,
