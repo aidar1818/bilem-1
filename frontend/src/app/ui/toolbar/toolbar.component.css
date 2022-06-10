@@ -20,8 +20,13 @@
   color: #161615;
 }
 
-a.activeToolbarNav {
+.page-nav a:hover {
   color: #6B0D24;
+  font-weight: 700;
+}
+
+a.activeToolbarNav {
+  color: #85233E;
   font-weight: 700;
 }
 

@@ -191,8 +191,6 @@ router.post('/search', roles, async (req, res, next) => {
       course.description.toLowerCase().includes(req.body.title)
     );
 
-    console.log(responseCourses);
-
     return res.send(responseCourses);
   } catch (e) {
     next(e);

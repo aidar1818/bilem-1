@@ -193,6 +193,7 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   font-size: 12px;
   line-height: 18px;
   color: #666666;
+  margin: 20px 0 30px 0;
 }
 
 .authFbGlText {
