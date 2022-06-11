@@ -114,4 +114,4 @@ export const fetchUserProfileFailure = createAction(
   '[UserProfile] Fetch Failure',
   props<{error: string}>());
 
-
+export const changeSaveUser = createAction('[User] Change Safe User', props<{save: boolean}>());

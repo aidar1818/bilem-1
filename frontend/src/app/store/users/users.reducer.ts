@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   addSocialNetworksFailure,
   addSocialNetworksRequest,
-  addSocialNetworksSuccess,
+  addSocialNetworksSuccess, changeSaveUser,
   editPasswordFailure,
   editPasswordRequest,
   editPasswordSuccess,
@@ -46,6 +46,7 @@ import {
 
 const initialState: UsersState = {
   user: null,
+  saveUser: true,
   fetchLoading: false,
   fetchLoadingError: null,
   addLoading: false,
@@ -196,4 +197,6 @@ export const usersReducer = createReducer(
     fetchUserProfileDataLoading: false,
     fetchUserProfileDataError: error,
   })),
+
+  on(changeSaveUser, (state, {save}) => ({...state, saveUser: save})),
 );

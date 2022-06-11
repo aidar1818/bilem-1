@@ -4,7 +4,12 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { googleLoginUserData, LoginFacebookUser, RegisterError, RegisterUserData } from '../../models/user.model';
 import { NgForm } from '@angular/forms';
-import { loginFacebookRequest, loginGoogleRequest, registerUserRequest } from '../../store/users/users.actions';
+import {
+  changeSaveUser,
+  loginFacebookRequest,
+  loginGoogleRequest,
+  registerUserRequest
+} from '../../store/users/users.actions';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
@@ -76,6 +81,8 @@ export class RegisterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   register() {
     const userData: RegisterUserData = this.form.value;
+    const save = this.form.value.check;
+    this.store.dispatch(changeSaveUser({ save }));
     this.store.dispatch(registerUserRequest({userData}));
   }
 

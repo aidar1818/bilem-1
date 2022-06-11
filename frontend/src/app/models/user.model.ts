@@ -31,6 +31,7 @@ export interface RegisterUserData {
 export interface LoginUserData {
   email: string,
   password: string,
+  check: boolean
 }
 
 export interface LoginFacebookUser {

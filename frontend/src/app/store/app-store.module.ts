@@ -18,11 +18,15 @@ import { ReviewEffects } from './reviews/review.effects';
 import { reviewsReducer } from './reviews/review.reducer';
 import { statisticsReducer } from './statistics/statistics.reducer';
 import { StatisticsEffects } from './statistics/statistics.effects';
+import {AppState} from "./types";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
     keys: [{users: ['user']}],
-    rehydrate: true
+    rehydrate: true,
+    syncCondition: (state: AppState) => {
+      return state.users.saveUser;
+    }
   })(reducer);
 }
 

@@ -81,7 +81,7 @@
       </mat-error>
     </mat-form-field>
     <div class="authLightGreyTextDiv">
-      <mat-checkbox>Запомнить меня</mat-checkbox>
+      <mat-checkbox name="check" ngModel>Запомнить меня</mat-checkbox>
     </div>
     <button
       type="submit"
@@ -92,12 +92,12 @@
       Зарегестрироваться
     </button>
     <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
-    <p fxLayout="row" fxLayoutAlign="space-between center">
+    <p class="social" fxLayout="row" fxLayoutAlign="space-evently center">
           <span class="greyDarkText authFbGlText">
                       Регистрация с помощью социальных сетей:
           </span>
-      <input class="fb" type="image" src="assets/icons/gmail.svg" alt="google logo" (click)="googleLogin()">
-      <input class="fb" type="image" src="assets/icons/fb.svg" alt="facebook logo" (click)="fbLogin()">
+      <a class="fb" (click)="googleLogin()"><img src="assets/icons/gmail.svg" alt="google logo"/></a>
+      <a class="fb" (click)="fbLogin()"><img src="assets/icons/fb.svg" alt="facebook logo"/></a>
     </p>
     <div>
       <p class="greyDarkText authFbGlText">Уже зарегестрированы? <a routerLink="/login">Войти</a></p>

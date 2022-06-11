@@ -1,11 +1,17 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
-import { googleLoginUserData, LoginError, LoginFacebookUser, LoginUserData } from '../../models/user.model';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../store/types';
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
-import { loginFacebookRequest, loginGoogleRequest, loginUserRequest } from '../../store/users/users.actions';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Observable, Subscription} from 'rxjs';
+import {googleLoginUserData, LoginError, LoginFacebookUser, LoginUserData} from '../../models/user.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/types';
+import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser} from 'angularx-social-login';
+import {
+  changeSaveUser,
+  loginFacebookRequest,
+  loginGoogleRequest,
+  loginUserRequest
+} from '../../store/users/users.actions';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +32,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private route: ActivatedRoute
   ) {
     this.loading = store.select(state => state.users.loginLoading);
     this.error = store.select(state => state.users.loginError);
@@ -36,10 +43,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authStateSub = this.authService.authState.subscribe((user: SocialUser) => {
-      if(!user) return;
+      if (!user) return;
 
-      if(this.googleLoginClick){
-        if(user.provider === "GOOGLE"){
+      if (this.googleLoginClick) {
+        if (user.provider === "GOOGLE") {
           this.googleUserData = {
             authToken: user.authToken,
             id: user.id,
@@ -51,8 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.store.dispatch(loginGoogleRequest({userData: this.googleUserData}));
       }
 
-      if(this.fbLoginClick){
-        if(user.provider === "FACEBOOK"){
+      if (this.fbLoginClick) {
+        if (user.provider === "FACEBOOK") {
           this.fbUserData = {
             authToken: user.authToken,
             id: user.id,
@@ -63,11 +70,45 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.store.dispatch(loginFacebookRequest({userData: this.fbUserData}));
       }
     })
+
+    this.route.data.subscribe(data => {
+      let remember = localStorage.getItem('email');
+
+      if (remember) {
+        this.setFormValue({
+          email: localStorage.getItem('email'),
+          password: localStorage.getItem('password'),
+          check: true,
+        });
+      } else {
+        this.setFormValue({
+          email: '',
+          password: '',
+          check: false,
+        });
+      }
+    });
+  }
+
+  setFormValue(value: {[key: string] : any}) {
+    setTimeout(() => {
+      this.form.form.setValue(value);
+    })
   }
 
   onSubmit() {
     const userData: LoginUserData = this.form.value;
+    const save = this.form.value.check;
+    this.store.dispatch(changeSaveUser({save}));
     this.store.dispatch(loginUserRequest({userData}));
+
+    if (userData.check) {
+      localStorage.setItem('email', this.form.value.email);
+      localStorage.setItem('password', this.form.value.password);
+    } else {
+      localStorage.setItem('email', '');
+      localStorage.setItem('password', '');
+    }
   }
 
   fbLogin() {

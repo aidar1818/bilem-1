@@ -8,6 +8,7 @@ import { Statistics } from '../models/statistics.model';
 
 export type UsersState = {
   user: null | User,
+  saveUser: boolean,
   fetchLoading: boolean,
   fetchLoadingError: null | string,
   addLoading: boolean,

@@ -6,6 +6,10 @@
   font-size: 12px;
 }
 
-.social input {
+.social img {
+  width: 30px;
+}
+
+.fb {
   margin-left: 10px;
 }
