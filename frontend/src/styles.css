@@ -139,20 +139,8 @@ footer {
 
 .unpublished {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  color: #fff;
-  border-style: solid;
-  border-width: 0 80px 80px 0;
-  border-color: transparent #E6B1A8 transparent transparent;
-}
-
-.unpublished-text {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg) translate(30%, 45%);
+  bottom: 40px;
+  right: 20px;
 }
 
 .main-color-back {

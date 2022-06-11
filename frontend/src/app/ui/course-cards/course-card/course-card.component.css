@@ -44,7 +44,7 @@ mat-card-title-group {
 .mat-card-title .course-title {
   display: block;
   font-size: 20px !important;
-  margin-bottom: 13px !important;
+  margin-bottom: 10px !important;
 }
 
 .mat-card-title .course-author {
@@ -84,8 +84,13 @@ h1 {
 
 .admin-btns {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
+  bottom: 40px;
+  left: 5px;
+}
+
+.red-color {
+  color:red;
+  font-size: 35px;
 }
 
 .heart {
