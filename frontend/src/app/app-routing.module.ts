@@ -41,6 +41,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FooterConfidentilaityComponent } from './pages/footer/footer-confidentilaity/footer-confidentilaity.component';
 import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
 import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tariffs.component';
+import { NotFoundComponent } from './ui/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -114,12 +115,10 @@ const routes: Routes = [
     data: {roles: ['admin', 'user']},
     children: [
       {
-        path: 'learning',
-        component: LearningCoursesComponent,
+        path: 'learning', component: LearningCoursesComponent,
       },
       {
-        path: 'favorite',
-        component: FavoriteCoursesComponent,
+        path: 'favorite', component: FavoriteCoursesComponent,
       }
     ]
   },
@@ -160,8 +159,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'course/:id',
-    component: CourseComponent,
+    path: 'course/:id', component: CourseComponent,
   },
   {
     path: 'syllabus/program/:id',
@@ -188,9 +186,9 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'allCourses',
-    component: AllCoursesComponent
-  }
+    path: 'allCourses', component: AllCoursesComponent
+  },
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({

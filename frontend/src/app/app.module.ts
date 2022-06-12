@@ -94,6 +94,7 @@ import { FooterConfidentilaityComponent } from './pages/footer/footer-confidenti
 import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tariffs.component';
 import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NotFoundComponent } from './ui/not-found/not-found.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -171,6 +172,7 @@ const socialConfig: SocialAuthServiceConfig = {
     FooterConfidentilaityComponent,
     FooterConditionsComponent,
     FooterTariffsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
