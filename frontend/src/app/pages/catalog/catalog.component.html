@@ -4,15 +4,58 @@
       <a class="dropbtn">Категории</a>
       <div class="dropdown">
         <div class="categories-content">
-          <div *ngFor="let category of categoriesArray" class="linkCat" (mouseenter)="showSub(category._id)">
-            <a class="routeLinks category__title" [routerLink]="['category', category._id]">{{ category.title }}</a>
+          <div fxLayout="row" fxLayoutAlign="space-between center"
+               *ngFor="let category of categoriesArray"
+               [ngClass]="{'link-cat-hover': category._id === selectedCategory, linkCat: true}"
+               (mouseenter)="showSub(category._id)">
+            <a
+              [ngClass]="{'link-cat-hover': category._id === selectedCategory, routeLinks: true}"
+              [routerLink]="['category', category._id]">
+              {{ category.title }}
+            </a>
+
+            <div fxLayout="row">
+              <span class="material-icons edit-ic" *appHasRoles="['admin']"
+                    (click)="deleteCategory(category._id)">clear</span>&nbsp;
+              <span class="material-icons edit-ic" *appHasRoles="['admin']"
+                    [routerLink]="['/edit-category', category._id]"
+              >edit</span>
+            </div>
+
             <span class="material-icons chevron-icon">chevron_right</span>
+          </div>
+          <div *appHasRoles="['admin']" class="add-btn">
+            <a mat-raised-button color="primary" routerLink="/add-category">
+            <span class="material-icons">
+                add
+              </span>
+            </a>
           </div>
         </div>
         <div class="subcategories-content" (mouseleave)="hideSub()">
-          <div *ngFor="let subcategory of subCategoriesArr" class="linkCat">
-            <a class="routeLinks subcategory__title"
-               [routerLink]="['subcategories', subcategory._id]">{{ subcategory.title }}</a>
+          <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let subcategory of subCategoriesArr"
+               [ngClass]="{'link-cat-hover': subcategory._id === selectedSubCategory, linkCat: true}"
+               (mouseover)="selectSubCategory(subcategory._id)">
+            <a
+              [routerLink]="['subcategories', subcategory._id]"
+              [ngClass]="{'link-cat-hover': subcategory._id === selectedSubCategory, routeLinks: true}">
+              {{ subcategory.title }}
+            </a>
+            <div fxLayout="row">
+              <span class="material-icons edit-ic" *appHasRoles="['admin']"
+                    (click)="deleteSubcategory(subcategory._id)">clear</span>&nbsp;
+              <span class="material-icons edit-ic" *appHasRoles="['admin']"
+                    [routerLink]="['/edit-subcategory', subcategory._id]"
+              >edit</span>
+            </div>
+          </div>
+
+          <div *ngIf="subCategoriesArr.length">
+            <div *appHasRoles="['admin']" class="add-btn">
+              <a mat-raised-button color="primary" [routerLink]="['/add-subcategory/', selectedCategory]">
+                <span class="material-icons">add</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
