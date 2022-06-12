@@ -1,0 +1,334 @@
+.block1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 96px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid rgba(18, 17, 39, 0.12);;
+}
+
+.box1 {
+  width: 456px;
+}
+
+.bigTitle {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  color: #121127;
+}
+
+.littleTitle {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 170%;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #85233E;
+}
+
+
+.textStyle {
+  width: 550px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+  color: rgba(18, 17, 39, 0.56);
+}
+
+.box1 h3 {
+  margin-bottom: 20px;
+}
+
+.box1 h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.box1 p {
+  font-size: 16px;
+  margin-bottom: 75px;
+}
+
+.box1 button {
+  width: 240px;
+  height: 52px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 14px 32px;
+  background: #85233E;
+  border: #85233E;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+iframe {
+  border: none;
+  border-radius: 16px;
+}
+
+
+.block2 {
+  margin-top: 72px;
+}
+
+.block2 p {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  text-align: center;
+  color: #121127;
+  margin-bottom: 50px;
+}
+
+.block2_links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+
+.block3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 96px;
+  margin-bottom: 39px;
+}
+
+.elem1 {
+  width: 575px;
+}
+
+.elem1 h3 {
+  margin-bottom: 4px;
+}
+
+.elem1 h1 {
+  font-size: 44px;
+  margin-bottom: 32px;
+}
+
+.elem1 h2 {
+  font-size: 24px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.elem1 p {
+  font-size: 18px;
+}
+
+.abc {
+  margin-bottom: 32px;
+}
+
+.elem1 ul {
+  margin-top: 64px;
+  margin-bottom: 32px;
+  padding-left: 20px;
+}
+
+.elem1 li {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 180%;
+  color: rgba(18, 17, 39, 0.72);
+  margin-bottom: 16px;
+}
+
+.elem1 li::marker {
+  width: 8px;
+  height: 8px;
+  color: rgba(18, 17, 39, 0.72);
+}
+
+
+.elem2 {
+  width: 456px;
+  height: 315px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(18, 17, 39, 0.08);
+  border-radius: 12px;
+}
+
+
+.dockerImg {
+  width: 136px;
+  height: 35px;
+  margin-bottom: 32px;
+}
+
+.elem2 p {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 180%;
+  color: #121127;
+  margin-bottom: 32px;
+}
+
+.authorBlock3 {
+  display: flex;
+  flex-wrap: wrap;
+  height: 56px;
+}
+
+.authorBlock3 img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.authorBlock3 p {
+  margin: auto 0;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 180%;
+  text-align: center;
+  color: #ccc;
+}
+
+.authorBlock3 p span {
+  color: #121127;
+}
+
+
+.block4 {
+  width: 936px;
+  height: 161px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 86px auto;
+  padding: 40px 70px;
+  box-shadow: 0 20px 50px rgba(18, 17, 39, 0.08);
+  border-radius: 12px;
+}
+
+.block4 h3 {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 140%;
+  text-align: center;
+  color: #85233E;
+  margin: 0;
+  padding: 0;
+}
+
+.block4 p {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 180%;
+  text-align: center;
+  color: rgba(18, 17, 39, 0.56);
+}
+
+
+.block5 {
+  margin-top: 100px;
+}
+
+.el1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(18, 17, 39, 0.12);
+  margin-bottom: 56px;
+}
+
+.el1 h1 {
+  font-size: 40px;
+  width: 456px;
+  margin: 0;
+}
+
+.el1 p {
+  font-size: 18px;
+  width: 648px;
+  margin: 0;
+}
+
+
+.el2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid rgba(18, 17, 39, 0.12);
+  margin-bottom: 56px;
+}
+
+.el2 h2 {
+  width: 265px;
+  font-size: 20px;
+  margin-right: 25px;
+}
+
+.el2 ul {
+  width: 232px;
+  margin-right: 24px;
+  margin-bottom: 0;
+}
+
+.el2 li {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 180%;
+  color: #121127;
+  margin-bottom: 12px;
+  list-style-image: url(src/assets/icons/tariffCheck.svg);
+}
+
+.el2 li::marker {
+
+
+}
+
+.el2 h1 {
+  font-size: 40px;
+}
+
+.el2 button {
+  width: 121px;
+  height: 52px;
+  padding: 14px 32px;
+  background: #85233E;
+  border: #85233E;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-left: auto;
+}
+
+
