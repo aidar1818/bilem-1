@@ -78,7 +78,7 @@
   color: #fff;
 }
 
-recent-course-card-inner {
+.recent-course-card-inner {
   margin: 0;
 }
 
@@ -124,4 +124,37 @@ recent-course-card-inner {
 .recent-course-card:hover ::ng-deep .mat-progress-spinner circle {
   stroke: #fff !important;
 }
+
+.paginationArea {
+  width: 60%;
+  text-align: right;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  color: #85233E !important;
+  border: 1px solid #85233E !important;
+  border-radius: 15%;
+  background-color: #FFFFFF !important;
+}
+
+.my-pagination /deep/ .ngx-pagination a {
+  border: 1px solid #DFE3E8 !important;
+  background-color: #FFFFFF;
+  border-radius: 15%;
+  margin-left: 10px;
+}
+
+.my-pagination /deep/ .ngx-pagination a::after {
+  margin: 0;
+}
+
+.my-pagination /deep/ .ngx-pagination a::before {
+  margin: 0;
+}
+
+
+
 

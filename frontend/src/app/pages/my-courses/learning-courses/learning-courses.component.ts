@@ -17,8 +17,11 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
 
   learningCourses: MyCourses[] = [];
   lastCourses: MyCourses[] = [];
-  loading: Observable<boolean>
-  error: Observable<null | string>
+  loading: Observable<boolean>;
+  error: Observable<null | string>;
+
+  totalLength: any;
+  page: number = 1;
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
@@ -35,6 +38,8 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
 
         this.lastCourses = courses.slice(0, 4);
         this.learningCourses = courses;
+
+        this.totalLength = courses.length;
       }
     });
   }
@@ -45,6 +50,11 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
     } else {
       return courseTitle;
     }
+  }
+
+  onPageChange(page: number) {
+    this.page = page;
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy() {

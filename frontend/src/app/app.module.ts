@@ -93,6 +93,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FooterConfidentilaityComponent } from './pages/footer/footer-confidentilaity/footer-confidentilaity.component';
 import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tariffs.component';
 import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -203,7 +204,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatTooltipModule,
     MatTabsModule,
     Ng2SearchPipeModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
