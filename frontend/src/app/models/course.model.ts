@@ -55,6 +55,7 @@ export class Course {
     public is_free: boolean,
     public rate: number,
     public is_published: boolean,
+    public promoVideo: string,
   ) {
   }
 }
@@ -68,6 +69,7 @@ export interface CourseData {
   price: number | null,
   image: File | null,
   is_free: boolean,
+  promoVideo: string | null,
 }
 
 

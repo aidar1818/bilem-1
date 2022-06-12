@@ -615,6 +615,7 @@ const run = async () => {
 
     const [java, cryptoRegency, javaScript, jScript, uxUi, tradingCourse, designIn, designBasic, ieltsCourse, ieltsSpeaking] = await Course.create({
         title: 'Java с нуля',
+        promoVideo: 'pCJsAzWecbk',
         description: 'веб-разработка',
         information: 'Курс по программированию на языке Java для учеников центров Легасофт и IT-CUBE города Смоленска 14 - 16 лет. Курс рассчитан для новичков в программировании. За 4 модуля вы обучитесь основам программирования,  напишите несколько проектов, работая в команде, и узнаете несколько технологий, которые используют профессиональные разработчики.',
         author: user2,
@@ -639,7 +640,7 @@ const run = async () => {
                             'Make a local Java method a management operation without having to deal with JMX APIs.\n' +
                             '\n' +
                             'Make a local Java method a message handler without having to deal with JMS APIs.',
-                        video: 'https://youtu.be/gq4S-ovWVlM',
+                        video: 'gq4S-ovWVlM',
                         image: 'javaSpring-introduction.png',
                         comments: [
                             {
@@ -657,7 +658,7 @@ const run = async () => {
                     {
                         title: 'Modules',
                         description: 'The Spring Framework consists of features organized into about 20 modules. These modules are grouped into Core Container, Data Access/Integration, Web, AOP (Aspect Oriented Programming), Instrumentation, and Test, as shown in the following diagram.',
-                        video: 'https://youtu.be/GB8k2-Egfv0',
+                        video: 'GB8k2-Egfv0',
                         image: 'javaSpring-introduction.png',
                     },
                 ]
@@ -669,13 +670,13 @@ const run = async () => {
                         title: 'Usage scenarios',
                         description: 'The building blocks described previously make Spring a logical choice in many scenarios, from applets to full-fledged enterprise applications that use Spring\'s transaction management functionality and web framework integration.\n' +
                             '\n',
-                        video: 'https://youtu.be/Z5gubdHLJIc',
+                        video: 'Z5gubdHLJIc',
                         image: 'spring-overview.png'
                     },
                     {
                         title: 'Main info full lesson 2',
                         description: 'Spring s declarative transaction management features make the web application fully transactional, just as it would be if you used EJB container-managed transactions. All your custom business logic can be implemented with simple POJOs and managed by Spring s IoC container. Additional services include support for sending email and validation that is independent of the web layer, which lets you choose where to execute validation rules. Spring s ORM support is integrated with JPA, Hibernate, JDO and iBatis; for example, when using Hibernate, you can continue to use your existing mapping files and standard Hibernate SessionFactory configuration. Form controllers seamlessly integrate the web-layer with the domain model, removing the need for ActionForms or other classes that transform HTTP parameters to values for your domain model.',
-                        video: 'https://youtu.be/7c6ZTF6cF88',
+                        video: '7c6ZTF6cF88',
                         image: 'overview-thirdparty-web.png'
                     },
                 ]
@@ -688,6 +689,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Продвинутая Java',
+        promoVideo: '0Cdsk2BeNA8',
         description: 'Веб-разработка',
         information: 'Данный курс предназначен для тех, кто только начинает изучать Java. Мы начнем с самых азов: компиляция и запуск Java-программ, синтаксис языка, система типов, основы объектно-ориентированного программирования. Далее обсудим наиболее важные классы стандартной библиотеки, включая нововведения Java 8. Для закрепления знаний в курсе предусмотрены контрольные вопросы и практические задания.',
         author: user3,
@@ -711,7 +713,7 @@ const run = async () => {
                             'Make a local Java method a management operation without having to deal with JMX APIs.\n' +
                             '\n' +
                             'Make a local Java method a message handler without having to deal with JMS APIs.',
-                        video: 'https://youtu.be/gq4S-ovWVlM',
+                        video: 'gq4S-ovWVlM',
                         image: 'javaSpring-introduction.png',
                         comments: [
                             {
@@ -729,7 +731,7 @@ const run = async () => {
                     {
                         title: 'Modules',
                         description: 'The Spring Framework consists of features organized into about 20 modules. These modules are grouped into Core Container, Data Access/Integration, Web, AOP (Aspect Oriented Programming), Instrumentation, and Test, as shown in the following diagram.',
-                        video: 'https://youtu.be/GB8k2-Egfv0',
+                        video: 'GB8k2-Egfv0',
                         image: 'javaSpring-introduction.png',
                     },
                 ]
@@ -741,13 +743,13 @@ const run = async () => {
                         title: 'Usage scenarios',
                         description: 'The building blocks described previously make Spring a logical choice in many scenarios, from applets to full-fledged enterprise applications that use Spring\'s transaction management functionality and web framework integration.\n' +
                             '\n',
-                        video: 'https://youtu.be/Z5gubdHLJIc',
+                        video: 'Z5gubdHLJIc',
                         image: 'spring-overview.png'
                     },
                     {
                         title: 'Main info full lesson 2',
                         description: 'Spring s declarative transaction management features make the web application fully transactional, just as it would be if you used EJB container-managed transactions. All your custom business logic can be implemented with simple POJOs and managed by Spring s IoC container. Additional services include support for sending email and validation that is independent of the web layer, which lets you choose where to execute validation rules. Spring s ORM support is integrated with JPA, Hibernate, JDO and iBatis; for example, when using Hibernate, you can continue to use your existing mapping files and standard Hibernate SessionFactory configuration. Form controllers seamlessly integrate the web-layer with the domain model, removing the need for ActionForms or other classes that transform HTTP parameters to values for your domain model.',
-                        video: 'https://youtu.be/7c6ZTF6cF88',
+                        video: '7c6ZTF6cF88',
                         image: 'overview-thirdparty-web.png'
                     },
                 ]
@@ -760,6 +762,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Полное руководство по торговле криптовалютой для начинающих',
+        promoVideo: 'x6GSUrdTfDY',
         description: 'Криптовалюты - это легко. Мой курс отвечает на самые основополагающие вопросы об устройстве и использовании криптовалют. Для вас он станет крепким фундаментом в понимании криптовалютного рынка.' +
             ' А так же поможет защититься от мошенников и повысит вашу финансовую грамотность.',
         information: 'Курс об эффективности не технических решений в кибербезопасности. Организации тратят огромные деньги на информационную безопасность своих систем, но преступники разбивают эту дорогую броню с помощью законов психологии. Эффективность существующих форм обучения сравнительно мала. Через месяц сотрудники совершают те же ошибки.',
@@ -773,7 +776,7 @@ const run = async () => {
                     {
                         title: 'Основные понятия криптовалют',
                         description: 'Криптовалюта — это любой вид валюты в цифровой или виртуальной форме, а это означает, что ее не существует в физическом мире. Все цифровые деньги "живут" только в сетевом пространстве. Важно отметить, что они ничем не обеспечены. Майнить ("добывать") криптовалюту может любой желающий, но следует знать, что есть ограничения на добычу криптовалюты, поэтому стоимость криптовалюты зачастую растет с течением времени.',
-                        video: 'https://www.banknn.ru/zhurnal/stati/chto-takoe-kriptovalyuta-prostymi-slovami',
+                        video: 'PF1el_DzYeI',
                         image: '2.jpg',
                         comments: [
                             {
@@ -791,7 +794,7 @@ const run = async () => {
                     {
                         title: 'Золотой стандарт',
                         description: 'Отвечая в первый раз на вопрос, что такое криптовалюта и как ей пользоваться, лучше всего присмотреться к биткоину. Биткоин — это золотой стандарт и первая монета рынка криптовалют. Биржевое обозначение биткоина – BTC. С английского это слово примерно переводится как монета величиной с один бит или минимальная монетка.',
-                        video: 'https://www.youtube.com/watch?v=sq7yGozBreo',
+                        video: 'sq7yGozBreo',
                         image: 'bitcoin.jpeg',
                     },
                 ]
@@ -804,13 +807,13 @@ const run = async () => {
                         description: 'Криптовалютный портфель — комплексное объединение разнообразных криптовалютных активов инвестора в правильной пропорции. Ключевая задача криптовалютного портфеля: обеспечить минимальную рисковость и максимальный доход для инвестора.\n' +
                             '\n' +
                             'В отличие от инвестиционного портфеля фондового рынка, диверсификация рисков в данном случае осуществляется не при помощи инвестирования в различные активы, а приобретением одного актива — криптовалюты – в разных токенах.',
-                        video: 'https://www.youtube.com/watch?v=agKU6V9k6-M',
+                        video: 'agKU6V9k6-M',
                         image: 'portfel4.jpg',
                     },
                     {
                         title: 'Как собрать портфель криптовалют?',
                         description: 'Основным принципом правильного распределения активов в инвестиционном портфеле является разнообразие активов. Криптовалютный портфель должен содержать все инструменты для заработка и снижения риска в правильных пропорциях. Большая часть его составляющих должна состоять из популярных криптовалют со стабильным ростом и востребованностью среди пользователей. Опытными инвесторами разработано несколько оптимальных стратегий формирования криптовалютного портфеля.',
-                        video: 'https://youtu.be/c4AhTOkALDQ',
+                        video: 'c4AhTOkALDQ',
                         image: 'portfel3.jpg'
                     },
                 ]
@@ -823,6 +826,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Java Script',
+        promoVideo: 'ylakWC0VcEM',
         description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
         information: 'Цель данного курса - познакомить слушателей с основами программирования на JavaScript и подготовить их для практического применения данного инструмента.',
         author: user2,
@@ -855,7 +859,7 @@ const run = async () => {
                     {
                         title: 'Безопасность браузера',
                         description: 'Каждая вкладка браузера представляет собой отдельную коробку для запуска кода (в техническом языке, эти коробки называются "средами исполнения") — это значит, что в большинстве случаев код на каждой вкладке запускается полностью отдельно, а код одной вкладки не может напрямую влиять на код другой вкладки или на другом веб-сайте. Это хорошая мера безопасности — если бы это было иначе, пираты могли написать код, который крал информацию с других сайтов или делал другие плохие вещи.',
-                        video: 'https://www.youtube.com/watch?v=y36BHRMRPo8',
+                        video: 'y36BHRMRPo8',
                     },
                 ]
             },
@@ -865,13 +869,13 @@ const run = async () => {
                     {
                         title: 'Клиентская часть веб—приложений (frontend). ',
                         description: 'Это интерфейс страницы, то есть всё, что видит пользователь: контент, кнопки, формы обратной связи, меню. С помощью JS интерфейс реагирует на действия пользователя (клики мыши, нажатия клавиш), также язык отвечает за запоминание данных и автозаполнение форм.',
-                        video: 'https://www.youtube.com/watch?v=9mZmc6a0tmM',
+                        video: '9mZmc6a0tmM',
                         image: '1590690600-front-end-back-end-1080x608.png'
                     },
                     {
                         title: 'Серверная часть веб—приложений (backend).',
                         description: 'Серверный код пишут на платформе Node.js. На JS работают, например, запросы AJAX (asynchronous javascript and XML), которые отправляются на сервер в фоновом режиме, без перезагрузки веб-страницы, и push-уведомления — всплывающие сообщения в браузере, которые реализуются с помощью технологии Comet. Такие уведомления приходят со специального Comet-сервера, который постоянно поддерживает соединение с браузером. Как раз с помощью JavaScript устанавливается это соединение.',
-                        video: 'https://www.youtube.com/watch?v=m4tn1r44oeE',
+                        video: 'm4tn1r44oeE',
                         image: '1590690600-front-end-back-end-1080x608.png'
                     },
                 ]
@@ -884,6 +888,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Java Script с нуля',
+        promoVideo: 'Bluxbh9CaQ0',
         description: 'В данном курсе рассмотрены основы программирования на JavaScript а также некоторые инструменты и модели данных, необходимые для практического использования JavaScript.',
         information: 'Цель данного курса - познакомить слушателей с основами программирования на JavaScript и подготовить их для практического применения данного инструмента.',
         author: user,
@@ -916,7 +921,7 @@ const run = async () => {
                     {
                         title: 'Безопасность браузера',
                         description: 'Каждая вкладка браузера представляет собой отдельную коробку для запуска кода (в техническом языке, эти коробки называются "средами исполнения") — это значит, что в большинстве случаев код на каждой вкладке запускается полностью отдельно, а код одной вкладки не может напрямую влиять на код другой вкладки или на другом веб-сайте. Это хорошая мера безопасности — если бы это было иначе, пираты могли написать код, который крал информацию с других сайтов или делал другие плохие вещи.',
-                        video: 'https://www.youtube.com/watch?v=y36BHRMRPo8',
+                        video: 'y36BHRMRPo8',
                     },
                 ]
             },
@@ -926,13 +931,13 @@ const run = async () => {
                     {
                         title: 'Мобильные приложения на Android, iOS, Windows Mobile',
                         description: 'когда нужно кросс-платформенное приложение или адаптация веб-приложения, а языков Kotlin (для Android) и Swift (для iOS) недостаточно, то используется JavaScript.',
-                        video: 'https://www.youtube.com/watch?v=9mZmc6a0tmM',
+                        video: '9mZmc6a0tmM',
                         image: '1590690600-front-end-back-end-1080x608.png'
                     },
                     {
                         title: 'Серверная часть веб—приложений (backend).',
                         description: 'Серверный код пишут на платформе Node.js. На JS работают, например, запросы AJAX (asynchronous javascript and XML), которые отправляются на сервер в фоновом режиме, без перезагрузки веб-страницы, и push-уведомления — всплывающие сообщения в браузере, которые реализуются с помощью технологии Comet. Такие уведомления приходят со специального Comet-сервера, который постоянно поддерживает соединение с браузером. Как раз с помощью JavaScript устанавливается это соединение.',
-                        video: 'https://www.youtube.com/watch?v=m4tn1r44oeE',
+                        video: 'm4tn1r44oeE',
                         image: '1590690600-front-end-back-end-1080x608.png'
                     },
                 ]
@@ -943,7 +948,7 @@ const run = async () => {
                     {
                         title: 'Алгоритм',
                         description: 'Действия пользователя на странице вызывают события: клик на кнопке запускает анимацию, захват мышкой и перемещение курсора двигают объект по странице. Каждое из этих действий выполняется с помощью скриптов, написанных на JavaScript. У них есть определенный алгоритм работы.',
-                        video: 'https://www.youtube.com/watch?v=OC7NA44S7bQ',
+                        video: 'OC7NA44S7bQ',
                     },
                     {
                         title: 'Контекст выполнения',
@@ -954,7 +959,7 @@ const run = async () => {
                             'Компонент памяти также известен как переменная среды. В этом компоненте памяти переменные и функции хранятся в виде пар ключ-значение.\n' +
                             '\n' +
                             'Компонент кода - это место в контейнере, где код выполняется по одной строке за раз. У этого компонента кода тоже есть необычное название, а именно «Поток выполнения» (Thread of Execution).',
-                        video: 'https://www.youtube.com/watch?v=OC7NA44S7bQ',
+                        video: 'OC7NA44S7bQ',
                         image: 'jsWork.png'
                     },
                 ]
@@ -967,6 +972,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'UX/UI',
+        promoVideo: 'mciwdFc2Ut8',
         description: 'Веб-дизайн',
         information: 'UX/UI дизайн и аналитика – новые направления в области информационных технологий, которые ближе всего стоят к профессии веб-разработчик. Дизайнер интерфейсов проектирует взаимодействие пользователя с сайтом, приложением или каким-либо информационным сервисом и создает визуальные элементы, переходы, систему и прототип интуитивно понятного интерфейса. Данная профессия включает в себя постоянное взаимодействие со множеством инструментов для прототипирования, которые включают в себя такие программы, как Figma, InVision Studio, Sketch, Adobe Illustrator, Adobe After Effects, ColorHexa, Fontjoy и др',
         author: user,
@@ -983,7 +989,7 @@ const run = async () => {
                             'А UI — это User Interface (дословно «пользовательский интерфейс») — то, как выглядит интерфейс и то, какие физические характеристики приобретает. Определяет, какого цвета будет ваше «изделие», удобно ли будет человеку попадать пальцем в кнопочки, читабельным ли будет текст и тому подобное…\n' +
                             '\n' +
                             'UX/UI дизайн — это проектирование любых пользовательских интерфейсов в которых удобство использования так же важно как и внешний вид.',
-                        video: 'https://www.youtube.com/watch?v=MSnt9cznhTc',
+                        video: 'MSnt9cznhTc',
                         comments: [
                             {
                                 user: user,
@@ -1000,7 +1006,7 @@ const run = async () => {
                     {
                         title: 'Что такое UX и UI дизайн, другими словами',
                         description: 'UX/UI дизайн не относится только к смартфонам и веб-сайтам. Более того, профессия UX/UI дизайнера существовала с незапамятных времен. Просто раньше она так не называлась. Точнее, раньше она вообще никак не называлась, а была частью других профессий. Вот первый пример: когда Вильгельм Шиккард в 1623 году изобретал арифмометр, он уже был UX/UI дизайнером.',
-                        video: 'https://www.youtube.com/watch?v=mciwdFc2Ut8',
+                        video: 'mciwdFc2Ut8',
                         image: 'ux.jpg',
                     },
                 ]
@@ -1013,14 +1019,14 @@ const run = async () => {
                         description: 'User Experience и User Interface стали главными инструментами работы над интерфейсами сайтов, сервисов, мобильных приложений в конце 2000-х годов, когда стало ясно, что базовыми характеристиками любого цифрового продукта должны быть функциональность и удобство.\n' +
                             '\n' +
                             'Чтобы понять, чем отличается UX от UI, достаточно представить весь процесс работы над дизайном digital продукта. UI — один из этапов, всего лишь инструмент, помогающий визуально оформить идеи UX дизайнера. Часто эти две специализации объединяют, а UX специалист обладает навыками UI дизайна. Но это условие вовсе не обязательно. Для юзабилити одинаково важны и пользовательский опыт, и пользовательский интерфейс, отличие UX от UI здесь не играет роли.',
-                        video: 'https://www.youtube.com/watch?v=0bvcjQTWkAo',
+                        video: '0bvcjQTWkAo',
                     },
                     {
                         title: 'Как стать UX и UI дизайнером',
                         description: 'Со времен появления тренда на UX/UI профессия дизайнера ощутимо усложнилась. Теперь уже мало уметь рисовать макеты и гармонично сочетать цвета. Обычно дизайном User Experience занимается целая команда, т.к. одному человеку не под силу охватить все процессы.\n' +
                             '\n' +
                             'Как стать UX/UI дизайнером? В первую очередь нужно решить, по какому пути идти. Нравится наводить красоту, визуализировать идеи? Значит, ваша область — UI. Многие начинают с визуализаций и, постепенно расширяя круг своих интересов, приходят к полноценному проектированию UX',
-                        video: 'https://www.youtube.com/watch?v=RMbIoRXZhbA',
+                        video: 'RMbIoRXZhbA',
                     },
                 ]
             }
@@ -1032,6 +1038,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Трейдинг 2022',
+        promoVideo: 'HzwNd4db058',
         description: 'Трейдинг',
         information: 'Курс подготовлен профессиональными трейдерами — это значит, что мы зарабатываем с торговли на финансовых рынках. Все специалисты торгуют как на свои средства, так и на средства инвесторов.',
         author: user3,
@@ -1048,7 +1055,7 @@ const run = async () => {
                             '\n' +
                             '\n' +
                             'Трейдеру не нужно выслуживаться перед боссом: писать длинные отчеты, пускать пыль в глаза. Эффективность работы видна и без саморекламы — это его доход в цифрах, поэтому субъективное мнение исключается. Вас не обойдут коллеги со связями или те, кто умеет показать себя в лучшем свете. Такая работа учит держать себя в руках, не ломаться от неудач и не расслабляться после успехов. ',
-                        video: 'https://www.youtube.com/watch?v=9-z2o_TywCg',
+                        video: '9-z2o_TywCg',
                         image: 'traid.jpeg',
                         comments: [
                             {
@@ -1066,7 +1073,7 @@ const run = async () => {
                     {
                         title: 'Интернет-трейдинг — высокоскоростная торговля',
                         description: '26 марта 2009 года в Украине появился интернет-трейдинг на рынке ценных бумаг. В этот день «Украинская биржа» открыла первые онлайн-торги. Такой способ отличался от классической схемы заключения сделок по телефону или от работы в яме на бирже. ',
-                        video: 'https://www.youtube.com/watch?v=tsVgMrEiFRw'
+                        video: 'tsVgMrEiFRw'
                     },
                 ]
             },
@@ -1076,12 +1083,12 @@ const run = async () => {
                     {
                         title: 'Скальпинг.',
                         description: ' Стратегия подразумевает закрытие сделки, как только достигнута прибыль в несколько пунктов. Время на операцию — несколько секунд или минут. Увеличение дохода наблюдается за счет большого количества заявок — около 100 в день. Подходит выносливым трейдерам с быстрой реакцией и способностью работать под большим напряжением. Обратите внимание, что за каждую операцию берется комиссия. А чем их больше, тем больше расходы',
-                        video: 'https://www.youtube.com/watch?v=2Ev8l0xcdEE',
+                        video: '2Ev8l0xcdEE',
                     },
                     {
                         title: 'Активный интрадей',
                         description: ' До десятка заявок в течение дня. Специалист работает по 3-х и 5-минутным графикам. Прибыль от сделки — 2-6%. Важно отслеживать риски и вовремя закрывать позиции. Эксперт должен быть дисциплинированным, уметь работать с графиками, вести статистику, анализировать и отслеживать изменения на протяжении дня. А также уметь остановиться, чтобы не потерять дневной заработок',
-                        video: 'https://www.youtube.com/watch?v=rSJYLZKhMd0',
+                        video: 'rSJYLZKhMd0',
                     },
                 ]
             }
@@ -1093,6 +1100,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Дизайн интерьера',
+        promoVideo: 'VksGRnLLhCg',
         description: 'Пошаговое руководство по созданию интерьера',
         information: 'Задачи и цели: Ознакомить учащихся с основными качествами интерьера, его особенностями; Воспитывать эстетический вкус на основе композиционного построения интерьера; Развивать самостоятельную деятельность при выполнении практической работы;',
         author: user2,
@@ -1105,7 +1113,7 @@ const run = async () => {
                     {
                         title: 'Функциональный дизайн – это как?',
                         description: 'Функциональный дизайн – это такой вид дизайна, который объединяет внешнюю красоту и удобство использования квартиры по назначению – для того, чтобы в ней ЖИТЬ. На первый взгляд звучит достаточно просто и очевидно? На деле не так. Сколько же мы видели примеров интерьеров, которые были построены по модели “так будет красиво” или “я – дизайнер, я так вижу…”. Последний вариант, кстати, достаточно актуален, особенно для начинающих дизайнеров. Многие думают, что чем сложнее для восприятия интерьер я создам, тем я буду “дизайнеристее”, а потом такую работу можно еще и на тематические сайты и форумы отправить, где все дизайнеры однозначно поставят “лайк”',
-                        video: 'https://www.youtube.com/watch?v=jfHUzASld3c',
+                        video: 'jfHUzASld3c',
                         comments: [
                             {
                                 user: user,
@@ -1159,6 +1167,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Основы дизайна интерьера',
+        promoVideo: 'YnjPDKPaeIc',
         description: 'Узнайте как создать интерьер самостоятельно с любым бюджетом',
         information: 'Задачи и цели: Ознакомить учащихся с основными качествами интерьера, его особенностями; Воспитывать эстетический вкус на основе композиционного построения интерьера; Развивать самостоятельную деятельность при выполнении практической работы;',
         author: user8,
@@ -1171,7 +1180,7 @@ const run = async () => {
                     {
                         title: 'Единство и гармония',
                         description: 'Создавая интерьер, нужно думать о доме как о едином целом пространстве, состоящим из отдельных помещений, связанных между собой   залами и лестницами. Поэтому естественно то, что общий стиль и идея распространяются на весь дом. Это не означает, что все элементы   дизайна интерьера должны быть одинаковыми. Они должны сочетаться и дополнять друг друга для художественного усиления всей композиции.',
-                        video: 'https://www.youtube.com/watch?v=jOXPHR9Mpek',
+                        video: 'jOXPHR9Mpek',
                         image: 'интерьер.jpeg',
                         comments: [
                             {
@@ -1203,13 +1212,13 @@ const run = async () => {
                     {
                         title: 'Повторение',
                         description: 'Повторение - это использование одного и того же элемента в пространстве более одного раза. Вы можете повторить рисунок, цвет, текстуру, линию или любой другой элемент, или даже нескольких элементов.',
-                        video: 'https://www.youtube.com/watch?v=pzWAmmdWceA',
+                        video: 'pzWAmmdWceA',
                         image: 'pravila-dizaina-3-2.jpg',
                     },
                     {
                         title: 'Прогрессия ',
                         description: ' Прогрессия - это увеличение или уменьшение одного или нескольких качеств элемента. Наиболее очевидной реализацией этого приема -это градация элемента по размеру. Даже размещение нескольких свечей разных размеров на обычном подносе гарантировано   вызывает интерес своей естественной прогрессией. Прогрессии можно добиться и с помощью цвета. Например, в монохроматической   цветовой схеме, где каждый элемент слегка отличается от другого оттенком одного и того же цвета.',
-                        video: 'https://www.youtube.com/watch?v=rK_IM8LhL_4',
+                        video: 'rK_IM8LhL_4',
                         image: 'progressi.jpeg',
                     },
                 ]
@@ -1220,12 +1229,12 @@ const run = async () => {
                     {
                         title: 'Симметричный баланс',
                         description: 'как правило, встречается в типичных традиционных интерьерах. Он определяется наличием одних и тех же   предметов, повторяющихся в одинаковых позициях по обе стороны от вертикальной оси. Например, вы можете наблюдать в интерьерах   старых домов, где одна половина комнаты с точностью, зеркально отображается на другой половине. Симметрия в интерьере создает чувства   спокойствия и порядка. Этот вид баланса напоминает подобие строения человеческого тела, поэтому мы и чувствуем себя комфортно в такой   сбалансированной среде.',
-                        video: 'https://www.youtube.com/watch?v=TxuATPq6XTE',
+                        video: 'TxuATPq6XTE',
                     },
                     {
                         title: 'Асимметричный баланс ',
                         description: 'широко используется в современной практике. Он достигается с помощью разнородных предметов, имеющих   одинаковый визуальный вес или привлекательность. Асимметричный баланс является более беспорядочным и менее надуманным, но гораздо более трудоемким для достижения гармонии. Асимметрия предполагает наличие движения и поэтому интерьер выглядит более динамичным .',
-                        video: 'https://www.youtube.com/watch?v=avMmJALHBhw',
+                        video: 'avMmJALHBhw',
                     },
                 ]
             }
@@ -1237,6 +1246,7 @@ const run = async () => {
         is_published: false
     }, {
         title: 'Подготовка к IElTS',
+        promoVideo: 'q1gb0H_2tKg',
         description: 'подготовка к IElTS за три месяца',
         information: 'IELTS Academic Express is a self-paced course that provides with a quick yet effective overview of the IELTS Academic exams, each section, types of tasks and effective strategies.',
         author: user,
@@ -1251,7 +1261,7 @@ const run = async () => {
                         description: 'Но, прежде чем выбрать, лучше уточнить, какой модуль нужен именно для этого учебного заведения или компании. Иногда организации, предлагающие работу, просят тест на Academic. А для обучения, связанного с работой, вдруг необходим модуль General.\n' +
                             '\n' +
                             'Оба модуля одинаковы по наполнению. Состоят из четырех частей: Listening (аудирование), Reading (чтение), Writing (письмо) и Speaking (разговорная речь).',
-                        video: 'https://www.youtube.com/watch?v=q1gb0H_2tKg',
+                        video: 'q1gb0H_2tKg',
                         comments: [
                             {
                                 user: user,
@@ -1268,7 +1278,7 @@ const run = async () => {
                     {
                         title: 'Academic',
                         description: 'Обычно IELTS General требуют, если человек собирается устраиваться на работу, иммигрировать или получать среднее образование. IELTS Academic же необходим будущим студентам иностранных вузов.',
-                        video: 'https://www.youtube.com/watch?v=9KijVQDFyi0',
+                        video: '9KijVQDFyi0',
                     },
                 ]
             },
@@ -1280,14 +1290,14 @@ const run = async () => {
                         description: 'Writing для IELTS Academic труднее, чем для IELTS General. Описывать нужно графики, таблицы, карты, процессы, а также создать эссе академического характера.\n' +
                             '\n' +
                             'У IELTS General темы простые – написать письмо другу и эссе о своей квартире, например.',
-                        video: 'https://www.youtube.com/watch?v=CK_PE9ILJjQ',
+                        video: 'CK_PE9ILJjQ',
                     },
                     {
                         title: 'Reading',
                         description: 'То же самое касается и Reading. Сдающие тест на IELTS Academic, читают длинные научно-популярные тексты, состоящие из сложнейших слов и терминов.\n' +
                             '\n' +
                             'Чтение же в IELTS General – это проверка, насколько вы понимаете тексты на общие темы. Потребуется прочитать, к примеру, журнальную статью, рекламное объявление, рассказ о животных',
-                        video: 'https://www.youtube.com/watch?v=NUIU22KcJ4Q',
+                        video: 'NUIU22KcJ4Q',
                     },
                 ]
             }
@@ -1299,6 +1309,7 @@ const run = async () => {
         is_published: false
     }, {
         title: 'IElTS speaking',
+        promoVideo: 'MU8xhYgHT0U',
         description: 'Эффективный курс по разговорной части IELTS',
         information: 'IELTS Academic Express is a self-paced course that provides with a quick yet effective overview of the IELTS Academic exams, each section, types of tasks and effective strategies.',
         author: user4,
@@ -1311,7 +1322,7 @@ const run = async () => {
                     {
                         title: 'Speaking',
                         description: 'Разговорная часть занимает на тесте всего 10-15 минут. По сути, это просто беседа с экзаменатором, состоящая из трех этапов: разговор о хобби и интересах, подготовка речи на заданную тему и ответы на дополнительные вопросы.',
-                        video: 'https://www.youtube.com/watch?v=MU8xhYgHT0U',
+                        video: 'MU8xhYgHT0U',
                         comments: [
                             {
                                 user: user,
@@ -1330,7 +1341,7 @@ const run = async () => {
                         description: 'На то, сколько времени занимает подготовка к IELTS, влияет уровень владения английским языком. Плюс многое зависит от того, какой балл вы планируете получить на экзамене и сколько времени готовы пожертвовать на подготовку. У кого-то уйдут годы, а кому-то достаточно нескольких месяцев.\n' +
                             '\n' +
                             'У каждого репетитора и каждой языковой школы имеется своя статистика. Для примера возьмем онлайн-школу EnglishDen.',
-                        video: 'https://www.youtube.com/watch?v=YdMrkcpPGq4',
+                        video: 'YdMrkcpPGq4',
                     },
                 ]
             },
@@ -1340,12 +1351,12 @@ const run = async () => {
                     {
                         title: 'Улучшайте слух',
                         description: 'Слушайте английскую речь и повторяйте каждое предложение за спикером. Это улучшит акцент, поможет выработать нужный темп и ритм речи.',
-                        video: 'https://www.youtube.com/watch?v=5DjHMLyRm7g',
+                        video: '5DjHMLyRm7g',
                     },
                     {
                         title: 'Окружите себя английским',
                         description: 'Найдите людей, с которыми будете разговаривать – шерстите тематические форумы и регистрируйтесь на сайтах знакомств. Главное, чтобы собеседник был носителем языка.',
-                        video: 'https://www.youtube.com/watch?v=TneqhthYz_w',
+                        video: 'TneqhthYz_w',
                     },
                 ]
             }
@@ -1357,6 +1368,7 @@ const run = async () => {
         is_published: false
     }, {
         title: 'Спортивная фармакология',
+        promoVideo: 'L9SoGNT_F1Q',
         description: 'Курс повышения квалификации для специалистов, работающих со спортсменами разного уровня и разных видов спорта (в том числе спорт высших достижений).',
         information: 'Все лекторы, представленные в программе курса, являются признанными ведущими специалистами в своей научно-практической области.\n' +
             '\n' +
@@ -1381,7 +1393,7 @@ const run = async () => {
                     {
                         title: 'Нутритивная поддержка функций надпочечников в условиях физического стресса',
                         description: 'Спасибо большое за организацию курса по спортивной фармакологии. Особенно хотелось подчеркнуть информативные лекции по терапевтическому использованию, противовоспалительные средства и особенности фармакологической коррекции энергодефицита. Всем лекторам большое спасибо.',
-                        video: 'https://www.youtube.com/watch?v=LGwaXeeAJfk&ab_channel=MonsterPump.ru',
+                        video: 'LGwaXeeAJfk',
                         comments: [
                             {
                                 user: user9,
@@ -1409,7 +1421,7 @@ const run = async () => {
                             'трудно переоценить; именно ее чаще всего\n' +
                             'считают основной лимитирующей системой у\n' +
                             'представителей разных видов спорта ',
-                        video: 'https://www.youtube.com/watch?v=h-IgSqdJsNQ&feature=emb_logo&ab_channel=%D0%90%D0%BD%D1%82%D0%BE%D0%BD%D0%AE%D0%B6%D0%B0%D0%BA%D0%BE%D0%B2',
+                        video: 'h-IgSqdJsNQ',
                     },
                 ]
             },
@@ -1426,7 +1438,7 @@ const run = async () => {
                             'общественного мнения в этой сфере. Общество должно изменить свою\n' +
                             'позицию по отношению к спортсменам и спортивной фармакологии, иначе в\n' +
                             'этой войне не будет победителей, - проиграют все: и спорт, и зрители. ',
-                        video: 'https://www.youtube.com/watch?v=HuXW9czg-Cs&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%9B%D0%B8%D1%82%D0%B2%D0%B8%D0%BD%D0%B5%D0%BD%D0%BA%D0%BE',
+                        video: 'HuXW9czg-Cs',
                     },
                     {
                         title: 'Список запрещенных субстанций и методов',
@@ -1440,7 +1452,7 @@ const run = async () => {
                             'субстанция или метод способен улучшить спортивный результат;\n' +
                             'использование субстанции или метода представляет реальный или\n' +
                             'потенциальный риск для здоровья спортсмена;',
-                        video: 'https://www.youtube.com/watch?v=-9GY9JRRDZ0&ab_channel=OlesyaZakharova',
+                        video: '-9GY9JRRDZ0',
                     },
                 ]
             }
@@ -1452,6 +1464,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Профессия Бизнес-аналитик',
+        promoVideo: '0c6OTs_cXRs',
         description: 'Вы освоите системный и бизнес-анализ, чтобы помогать компаниям принимать стратегические решения и увеличивать прибыль. Сможете работать удалённо через полгода и начать карьеру в российской или международной компании.',
         information: 'Бизнес-аналитик погружается в экономику, финансы, организационные процессы компании, помогает решать стратегические задачи и выводит бизнес на новый уровень.\n' +
             '\n' +
@@ -1468,7 +1481,7 @@ const run = async () => {
                     {
                         title: 'Рассчитывать бизнес-модель',
                         description: 'Разберётесь в специфике разных моделей бизнеса и поймёте, как компании устроены изнутри. Научитесь определять стратегию развития и строить бизнес-модели по мировым стандартам.',
-                        video: 'https://www.youtube.com/watch?v=MatVaQM_-c8&ab_channel=%D0%97%D0%B0%D0%BC%D0%B5%D1%82%D0%BA%D0%B8%D0%B4%D0%BE%D0%B1%D1%80%D0%BE%D0%B3%D0%BE%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%B8%D1%81%D1%82%D0%B0',
+                        video: 'MatVaQM_-c8',
                         comments: [
                             {
                                 user: user,
@@ -1488,7 +1501,7 @@ const run = async () => {
                     {
                         title: 'Анализировать экономику бизнеса',
                         description: 'Узнаете, какие факторы влияют на прибыльность бизнеса, научитесь влиять на спрос и предложение. Изучите инструменты капитализации, освоите веб-аналитику и сможете строить модель бюджета компании.',
-                        video: 'https://www.youtube.com/watch?v=gg3TLUKOH3U&ab_channel=AndreiStygar',
+                        video: 'gg3TLUKOH3U',
                     },
                 ]
             },
@@ -1498,12 +1511,12 @@ const run = async () => {
                     {
                         title: 'Оптимизировать бизнес-процессы',
                         description: 'Освоите работу с международными нотациями, научитесь строить Customer Journey Map и user story, проводить CustDev и UX-интервью. Сможете автоматизировать процессы и находить точки развития для бизнеса.',
-                        video: 'https://www.youtube.com/watch?v=GxxOH2rRVDk&ab_channel=MikePritulaAcademy',
+                        video: 'GxxOH2rRVDk',
                     },
                     {
                         title: 'Решать задачи бизнеса с помощью IT-разработки',
                         description: 'Узнаете, как помочь бизнесу внедрить новые сервисы и повысить прибыльность. Научитесь управлять разработкой, разбираться в e-commerce и влиять на эффективность онлайн-торговли.',
-                        video: 'https://www.youtube.com/watch?v=ryJlXK5B21s&ab_channel=Vedita',
+                        video: 'ryJlXK5B21s',
                     },
                 ]
             }
@@ -1515,6 +1528,7 @@ const run = async () => {
         is_published: true
     }, {
         title: 'Введение в иммунологию',
+        promoVideo: 'tyYFgunJzPo',
         description: 'Этот вводный курс позволит Вам получить общее представление об иммунной системе и иммунитете в целом.',
         information: 'Настоящий курс является базовым обзорным курсом и создан для неподготовленных слушателей, без глубоких знаний в области биологии. Он позволит Вам составить представление о том, что такое иммунная система и каковы основные принципы ее работы. Кроме того, данный курс позволит Вам составить представление о широком применении знаний из области иммунологии на практике (в медицине, фармации, диагностике).\n' +
             '\n' +
@@ -1549,7 +1563,7 @@ const run = async () => {
                             'Почему так Важен, и почему мы так часто о нем говорим и беспокоимся?\n' +
                             '\n' +
                             'Давайте разбираться!',
-                        video: 'https://www.youtube.com/watch?v=MCNrC9TKx4M&ab_channel=%D0%9C%D0%B5%D0%B4%D0%AD%D0%BA%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%BD%D0%BE',
+                        video: 'MCNrC9TKx4M',
                         comments: [
                             {
                                 user: user12,
@@ -1570,7 +1584,7 @@ const run = async () => {
                         description: 'В данном разделе мы кратко рассмотрим основные механизмы реализации реакций врожденного  и адаптивного иммунитета. \n' +
                             '\n' +
                             'Приведенная информация позволит Вам составить общее представление о принципах работы иммунной системы и формирования имунной защиты.',
-                        video: 'https://www.youtube.com/watch?v=xLOu_n7OAVY&ab_channel=CorMedicale',
+                        video: 'xLOu_n7OAVY',
                     },
                 ]
             },
@@ -1580,12 +1594,12 @@ const run = async () => {
                     {
                         title: 'Основные механизмы реализации реакций врожденного иммунитета',
                         description: 'Врождённый иммунитет — способность организма обезвреживать чужеродный и потенциально опасный биоматериал (микроорганизмы, трансплантат, токсины, опухолевые клетки, клетки, инфицированные вирусом), существующая изначально, до первого попадания этого биоматериала в организм.',
-                        video: 'https://www.youtube.com/watch?v=tyYFgunJzPo&ab_channel=CorMedicale',
+                        video: 'tyYFgunJzPo',
                     },
                     {
                         title: 'Механизмы защитного действия антител',
                         description: 'Узнаете, как помочь бизнесу внедрить новые сервисы и повысить прибыльность. Научитесь управлять разработкой, разбираться в e-commerce и влиять на эффективность онлайн-торговли.',
-                        video: 'https://www.youtube.com/watch?v=Y8DAWbrlvmg&ab_channel=CorMedicale',
+                        video: 'Y8DAWbrlvmg',
                     },
                 ]
             }

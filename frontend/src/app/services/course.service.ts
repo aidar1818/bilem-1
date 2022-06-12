@@ -30,6 +30,7 @@ export class CourseService {
             courseData.is_free,
             courseData.rate,
             courseData.is_published,
+            courseData.promoVideo,
           );
         });
       })
@@ -54,6 +55,7 @@ export class CourseService {
             courseData.is_free,
             courseData.rate,
             courseData.is_published,
+            courseData.promoVideo,
           );
         });
       })
@@ -78,6 +80,7 @@ export class CourseService {
             courseData.is_free,
             courseData.rate,
             courseData.is_published,
+            courseData.promoVideo,
           );
         });
       })
@@ -102,6 +105,7 @@ export class CourseService {
             courseData.is_free,
             courseData.rate,
             courseData.is_published,
+            courseData.promoVideo,
           );
         });
       })
@@ -141,6 +145,7 @@ export class CourseService {
             courseData.is_free,
             courseData.rate,
             courseData.is_published,
+            courseData.promoVideo,
           );
         });
       })
@@ -165,6 +170,7 @@ export class CourseService {
             response.is_free,
             response.rate,
             response.is_published,
+            response.promoVideo,
           );
         }
         return null;
@@ -229,6 +235,7 @@ export class CourseService {
           response.is_free,
           response.rate,
           response.is_published,
+          response.promoVideo,
         );
       })
     );

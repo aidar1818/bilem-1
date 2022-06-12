@@ -107,6 +107,7 @@ const CourseSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  promoVideo: String
 });
 
 const Course = mongoose.model('Course', CourseSchema);

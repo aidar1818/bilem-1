@@ -47,6 +47,7 @@ export class EditCourseComponent implements OnInit {
       information: course.information,
       subcategory: course.subcategory,
       price: course.price? course.price : null,
+      promoVideo: course.promoVideo? course.promoVideo : null,
       image: course.image,
       is_free: this.is_free,
     }
