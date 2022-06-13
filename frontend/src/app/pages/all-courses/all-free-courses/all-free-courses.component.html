@@ -6,9 +6,9 @@
   ></mat-progress-spinner>
 
   <ng-template #coursesArea>
-    <h1>Полный список курсов</h1>
+    <h1>Полный список бесплатных курсов</h1>
     <div *ngFor="let course of courses | async">
-      <div  class="card" fxLayoutAlign="row">
+      <div  class="card" *ngIf="course.is_free" fxLayoutAlign="row">
         <img [src]="course.image | imageForCourse" [alt]="course.title">
         <div class="content">
           <h3 [routerLink]="['/course', course['_id']]">{{ course.title }}</h3>
@@ -19,4 +19,3 @@
   </ng-template>
 
 </div>
-

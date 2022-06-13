@@ -36,12 +36,13 @@ import { FooterHelpComponent } from './pages/footer/footer-help/footer-help.comp
 import { LessonComponent } from './ui/lesson/lesson.component';
 import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
-import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FooterConfidentilaityComponent } from './pages/footer/footer-confidentilaity/footer-confidentilaity.component';
 import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
 import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tariffs.component';
 import { NotFoundComponent } from './ui/not-found/not-found.component';
+import { AllFreeCoursesComponent } from "./pages/all-courses/all-free-courses/all-free-courses.component";
+import { AllPaidCoursesComponent } from "./pages/all-courses/all-paid-courses/all-paid-courses.component";
 
 const routes: Routes = [
   {
@@ -185,9 +186,8 @@ const routes: Routes = [
       {path: ':lessonId', component: LessonComponent},
     ],
   },
-  {
-    path: 'allCourses', component: AllCoursesComponent
-  },
+  {path: 'all-free-courses', component: AllFreeCoursesComponent},
+  {path: 'all-paid-courses', component: AllPaidCoursesComponent},
   {path: '**', component: NotFoundComponent},
 ];
 

@@ -8,18 +8,24 @@
     </div>
   </mat-tab>
   <mat-tab label="НОВЫЕ КУРСЫ">
-    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses">
+    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
       <div *ngFor="let course of newCourses | orderBy:'-rate'">
         <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
       </div>
     </div>
   </mat-tab>
 </mat-tab-group>
-<div class="btn-area">
-  <button mat-raised-button class="btn" routerLink="allCourses">
-    ПОСМОТРЕТЬ ВСЕ КУРСЫ
-    <span class="material-icons ic_right">arrow_forward</span>
-  </button>
-</div>
-
-
+<ng-container [ngSwitch]="is_free">
+  <div class="btn-area" *ngSwitchCase="true">
+    <button mat-raised-button class="btn" [routerLink]="['all-free-courses']">
+      ПОСМОТРЕТЬ ВСЕ КУРСЫ
+      <span class="material-icons ic_right">arrow_forward</span>
+    </button>
+  </div>
+  <div class="btn-area" *ngSwitchCase="false">
+    <button mat-raised-button class="btn" [routerLink]="['all-paid-courses']">
+      ПОСМОТРЕТЬ ВСЕ КУРСЫ
+      <span class="material-icons ic_right">arrow_forward</span>
+    </button>
+  </div>
+</ng-container>

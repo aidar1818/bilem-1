@@ -85,7 +85,6 @@ import { ModalComponent } from './ui/modal/modal.component';
 import { LessonsComponent } from './pages/teaching/lessons/lessons.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { YouTubeVideoPipe } from './pipes/youTube_video.pipe';
-import { AllCoursesComponent } from './pages/all-courses/all-courses.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { AuthFormsComponent } from './ui/auth-forms/auth-forms.component';
@@ -95,6 +94,8 @@ import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tar
 import { FooterConditionsComponent } from './pages/footer/footer-conditions/footer-conditions.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NotFoundComponent } from './ui/not-found/not-found.component';
+import { AllFreeCoursesComponent } from './pages/all-courses/all-free-courses/all-free-courses.component';
+import { AllPaidCoursesComponent } from './pages/all-courses/all-paid-courses/all-paid-courses.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -166,13 +167,14 @@ const socialConfig: SocialAuthServiceConfig = {
     ModalComponent,
     LessonsComponent,
     YouTubeVideoPipe,
-    AllCoursesComponent,
     StatisticsComponent,
     AuthFormsComponent,
     FooterConfidentilaityComponent,
     FooterConditionsComponent,
     FooterTariffsComponent,
     NotFoundComponent,
+    AllFreeCoursesComponent,
+    AllPaidCoursesComponent,
   ],
   imports: [
     BrowserModule,
