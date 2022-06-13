@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment, environment as env } from '../../environments/environment';
-import { CommentData, Course, CourseData, Lesson } from '../models/course.model';
+import { CommentData, Course, CourseData, FetchTariffData, Lesson } from '../models/course.model';
 import { map } from 'rxjs';
 import { Module } from '../models/module.model';
 
@@ -33,6 +33,14 @@ export class CourseService {
             courseData.promoVideo,
           );
         });
+      })
+    );
+  }
+
+  fetchTariffData() {
+    return this.http.get<FetchTariffData>(env.apiUrl + '/courses/tariff/amount').pipe(
+      map(response => {
+        return response;
       })
     );
   }

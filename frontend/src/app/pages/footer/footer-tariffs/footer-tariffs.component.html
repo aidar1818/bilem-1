@@ -4,7 +4,7 @@
       <h3 class="littleTitle">Bilem online</h3>
       <h1 class="bigTitle">Преподавание в образовательной платформе Bilem</h1>
       <p class="textStyle">Станьте преподавателем и меняйте жизни к лучшему — включая свою</p>
-      <button>Начать преподавание</button>
+      <button (click)="start()">Начать преподавание</button>
     </div>
     <div class="box2">
       <iframe class="video" width="564" height="318" [src]="'ylakWC0VcEM' | youTubeVideo"
@@ -17,7 +17,7 @@
   </div>
 
   <div class="block2">
-    <p>На нашей платформе уже 15 985 курсов от авторов и компаний</p>
+    <p>На нашей платформе уже {{ data.courses }} курсов от авторов и компаний</p>
     <div class="block2_links">
       <a href="https://www.netflix.com" target="_blank">
         <img src="assets/icons/netflix.svg" alt="netflix" >
@@ -70,15 +70,15 @@
 
   <div class="block4">
     <div>
-      <h3>20 467</h3>
+      <h3>{{ data.users }}</h3>
       <p>Активных пользователей</p>
     </div>
     <div>
-      <h3>347</h3>
+      <h3>{{ data.courses }}</h3>
       <p>Курсов</p>
     </div>
     <div>
-      <h3>467</h3>
+      <h3>{{ data.paidCourses }}</h3>
       <p>Зарабатывают с нами</p>
     </div>
   </div>
@@ -97,7 +97,7 @@
         <li>Стандартная техническая поддержка</li>
       </ul>
       <h1 class="bigTitle">Бесплатно</h1>
-      <button>Начать</button>
+      <button (click)="start()">Начать</button>
     </div>
 
     <div class="el2 el3">
@@ -110,7 +110,7 @@
         <li>Платный сервер для хранения и просмотра ваших видео</li>
       </ul>
       <h1 class="bigTitle">12% от продажи</h1>
-      <button>Начать</button>
+      <button (click)="start()">Начать</button>
     </div>
   </div>
 </div>

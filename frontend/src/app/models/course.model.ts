@@ -40,6 +40,18 @@ export interface Module {
   lessons: LessonData[]
 }
 
+export interface FetchTariffData {
+  courses: Course[],
+  users: User[],
+  paidCourses: Course[],
+}
+
+export interface TariffData {
+  courses: number,
+  users: number,
+  paidCourses: number,
+}
+
 export class Course {
   constructor(
     public _id: string,

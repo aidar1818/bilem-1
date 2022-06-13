@@ -354,4 +354,22 @@ router.delete('/lesson/:id', auth, permit('user', 'admin'), async (req, res, nex
   }
 });
 
+router.get('/tariff/amount', async (req, res, next) => {
+  try {
+    const courses = await Course.find().populate('_id');
+    const users = await User.find().populate('_id');
+    const paidCourses = await Course.find({is_free: false}).populate('_id');
+
+    const response = {
+      courses: courses,
+      users: users,
+      paidCourses: paidCourses
+    }
+
+    return res.send(response);
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

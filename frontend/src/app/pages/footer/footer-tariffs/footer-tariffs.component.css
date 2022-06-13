@@ -285,16 +285,18 @@ iframe {
 .el2 h2 {
   width: 265px;
   font-size: 20px;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 .el2 ul {
-  width: 232px;
-  margin-right: 24px;
+  margin-right: 30px;
   margin-bottom: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .el2 li {
+  width: 232px;
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -302,13 +304,10 @@ iframe {
   line-height: 180%;
   color: #121127;
   margin-bottom: 12px;
-  list-style-image: url(src/assets/icons/tariffCheck.svg);
+  padding-left: 30px;
+  background: url("src/assets/icons/tariffCheck.svg") no-repeat 0 50%;
 }
 
-.el2 li::marker {
-
-
-}
 
 .el2 h1 {
   font-size: 40px;
