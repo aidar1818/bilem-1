@@ -11,34 +11,24 @@ import { BreakPoint } from '@angular/flex-layout';
   templateUrl: './main-courses.component.html',
   styleUrls: ['./main-courses.component.css']
 })
-export class MainCoursesComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MainCoursesComponent implements OnInit {
   user: Observable<null | User>;
   courses: Observable<Course[] | null>;
-  loadingObservable: Observable<boolean | null>;
   loadingSub!: Subscription;
-  loading = false;
+  loading!: boolean | null;
 
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
     this.courses = store.select(state => state.courses.courses);
-    this.loadingObservable = store.select(state => state.courses.fetchLoading);
   }
 
   ngOnInit() {
-    this.loadingSub = this.loadingObservable.subscribe(course => {
-      if(course) {
-        this.loading = true;
-      }
-    })
+    this.loading = true;
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
       this.loading = false;
     }, 0)
-  }
-
-  ngOnDestroy() {
-    this.loadingSub.unsubscribe();
   }
 }
