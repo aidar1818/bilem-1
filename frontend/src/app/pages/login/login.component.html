@@ -11,7 +11,7 @@
     </div>
     <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
       <mat-label>
-        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="18">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="e-mailDiv">
           <span class="material-icons">alternate_email</span>
           <span>email</span>
         </div>
@@ -36,7 +36,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
       <mat-label>
-        <div fxLayout="row" fxFlex="21" fxLayoutAlign="space-between center">
+        <div fxLayout="row" class="passwordDiv" fxLayoutAlign="space-between center">
           <span class="material-icons">lock</span>
           <span>Пароль</span>
         </div>
@@ -64,14 +64,21 @@
       Войти
     </button>
     <p fxLayoutAlign="center center" class="authFbGlText" style="margin-top: 10px">или</p>
-    <p class="social" fxLayout="row" fxLayoutAlign="space-evently center">
+    <p class="social">
           <span class="greyDarkText authFbGlText">
                       Войдите с помощью социальных сетей:
           </span>
-      <a class="fb" (click)="googleLogin()"><img src="assets/icons/gmail.svg" alt="google logo"/></a>
-      <a class="fb" (click)="fbLogin()"><img src="assets/icons/fb.svg" alt="facebook logo"/></a>
+      <span>
+           <a class="fb" (click)="googleLogin()"><img src="assets/icons/gmail.svg" alt="google logo"/></a>
+           <a
+             class="fb fbImg"
+             (click)="fbLogin()"
+           >
+            <img src="assets/icons/fb.svg" alt="facebook logo"/>
+           </a>
+      </span>
     </p>
-    <div>
+    <div class="registerMessage">
       <p class="greyDarkText authFbGlText">Забыли пароль? <a routerLink="/recovery">Восстановить</a></p>
       <p class="greyDarkText authFbGlText">Нет аккаунта? <a routerLink="/register">Зарегистрируйтесь!</a></p>
     </div>

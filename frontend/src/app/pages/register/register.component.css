@@ -17,3 +17,56 @@
 .fb {
   margin-left: 10px;
 }
+
+.e-mailDiv {
+  width: 19%;
+}
+
+.displayNameDiv {
+  width: 17%;
+}
+
+.passwordDiv {
+  width: 21%;
+}
+
+.passwordRepeatDiv {
+  width: 32%;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fbImg {
+  margin-left: 25px;
+}
+
+@media screen and (max-width: 744px) {
+  .e-mailDiv {
+    width: 16%;
+  }
+
+  .displayNameDiv {
+    width: 14%;
+  }
+
+  .passwordDiv {
+    width: 18%;
+  }
+
+  .passwordRepeatDiv {
+    width: 27%;
+  }
+
+  .social {
+    justify-content: space-around;
+    padding: 0 40px;
+  }
+
+  .fbImg {
+    margin-left: 25px;
+  }
+}
