@@ -94,7 +94,7 @@
           type="submit" class="btnSearch">Искать
         </button>
       </ng-template>
-      <mat-progress-bar mode="indeterminate" *ngIf="(searchLoading | async) else btn"
+      <mat-progress-bar class="prgrs-bar" mode="indeterminate" *ngIf="(searchLoading | async) else btn"
                         style="width: 74px"></mat-progress-bar>
     </form>
   </div>

@@ -202,3 +202,31 @@ label {
 .add-btn {
   margin-top: 20px;
 }
+
+@media (max-width: 1195px) {
+  .checkboxInput + label {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 945px) {
+  .checkboxInput + label {
+    margin-left: 120px;
+  }
+}
+
+@media (max-width: 815px) {
+  .search-block {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 744px) {
+  .checkboxInput + label {
+    display: none;
+  }
+
+  .prgrs-bar {
+    margin-left: auto;
+  }
+}

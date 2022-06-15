@@ -109,3 +109,8 @@ h1 {
   font-size: 35px;
 }
 
+@media (max-width: 815px) {
+  .card-wrapper {
+    width: 357px;
+  }
+}

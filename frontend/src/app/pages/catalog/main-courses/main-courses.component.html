@@ -5,7 +5,7 @@
 <ng-template #coursesArea>
   <div class="forAnonUserBlock" fxLayout="row" fxLayoutAlign="space-between start"  *ngIf="!(user | async)">
     <div class="textBlock" >
-      <p class="p1">Начни учиться вместе с Bilem</p>
+      <p class="p1">Начни учиться вместе с <b>Bilem</b></p>
       <h1 class="title">Подберем для&nbsp; вас подходящий курс</h1>
       <p class="p2">Лучшие курсы со всего Кыргызстана
         собраны специально для тебя</p>
@@ -16,4 +16,3 @@
     <app-course-cards [title]="'Бесплатные курсы'" [is_free]="true"></app-course-cards>
     <app-course-cards [title]="'Платные курсы'" [is_free]="false"></app-course-cards>
 </ng-template>
-

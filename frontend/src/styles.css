@@ -329,10 +329,30 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   }
 }
 
+@media (max-width: 1195px) {
+  .container {
+    width: 100%;
+    max-width: 950px;
+  }
+}
 
+@media (max-width: 945px) {
+  .container {
+    width: 100%;
+    max-width: 850px;
+  }
+}
 
+@media (max-width: 815px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
 
-
+  .mat-tab-label-container {
+    margin-left: 20px;
+  }
+}
 
 
 

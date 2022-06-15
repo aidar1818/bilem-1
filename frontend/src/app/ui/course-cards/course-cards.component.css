@@ -51,5 +51,17 @@
   background-color: #85233E !important;
 }
 
+@media (max-width: 1195px) {
+  .cards-block {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 780px;
+  }
+}
 
+@media (max-width: 815px) {
+  .cards-title {
+    margin-left: 20px;
+  }
 
+}

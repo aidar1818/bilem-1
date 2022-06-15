@@ -1,14 +1,16 @@
 <h1 class="cards-title">{{ title }}</h1>
 <mat-tab-group mat-align-tabs="start" class="courses-block">
   <mat-tab label="ПОПУЛЯРНЫЕ КУРСЫ">
-    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
+    <div class="cards-block">
+    <div fxLayout="row wrap" *ngIf="courses" class="courses">
       <div *ngFor="let course of popularCourses | orderBy:'-rate'">
         <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
       </div>
     </div>
+    </div>
   </mat-tab>
   <mat-tab label="НОВЫЕ КУРСЫ">
-    <div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="courses" class="courses">
+    <div fxLayout="row wrap" *ngIf="courses" class="courses">
       <div *ngFor="let course of newCourses | orderBy:'-rate'">
         <app-course-card [course]="course" [is_free]="is_free"></app-course-card>
       </div>

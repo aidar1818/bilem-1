@@ -54,3 +54,63 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+@media (max-width: 815px) {
+  .woman-img {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .forAnonUserBlock {
+    margin-bottom: 0;
+    height: 470px;
+    margin-left: 20px;
+  }
+
+  .title {
+    font-size: 52px;
+  }
+
+  .p1 {
+    padding-top: 25px;
+  }
+}
+
+@media (max-width: 744px) {
+  .p1 {
+    padding-top: 0;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .title {
+    font-size: 40px;
+    line-height: 45px;
+  }
+
+  .p2 {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 48px;
+    max-width: 400px;
+  }
+
+  .btnGo {
+    height: 47px;
+    width: 170px;
+    font-size: 18px;
+    line-height: 27px;
+    padding: 0;
+  }
+
+  .woman-img {
+    width: 100%;
+    max-width: 204px;
+  }
+
+  .forAnonUserBlock {
+    margin-bottom: 30px;
+    height: 308px;
+    margin-left: 20px;
+  }
+}
