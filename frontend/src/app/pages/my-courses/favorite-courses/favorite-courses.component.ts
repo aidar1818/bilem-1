@@ -32,6 +32,7 @@ export class FavoriteCoursesComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   ngOnDestroy() {
     this.userSub.unsubscribe()
   }

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
 import { MyCourses, User } from '../../../models/user.model';
 import { fetchUserRequest } from '../../../store/users/users.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-learning-courses',
@@ -23,7 +24,7 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
   totalLength: any;
   page: number = 1;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.user = store.select(state => state.users.user);
     this.loading = store.select(state => state.users.fetchLoading);
     this.error = store.select(state => state.users.fetchLoadingError);
@@ -55,6 +56,10 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
   onPageChange(page: number) {
     this.page = page;
     window.scrollTo(0, 0);
+  }
+
+  redirectOnFavoriteCourses() {
+    void this.router.navigate(['favorite']);
   }
 
   ngOnDestroy() {

@@ -84,4 +84,16 @@ mat-nav-list a:hover {
   padding-right: 19px;
 }
 
+.router {
+  width: 100%;
+}
+
+@media screen and (max-width: 905px) {
+  .nav {
+    display: none;
+  }
+}
+
+
+
 
