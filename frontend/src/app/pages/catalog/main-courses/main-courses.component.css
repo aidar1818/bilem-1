@@ -2,6 +2,7 @@
   height: 630px;
   margin-bottom: 40px;
 }
+
 .textBlock {
   width: 580px;
 }
@@ -14,6 +15,7 @@
   font-size: 22px;
   line-height: 27px;
   color: #6B0D24;
+  padding-top: 90px;
 }
 
 .title {
@@ -53,6 +55,31 @@
   border: #111116;
   border-radius: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 1195px) {
+  .title {
+    font-size: 58px;
+  }
+}
+
+@media (max-width: 945px) {
+  .woman-img {
+    width: 100%;
+    max-width: 330px;
+  }
+
+  .forAnonUserBlock {
+    height: 550px;
+  }
+
+  .p1 {
+    padding-top: 40px;
+  }
+
+  .title {
+    font-size: 56px;
+  }
 }
 
 @media (max-width: 815px) {
