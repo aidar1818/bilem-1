@@ -1,20 +1,22 @@
-.cards {
-  padding: 15px;
-}
-
 .card {
-  height: 120px;
-  padding: 12px 12px 24px 12px;
+  height: 100px;
+  padding: 12px 12px 15px 12px;
   width: 100%;
   border: 2px solid #E0E6ED;
   border-radius: 10px;
 }
 
-h1 {
+.title-favorite {
   font-weight: 500;
   font-size: 32px;
-  line-height: 48px;
-  margin: 15px 15px 0;
+  margin: 29px 0 20px;
+}
+
+.alternativeTitle {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 32px;
+  font-weight: 500;
 }
 
 .notCourses {
@@ -54,8 +56,8 @@ button {
 }
 
 .course-image {
-  width: 100%;
-  height: auto;
+  width: 80px;
+  height: 72px;
   padding-right: 15px;
   border-radius: 5px !important;
 }
@@ -68,3 +70,11 @@ button {
 ::ng-deep .mat-menu-panel {
   overflow: hidden;
 }
+
+.mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer){
+  margin-bottom: 30px;
+}
+
+
+
+

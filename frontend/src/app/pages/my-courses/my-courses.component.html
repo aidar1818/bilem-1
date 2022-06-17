@@ -14,13 +14,21 @@
         <img src="../../../assets/icons/my-courses.svg" alt="my-courses" class="ic"/>
         Мои курсы
       </a>
-      <a mat-list-item routerLink="favorite">
+      <a mat-list-item routerLink="favorite" class="favoriteLink">
         <img src="assets/icons/favorite-courses.svg" alt="favorite-courses" class="ic"/>
         Хочу пройти
       </a>
     </mat-nav-list>
   </app-sidebar>
-  <div class="router">
+  <div class="router container">
+    <div class="tabList">
+      <span routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+       <a routerLink="learning">Мои курсы</a>
+      </span>
+      <span routerLinkActive="active">
+       <a routerLink="favorite">Хочу пройти</a>
+      </span>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

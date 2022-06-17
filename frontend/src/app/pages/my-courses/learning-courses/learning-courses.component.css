@@ -1,10 +1,21 @@
 .cards-wrap {
-  padding-top: 46px;
+  padding-top: 30px;
   width: 100%;
 }
 
 .cards {
   margin-bottom: 16px;
+}
+
+.alternativeTitle {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.currentCourses{
+  width: 70%;
 }
 
 .favorite {
@@ -44,10 +55,12 @@
 .continue-btn {
   color: #fff;
   background: #85233E;
+  min-width: 120px;
 }
 
 .leave-btn {
   color: #85233E;
+  min-width: 100px;
 }
 
 .progress {
@@ -166,12 +179,25 @@
   margin: 0;
 }
 
+.currentCourses {
+  position: relative;
+}
+
+.paginationArea {
+  position: absolute;
+  bottom: 0;
+  right: 29%;
+}
+
 @media screen and (max-width: 1120px) {
+  .currentCourses {
+    width: 100%;
+  }
   .lastCourses {
     display: none;
   }
   .paginationArea {
-    float: right;
+    right: 0;
   }
 }
 
