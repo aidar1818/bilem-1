@@ -1,25 +1,19 @@
-<div fxLayout="row" fxLayoutAlign="space-between flex-start">
-  <h1>Курсы</h1>
+<div fxLayout="column" fxLayoutAlign="space-between flex-start">
+  <h1 class="teaching-title">Курсы на которых вы преподаватель</h1>
+  <p class="subtitle">Что бы добавить или редактировать уроки к вашим курсам, нажмите на кнопку редактировать</p>
 </div>
 
 <mat-progress-spinner
-    *ngIf="(loading | async) else coursesArea"
-    mode="indeterminate"
+  *ngIf="(loading | async) else coursesArea"
+  mode="indeterminate"
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <form>
-    <mat-form-field appearance="outline" class="search-block">
-      <mat-label>Название курса</mat-label>
-      <input type="text" name="search" [(ngModel)]="searchText" matInput>
-    </mat-form-field>
-  </form>
-
   <div class="cards" *ngFor="let course of courses | async | filter : searchText">
     <a [routerLink]="['/syllabus/program/', course._id]" class="course-card">
       <mat-card fxLayout="row" fxLayoutAlign="space-between" class="courseCard card">
         <div class="unpublished" *ngIf="!course.is_published">
-          <span class="unpublished-text">Unpublished</span>
+          <span class="material-icons red-color" matTooltip="Не опубликовано">unpublished</span>
         </div>
         <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
         <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
@@ -33,8 +27,9 @@
       <mat-icon id="editCourse">more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
       <button mat-button color="warn" (click)="deleteCourse(course._id)">Удалить</button>
     </mat-menu>
+    <button mat-stroked-button color="red" [routerLink]="['/editModule', course._id]" class="btn-edit">Редактировать
+    </button>
   </div>
 </ng-template>

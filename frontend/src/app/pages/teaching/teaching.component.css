@@ -12,6 +12,12 @@
   border-right: 1px solid #E2E2E2;
 }
 
+@media screen and (max-width: 744px) {
+  .nav {
+    display: none !important;
+  }
+}
+
 mat-nav-list a {
   color: #999999;
   font-size: 14px;
@@ -63,6 +69,42 @@ mat-nav-list a:hover {
 
 .newCourse {
   margin-top: 25px;
+}
+
+.tabList {
+  display: none;
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.tabList a {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 14px;
+  text-decoration: none;
+  color: #161615;
+  text-transform: uppercase;
+  padding: 0 25px 10px;
+}
+
+.tabList span {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #999999;
+}
+
+.active a {
+  color: #85233E;
+  border-bottom: 2px solid #85233E;
+}
+
+@media screen and (max-width: 905px) {
+  .nav {
+    display: none;
+  }
+
+  .tabList {
+    display: block;
+  }
 }
 
 

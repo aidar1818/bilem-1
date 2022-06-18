@@ -2,10 +2,10 @@
   height: 80px;
   color: white;
   background: inherit;
-  padding: 28px 0;
+  padding: 28px 20px;
 }
 
-.page-nav{
+.page-nav {
   display: flex;
   margin-left: 48px;
 }
@@ -30,13 +30,13 @@ a.activeToolbarNav {
   font-weight: 700;
 }
 
-.page-nav a:focus{
+.page-nav a:focus {
   color: #6B0D24;
   font-weight: 700;
 }
 
 
-.search{
+.search {
   position: relative;
 
 }
@@ -54,8 +54,7 @@ a.activeToolbarNav {
   outline: none;
 }
 
-
-.search input::placeholder{
+.search input::placeholder {
   padding: 9px 78px 8px 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -94,7 +93,7 @@ a.activeToolbarNav {
   color: #161615;
 }
 
-.avatar{
+.avatar {
   background: #007DFF;
   border-radius: 50%;
   width: 40px;
@@ -103,7 +102,7 @@ a.activeToolbarNav {
   margin-left: 40px;
 }
 
-.avatar mat-icon{
+.avatar mat-icon {
   position: absolute;
   left: 37.5%;
   right: 37.5%;
@@ -126,7 +125,7 @@ a.activeToolbarNav {
 }
 
 
-mat-option{
+mat-option {
   padding: 3px;
   font-size: 13px;
 }
@@ -143,7 +142,7 @@ mat-option{
   margin-right: 10px;
 }
 
-mat-icon{
+mat-icon {
   text-transform: uppercase;
 }
 

@@ -8,7 +8,7 @@
   text-decoration: none;
 }
 
-.card  {
+.card {
   margin-bottom: 16px;
 }
 
@@ -30,10 +30,21 @@
   font-size: 16px;
 }
 
-.btn-icon{
+.btn-icon {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.btn-edit {
+  position: absolute;
+  top: 47px;
+  right: 18px;
+}
+
+.mat-red {
+  color: #85233E;
+  border-color: #85233E;
 }
 
 .content {
@@ -43,7 +54,34 @@
   width: 80%;
 }
 
-.search-block{
-  width: 60%;
-  margin: 4px 0 20px;
+.teaching-title {
+  font-family: 'Poppins', areal, sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 905px) {
+  .teaching-title {
+    font-size: 32px;
+    padding-bottom: 20px;
+  }
+}
+
+.subtitle {
+  font-family: Poppins, areal, sans-serif;
+  font-size: 18px;
+  color: #1211278F;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 905px) {
+  .subtitle {
+    display: none;
+  }
+}
+
+.unpublished {
+  bottom: 55px;
+  right: 30px;
 }

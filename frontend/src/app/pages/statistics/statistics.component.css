@@ -1,7 +1,15 @@
 .titles {
-  font-size: 18px;
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+  font-size: 40px;
   line-height: 32px;
-  color: #4C4C4C;
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 905px) {
+  .titles {
+    font-size: 32px;
+  }
 }
 
 .main-div {

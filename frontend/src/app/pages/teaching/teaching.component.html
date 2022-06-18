@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main container">
   <app-sidebar class="nav">
     <div fxLayout="row" fxLayoutAlign="start center" class="avatarDiv">
       <div class="avatar">
@@ -7,24 +7,18 @@
       <span style="color: #6D6D6D">{{ userDisplayName }}</span>
     </div>
 
-    <mat-nav-list  role="navigation">
+    <mat-nav-list role="navigation">
+      <a mat-list-item routerLink="courses" [routerLinkActive]="['active']">
+        <span class="material-icons mat-list-icon">
+          school
+        </span>
+        Преподавание
+      </a>
       <a mat-list-item [routerLink]="['statistics', userId]" [routerLinkActive]="['active']" class="statistics">
         <span class="material-icons mat-list-icon">
           analytics
         </span>
         Статистика
-      </a>
-      <a mat-list-item routerLink="courses" [routerLinkActive]="['active']">
-        <span class="material-icons mat-list-icon">
-          menu_book
-        </span>
-        Курсы
-      </a>
-      <a mat-list-item routerLink="lessons" [routerLinkActive]="['active']">
-        <span class="material-icons mat-list-icon">
-          school
-        </span>
-        Уроки
       </a>
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="new" [routerLinkActive]="['active']" class="newCourse">
@@ -35,7 +29,19 @@
       </a>
     </mat-nav-list>
   </app-sidebar>
+
   <div class="router">
+    <div class="tabList">
+      <span routerLinkActive="active">
+       <a routerLink="courses">Преподавание</a>
+      </span>
+      <span routerLinkActive="active">
+       <a [routerLink]="['statistics', userId]">Статистика</a>
+      </span>
+      <span routerLinkActive="active">
+       <a routerLink="new">Новый курс</a>
+      </span>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>
