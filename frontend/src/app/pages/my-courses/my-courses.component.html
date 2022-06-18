@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main container">
   <app-sidebar class="nav">
     <div class="user-info" fxLayout="row">
       <div class="avatar">
@@ -14,7 +14,7 @@
         <img src="../../../assets/icons/my-courses.svg" alt="my-courses" class="ic"/>
         Мои курсы
       </a>
-      <a mat-list-item routerLink="favorite" class="favoriteLink">
+      <a mat-list-item routerLink="favorite">
         <img src="assets/icons/favorite-courses.svg" alt="favorite-courses" class="ic"/>
         Хочу пройти
       </a>
@@ -22,7 +22,7 @@
   </app-sidebar>
   <div class="router container">
     <div class="tabList">
-      <span routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <span routerLinkActive="active">
        <a routerLink="learning">Мои курсы</a>
       </span>
       <span routerLinkActive="active">

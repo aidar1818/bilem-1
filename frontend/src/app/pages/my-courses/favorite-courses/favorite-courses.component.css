@@ -4,6 +4,7 @@
   width: 100%;
   border: 2px solid #E0E6ED;
   border-radius: 10px;
+  margin-bottom: 16px;
 }
 
 .title-favorite {
@@ -53,6 +54,10 @@ button {
 .remove-btn {
   margin: 0;
   width: 5px;
+}
+
+.btnsBlock {
+  margin-right: 12px;
 }
 
 .course-image {
