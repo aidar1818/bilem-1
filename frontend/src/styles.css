@@ -167,7 +167,7 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 2.5vw;
   line-height: 45px;
 }
 
@@ -328,6 +328,23 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
 @media screen and (max-width: 744px) {
   .registerMessage {
     display: none;
+  }
+
+  .authFbGlText {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .authFbGlText {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .authText {
+    font-size: 25px;
+    line-height: 35px;
   }
 }
 

@@ -51,6 +51,18 @@
   }
 
   .fbImg {
-    margin-left: 25px;
+    margin-left: 25px !important;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .fbImg {
+    margin-left: 9px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .fbImg {
+    margin-left: 9px !important;
   }
 }
