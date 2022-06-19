@@ -1,0 +1,34 @@
+Index: src/app/pages/edit-module/edit-module.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnDestroy, OnInit } from '@angular/core';\nimport { FormArray, FormBuilder, FormGroup } from '@angular/forms';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../store/types';\nimport { createModuleRequest } from '../../store/modules/modules.actions';\nimport { ActivatedRoute } from '@angular/router';\nimport { Observable, Subscription } from 'rxjs';\nimport { Course } from '../../models/course.model';\nimport { fetchCourseInfoRequest } from '../../store/course/course.actions';\n\n@Component({\n  selector: 'app-edit-module',\n  templateUrl: './edit-module.component.html',\n  styleUrls: ['./edit-module.component.css']\n})\nexport class EditModuleComponent implements OnInit, OnDestroy {\n  moduleForm!: FormGroup;\n  course: Observable<Course | null>;\n  courseSub!: Subscription;\n  titleText = true;\n\n  constructor(\n    private fb: FormBuilder,\n    private store: Store<AppState>,\n    private route: ActivatedRoute\n  ) {\n    this.course = store.select(state => state.courses.course);\n  }\n\n  ngOnInit(): void {\n    this.moduleForm = this.fb.group({\n      modules: this.fb.array([])\n    });\n\n    this.route.params.subscribe(params => {\n      let courseId = params['id'];\n      this.store.dispatch(fetchCourseInfoRequest({id: courseId}));\n    });\n\n    this.courseSub = this.course.subscribe(course => {\n      if(course?.modules) {\n        this.titleText = false;\n        for(let i = 0; i < course.modules.length; i++) {\n          const moduleArray = this.modules();\n\n          moduleArray.push( this.fb.group({\n            title: course.modules[i].title,\n            lessons: this.fb.array([])\n          }));\n\n\n          for(let j = 0; j < course.modules[i].lessons.length; j++) {\n            const moduleLessons = moduleArray.at(i).get('lessons') as FormArray;\n            moduleLessons.push(this.fb.group({\n              title: course.modules[i].lessons[j].title\n            }));\n          }\n        }\n      } else {\n        this.titleText = true;\n      }\n    });\n  }\n\n  modules(): FormArray {\n    return this.moduleForm.get('modules') as FormArray;\n  }\n\n  newModule(): FormGroup {\n    return this.fb.group({\n      title: '',\n      lessons: this.fb.array([])\n    });\n  }\n\n  addModule() {\n    this.modules().push(this.newModule());\n  }\n\n  getLessonsControls(moduleIndex: number): FormArray {\n    return this.modules()\n      .at(moduleIndex)\n      .get('lessons') as FormArray;\n  }\n\n  newLesson(): FormGroup {\n    return this.fb.group({\n      title: ''\n    });\n  }\n\n  addLesson(moduleIndex: number) {\n    this.getLessonsControls(moduleIndex).push(this.newLesson());\n  }\n\n  onSubmit() {\n    let id = '';\n    this.route.params.subscribe(params => {\n      id = params['id'];\n    });\n    const module = this.moduleForm.value;\n\n    this.store.dispatch(createModuleRequest({module, id}));\n  }\n\n  removeLesson(moduleIndex: number, lessonIndex: number) {\n    this.getLessonsControls(moduleIndex).removeAt(lessonIndex);\n  }\n\n  removeModule(moduleIndex: number) {\n    this.modules().removeAt(moduleIndex);\n  }\n\n  ngOnDestroy() {\n    this.courseSub.unsubscribe();\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/edit-module/edit-module.component.ts b/src/app/pages/edit-module/edit-module.component.ts
+--- a/src/app/pages/edit-module/edit-module.component.ts	(revision a570a4ff0e1154133e47bdc7174d94b00943b5e7)
++++ b/src/app/pages/edit-module/edit-module.component.ts	(date 1652430839623)
+@@ -28,11 +28,7 @@
+   }
+ 
+   ngOnInit(): void {
+-    this.moduleForm = this.fb.group({
+-      modules: this.fb.array([])
+-    });
+-
+-    this.route.params.subscribe(params => {
++     this.route.params.subscribe(params => {
+       let courseId = params['id'];
+       this.store.dispatch(fetchCourseInfoRequest({id: courseId}));
+     });
+@@ -60,6 +56,10 @@
+         this.titleText = true;
+       }
+     });
++
++    this.moduleForm = this.fb.group({
++      modules: this.fb.array([])
++    });
+   }
+ 
+   modules(): FormArray {

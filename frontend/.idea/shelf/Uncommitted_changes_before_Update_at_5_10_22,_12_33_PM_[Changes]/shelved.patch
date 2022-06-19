@@ -1,0 +1,242 @@
+Index: src/app/pages/teaching/courses/courses.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div fxLayout=\"row\" fxLayoutAlign=\"space-between flex-start\">\n  <h1>Курсы</h1>\n</div>\n\n<div class=\"error\" *ngIf=\"error | async\">\n  {{ error | async }}\n</div>\n\n<mat-progress-spinner\n  *ngIf=\"(loading | async) else coursesArea\"\n  mode=\"indeterminate\"\n></mat-progress-spinner>\n\n<ng-template #coursesArea>\n  <div class=\"cards\" *ngFor=\"let course of courses | async\">\n    <a  [routerLink]=\"['/syllabus/program/', course._id]\" class=\"course-card\">\n      <mat-card fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"courseCard card\">\n        <div class=\"unpublished\" *ngIf=\"!course.is_published\">\n          <span class=\"unpublished-text\">Unpublished</span>\n        </div>\n        <img class=\"img\" [src]=\"course.image | imageForCourse\" [alt]=\"course.title\"/>\n        <div fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"title-course\">\n          <h2>\n            <i>Курс: {{ course.title }}</i>\n          </h2>\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\"><mat-icon id=\"editCourse\">more_vert</mat-icon></button>\n        </div>\n      </mat-card>\n      <mat-menu #menu=\"matMenu\">\n        <button mat-button color=\"primary\" [routerLink]=\"['/editModule', course._id]\">Редактировать</button>\n        <button mat-button color=\"warn\">Удалить</button>\n      </mat-menu>\n    </a>\n  </div>\n</ng-template>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.html b/src/app/pages/teaching/courses/courses.component.html
+--- a/src/app/pages/teaching/courses/courses.component.html	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/pages/teaching/courses/courses.component.html	(date 1652085519444)
+@@ -12,8 +12,8 @@
+ ></mat-progress-spinner>
+ 
+ <ng-template #coursesArea>
+-  <div class="cards" *ngFor="let course of courses | async">
+-    <a  [routerLink]="['/syllabus/program/', course._id]" class="course-card">
++  <div class="cards" *ngFor="let course of courses | async" >
++    <a [routerLink]="['/syllabus/program/', course._id]" class="course-card" >
+       <mat-card fxLayout="row" fxLayoutAlign="space-between" class="courseCard card">
+         <div class="unpublished" *ngIf="!course.is_published">
+           <span class="unpublished-text">Unpublished</span>
+@@ -21,16 +21,18 @@
+         <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
+         <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
+           <h2>
+-            <i>Курс: {{ course.title }}</i>
++            <p class="text"><i>Курс: {{ course.title }}</i></p>
+           </h2>
+-          <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editCourse">more_vert</mat-icon></button>
+         </div>
+       </mat-card>
+-      <mat-menu #menu="matMenu">
+-        <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
+-        <button mat-button color="warn">Удалить</button>
+-      </mat-menu>
+-    </a>
++    </a>
++    <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-icon">
++      <mat-icon id="editCourse">more_vert</mat-icon>
++    </button>
++    <mat-menu #menu="matMenu">
++      <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
++      <button mat-button color="warn" (click)="deleteCourse(course._id)">Удалить</button>
++    </mat-menu>
+   </div>
+ </ng-template>
+ 
+Index: src/app/services/course.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { environment, environment as env } from '../../environments/environment';\nimport { Course, CourseData, Lesson } from '../models/course.model';\nimport { map } from 'rxjs';\nimport { Module } from '../models/module.model';\n\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class CourseService {\n  constructor(private http: HttpClient) { }\n\n  fetchCourses() {\n    return this.http.get<Course[]>(env.apiUrl + '/courses').pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getUserCourses(id: string) {\n    return this.http.get<Course[]>(env.apiUrl + '/courses?user=' + id).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getCoursesByCategory(id: string) {\n    return this.http.get<Course[]>(env.apiUrl + '/courses?category=' + id).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  createCourse(courseData: CourseData) {\n    const formData = new FormData();\n\n    Object.keys(courseData).forEach(key => {\n      if (courseData[key] !== null) {\n        formData.append(key, courseData[key]);\n      }\n    });\n    return this.http.post<Course>(env.apiUrl + '/courses', formData);\n  }\n\n  addModules(moduleData: Module, id: string) {\n    return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);\n  };\n\n  search(courseData: {}) {\n    return this.http.post<Course[]>(env.apiUrl + `/courses/search`, courseData).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getCourseById(id: string) {\n    return this.http.get<Course>(env.apiUrl + '/courses/' + id).pipe(\n      map(response => {\n        return new Course(\n          response._id,\n          response.title,\n          response.description,\n          response.information,\n          response.author,\n          response.students,\n          response.modules,\n          response.subcategory,\n          response.price,\n          response.image,\n          response.is_free,\n          response.rate,\n          response.is_published,\n        );\n      })\n    );\n  }\n\n  addLearningCourses(id: string) {\n    return this.http.post<string>(environment.apiUrl + `/courses/addCourse`, {course: id}).pipe(\n      map(response => {\n        return response;\n      })\n    );\n  }\n\n  addFavoriteCourses(id: string) {\n    return this.http.post<string>(environment.apiUrl + `/courses/addFavoriteCourse`, {favoriteCourse: id}).pipe(\n      map(response => {\n        return response;\n      })\n    );\n  }\n\n  removeCourse(artistId: string) {\n    return this.http.delete(env.apiUrl + '/courses/' + artistId);\n  }\n\n  publishCourse(id: string) {\n    return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});\n  }\n\n  addLesson(lessonData: Lesson) {\n    return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);\n  }\n\n  getLessonData(lessonId: string) {\n    return this.http.get<Lesson | null>(env.apiUrl + `/courses/lesson/${lessonId}`)\n      .pipe(map(result => {\n        if(!result) {\n          return null;\n        }\n\n        return new Lesson(result._id, result.title, result.description, result.video);\n      }));\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/services/course.service.ts b/src/app/services/course.service.ts
+--- a/src/app/services/course.service.ts	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/services/course.service.ts	(date 1652084697224)
+@@ -161,8 +161,8 @@
+     );
+   }
+ 
+-  removeCourse(artistId: string) {
+-    return this.http.delete(env.apiUrl + '/courses/' + artistId);
++  removeCourse(courseId: string) {
++    return this.http.delete(env.apiUrl + '/courses/' + courseId);
+   }
+ 
+   publishCourse(id: string) {
+Index: src/app/pages/teaching/courses/courses.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.cards {\n  display: flex;\n  flex-direction: column;\n}\n\n.course-card {\n  text-decoration: none;\n}\n\n.card  {\n  width: 500px;\n  margin-bottom: 16px;\n}\n\n.card:hover {\n  box-shadow: 0 0 5px 2px lightgray;\n  cursor: pointer;\n}\n\n.img {\n  width: 60px;\n  margin-right: 16px;\n}\n\n.title-course {\n  width: 100%;\n}\n\n.content {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  width: 80%;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.css b/src/app/pages/teaching/courses/courses.component.css
+--- a/src/app/pages/teaching/courses/courses.component.css	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/pages/teaching/courses/courses.component.css	(date 1652085474164)
+@@ -1,6 +1,8 @@
+ .cards {
+   display: flex;
+   flex-direction: column;
++  position: relative;
++  width: 500px;
+ }
+ 
+ .course-card {
+@@ -8,7 +10,6 @@
+ }
+ 
+ .card  {
+-  width: 500px;
+   margin-bottom: 16px;
+ }
+ 
+@@ -26,6 +27,16 @@
+   width: 100%;
+ }
+ 
++.text {
++  font-size: 15px;
++}
++
++.btn-icon{
++  position: absolute;
++  top: 0;
++  right: 0;
++}
++
+ .content {
+   display: flex;
+   flex-direction: row;
+Index: src/app/pages/teaching/courses/courses.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Course } from '../../../models/course.model';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../../store/types';\nimport { fetchUserCoursesRequest } from '../../../store/course/course.actions';\nimport { User } from '../../../models/user.model';\n\n@Component({\n  selector: 'app-courses',\n  templateUrl: './courses.component.html',\n  styleUrls: ['./courses.component.css']\n})\nexport class CoursesComponent implements OnInit {\n  user: Observable<null | User>;\n  id: null | string = null;\n  courses: Observable<Course[]>\n  loading: Observable<boolean>\n  error: Observable<null | string>\n  constructor(private store: Store<AppState>) {\n    this.user = store.select(state => state.users.user);\n    this.user.subscribe(user => {\n      this.id = user ? user._id : null;\n    });\n    this.courses = store.select(state => state.courses.courses);\n    this.loading = store.select(state => state.courses.fetchLoading);\n    this.error = store.select(state => state.courses.fetchLoadingError);\n  }\n\n  ngOnInit(): void {\n    if (this.id) {\n      this.store.dispatch(fetchUserCoursesRequest({id: this.id}));\n    }\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.ts b/src/app/pages/teaching/courses/courses.component.ts
+--- a/src/app/pages/teaching/courses/courses.component.ts	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/pages/teaching/courses/courses.component.ts	(date 1652084604964)
+@@ -3,8 +3,9 @@
+ import { Course } from '../../../models/course.model';
+ import { Store } from '@ngrx/store';
+ import { AppState } from '../../../store/types';
+-import { fetchUserCoursesRequest } from '../../../store/course/course.actions';
++import { fetchUserCoursesRequest, removeCourseRequest } from '../../../store/course/course.actions';
+ import { User } from '../../../models/user.model';
++import { logoutUser } from '../../../store/users/users.actions';
+ 
+ @Component({
+   selector: 'app-courses',
+@@ -32,4 +33,8 @@
+       this.store.dispatch(fetchUserCoursesRequest({id: this.id}));
+     }
+   }
++
++  deleteCourse(idCourse: string) {
++    this.store.dispatch(removeCourseRequest({id: idCourse}))
++  }
+ }
+Index: src/app/pages/teaching/info-course/info-course.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div class=\"main\">\n  <app-sidebar class=\"nav\">\n    <div class=\"sidebarTitle\">\n      <img class=\"img\" [src]=\"urlImg | imageForCourse\" alt=\"course image\">\n      <h2>\n        <i>Курс: {{ courseInfo?.title }}</i>\n      </h2>\n    </div>\n\n    <mat-nav-list  role=\"navigation\">\n      <a mat-list-item [routerLink]=\"['/syllabus/program/', courseInfo?._id]\">\n        <span class=\"material-icons mat-list-icon\">\n          menu_book\n        </span>\n        Содержание\n      </a>\n    </mat-nav-list>\n  </app-sidebar>\n\n  <div class=\"programContent\">\n    <h2>Программа курса</h2>\n\n    <button mat-raised-button class=\"editBtn\">Редактировать содержание</button>\n\n    <div class=\"cards\" *ngFor=\"let module of courseInfo?.modules; let i = index\">\n      <a>\n        <mat-card fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"card\">\n\n          <div fxLayout=\"column\" fxLayoutAlign=\"space-between\" class=\"title-course\">\n            <h2>\n              <i>{{ i + 1 }}. {{ module.title }}</i>\n            </h2>\n            <div>\n              <div  *ngFor=\"let lesson of module.lessons; let index = index\"\n                    class=\"lessonTitle\" fxLayout=\"row\" fxLayoutAlign=\"space-between start\">\n                <p style=\"margin-bottom: 20px\"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>\n                <a [routerLink]=\"['/edit-lesson/', lesson._id,]\" mat-stroked-button class=\"lessonEditBtn\">\n                  <span class=\"material-icons main-color\">edit</span>\n                </a>\n              </div>\n            </div>\n          </div>\n        </mat-card>\n      </a>\n    </div>\n  </div>\n</div>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/info-course/info-course.component.html b/src/app/pages/teaching/info-course/info-course.component.html
+--- a/src/app/pages/teaching/info-course/info-course.component.html	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/pages/teaching/info-course/info-course.component.html	(date 1652083218531)
+@@ -3,7 +3,7 @@
+     <div class="sidebarTitle">
+       <img class="img" [src]="urlImg | imageForCourse" alt="course image">
+       <h2>
+-        <i>Курс: {{ courseInfo?.title }}</i>
++        <p class="text">Курс: {{ courseInfo?.title }}</p>
+       </h2>
+     </div>
+ 
+@@ -24,15 +24,16 @@
+ 
+     <div class="cards" *ngFor="let module of courseInfo?.modules; let i = index">
+       <a>
+-        <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
+-
+-          <div fxLayout="column" fxLayoutAlign="space-between" class="title-course">
+-            <h2>
+-              <i>{{ i + 1 }}. {{ module.title }}</i>
+-            </h2>
+-            <div>
++        <div fxLayout="row" fxLayoutAlign="space-between" class="card">
++          <div fxLayout="column" fxLayoutAlign="space-between" >
++            <div class="title-course">
++              <h2>
++                <i>{{ i + 1 }}. {{ module.title }}</i>
++              </h2>
++            </div>
++            <div class="lessonTitle">
+               <div  *ngFor="let lesson of module.lessons; let index = index"
+-                    class="lessonTitle" fxLayout="row" fxLayoutAlign="space-between start">
++                   fxLayout="row" fxLayoutAlign="space-between start">
+                 <p style="margin-bottom: 20px"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>
+                 <a [routerLink]="['/edit-lesson/', lesson._id,]" mat-stroked-button class="lessonEditBtn">
+                   <span class="material-icons main-color">edit</span>
+@@ -40,7 +41,7 @@
+               </div>
+             </div>
+           </div>
+-        </mat-card>
++        </div>
+       </a>
+     </div>
+   </div>
+Index: src/app/pages/teaching/info-course/info-course.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.editBtn {\n  padding: 3px 30px;\n  border-radius: 7px;\n  border: 1px solid #85233E;\n  color: #85233E;\n  margin: 0 0 15px 13px;\n  width: 55%;\n}\n\n.cards {\n  display: flex;\n  flex-direction: column;\n}\n\n.card  {\n  width: 500px;\n  margin-bottom: 16px;\n}\n\n.card:hover {\n  box-shadow: 0 0 5px 2px lightgray;\n  cursor: pointer;\n}\n\n.img {\n  width: 60px;\n  margin-right: 16px;\n}\n\n.title-course {\n  width: 100%;\n}\n\n.lessonTitle {\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\n}\n\n.main {\n  display: flex;\n  flex-direction: row;\n  align-self: stretch;\n  min-height: calc(100vh - 145px);\n}\n\n.nav {\n  width: 18rem;\n  margin-right: 50px;\n  padding: 40px 10px;\n  background-color: #FCFCFC;\n}\n\nmat-nav-list a{\n  color: #85233E;\n  font-size: 14px;\n  border-radius: 5px;\n}\n\n.sidebar_icon{\n  text-align: center;\n  background: #E6B1A8;\n  border-radius: 10px;\n  width: 93%;\n  margin: 0 auto 20px;\n  opacity: 0.7;\n}\n\n.school{\n  font-size: 3.8rem;\n  width: 4rem;\n}\n\n.sidebarTitle {\n  margin-left: 12px;\n}\n\n.addBtn {\n  padding: 3px 30px;\n  border-radius: 7px;\n  border: 1px solid #85233E;\n  color: #85233E;\n  margin: 0 0 0 13px;\n  width: 55%;\n}\n\n.addBtn span{\n  margin-bottom: 5px;\n}\n\n.mat-list-icon {\n  margin-right: 12px;\n}\n\n.programContent {\n  padding: 20px;\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/info-course/info-course.component.css b/src/app/pages/teaching/info-course/info-course.component.css
+--- a/src/app/pages/teaching/info-course/info-course.component.css	(revision 3400043830917c9940d9973c7760f881a6c2e477)
++++ b/src/app/pages/teaching/info-course/info-course.component.css	(date 1652083311260)
+@@ -13,15 +13,10 @@
+ }
+ 
+ .card  {
+-  width: 500px;
++  width: 70%;
+   margin-bottom: 16px;
+ }
+ 
+-.card:hover {
+-  box-shadow: 0 0 5px 2px lightgray;
+-  cursor: pointer;
+-}
+-
+ .img {
+   width: 60px;
+   margin-right: 16px;
+@@ -94,4 +89,19 @@
+   padding: 20px;
+ }
+ 
++.lessonTitle {
++  padding-left: 20px;
++  width: 350px;
++  border: 1px solid grey;
++}
++
++.title-course {
++  padding-left: 20px;
++  border: 1px solid grey;
++}
++
++.text {
++  word-wrap: break-all
++}
++
+ 

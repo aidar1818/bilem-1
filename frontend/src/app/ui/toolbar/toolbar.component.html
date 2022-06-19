@@ -9,9 +9,24 @@
     </a>
     <nav class="page-nav">
       <a routerLink="/" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Каталог</a>
-      <a routerLink="myCourses/learning" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Мои курсы</a>
+      <a routerLink="myCourses/learning" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Мои
+        курсы</a>
       <a routerLink="teaching/courses" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Преподавание</a>
     </nav>
+
+    <div class="burger">
+      <button class="dropbtn">
+        <img src="assets/icons/меню.svg" alt="menu"/>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/" routerLinkActive="activeToolbarNav"
+           [routerLinkActiveOptions]="{exact:true}">Каталог</a>
+        <a routerLink="myCourses/learning" routerLinkActive="activeToolbarNav"
+           [routerLinkActiveOptions]="{exact:true}">Мои курсы</a>
+        <a routerLink="teaching/courses" routerLinkActive="activeToolbarNav"
+           [routerLinkActiveOptions]="{exact:true}">Преподавание</a>
+      </div>
+    </div>
   </div>
   <div fxLayoutAlign="space-between center">
     <div class="search">

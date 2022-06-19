@@ -67,7 +67,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.store.dispatch(logoutUserRequest());
   }
 
-
   ngOnDestroy(): void {
     this.coursesSub.unsubscribe();
     this.userSub.unsubscribe();

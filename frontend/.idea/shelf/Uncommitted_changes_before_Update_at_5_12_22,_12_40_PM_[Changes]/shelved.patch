@@ -1,0 +1,647 @@
+Index: src/app/pages/teaching/info-course/info-course.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Course } from '../../../models/course.model';\nimport { ActivatedRoute } from '@angular/router';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../../store/types';\nimport { fetchCourseInfoRequest } from '../../../store/course/course.actions';\n\n@Component({\n  selector: 'app-info-course',\n  templateUrl: './info-course.component.html',\n  styleUrls: ['./info-course.component.css']\n})\nexport class InfoCourseComponent implements OnInit {\n  courseId!: string;\n  course: Observable<Course | null>;\n  courseInfo!: Course;\n  loading: Observable<boolean>;\n  error: Observable<null | string>;\n  url = 'http://localhost:8000/uploads/';\n  urlImg!: string;\n\n  constructor(private route: ActivatedRoute, private store: Store<AppState>) {\n    this.course = store.select(state => state.courses.course);\n    this.loading = store.select(state => state.courses.fetchLoading);\n    this.error = store.select(state => state.courses.fetchLoadingError);\n  }\n\n  ngOnInit(): void {\n    this.route.params.subscribe(params => {\n      this.courseId = params['id'];\n    })\n    this.store.dispatch(fetchCourseInfoRequest({id: this.courseId}));\n\n    this.course.subscribe(info => {\n      if (info) {\n        this.courseInfo = info;\n        if (info.image) {\n          this.urlImg = `${this.url}${info.image}`;\n        }\n      }\n    })\n  }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/info-course/info-course.component.ts b/src/app/pages/teaching/info-course/info-course.component.ts
+--- a/src/app/pages/teaching/info-course/info-course.component.ts	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/info-course/info-course.component.ts	(date 1652337415932)
+@@ -1,5 +1,5 @@
+-import { Component, OnInit } from '@angular/core';
+-import { Observable } from 'rxjs';
++import { Component, OnDestroy, OnInit } from '@angular/core';
++import { Observable, Subscription } from 'rxjs';
+ import { Course } from '../../../models/course.model';
+ import { ActivatedRoute } from '@angular/router';
+ import { Store } from '@ngrx/store';
+@@ -11,14 +11,16 @@
+   templateUrl: './info-course.component.html',
+   styleUrls: ['./info-course.component.css']
+ })
+-export class InfoCourseComponent implements OnInit {
++export class InfoCourseComponent implements OnInit, OnDestroy{
+   courseId!: string;
+   course: Observable<Course | null>;
+-  courseInfo!: Course;
++  courseInfo!: Course | null;
+   loading: Observable<boolean>;
+   error: Observable<null | string>;
+   url = 'http://localhost:8000/uploads/';
+   urlImg!: string;
++  courseSub!: Subscription;
++  text = false;
+ 
+   constructor(private route: ActivatedRoute, private store: Store<AppState>) {
+     this.course = store.select(state => state.courses.course);
+@@ -27,19 +29,20 @@
+   }
+ 
+   ngOnInit(): void {
+-    this.route.params.subscribe(params => {
+-      this.courseId = params['id'];
+-    })
+-    this.store.dispatch(fetchCourseInfoRequest({id: this.courseId}));
+-
+-    this.course.subscribe(info => {
++    this.courseInfo = null;
++    this.courseSub = this.course.subscribe(info => {
+       if (info) {
+         this.courseInfo = info;
+         if (info.image) {
+           this.urlImg = `${this.url}${info.image}`;
+         }
++      } else {
++        this.text = true;
+       }
+     })
+   }
+ 
++  ngOnDestroy() {
++    this.courseSub.unsubscribe();
++  }
+ }
+Index: src/app/app.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';\nimport {\n  FacebookLoginProvider,\n  GoogleLoginProvider,\n  SocialAuthServiceConfig,\n  SocialLoginModule\n} from 'angularx-social-login';\nimport { environment } from '../environments/environment';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { AppStoreModule } from './store/app-store.module';\nimport { AuthInterceptor } from './auth.interceptor';\nimport { RegisterComponent } from './pages/register/register.component';\nimport { LoginComponent } from './pages/login/login.component';\nimport { CenteredCardComponent } from './ui/centered-card/centered-card.component';\nimport { ExtendedModule, FlexModule } from '@angular/flex-layout';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\nimport { ValidatePasswordDirective } from './directives/validate-password.directive';\nimport { ValidateIdenticalDirective } from './directives/validate-identical.directive';\nimport { RecoveryComponent } from './pages/password-recovery/recovery.component';\nimport {\n  DialogExamplePasswordComponent\n} from './pages/password-recovery/dialog-password-recovery/dialog-example-password.component';\nimport { NewPasswordComponent } from './pages/new-password/new-password.component';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\nimport { MatDialogModule } from '@angular/material/dialog';\nimport { ToolbarComponent } from './ui/toolbar/toolbar.component';\nimport { CatalogComponent } from './pages/catalog/catalog.component';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { HasRolesDirective } from './directives/has-roles.directive';\nimport { TeachingComponent } from './pages/teaching/teaching.component';\nimport { EditCourseComponent } from './pages/edit-course/edit-course.component';\nimport { MatSelectModule } from '@angular/material/select';\nimport { FileInputComponent } from './ui/file-input/file-input.component';\nimport { EditCategoryComponent } from './pages/categories/edit-category/edit-category.component';\nimport { EditModuleComponent } from './pages/edit-module/edit-module.component';\nimport { CoursesComponent } from './pages/teaching/courses/courses.component';\nimport { MatProgressSpinnerModule } from '@angular/material/progress-spinner';\nimport { ImageForCoursePipe } from './pipes/imageForCourse.pipe';\nimport { NewCourseComponent } from './pages/teaching/new-course/new-course.component';\nimport { MatListModule } from '@angular/material/list';\nimport { FooterComponent } from './ui/footer/footer.component';\nimport { OrderModule } from 'ngx-order-pipe';\nimport { MatStepperModule } from '@angular/material/stepper';\nimport { EditSubcategoryComponent } from './pages/subcategories/edit-subcategory/edit-subcategory.component';\nimport { MatAutocompleteModule } from '@angular/material/autocomplete';\nimport { SearchComponent } from './pages/catalog/search/search.component';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { MainCoursesComponent } from './pages/catalog/main-courses/main-courses.component';\nimport { CourseComponent } from './pages/course/course.component';\nimport {SidebarComponent} from \"./ui/sidebar/sidebar.component\";\nimport { LearningCoursesComponent } from './pages/my-courses/learning-courses/learning-courses.component';\nimport { FavoriteCoursesComponent } from './pages/my-courses/favorite-courses/favorite-courses.component';\nimport { InfoCourseComponent } from './pages/teaching/info-course/info-course.component';\nimport { MyCoursesComponent } from './pages/my-courses/my-courses.component';\nimport { CourseCardsComponent } from './ui/course-cards/course-cards.component';\nimport { CourseCardComponent } from './ui/course-cards/course-card/course-card.component';\nimport { EditLessonComponent } from './pages/edit-lesson/edit-lesson.component';\nimport { UserSettingsComponent } from './pages/user-settings/user-settings.component';\nimport { UserProfileComponent } from './pages/user-profile/user-profile.component';\nimport { EditProfileComponent } from './pages/user-settings/edit-profile/edit-profile.component';\nimport { AddSocialComponent } from './pages/user-settings/add-social/add-social.component';\nimport { StarsDirective } from './directives/stars.directive';\nimport { CoursesByCategoryComponent } from './pages/course/courses-by-category/courses-by-category.component';\nimport { LessonsSidebarComponent } from './pages/lessons-sidebar/lessons-sidebar.component';\nimport { FooterHelpComponent } from './pages/footer/footer-help/footer-help.component';\nimport { FooterContactsComponent } from './pages/footer/footer-contacts/footer-contacts.component';\nimport { FooterAboutComponent } from './pages/footer/footer-about/footer-about.component';\nimport { FooterDevelopmentComponent } from './pages/footer/footer-development/footer-development.component';\nimport { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';\n\nconst socialConfig: SocialAuthServiceConfig = {\n  autoLogin: false,\n  providers: [\n    {\n      id: FacebookLoginProvider.PROVIDER_ID,\n      provider: new FacebookLoginProvider(environment.fbAppId, {\n        scope: 'email,public_profile',\n      })\n    },\n    {\n      id: GoogleLoginProvider.PROVIDER_ID,\n      provider: new GoogleLoginProvider(environment.googleAppId)\n    }\n  ]\n};\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    RegisterComponent,\n    LoginComponent,\n    CenteredCardComponent,\n    ValidatePasswordDirective,\n    ValidateIdenticalDirective,\n    RecoveryComponent,\n    DialogExamplePasswordComponent,\n    NewPasswordComponent,\n    ToolbarComponent,\n    CatalogComponent,\n    EditCategoryComponent,\n    HasRolesDirective,\n    TeachingComponent,\n    EditCourseComponent,\n    FileInputComponent,\n    FileInputComponent,\n    EditModuleComponent,\n    CoursesComponent,\n    ImageForCoursePipe,\n    NewCourseComponent,\n    FooterComponent,\n    EditSubcategoryComponent,\n    SearchComponent,\n    MainCoursesComponent,\n    CourseComponent,\n    MainCoursesComponent,\n    SidebarComponent,\n    InfoCourseComponent,\n    SidebarComponent,\n    MyCoursesComponent,\n    FavoriteCoursesComponent,\n    LearningCoursesComponent,\n    UserSettingsComponent,\n    UserProfileComponent,\n    EditProfileComponent,\n    AddSocialComponent,\n    LearningCoursesComponent,\n    CourseCardsComponent,\n    CourseCardComponent,\n    EditLessonComponent,\n    StarsDirective,\n    CoursesByCategoryComponent,\n    LessonsSidebarComponent,\n    CoursesByCategoryComponent,\n    CoursesBySubcategoryComponent,\n    FooterHelpComponent,\n    FooterContactsComponent,\n    FooterAboutComponent,\n    FooterDevelopmentComponent,\n    FooterVacancyComponent\n  ],\n  imports: [\n    BrowserModule,\n    FormsModule,\n    ReactiveFormsModule,\n    HttpClientModule,\n    AppRoutingModule,\n    SocialLoginModule,\n    AppStoreModule,\n    BrowserAnimationsModule,\n    FlexModule,\n    MatCardModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatButtonModule,\n    MatSnackBarModule,\n    MatProgressBarModule,\n    MatDialogModule,\n    MatToolbarModule,\n    MatIconModule,\n    MatMenuModule,\n    MatSelectModule,\n    MatProgressSpinnerModule,\n    MatListModule,\n    MatStepperModule,\n    OrderModule,\n    MatAutocompleteModule,\n    MatCheckboxModule,\n    ExtendedModule,\n    MatExpansionModule,\n  ],\n  providers: [\n    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },\n    { provide: 'SocialAuthServiceConfig', useValue: socialConfig }\n  ],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/app.module.ts b/src/app/app.module.ts
+--- a/src/app/app.module.ts	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/app.module.ts	(date 1652285042017)
+@@ -80,6 +80,7 @@
+ import { FooterVacancyComponent } from './pages/footer/footer-vacancy/footer-vacancy.component';
+ import { MatExpansionModule } from '@angular/material/expansion';
+ import { CoursesBySubcategoryComponent } from './pages/course/courses-by-subcategory/courses-by-subcategory.component';
++import { EditInfoCoursesComponent } from './pages/teaching/edit-info-courses/edit-info-courses.component';
+ 
+ const socialConfig: SocialAuthServiceConfig = {
+   autoLogin: false,
+@@ -149,7 +150,8 @@
+     FooterContactsComponent,
+     FooterAboutComponent,
+     FooterDevelopmentComponent,
+-    FooterVacancyComponent
++    FooterVacancyComponent,
++    EditInfoCoursesComponent
+   ],
+   imports: [
+     BrowserModule,
+Index: src/app/pages/teaching/info-course/info-course.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div class=\"main\">\n  <app-sidebar class=\"nav\">\n    <div class=\"sidebarTitle\">\n      <img class=\"img\" [src]=\"urlImg | imageForCourse\" alt=\"course image\">\n      <h2>\n        <i>Курс: {{ courseInfo?.title }}</i>\n      </h2>\n    </div>\n\n    <mat-nav-list  role=\"navigation\">\n      <a mat-list-item [routerLink]=\"['/syllabus/program/', courseInfo?._id]\">\n        <span class=\"material-icons mat-list-icon\">\n          menu_book\n        </span>\n        Содержание\n      </a>\n    </mat-nav-list>\n  </app-sidebar>\n\n  <div class=\"programContent\">\n    <h2>Программа курса</h2>\n\n    <button mat-raised-button class=\"editBtn\">Редактировать содержание</button>\n\n    <div class=\"cards\" *ngFor=\"let module of courseInfo?.modules; let i = index\">\n      <a>\n        <mat-card fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"card\">\n\n          <div fxLayout=\"column\" fxLayoutAlign=\"space-between\" class=\"title-course\">\n            <h2>\n              <i>{{ i + 1 }}. {{ module.title }}</i>\n            </h2>\n            <div>\n              <div  *ngFor=\"let lesson of module.lessons; let index = index\"\n                    class=\"lessonTitle\" fxLayout=\"row\" fxLayoutAlign=\"space-between start\">\n                <p style=\"margin-bottom: 20px\"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>\n                <a [routerLink]=\"[ '/edit-lesson/', courseInfo?._id, lesson._id]\" mat-stroked-button\n                   class=\"lessonEditBtn\">\n                  <span class=\"material-icons main-color\">edit</span>\n                </a>\n              </div>\n            </div>\n          </div>\n        </mat-card>\n      </a>\n    </div>\n  </div>\n</div>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/info-course/info-course.component.html b/src/app/pages/teaching/info-course/info-course.component.html
+--- a/src/app/pages/teaching/info-course/info-course.component.html	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/info-course/info-course.component.html	(date 1652297676597)
+@@ -3,7 +3,7 @@
+     <div class="sidebarTitle">
+       <img class="img" [src]="urlImg | imageForCourse" alt="course image">
+       <h2>
+-        <i>Курс: {{ courseInfo?.title }}</i>
++        <p class="text">Курс: {{ courseInfo?.title }}</p>
+       </h2>
+     </div>
+ 
+@@ -21,27 +21,33 @@
+     <h2>Программа курса</h2>
+ 
+     <button mat-raised-button class="editBtn">Редактировать содержание</button>
++    <div *ngIf="text">
++      <a routerLink="/" class="alternative-text">На данном курсе нет модулей и уроков. Хотите добавить?</a>
++    </div>
+ 
+     <div class="cards" *ngFor="let module of courseInfo?.modules; let i = index">
+       <a>
+-        <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card">
+-
+-          <div fxLayout="column" fxLayoutAlign="space-between" class="title-course">
+-            <h2>
+-              <i>{{ i + 1 }}. {{ module.title }}</i>
+-            </h2>
+-            <div>
+-              <div  *ngFor="let lesson of module.lessons; let index = index"
+-                    class="lessonTitle" fxLayout="row" fxLayoutAlign="space-between start">
+-                <p style="margin-bottom: 20px"><i>{{ index + 1 }}. {{ lesson.title }}</i></p>
+-                <a [routerLink]="[ '/edit-lesson/', courseInfo?._id, lesson._id]" mat-stroked-button
+-                   class="lessonEditBtn">
+-                  <span class="material-icons main-color">edit</span>
+-                </a>
+-              </div>
+-            </div>
+-          </div>
+-        </mat-card>
++        <div fxLayout="row" fxLayoutAlign="space-between" class="card">
++          <div fxLayout="column" fxLayoutAlign="space-between" >
++            <div class="title-course">
++              <h2>
++                {{ i + 1 }}. {{ module.title }}
++              </h2>
++              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, harum?</p>
++            </div>
++          </div>
++        </div>
++        <div class="lessonTitle">
++          <div  *ngFor="let lesson of module.lessons; let index = index" class="lessonText"
++                fxLayout="row" fxLayoutAlign="start center">
++            <img src="assets/icons/bilem.svg" class="imgModule">
++            <p >{{ i + 1 }}.{{ index + 1 }}.  {{ lesson.title }}</p>
++            <a [routerLink]="[ '/edit-lesson/', courseInfo?._id, lesson._id]" mat-stroked-button
++               class="lessonEditBtn">
++              <span class="material-icons">edit</span>
++            </a>
++          </div>
++        </div>
+       </a>
+     </div>
+   </div>
+Index: src/app/pages/teaching/info-course/info-course.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.editBtn {\n  padding: 3px 30px;\n  border-radius: 7px;\n  border: 1px solid #85233E;\n  color: #85233E;\n  margin: 0 0 15px 13px;\n  width: 55%;\n}\n\n.cards {\n  display: flex;\n  flex-direction: column;\n}\n\n.card  {\n  width: 500px;\n  margin-bottom: 16px;\n}\n\n.card:hover {\n  box-shadow: 0 0 5px 2px lightgray;\n  cursor: pointer;\n}\n\n.img {\n  width: 60px;\n  margin-right: 16px;\n}\n\n.title-course {\n  width: 100%;\n}\n\n.lessonTitle {\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\n}\n\n.main {\n  display: flex;\n  flex-direction: row;\n  align-self: stretch;\n  min-height: calc(100vh - 145px);\n}\n\n.nav {\n  width: 18rem;\n  margin-right: 50px;\n  padding: 40px 10px;\n  background-color: #FCFCFC;\n}\n\nmat-nav-list a{\n  color: #85233E;\n  font-size: 14px;\n  border-radius: 5px;\n}\n\n.sidebar_icon{\n  text-align: center;\n  background: #E6B1A8;\n  border-radius: 10px;\n  width: 93%;\n  margin: 0 auto 20px;\n  opacity: 0.7;\n}\n\n.school{\n  font-size: 3.8rem;\n  width: 4rem;\n}\n\n.sidebarTitle {\n  margin-left: 12px;\n}\n\n.addBtn {\n  padding: 3px 30px;\n  border-radius: 7px;\n  border: 1px solid #85233E;\n  color: #85233E;\n  margin: 0 0 0 13px;\n  width: 55%;\n}\n\n.addBtn span{\n  margin-bottom: 5px;\n}\n\n.mat-list-icon {\n  margin-right: 12px;\n}\n\n.programContent {\n  padding: 20px;\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/info-course/info-course.component.css b/src/app/pages/teaching/info-course/info-course.component.css
+--- a/src/app/pages/teaching/info-course/info-course.component.css	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/info-course/info-course.component.css	(date 1652297831717)
+@@ -1,27 +1,28 @@
++
+ .editBtn {
+   padding: 3px 30px;
+   border-radius: 7px;
+   border: 1px solid #85233E;
+   color: #85233E;
+   margin: 0 0 15px 13px;
+-  width: 55%;
++  width: 300px;
+ }
+ 
+ .cards {
+   display: flex;
+   flex-direction: column;
++  width: 100%;
++}
++
++.alternative-text {
++  font-size: 20px;
+ }
+ 
+ .card  {
+-  width: 500px;
++  width:70%;
+   margin-bottom: 16px;
+ }
+ 
+-.card:hover {
+-  box-shadow: 0 0 5px 2px lightgray;
+-  cursor: pointer;
+-}
+-
+ .img {
+   width: 60px;
+   margin-right: 16px;
+@@ -94,4 +95,55 @@
+   padding: 20px;
+ }
+ 
++.lessonTitle {
++  padding: 10px 30px;
++  width: 520px;
++  border: 1px solid #ccc;
++  border-top: none;
++  margin-bottom: 20px;
++  margin-left: auto;
++
++}
++
++.lessonText {
++  border-bottom: 1px solid #ccc;
++  padding-top: 20px;
++  line-height: 30px;
++  margin-bottom: auto;
++}
++
++.lessonText:first-child {
++  padding-top: 10px;
++}
++
++.lessonText:last-child {
++  border-bottom: none;
++}
++
++.title-course {
++  padding-top: 20px;
++  padding-left: 20px;
++  border: 1px solid #ccc;
++  margin-bottom: -16px;
++  width: 600px;
++}
++
++.lessonEditBtn {
++  width: 40px;
++  height: 40px;
++  color: #ccc;
++  margin-left: auto;
++  margin-top: -20px;
++}
++
++.lessonEditBtn:hover {
++  color: black;
++}
++
++.imgModule {
++  padding-bottom: 13px;
++  margin-right: 20px;
++}
++
++
+ 
+Index: src/app/pages/teaching/courses/courses.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div fxLayout=\"row\" fxLayoutAlign=\"space-between flex-start\">\n  <h1>Курсы</h1>\n</div>\n\n<div class=\"error\" *ngIf=\"error | async\">\n  {{ error | async }}\n</div>\n\n<mat-progress-spinner\n  *ngIf=\"(loading | async) else coursesArea\"\n  mode=\"indeterminate\"\n></mat-progress-spinner>\n\n<ng-template #coursesArea>\n  <div class=\"cards\" *ngFor=\"let course of courses | async\">\n    <a  [routerLink]=\"['/syllabus/program/', course._id]\" class=\"course-card\">\n      <mat-card fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"courseCard card\">\n        <div class=\"unpublished\" *ngIf=\"!course.is_published\">\n          <span class=\"unpublished-text\">Unpublished</span>\n        </div>\n        <img class=\"img\" [src]=\"course.image | imageForCourse\" [alt]=\"course.title\"/>\n        <div fxLayout=\"row\" fxLayoutAlign=\"space-between\" class=\"title-course\">\n          <h2>\n            <i>Курс: {{ course.title }}</i>\n          </h2>\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\"><mat-icon id=\"editCourse\">more_vert</mat-icon></button>\n        </div>\n      </mat-card>\n      <mat-menu #menu=\"matMenu\">\n        <button mat-button color=\"primary\" [routerLink]=\"['/editModule', course._id]\">Редактировать</button>\n        <button mat-button color=\"warn\">Удалить</button>\n      </mat-menu>\n    </a>\n  </div>\n</ng-template>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.html b/src/app/pages/teaching/courses/courses.component.html
+--- a/src/app/pages/teaching/courses/courses.component.html	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/courses/courses.component.html	(date 1652174488846)
+@@ -2,18 +2,14 @@
+   <h1>Курсы</h1>
+ </div>
+ 
+-<div class="error" *ngIf="error | async">
+-  {{ error | async }}
+-</div>
+-
+ <mat-progress-spinner
+   *ngIf="(loading | async) else coursesArea"
+   mode="indeterminate"
+ ></mat-progress-spinner>
+ 
+ <ng-template #coursesArea>
+-  <div class="cards" *ngFor="let course of courses | async">
+-    <a  [routerLink]="['/syllabus/program/', course._id]" class="course-card">
++  <div class="cards" *ngFor="let course of courses | async" >
++    <a [routerLink]="['/syllabus/program/', course._id]" class="course-card" >
+       <mat-card fxLayout="row" fxLayoutAlign="space-between" class="courseCard card">
+         <div class="unpublished" *ngIf="!course.is_published">
+           <span class="unpublished-text">Unpublished</span>
+@@ -21,16 +17,18 @@
+         <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
+         <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
+           <h2>
+-            <i>Курс: {{ course.title }}</i>
++            <p class="text"><i>Курс: {{ course.title }}</i></p>
+           </h2>
+-          <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="editCourse">more_vert</mat-icon></button>
+         </div>
+       </mat-card>
+-      <mat-menu #menu="matMenu">
+-        <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
+-        <button mat-button color="warn">Удалить</button>
+-      </mat-menu>
+-    </a>
++    </a>
++    <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-icon">
++      <mat-icon id="editCourse">more_vert</mat-icon>
++    </button>
++    <mat-menu #menu="matMenu">
++      <button mat-button color="primary" [routerLink]="['/editModule', course._id]">Редактировать</button>
++      <button mat-button color="warn" (click)="deleteCourse(course._id)">Удалить</button>
++    </mat-menu>
+   </div>
+ </ng-template>
+ 
+Index: src/app/pages/teaching/courses/courses.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Course } from '../../../models/course.model';\nimport { Store } from '@ngrx/store';\nimport { AppState } from '../../../store/types';\nimport { fetchUserCoursesRequest } from '../../../store/course/course.actions';\nimport { User } from '../../../models/user.model';\n\n@Component({\n  selector: 'app-courses',\n  templateUrl: './courses.component.html',\n  styleUrls: ['./courses.component.css']\n})\nexport class CoursesComponent implements OnInit {\n  user: Observable<null | User>;\n  id: null | string = null;\n  courses: Observable<Course[]>\n  loading: Observable<boolean>\n  error: Observable<null | string>\n  constructor(private store: Store<AppState>) {\n    this.user = store.select(state => state.users.user);\n    this.user.subscribe(user => {\n      this.id = user ? user._id : null;\n    });\n    this.courses = store.select(state => state.courses.courses);\n    this.loading = store.select(state => state.courses.fetchLoading);\n    this.error = store.select(state => state.courses.fetchLoadingError);\n  }\n\n  ngOnInit(): void {\n    if (this.id) {\n      this.store.dispatch(fetchUserCoursesRequest({id: this.id}));\n    }\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.ts b/src/app/pages/teaching/courses/courses.component.ts
+--- a/src/app/pages/teaching/courses/courses.component.ts	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/courses/courses.component.ts	(date 1652164480135)
+@@ -3,8 +3,9 @@
+ import { Course } from '../../../models/course.model';
+ import { Store } from '@ngrx/store';
+ import { AppState } from '../../../store/types';
+-import { fetchUserCoursesRequest } from '../../../store/course/course.actions';
++import { fetchUserCoursesRequest, removeCourseRequest } from '../../../store/course/course.actions';
+ import { User } from '../../../models/user.model';
++import { logoutUser } from '../../../store/users/users.actions';
+ 
+ @Component({
+   selector: 'app-courses',
+@@ -32,4 +33,8 @@
+       this.store.dispatch(fetchUserCoursesRequest({id: this.id}));
+     }
+   }
++
++  deleteCourse(idCourse: string) {
++    this.store.dispatch(removeCourseRequest({id: idCourse}))
++  }
+ }
+Index: src/app/pages/teaching/edit-info-courses/edit-info-courses.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.ts b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.ts
+new file mode 100644
+--- /dev/null	(date 1652337618619)
++++ b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.ts	(date 1652337618619)
+@@ -0,0 +1,87 @@
++import { Component, OnInit } from '@angular/core';
++import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
++import { Store } from '@ngrx/store';
++import { AppState } from '../../../store/types';
++import { ActivatedRoute } from '@angular/router';
++import { createModuleRequest } from '../../../store/modules/modules.actions';
++import { Observable, Subscription } from 'rxjs';
++import { Course } from '../../../models/course.model';
++import { fetchCourseInfoRequest } from '../../../store/course/course.actions';
++
++@Component({
++  selector: 'app-edit-info-courses',
++  templateUrl: './edit-info-courses.component.html',
++  styleUrls: ['./edit-info-courses.component.css']
++})
++export class EditInfoCoursesComponent implements OnInit {
++  moduleForm!: FormGroup;
++  courseSubscription!: Subscription;
++  course!: Course;
++  courseInfo!: Observable<Course | null>;
++  courseId!: string;
++
++  constructor(private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute) {
++    this.courseInfo = store.select(state => state.courses.course);
++  }
++
++  ngOnInit(): void {
++    this.route.params.subscribe(params => {
++      this.courseId = params['id'];
++    });
++
++    this.store.dispatch(fetchCourseInfoRequest({id: this.courseId}))
++
++    this.moduleForm = this.fb.group({
++      modules: this.fb.array([])
++    });
++  }
++
++  modules(): FormArray {
++    return this.moduleForm.get('modules') as FormArray;
++  }
++
++  newModule(): FormGroup {
++    return this.fb.group({
++      title: '',
++      lessons: this.fb.array([])
++    });
++  }
++
++  addModule() {
++    this.modules().push(this.newModule());
++  }
++
++  getLessonsControls(moduleIndex: number): FormArray {
++    return this.modules()
++      .at(moduleIndex)
++      .get('lessons') as FormArray;
++  }
++
++  newLesson(): FormGroup {
++    return this.fb.group({
++      title: ''
++    });
++  }
++
++  addLesson(moduleIndex: number) {
++    this.getLessonsControls(moduleIndex).push(this.newLesson());
++  }
++
++  onSubmit() {
++    let id = '';
++    this.route.params.subscribe(params => {
++      id = params['id'];
++    });
++    const module = this.moduleForm.value;
++
++    this.store.dispatch(createModuleRequest({module, id}));
++  }
++
++  removeLesson(moduleIndex: number, lessonIndex: number) {
++    this.getLessonsControls(moduleIndex).removeAt(lessonIndex);
++  }
++
++  removeModule(moduleIndex: number) {
++    this.modules().removeAt(moduleIndex);
++  }
++}
+Index: src/app/pages/teaching/edit-info-courses/edit-info-courses.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.html b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.html
+new file mode 100644
+--- /dev/null	(date 1652337416016)
++++ b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.html	(date 1652337416016)
+@@ -0,0 +1,59 @@
++<div class="module-content">
++  <h1>Программа курса</h1>
++
++  <div>
++    <form [formGroup]="moduleForm" (ngSubmit)="onSubmit()" fxLayout="column">
++      <div formArrayName="modules">
++        <div *ngFor="let module of modules().controls; let moduleIndex = index">
++          <mat-card class="module-card"
++                    [formGroupName]="moduleIndex"
++          >
++            <mat-form-field class="mat-card-input">
++              <mat-label>Название модуля</mat-label>
++              <input
++                type="text"
++                name="title"
++                matInput
++                formControlName="title"
++                required
++              />
++            </mat-form-field>
++            <span class="material-icons btnDelete" (click)="removeModule(moduleIndex)">delete</span>
++
++            <div formArrayName="lessons">
++              <div
++                *ngFor="let lesson of getLessonsControls(moduleIndex).controls; let lessonIndex = index"
++              >
++                <div [formGroupName]="lessonIndex">
++                  {{lessonIndex+1}} :
++                  <mat-form-field appearance="outline" class="field">
++                    <input
++                      type="text"
++                      name="title"
++                      matInput
++                      formControlName="title"
++                      placeholder="Название урока"
++                    />
++                  </mat-form-field>
++
++                  <span class="material-icons" (click)="removeLesson(moduleIndex,lessonIndex)">
++                      clear
++                    </span>
++                </div>
++              </div>
++            </div>
++            <button mat-raised-button type="button" (click)="addLesson(moduleIndex)" class="btnAddLesson">
++              <span class="material-icons">add</span>
++              Добавить урок
++            </button>
++          </mat-card>
++        </div>
++      </div>
++      <button mat-raised-button type="button" (click)="addModule()" class="addModule">
++        <span class="material-icons">add</span>
++        Добавить модуль
++      </button>
++      <button mat-button class="saveBtn" type="submit">Сохранить</button>
++    </form>
++  </div>
++</div>
+Index: src/app/pages/teaching/edit-info-courses/edit-info-courses.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.css b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.css
+new file mode 100644
+--- /dev/null	(date 1652285128431)
++++ b/src/app/pages/teaching/edit-info-courses/edit-info-courses.component.css	(date 1652285128431)
+@@ -0,0 +1,54 @@
++.module-content {
++  text-align: center;
++  padding: 5rem;
++}
++
++.module-first-text {
++  margin: 40px 0;
++  opacity: 0.5;
++}
++
++.module-card {
++  margin: 20px auto;
++  width: 80%;
++  text-align: left;
++}
++
++.mat-card-input{
++  width: 70%;
++  margin: 0 20px;
++}
++
++.field{
++  width: 85%;
++  margin-right: 2rem;
++}
++
++.btnAddLesson{
++  margin-left: 15px;
++}
++
++.btnDelete{
++  margin-left: 10px;
++}
++
++.material-icons{
++  cursor: pointer;
++}
++
++.addModule{
++  background: #85233E;
++  margin-left: 6.5rem;
++  padding: 8px 30px;
++  width: 13rem;
++  color: white;
++}
++
++.saveBtn{
++  width: 13rem;
++  padding: 5px 30px;
++  margin: 20px 0 0 6.5rem;
++  transition: 0.5s;
++  border: 1px solid #85233E;
++  color: #85233E;
++}
+Index: src/app/services/course.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { environment, environment as env } from '../../environments/environment';\nimport { Course, CourseData, Lesson } from '../models/course.model';\nimport { map } from 'rxjs';\nimport { Module } from '../models/module.model';\n\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class CourseService {\n  constructor(private http: HttpClient) { }\n\n  fetchCourses() {\n    return this.http.get<Course[]>(env.apiUrl + '/courses').pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getUserCourses(id: string) {\n    return this.http.get<Course[]>(env.apiUrl + '/courses?user=' + id).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getCoursesByCategory(id: string) {\n    return this.http.get<Course[]>(env.apiUrl + '/courses?category=' + id).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getCoursesBySubcategory(id: string) {\n    return this.http.get<Course[]>(env.apiUrl + '/courses?subcategory=' + id).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  createCourse(courseData: CourseData) {\n    const formData = new FormData();\n\n    Object.keys(courseData).forEach(key => {\n      if (courseData[key] !== null) {\n        formData.append(key, courseData[key]);\n      }\n    });\n    return this.http.post<Course>(env.apiUrl + '/courses', formData);\n  }\n\n  addModules(moduleData: Module, id: string) {\n    return this.http.post<Module>(env.apiUrl + `/courses/course/${id}`, moduleData);\n  };\n\n  search(courseData: {}) {\n    return this.http.post<Course[]>(env.apiUrl + `/courses/search`, courseData).pipe(\n      map(response => {\n        return response.map(courseData => {\n          return new Course(\n            courseData._id,\n            courseData.title,\n            courseData.description,\n            courseData.information,\n            courseData.author,\n            courseData.students,\n            courseData.modules,\n            courseData.subcategory,\n            courseData.price,\n            courseData.image,\n            courseData.is_free,\n            courseData.rate,\n            courseData.is_published,\n          );\n        });\n      })\n    );\n  }\n\n  getCourseById(id: string) {\n    return this.http.get<Course>(env.apiUrl + '/courses/' + id).pipe(\n      map(response => {\n        return new Course(\n          response._id,\n          response.title,\n          response.description,\n          response.information,\n          response.author,\n          response.students,\n          response.modules,\n          response.subcategory,\n          response.price,\n          response.image,\n          response.is_free,\n          response.rate,\n          response.is_published,\n        );\n      })\n    );\n  }\n\n  addLearningCourses(id: string) {\n    return this.http.post<string>(environment.apiUrl + `/courses/addCourse`, {course: id}).pipe(\n      map(response => {\n        return response;\n      })\n    );\n  }\n\n  addFavoriteCourses(id: string) {\n    return this.http.post<string>(environment.apiUrl + `/courses/addFavoriteCourse`, {favoriteCourse: id}).pipe(\n      map(response => {\n        return response;\n      })\n    );\n  }\n\n  removeCourse(artistId: string) {\n    return this.http.delete(env.apiUrl + '/courses/' + artistId);\n  }\n\n  publishCourse(id: string) {\n    return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});\n  }\n\n  addLesson(lessonData: Lesson) {\n    return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);\n  }\n\n  getLessonData(lessonId: string) {\n    return this.http.get<Lesson | null>(env.apiUrl + `/courses/lesson/${lessonId}`)\n      .pipe(map(result => {\n        if(!result) {\n          return null;\n        }\n\n        return new Lesson(result._id, result.title, result.description, result.video);\n      }));\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/services/course.service.ts b/src/app/services/course.service.ts
+--- a/src/app/services/course.service.ts	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/services/course.service.ts	(date 1652164758812)
+@@ -185,8 +185,8 @@
+     );
+   }
+ 
+-  removeCourse(artistId: string) {
+-    return this.http.delete(env.apiUrl + '/courses/' + artistId);
++  removeCourse(id: string) {
++    return this.http.delete(env.apiUrl + '/courses/' + id);
+   }
+ 
+   publishCourse(id: string) {
+Index: src/app/pages/teaching/courses/courses.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.cards {\n  display: flex;\n  flex-direction: column;\n}\n\n.course-card {\n  text-decoration: none;\n}\n\n.card  {\n  width: 500px;\n  margin-bottom: 16px;\n}\n\n.card:hover {\n  box-shadow: 0 0 5px 2px lightgray;\n  cursor: pointer;\n}\n\n.img {\n  width: 60px;\n  margin-right: 16px;\n}\n\n.title-course {\n  width: 100%;\n}\n\n.content {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  width: 80%;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/pages/teaching/courses/courses.component.css b/src/app/pages/teaching/courses/courses.component.css
+--- a/src/app/pages/teaching/courses/courses.component.css	(revision 4b187ca38a443328f4b456223da80bdc6ae7caba)
++++ b/src/app/pages/teaching/courses/courses.component.css	(date 1652164479927)
+@@ -1,6 +1,8 @@
+ .cards {
+   display: flex;
+   flex-direction: column;
++  position: relative;
++  width: 500px;
+ }
+ 
+ .course-card {
+@@ -8,7 +10,6 @@
+ }
+ 
+ .card  {
+-  width: 500px;
+   margin-bottom: 16px;
+ }
+ 
+@@ -26,6 +27,16 @@
+   width: 100%;
+ }
+ 
++.text {
++  font-size: 15px;
++}
++
++.btn-icon{
++  position: absolute;
++  top: 0;
++  right: 0;
++}
++
+ .content {
+   display: flex;
+   flex-direction: row;

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="379d3c3c-042e-4fa9-bc7e-db893d2876b7" name="Changes" comment="#73 Сверстала страницу &quot;Связаться с нами&quot;&#10;1. Сверстала страницу по макету">
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/fixtures.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/fixtures.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/footer/footer-contacts/footer-contacts.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/teaching/info-course/info-course.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/teaching/info-course/info-course.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/user-settings/add-social/add-social.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/user-settings/add-social/add-social.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/user-settings/add-social/add-social.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/user-settings/add-social/add-social.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/users/users.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/users/users.effects.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/package-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28jtIZr48XNGvkTTowN2UogN7yw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/js13/homeWorks/javascript_group_13_homework_83_bakytai_egemberdieva/api" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../tests/features" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="379d3c3c-042e-4fa9-bc7e-db893d2876b7" name="Changes" comment="" />
+      <created>1651741744448</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651741744448</updated>
+      <workItem from="1651741745721" duration="2637000" />
+      <workItem from="1651819669199" duration="1196000" />
+      <workItem from="1651820945402" duration="8923000" />
+      <workItem from="1652281177407" duration="3567000" />
+      <workItem from="1652285589180" duration="4674000" />
+      <workItem from="1652380230479" duration="12589000" />
+      <workItem from="1652608344592" duration="24388000" />
+      <workItem from="1653045603951" duration="8078000" />
+      <workItem from="1653564400849" duration="1607000" />
+      <workItem from="1653635046847" duration="8364000" />
+      <workItem from="1653900696347" duration="4474000" />
+      <workItem from="1654073613113" duration="5658000" />
+      <workItem from="1654268376093" duration="54559000" />
+    </task>
+    <task id="LOCAL-00001" summary="#41 Вывод программы курса&#10;1. Реализованы тесты">
+      <created>1651743671741</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651743671741</updated>
+    </task>
+    <task id="LOCAL-00002" summary="#52 Редактирование программы курса(модули и уроки)&#10;1. Вывела всю информацию в форму&#10;2. Сверстала карточки в info-course">
+      <created>1652430005914</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652430005914</updated>
+    </task>
+    <task id="LOCAL-00003" summary="#52 Добавление фикстурных данных к урокам.&#10;1. Добавила фикстурные данные к урокам.&#10;2. Исправила кнопку на странице Преподавания&#10;3. Возможность переходить по ссылке для создания модулей у курса">
+      <created>1652655178975</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652655178975</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#59 Добавление фикстурных данных к урокам.&#10;1. Добавила фикстурные данные к урокам.&#10;2. Исправила кнопку на странице Преподавания&#10;3. Возможность переходить по ссылке для создания модулей у курса">
+      <created>1652685493142</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652685493142</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#41 Вывод программы курса&#10;1. Реализованы тесты" />
+    <MESSAGE value="#52 Редактирование программы курса(модули и уроки)&#10;1. Вывела всю информацию в форму&#10;2. Сверстала карточки в info-course" />
+    <MESSAGE value="#52 Добавление фикстурных данных к урокам.&#10;1. Добавила фикстурные данные к урокам.&#10;2. Исправила кнопку на странице Преподавания&#10;3. Возможность переходить по ссылке для создания модулей у курса" />
+    <MESSAGE value="#59 Добавление фикстурных данных к урокам.&#10;1. Добавила фикстурные данные к урокам.&#10;2. Исправила кнопку на странице Преподавания&#10;3. Возможность переходить по ссылке для создания модулей у курса" />
+    <MESSAGE value="#73 Сверстала страницу &quot;Связаться с нами&quot;&#10;1. Сверстала страницу по макету" />
+    <option name="LAST_COMMIT_MESSAGE" value="#73 Сверстала страницу &quot;Связаться с нами&quot;&#10;1. Сверстала страницу по макету" />
+  </component>
+</project>
