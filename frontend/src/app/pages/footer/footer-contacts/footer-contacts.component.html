@@ -1,42 +1,57 @@
-<div class="container">
-  <div class="content">
-    <div class="left-side">
-      <div class="address details">
-        <i class="fas fa-map-marker-alt"></i>
-        <div class="topic">Адрес</div>
-        <div class="text-one">Тыныстанова, 122</div>
-        <div class="text-two">Токтогула, 125/1</div>
-      </div>
-      <div class="phone details">
-        <i class="fas fa-phone-alt"></i>
-        <div class="topic">Телефон</div>
-        <div class="text-one">+996 550 382319</div>
-        <div class="text-two">+996 770 362514</div>
-      </div>
-      <div class="email details">
-        <i class="fas fa-envelope"></i>
-        <div class="topic">Email</div>
-        <div class="text-one">bilem@gmail.com</div>
-        <div class="text-two">info.bilem@gmail.com</div>
-      </div>
-    </div>
-    <div class="right-side">
-      <div class="topic-text">Отправьте нам сообщение</div>
-      <p>Если у вас есть вопросы/предложения касательно работы сайта.</p>
-      <form action="#">
-        <div class="input-box">
-          <input type="text" placeholder="Введите свое имя">
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder="Введите свой e-mail">
-        </div>
-        <div class="input-box message-box">
+<div class="content">
+  <div class="left-side">
+    <h2>Контактные данные</h2>
+    <p>Если у вас есть вопросы или предложения по поводу сотрудничества напишите нам: </p>
 
-        </div>
-        <div class="button">
-          <input type="button" value="Отправить" >
-        </div>
-      </form>
-    </div>
+    <ul>
+      <li>
+        <a><img src="assets/icons/line.png"><span class="link"> bilem.online@gmail.com</span></a>
+      </li>
+      <li><img src="assets/icons/phone.png"><span class="link"> 996 (556) 73 13 93</span></li>
+      <li>
+        <a href="https://instagram.com" target="_blank"><img src="assets/icons/instagram-footer-icon.png"><span class="link"> bilem.online</span></a>
+      </li>
+      <li>
+        <a href="https://web.telegram.org" target="_blank"><img src="assets/icons/telegram-footer-icon.png"><span class="link"> bilem.online</span></a>
+      </li>
+      <li>
+        <a href="https://facebook.com" target="_blank"><img src="assets/icons/fb-footer-icon.png"><span class="link"> bilem.online</span></a>
+      </li>
+    </ul>
+  </div>
+  <div class="right-side">
+    <h3>Отправьте нам сообщение</h3>
+
+    <form>
+      <div>
+        <span class="label">Ваше имя</span>
+        <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+          <input class="text" type="text" name="name" required matInput ngModel #name="ngModel"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <span class="label">Email адрес</span>
+        <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+          <input type="email" name="email" autocomplete="username" email required matInput ngModel #email="ngModel"/>
+        </mat-form-field>
+      </div>
+
+      <div class="telephoneInput">
+        <span class="label">Телефон номера (для обратной связи)</span>
+        <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+          <input name="number" required matInput ngModel #telephone="ngModel"/>
+        </mat-form-field>
+      </div>
+
+      <div class="textInput">
+        <span class="label">Сообщение</span>
+        <mat-form-field appearance="outline" hideRequiredMarker="true" class="authFormsInputText">
+          <textarea type="text" name="text" required matInput ngModel #text="ngModel"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
   </div>
 </div>
+
