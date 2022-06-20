@@ -215,6 +215,10 @@ label {
   .search-block {
     margin-bottom: 0;
   }
+
+  .checkboxInput + label {
+    margin-left: 70px;
+  }
 }
 
 @media (max-width: 744px) {
@@ -224,5 +228,13 @@ label {
 
   .prgrs-bar {
     margin-left: auto;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .content-main {
+    padding: 0 15px;
   }
 }

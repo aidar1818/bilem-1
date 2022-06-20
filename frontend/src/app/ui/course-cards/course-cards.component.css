@@ -9,6 +9,10 @@
   font-weight: 500;
 }
 
+.cards-block {
+  margin: 0 auto;
+}
+
 .courses-block ::ng-deep .mat-tab-header {
   border-bottom: none;
   margin-bottom: 24px;
@@ -63,5 +67,4 @@
   .cards-title {
     margin-left: 20px;
   }
-
 }

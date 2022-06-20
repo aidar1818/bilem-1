@@ -4,8 +4,9 @@
 }
 
 .card {
-  width: 1150px;
-  height: 120px;
+  width: 100%;
+  max-width: 1150px;
+  min-height: 120px;
   position: relative;
   border: 2px solid #E0E6ED;
   box-shadow: 0 4px 4px rgba(224, 230, 237, 0.25);
@@ -33,6 +34,11 @@
   margin-top: 16px;
 }
 
+.card_titles {
+  width: 100%;
+  max-width: 640px;
+}
+
 .card_title {
   font-family: Roboto, serif;
   font-style: normal;
@@ -40,6 +46,7 @@
   font-size: 20px;
   line-height: 30px;
   margin-top: 28px;
+  padding-bottom: 12px;
 }
 
 .card_img {
@@ -82,4 +89,16 @@
   color: rgba(153, 153, 153, 54%);
   font-size: 12px;
   margin: 3px 5px 0 5px;
+}
+
+@media (max-width: 945px) {
+  .card_title {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 800px) {
+  .card_title {
+    max-width: 450px;
+  }
 }
