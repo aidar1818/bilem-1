@@ -1,15 +1,85 @@
-.example-card {
-  max-width: 70%;
-  margin: 15px auto 50px;
-}
-
-.example-card:hover {
-  cursor: pointer;
-  -webkit-box-shadow: 0 0 5px 2px lightgray;
-  -moz-box-shadow: 0 0 5px 2px lightgray;
-  box-shadow: 0 0 5px 2px lightgray;
-}
-
 .notAvailable {
-  margin: 0 100px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card {
+  width: 1150px;
+  height: 120px;
+  position: relative;
+  border: 2px solid #E0E6ED;
+  box-shadow: 0 4px 4px rgba(224, 230, 237, 0.25);
+  border-radius: 10px;
+  display: flex;
+  margin: 20px auto;
+}
+
+.card:hover {
+  border: 2px solid #a6b7cb;
+  cursor: pointer;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.card_author {
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+
+  margin-top: 16px;
+}
+
+.card_title {
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 28px;
+}
+
+.card_img {
+  padding: 24px 26px 19px 24px;
+}
+
+.image {
+  width: 80.76px;
+  height: 72px;
+  border-radius: 5px;
+}
+
+.icons {
+  display: flex;
+  margin-right: 24px;
+  margin-top: 20px;
+}
+
+.price {
+  margin-top: 40px;
+  float: right;
+  margin-right: 29px;
+}
+
+.card_price {
+  font-family: Roboto, serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 14px;
+  letter-spacing: 0.5px;
+  color: #85233E;
+}
+
+.card_subtitles {
+  position: absolute;
+  right: 0;
+}
+
+.course-rate-text {
+  color: rgba(153, 153, 153, 54%);
+  font-size: 12px;
+  margin: 3px 5px 0 5px;
 }
