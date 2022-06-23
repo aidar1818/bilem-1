@@ -27,7 +27,7 @@
       <div fxLayout="row" fxLayoutAlign="space-between">
         <p class="price" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
         <p class="price" *ngIf="course.is_free && !learning">Бесплатно</p>
-        <p class="price" style="color: gray" *ngIf="learning">Вы уже записаны</p>
+        <p class="price" style="color: #66cc66" *ngIf="learning">Вы уже записаны</p>
       </div>
       <div>
         <div fxLayout="row">

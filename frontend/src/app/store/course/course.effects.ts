@@ -36,14 +36,19 @@ import {
   removeCourseFailure,
   removeCourseRequest,
   removeCourseSuccess,
+  removeFavoriteCourseFailure,
+  removeFavoriteCourseRequest,
+  removeFavoriteCourseSuccess, removeLearningCourseFailure,
+  removeLearningCourseRequest, removeLearningCourseSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
-  searchCoursesSuccess,
+  searchCoursesSuccess, startCourseFailure, startCourseRequest, startCourseSuccess,
 } from './course.actions';
 import { CourseService } from '../../services/course.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../types';
 import { fetchLessonRequest } from '../lessons/lessons.actions';
+import {fetchUserRequest} from "../users/users.actions";
 
 @Injectable()
 export class CourseEffects {
@@ -144,6 +149,18 @@ export class CourseEffects {
     ))
   ));
 
+  startCourse = createEffect(() => this.actions.pipe(
+    ofType(startCourseRequest),
+    mergeMap(({id}) => this.courseService.startCourse(id).pipe(
+      map(() => startCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Вы успешно поступили на курс');
+      }),
+      this.helpers.catchServerError(startCourseFailure)
+    ))
+  ));
+
   removeCourse = createEffect(() => this.actions.pipe(
     ofType(removeCourseRequest),
     mergeMap(({id}) => this.courseService.removeCourse(id).pipe(
@@ -155,6 +172,36 @@ export class CourseEffects {
       catchError(() => {
         this.helpers.openSnackbar('Курс не удален');
         return of(removeCourseFailure());
+      })
+    ))
+  ));
+
+  removeLearningCourse = createEffect(() => this.actions.pipe(
+    ofType(removeLearningCourseRequest),
+    mergeMap(({id}) => this.courseService.removeLearningCourse(id).pipe(
+      map(() => removeLearningCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Вы успешно покинули курс')
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Не удалось покинуть курс');
+        return of(removeLearningCourseFailure());
+      })
+    ))
+  ));
+
+  removeFavoriteCourse = createEffect(() => this.actions.pipe(
+    ofType(removeFavoriteCourseRequest),
+    mergeMap(({id}) => this.courseService.removeFavoriteCourse(id).pipe(
+      map(() => removeFavoriteCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Курс успешно удален из желаемых');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Не удалось удалить курс из желаемых');
+        return of(removeFavoriteCourseFailure());
       })
     ))
   ));
