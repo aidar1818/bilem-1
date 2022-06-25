@@ -159,6 +159,10 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   display: none;
 }
 
+.mat-form-field-infix {
+  border: none;
+}
+
 .greyDarkText {
   color: #393939;
 }
