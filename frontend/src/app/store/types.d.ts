@@ -78,7 +78,10 @@ export type CourseState = {
   searchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
+  startLoading: boolean,
   removeLoading: boolean,
+  removeLearningCourse: boolean,
+  removeFavoriteCourse: boolean,
   publishLoading: boolean,
 };
 

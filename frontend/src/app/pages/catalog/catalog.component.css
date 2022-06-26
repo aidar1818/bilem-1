@@ -4,7 +4,7 @@
   align-items: center;
   height: 64px;
   padding: 0 25px;
-  margin: 16px 0 0 0;
+  margin: 16px 0;
   background: #DADADA;
 }
 
@@ -215,6 +215,10 @@ label {
   .search-block {
     margin-bottom: 0;
   }
+
+  .checkboxInput + label {
+    margin-left: 70px;
+  }
 }
 
 @media (max-width: 744px) {
@@ -224,5 +228,13 @@ label {
 
   .prgrs-bar {
     margin-left: auto;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .content-main {
+    padding: 0 15px;
   }
 }

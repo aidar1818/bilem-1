@@ -114,7 +114,6 @@ export class CourseComponent implements OnInit {
   addLearningCourse(id: string) {
     this.store.dispatch(addLearningCourseRequest({ id }));
     this.learning = true;
-
   }
 
   addFavoriteCourse(id: string) {

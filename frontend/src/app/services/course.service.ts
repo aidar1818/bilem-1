@@ -202,8 +202,24 @@ export class CourseService {
     );
   }
 
+  startCourse(id: string) {
+    return this.http.post<string>(env.apiUrl + '/courses/startCourse', { course: id }).pipe(
+      map(response => {
+        return response;
+      })
+    );
+  }
+
   removeCourse(id: string) {
     return this.http.delete(env.apiUrl + '/courses/' + id);
+  }
+
+  removeLearningCourse(id: string) {
+    return this.http.delete(env.apiUrl + '/courses/removeLearningCourse/' + id);
+  }
+
+  removeFavoriteCourse(id: string) {
+    return this.http.delete(env.apiUrl + '/courses/removeFavoriteCourse/' + id);
   }
 
   publishCourse(id: string) {

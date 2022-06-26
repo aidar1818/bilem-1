@@ -12,7 +12,7 @@
 </div>
 
 <ng-template #coursesArea >
-  <div class="card_section" *ngFor="let course of searchCourses | async">
+  <div class="card_section" *ngFor="let course of searchCourses | async" [routerLink]="['/course', course['_id']]">
     <div class="card">
       <div class="card_img">
                 <img

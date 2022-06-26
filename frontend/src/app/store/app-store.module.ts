@@ -18,7 +18,7 @@ import { ReviewEffects } from './reviews/review.effects';
 import { reviewsReducer } from './reviews/review.reducer';
 import { statisticsReducer } from './statistics/statistics.reducer';
 import { StatisticsEffects } from './statistics/statistics.effects';
-import {AppState} from "./types";
+import { AppState } from "./types";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({

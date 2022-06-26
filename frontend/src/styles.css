@@ -160,6 +160,10 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   display: none;
 }
 
+.mat-form-field-infix {
+  border: none;
+}
+
 .greyDarkText {
   color: #393939;
 }
@@ -326,29 +330,6 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   padding: 0 24px !important;
 }
 
-@media screen and (max-width: 744px) {
-  .registerMessage {
-    display: none;
-  }
-
-  .authFbGlText {
-    font-size: 15px !important;
-  }
-}
-
-@media screen and (max-width: 770px) {
-  .authFbGlText {
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 920px) {
-  .authText {
-    font-size: 25px;
-    line-height: 35px;
-  }
-}
-
 @media (max-width: 1195px) {
   .container {
     width: 100%;
@@ -363,6 +344,13 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   }
 }
 
+@media screen and (max-width: 920px) {
+  .authText {
+    font-size: 25px;
+    line-height: 35px;
+  }
+}
+
 @media (max-width: 815px) {
   .container {
     width: 100%;
@@ -374,9 +362,21 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   }
 }
 
+@media screen and (max-width: 770px) {
+  .authFbGlText {
+    font-size: 12px;
+  }
+}
 
+@media screen and (max-width: 744px) {
+  .registerMessage {
+    display: none;
+  }
 
-
+  .authFbGlText {
+    font-size: 15px !important;
+  }
+}
 
 
 
