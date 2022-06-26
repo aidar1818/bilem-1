@@ -1,11 +1,11 @@
-<mat-progress-spinner
-  class="main-spinner"
-  *ngIf="(reviewsFetchLoading | async) else coursesArea"
-  mode="indeterminate"
-  style="margin: auto; position: fixed; overflow: visible; top: 0; left: 0; bottom: 0; right: 0;"
-></mat-progress-spinner>
+<!--<mat-progress-spinner-->
+<!--  class="main-spinner"-->
+<!--  *ngIf="(reviewsFetchLoading | async) else coursesArea"-->
+<!--  mode="indeterminate"-->
+<!--  style="margin: auto; position: fixed; overflow: visible; top: 0; left: 0; bottom: 0; right: 0;"-->
+<!--&gt;</mat-progress-spinner>-->
 
-<ng-template #coursesArea>
+<!--<ng-template #coursesArea>-->
   <div class="title-block" *ngIf="course">
     <div class="container">
       <h1 class="course-title">{{ course.title }}</h1>
@@ -122,18 +122,67 @@
             </div>
           </div>
         </div>
+
+        <div fxLayout="column" fxLayoutAlign="start" class="rating-box" *ngIf="userOne && isAStudent()">
+          <star-rating class="rating"
+                       [starType]="'svg'"
+                       [labelText]="currentReview ? 'Редактировать отзыв' : 'Оставьте свой отзыв!'"
+                       [hoverEnabled]="true"
+                       (ratingChange)="onRatingChange($event)"
+          ></star-rating>
+
+          <form
+            *ngIf="ratingNumber > 0"
+            #f="ngForm"
+            fxLayout="column"
+            class="review-form"
+            (ngSubmit)="addReview()"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label>Комментарий:</mat-label>
+              <input type="text"
+                     name="text"
+                     matInput
+                     ngModel
+                     [(ngModel)]="reviewText"
+              />
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="start">
+              <button
+                type="submit"
+                mat-raised-button
+                class="main-color-back"
+                [disabled]="!reviewText"
+              >
+                {{ currentReview ? 'Сохранить' : 'Оставить отзыв' }}
+              </button>
+            </div>
+          </form>
+        </div>
+
         <div>
           <div class="review-user" *ngFor="let rev of reviewsArr">
-            <p class="review-author">{{ rev.user.displayName }}</p>
-            <p class="review-text">{{ rev.text }}</p>
-            <div class="img-block">
-              <img
-                *starsRepeat="rev.rate"
-                class="rating-img-md"
-                src="assets/icons/ic-star.svg" alt="rating"
-              />
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <p class="review-author">{{ rev.user.displayName }}</p>
+              <div>
+                <img
+                  *starsRepeat="rev.rate"
+                  class="rating-img-md"
+                  src="assets/icons/ic-star.svg" alt="rating"
+                />
+              </div>
             </div>
-            <p class="review-datetime">{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
+            <div class="img-block">
+              <a mat-icon-button *ngIf="userOne && (userOne._id === rev.user._id || userOne.role === 'admin')"><span
+                class="material-icons" (click)="removeReview(rev)">clear</span></a>
+              <a mat-icon-button *ngIf="userOne && (userOne._id === rev.user._id || userOne.role === 'admin')"><span
+                class="material-icons" (click)="editReview(rev)">edit</span></a>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <p class="review-text">{{ rev.text }}</p>
+              <p style="margin: 0">{{ rev.datetime.substr(11, 5) }}     {{ rev.datetime.substr(0, 10) }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -156,6 +205,4 @@
       </div>
     </div>
   </div>
-
-
-</ng-template>
+<!--</ng-template>-->

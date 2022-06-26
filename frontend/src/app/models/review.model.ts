@@ -11,3 +11,9 @@ export class Review {
     public datetime: string,
   ) {}
 }
+
+export interface ReviewData {
+  text: string,
+  rate: number,
+  courseId: string,
+}

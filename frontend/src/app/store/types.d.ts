@@ -106,6 +106,10 @@ export type ReviewsState = {
   reviews: Review[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  createLoading: boolean,
+  createError: null | string,
+  removeLoading: boolean,
+  removeError: null | string,
 };
 
 export type StatisticsState = {

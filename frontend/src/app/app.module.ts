@@ -96,6 +96,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NotFoundComponent } from './ui/not-found/not-found.component';
 import { AllFreeCoursesComponent } from './pages/all-courses/all-free-courses/all-free-courses.component';
 import { AllPaidCoursesComponent } from './pages/all-courses/all-paid-courses/all-paid-courses.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -209,7 +210,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatTabsModule,
     Ng2SearchPipeModule,
     AngularEditorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

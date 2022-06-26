@@ -5,7 +5,6 @@ const {nanoid} = require('nanoid');
 const Category = require('./models/Category');
 const Subcategory = require('./models/Subcategory');
 const Course = require('./models/Course');
-const Review = require('./models/Review');
 
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -1610,50 +1609,6 @@ const run = async () => {
         rate: 4.2,
         is_published: true
     });
-
-    await Review.create(
-        {
-            user: user2,
-            course: javaScript,
-            text: 'Отличный курс',
-            rate: 5
-        },
-        {
-            user: user3,
-            course: javaScript,
-            text: 'Всем советую',
-            rate: 4
-        },
-        {
-            user: user4,
-            course: javaScript,
-            text: 'Зря время потерял',
-            rate: 2
-        },
-        {
-            user: user,
-            course: jScript,
-            text: 'Отличный курс',
-            rate: 5
-        },
-        {
-            user: user4,
-            course: jScript,
-            text: 'Всем советую',
-            rate: 5
-        },
-        {
-            user: user3,
-            course: jScript,
-            text: 'Зря время потерял',
-            rate: 2
-        }, {
-            user: user2,
-            course: designIn,
-            text: 'Отличный курс',
-            rate: 5
-        }
-    )
 
     await mongoose.connection.close();
 };
