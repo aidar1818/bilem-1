@@ -2,9 +2,6 @@
   <div [routerLink]="['/course', course['_id']]" class="course-card" fxLayout="column"
        fxLayoutAlign="space-between">
     <div>
-      <div class="unpublished" *ngIf="!course.is_published">
-        <span class="material-icons red-color" matTooltip="Не опубликовано">unpublished </span>
-      </div>
       <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
         <mat-card-title>
           <a class="course-title" [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
@@ -17,9 +14,6 @@
             [src]="course.image | imageForCourse"
             alt="icon"
           >
-          <span class="material-icons heart" (click)="addFavoriteCourse(course._id, $event)">
-              favorite_border
-            </span>
         </div>
       </mat-card-title-group>
     </div>
@@ -37,24 +31,6 @@
           <p class="course-rate-text">{{ course.students.length }}</p>
         </div>
       </div>
-    </div>
-    <div *appHasRoles="['admin']" class="admin-btns">
-      <button mat-icon-button color="warn" class="deleteCourse"
-              (click)="openDialogCourseDelete($event, course._id, course.title)" matTooltip="Удалить"
-              matTooltipPosition="above">
-        <mat-spinner *ngIf="(removeLoading | async) && course['_id'] === toBeDeletedCourse"
-                     diameter="30"></mat-spinner>
-        <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse" fxLayout="row"
-              fxLayoutAlign="center"><mat-icon>delete</mat-icon></span>
-      </button>&nbsp;
-
-      <button class="publish" mat-icon-button color="primary" (click)="publishCourse(course._id, $event)"
-              matTooltip="Опубликовать" matTooltipPosition="above"
-              *ngIf="!course['is_published']">
-        <mat-spinner diameter="30" *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
-        <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse" fxLayout="row"
-              fxLayoutAlign="center"><mat-icon>visibility</mat-icon></span>
-      </button>
     </div>
   </div>
 </mat-card>

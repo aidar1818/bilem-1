@@ -28,6 +28,59 @@ export class CourseService {
             courseData.price,
             courseData.image,
             courseData.is_free,
+            courseData.best,
+            courseData.rate,
+            courseData.is_published,
+            courseData.promoVideo,
+          );
+        });
+      })
+    );
+  }
+
+  fetchAllFreeCourses() {
+    return this.http.get<Course[]>(env.apiUrl + '/courses/all/freeCourses').pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.information,
+            courseData.author,
+            courseData.students,
+            courseData.modules,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.best,
+            courseData.rate,
+            courseData.is_published,
+            courseData.promoVideo,
+          );
+        });
+      })
+    );
+  }
+
+  fetchAllPaidCourses() {
+    return this.http.get<Course[]>(env.apiUrl + '/courses/all/paidCourses').pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.information,
+            courseData.author,
+            courseData.students,
+            courseData.modules,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.best,
             courseData.rate,
             courseData.is_published,
             courseData.promoVideo,
@@ -61,6 +114,7 @@ export class CourseService {
             courseData.price,
             courseData.image,
             courseData.is_free,
+            courseData.best,
             courseData.rate,
             courseData.is_published,
             courseData.promoVideo,
@@ -86,6 +140,7 @@ export class CourseService {
             courseData.price,
             courseData.image,
             courseData.is_free,
+            courseData.best,
             courseData.rate,
             courseData.is_published,
             courseData.promoVideo,
@@ -111,6 +166,7 @@ export class CourseService {
             courseData.price,
             courseData.image,
             courseData.is_free,
+            courseData.best,
             courseData.rate,
             courseData.is_published,
             courseData.promoVideo,
@@ -151,6 +207,7 @@ export class CourseService {
             courseData.price,
             courseData.image,
             courseData.is_free,
+            courseData.best,
             courseData.rate,
             courseData.is_published,
             courseData.promoVideo,
@@ -176,6 +233,7 @@ export class CourseService {
             response.price,
             response.image,
             response.is_free,
+            response.best,
             response.rate,
             response.is_published,
             response.promoVideo,
@@ -210,6 +268,14 @@ export class CourseService {
     return this.http.post(`${env.apiUrl}/courses/${id}/publish`, {});
   }
 
+  addToTheBestCourse(id: string) {
+    return this.http.post(`${env.apiUrl}/courses/${id}/addToTheBest`, {});
+  }
+
+  removeFromBestCourse(id: string) {
+    return this.http.post(`${env.apiUrl}/courses/${id}/removeFromBest`, {});
+  }
+
   addLesson(lessonData: Lesson) {
     return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);
   }
@@ -241,6 +307,7 @@ export class CourseService {
           response.price,
           response.image,
           response.is_free,
+          response.best,
           response.rate,
           response.is_published,
           response.promoVideo,

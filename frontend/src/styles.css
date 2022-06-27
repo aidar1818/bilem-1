@@ -139,11 +139,6 @@ footer {
   min-height: 100%;
 }
 
-.unpublished {
-  position: absolute;
-  bottom: 40px;
-  right: 20px;
-}
 
 .main-color-back {
   background-color: #85233E;

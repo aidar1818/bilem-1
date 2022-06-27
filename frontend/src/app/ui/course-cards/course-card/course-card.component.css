@@ -88,26 +88,6 @@ h1 {
   left: 5px;
 }
 
-.red-color {
-  color:red;
-  font-size: 35px;
-}
-
-.heart {
-  position: absolute;
-  top: -6px;
-  right: -1px;
-  color: #85233E;
-  transition: 0.4s;
-}
-
-.heart:hover {
-  color: red;
-}
-
-.heart:active {
-  font-size: 35px;
-}
 
 @media (max-width: 815px) {
   .card-wrapper {

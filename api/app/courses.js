@@ -216,6 +216,30 @@ router.delete('/:id', auth, async (req, res, next) => {
   }
 });
 
+router.post('/:id/addToTheBest', auth, permit('admin'), async (req, res, next) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    course.best = true;
+    course.save();
+
+    return res.send({message: 'OK!'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.post('/:id/removeFromBest', auth, permit('admin'), async (req, res, next) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    course.best = false;
+    course.save();
+
+    return res.send({message: 'OK!'});
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.post('/addCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
@@ -367,6 +391,41 @@ router.get('/tariff/amount', async (req, res, next) => {
     }
 
     return res.send(response);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get('/all/freeCourses', roles, async (req, res, next) => {
+  try {
+    if (req.user && req.user.role === 'admin') {
+      const courses = await Course.find({is_free: true})
+          .sort({_id: -1})
+          .populate('author', 'displayName')
+          .populate('modules.lessons.comments.user', 'displayName');
+      return res.send(courses);
+    } else {
+      return res.status(403).send({error: 'Unauthorized'});
+    }
+
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get('/all/paidCourses', roles, async (req, res, next) => {
+  try {
+    if (req.user && req.user.role === 'admin') {
+      let courses;
+      courses = await Course.find({is_free: false})
+          .sort({_id: -1})
+          .populate('author', 'displayName')
+          .populate('modules.lessons.comments.user', 'displayName');
+      return res.send(courses);
+    } else {
+      return res.status(403).send({error: 'Unauthorized'});
+    }
+
   } catch (e) {
     next(e);
   }

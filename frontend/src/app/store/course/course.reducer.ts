@@ -1,12 +1,17 @@
 import { CourseState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
+  addToTheBestFailure,
+  addToTheBestRequest, addToTheBestSuccess,
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess,
-  fetchCourseInfoFailure,
-  fetchCourseInfoRequest,
-  fetchCourseInfoSuccess,
+  fetchAllFreeCoursesFailure,
+  fetchAllFreeCoursesRequest,
+  fetchAllFreeCoursesSuccess,
+  fetchAllPaidCoursesFailure,
+  fetchAllPaidCoursesRequest,
+  fetchAllPaidCoursesSuccess,
   fetchCoursesByCategoryFailure,
   fetchCoursesByCategoryRequest,
   fetchCoursesByCategorySuccess,
@@ -24,7 +29,7 @@ import {
   publishCourseSuccess,
   removeCourseFailure,
   removeCourseRequest,
-  removeCourseSuccess,
+  removeCourseSuccess, removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
   searchCoursesSuccess
@@ -34,8 +39,15 @@ const initialState: CourseState = {
   courses: [],
   course: null,
   searchCourses: [],
+  allFreeCourses: [],
+  allPaidCourses: [],
+  bestCourses: [],
   fetchLoading: false,
   fetchLoadingError: null,
+  fetchAllFreeCoursesLoading: false,
+  fetchAllFreeCoursesLoadingError: null,
+  fetchAllPaidCoursesLoading: false,
+  fetchAllPaidCoursesLoadingError: null,
   fetchPersonalLoading: false,
   fetchPersonalLoadingError: null,
   fetchSortLoading: false,
@@ -48,6 +60,8 @@ const initialState: CourseState = {
   createError: null,
   removeLoading: false,
   publishLoading: false,
+  addToTheBestLoading: false,
+  removeFromBestLoading: false,
 };
 
 export const courseReducer = createReducer(
@@ -56,9 +70,13 @@ export const courseReducer = createReducer(
   on(fetchCoursesSuccess, (state, {courses}) => ({...state, fetchLoading: false, courses})),
   on(fetchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
 
-  on(fetchCourseInfoRequest, state => ({...state, fetchLoading: true})),
-  on(fetchCourseInfoSuccess, (state, {course}) => ({...state, fetchLoading: false, course})),
-  on(fetchCourseInfoFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+  on(fetchAllFreeCoursesRequest, state => ({...state, fetchAllFreeCoursesLoading: true})),
+  on(fetchAllFreeCoursesSuccess, (state, {allFreeCourses}) => ({...state, fetchAllFreeCoursesLoading: false, allFreeCourses})),
+  on(fetchAllFreeCoursesFailure, (state, {error}) => ({...state, fetchAllFreeCoursesLoading: false, fetchAllFreeCoursesLoadingError: error})),
+
+  on(fetchAllPaidCoursesRequest, state => ({...state, fetchAllPaidCoursesLoading: true})),
+  on(fetchAllPaidCoursesSuccess, (state, {allPaidCourses}) => ({...state, fetchAllPaidCoursesLoading: false, allPaidCourses})),
+  on(fetchAllPaidCoursesFailure, (state, {error}) => ({...state, fetchAllPaidCoursesLoading: false, fetchAllPaidCoursesLoadingError: error})),
 
   on(fetchUserCoursesRequest, state => ({...state, fetchPersonalLoading: true})),
   on(fetchUserCoursesSuccess, (state, {courses}) => ({
@@ -106,4 +124,12 @@ export const courseReducer = createReducer(
   on(publishCourseRequest, state => ({...state, publishLoading: true})),
   on(publishCourseSuccess, state => ({...state, publishLoading: false})),
   on(publishCourseFailure, state => ({...state, publishLoading: false})),
+
+  on(addToTheBestRequest, state => ({...state, addToTheBestLoading: true})),
+  on(addToTheBestSuccess, state => ({...state, addToTheBestLoading: false})),
+  on(addToTheBestFailure, state => ({...state, addToTheBestLoading: false})),
+
+  on(removeFromBestRequest, state => ({...state, removeFromBestLoading: true})),
+  on(removeFromBestSuccess, state => ({...state, removeFromBestLoading: false})),
+  on(removeFromBestFailure, state => ({...state, removeFromBestLoading: false})),
 );

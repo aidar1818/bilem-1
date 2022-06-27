@@ -43,6 +43,7 @@ import { FooterTariffsComponent } from './pages/footer/footer-tariffs/footer-tar
 import { NotFoundComponent } from './ui/not-found/not-found.component';
 import { AllFreeCoursesComponent } from "./pages/all-courses/all-free-courses/all-free-courses.component";
 import { AllPaidCoursesComponent } from "./pages/all-courses/all-paid-courses/all-paid-courses.component";
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -188,6 +189,12 @@ const routes: Routes = [
   },
   {path: 'all-free-courses', component: AllFreeCoursesComponent},
   {path: 'all-paid-courses', component: AllPaidCoursesComponent},
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['admin']}
+  },
   {path: '**', component: NotFoundComponent},
 ];
 

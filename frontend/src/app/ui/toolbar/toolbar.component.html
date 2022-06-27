@@ -12,6 +12,7 @@
       <a routerLink="myCourses/learning" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Мои
         курсы</a>
       <a routerLink="teaching/courses" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Преподавание</a>
+      <a routerLink="admin" *appHasRoles="['admin']" routerLinkActive="activeToolbarNav" [routerLinkActiveOptions]="{exact:true}">Администрирование</a>
     </nav>
 
     <div class="burger">

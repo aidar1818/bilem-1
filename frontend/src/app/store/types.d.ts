@@ -66,8 +66,15 @@ export type CourseState = {
   courses: Course[],
   course: Course | null,
   searchCourses: Course[],
+  allFreeCourses: Course[],
+  allPaidCourses: Course[],
+  bestCourses: Course[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchAllFreeCoursesLoading: boolean,
+  fetchAllFreeCoursesLoadingError: null | string,
+  fetchAllPaidCoursesLoading: boolean,
+  fetchAllPaidCoursesLoadingError: null | string,
   fetchPersonalLoading: boolean,
   fetchPersonalLoadingError: null | string,
   fetchSortLoading: boolean,
@@ -80,6 +87,8 @@ export type CourseState = {
   createError: null | string,
   removeLoading: boolean,
   publishLoading: boolean,
+  addToTheBestLoading: boolean,
+  removeFromBestLoading: boolean,
 };
 
 export type ModuleState = {

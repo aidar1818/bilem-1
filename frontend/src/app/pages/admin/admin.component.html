@@ -1,0 +1,125 @@
+<div class="container">
+  <mat-progress-spinner *ngIf="(freeLoading | async) else freeCoursesArea" mode="indeterminate"></mat-progress-spinner>
+
+  <ng-template #freeCoursesArea>
+
+    <div>
+      <h2>Бесплатные курсы</h2>
+      <div class="freeCourses">
+        <div class="cards" *ngFor="let course of freeCoursesData | paginate :
+          {
+             itemsPerPage: 10,
+             currentPage: pageFree,
+             totalItems: totalLengthFree
+              }">
+          <div class="card">
+            <img [src]="course.image | imageForCourse" [alt]="course.title">
+            <div class="content">
+              <p *ngIf="!course.is_published" class="unpublished">НЕ ОПУБЛИКОВАНО</p>
+              <p *ngIf="course.is_published" class="published">ОПУБЛИКОВАН</p>
+              <p *ngIf="course.best" class="best">ДОБАВЛЕН В ЛУЧШЕЕ</p>
+              <h3 [routerLink]="['/course', course['_id']]">{{ course.title }}</h3>
+              <p>Бесплатно</p>
+              <div *appHasRoles="['admin']" class="admin-btns">
+                <button mat-raised-button color="warn" class="deleteCourse"
+                        (click)="openDialogCourseDelete($event, course._id, course.title)">
+                  <mat-spinner *ngIf="(removeLoading | async) && course['_id'] === toBeDeletedCourse"
+                               diameter="30"></mat-spinner>
+                  <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse">Удалить курс</span>
+                </button>&nbsp;
+
+                <button class="publish" mat-raised-button color="primary" (click)="publishCourse(course._id, $event)"
+                        *ngIf="!course['is_published']">
+                  <mat-spinner diameter="30" *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
+                  <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse">Опубликовать</span>
+                </button>
+
+                <button class="publish" mat-raised-button color="accent" (click)="addToTheBestCourse(course._id, $event)"
+                        *ngIf="!course['best']">
+                  <mat-spinner diameter="30" *ngIf="(removeFromBestLoading | async) && course._id === toBeRemoveBestCourse"></mat-spinner>
+                  <span *ngIf="!(addToTheBestLoading | async) || course._id !== toBeBestCourse">Добавить в лучшее</span>
+                </button>
+
+                <button class="publish" mat-raised-button color="warn" (click)="removeFromBestCourse(course._id, $event)"
+                        *ngIf="course['best']">
+                  <mat-spinner diameter="30" *ngIf="(removeFromBestLoading | async) && course._id === toBeRemoveBestCourse"></mat-spinner>
+                  <span *ngIf="!(removeFromBestLoading | async) || course._id !== toBeRemoveBestCourse">Удалить из лучших</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="paginationArea" *ngIf="freeCoursesData.length > 0">
+        <pagination-controls
+          (pageChange)="onPageFreeChange($event)"
+          class="my-pagination"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+    </div>
+
+  </ng-template>
+
+  <mat-progress-spinner *ngIf="(paidLoading | async) else paidCoursesArea" mode="indeterminate"></mat-progress-spinner>
+
+  <ng-template #paidCoursesArea>
+    <div>
+      <h2>Платные курсы</h2>
+      <div class="paidCourses">
+        <div class="cards" *ngFor="let course of paidCoursesData | paginate :
+          {
+             itemsPerPage: 10,
+             currentPage: pagePaid,
+             totalItems: totalLengthPaid
+              }">
+          <div class="card">
+            <img [src]="course.image | imageForCourse" [alt]="course.title">
+            <div class="content">
+              <p *ngIf="!course.is_published" class="unpublished">НЕ ОПУБЛИКОВАНО</p>
+              <p *ngIf="course.is_published" class="published">ОПУБЛИКОВАН</p>
+              <p *ngIf="course.best" class="best">ДОБАВЛЕН В ЛУЧШЕЕ</p>
+               <h3 [routerLink]="['/course', course['_id']]">{{ course.title }}</h3>
+              <p>{{course.price}} сом</p>
+              <div *appHasRoles="['admin']" class="admin-btns">
+                <button mat-raised-button color="warn" class="deleteCourse"
+                        (click)="openDialogCourseDelete($event, course._id, course.title)">
+                  <mat-spinner *ngIf="(removeLoading | async) && course['_id'] === toBeDeletedCourse"
+                               diameter="30"></mat-spinner>
+                  <span *ngIf="!(removeLoading | async) || course['_id'] !== toBeDeletedCourse">Удалить курс</span>
+                </button>&nbsp;
+
+                <button class="publish" mat-raised-button color="primary" (click)="publishCourse(course._id, $event)"
+                        *ngIf="!course['is_published']">
+                  <mat-spinner diameter="30" *ngIf="(publishLoading | async) && course._id === toBePublishCourse"></mat-spinner>
+                  <span *ngIf="!(publishLoading | async) || course._id !== toBePublishCourse">Опубликовать</span>
+                </button>
+
+                <button class="publish" mat-raised-button color="accent" (click)="addToTheBestCourse(course._id, $event)"
+                        *ngIf="!course['best']">
+                  <mat-spinner diameter="30" *ngIf="(removeFromBestLoading | async) && course._id === toBeRemoveBestCourse"></mat-spinner>
+                  <span *ngIf="!(addToTheBestLoading | async) || course._id !== toBeBestCourse">Добавить в лучшее</span>
+                </button>
+
+                <button class="publish" mat-raised-button color="warn" (click)="removeFromBestCourse(course._id, $event)"
+                        *ngIf="course['best']">
+                  <mat-spinner diameter="30" *ngIf="(removeFromBestLoading | async) && course._id === toBeRemoveBestCourse"></mat-spinner>
+                  <span *ngIf="!(removeFromBestLoading | async) || course._id !== toBeRemoveBestCourse">Удалить из лучших</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="paginationArea" *ngIf="freeCoursesData.length > 0">
+        <pagination-controls
+          (pageChange)="onPagePaidChange($event)"
+          class="my-pagination"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -8,13 +8,17 @@ import {
   addFavoriteCourseSuccess,
   addLearningCourseFailure,
   addLearningCourseRequest,
-  addLearningCourseSuccess,
+  addLearningCourseSuccess, addToTheBestFailure, addToTheBestRequest, addToTheBestSuccess,
   createCommentFailure,
   createCommentRequest,
   createCommentSuccess,
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess,
+  fetchAllFreeCoursesFailure,
+  fetchAllFreeCoursesRequest,
+  fetchAllFreeCoursesSuccess, fetchAllPaidCoursesFailure,
+  fetchAllPaidCoursesRequest, fetchAllPaidCoursesSuccess,
   fetchCourseInfoFailure,
   fetchCourseInfoRequest,
   fetchCourseInfoSuccess,
@@ -35,7 +39,7 @@ import {
   publishCourseSuccess,
   removeCourseFailure,
   removeCourseRequest,
-  removeCourseSuccess,
+  removeCourseSuccess, removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
   searchCoursesSuccess,
@@ -61,6 +65,22 @@ export class CourseEffects {
     mergeMap(() => this.courseService.fetchCourses().pipe(
       map(courses => fetchCoursesSuccess({courses})),
       catchError(() => of(fetchCoursesFailure({error: 'Something wrong'})))
+    ))
+  ));
+
+  fetchAllFreeCourses = createEffect(() => this.actions.pipe(
+    ofType(fetchAllFreeCoursesRequest),
+    mergeMap(() => this.courseService.fetchAllFreeCourses().pipe(
+      map(allFreeCourses => fetchAllFreeCoursesSuccess({allFreeCourses})),
+      catchError(() => of(fetchAllFreeCoursesFailure({error: 'Something wrong'})))
+    ))
+  ));
+
+  fetchAllPaidCourses = createEffect(() => this.actions.pipe(
+    ofType(fetchAllPaidCoursesRequest),
+    mergeMap(() => this.courseService.fetchAllPaidCourses().pipe(
+      map(allPaidCourses => fetchAllPaidCoursesSuccess({allPaidCourses})),
+      catchError(() => of(fetchAllPaidCoursesFailure({error: 'Something wrong'})))
     ))
   ));
 
@@ -149,7 +169,8 @@ export class CourseEffects {
     mergeMap(({id}) => this.courseService.removeCourse(id).pipe(
       map(() => removeCourseSuccess()),
       tap(() => {
-        this.store.dispatch(fetchCoursesRequest());
+        this.store.dispatch(fetchAllFreeCoursesRequest());
+        this.store.dispatch(fetchAllPaidCoursesRequest());
         this.helpers.openSnackbar('Успешно удалено');
       }),
       catchError(() => {
@@ -164,12 +185,45 @@ export class CourseEffects {
     mergeMap(({id}) => this.courseService.publishCourse(id).pipe(
       map(() => publishCourseSuccess()),
       tap(() => {
-        this.store.dispatch(fetchCoursesRequest());
+        this.store.dispatch(fetchAllFreeCoursesRequest());
+        this.store.dispatch(fetchAllPaidCoursesRequest());
         this.helpers.openSnackbar('Успешно опубликовано');
       }),
       catchError(() => {
         this.helpers.openSnackbar('Курс не опубликован');
         return of(publishCourseFailure());
+      })
+    ))
+  ));
+
+  addToTheBestCourse = createEffect(() => this.actions.pipe(
+    ofType(addToTheBestRequest),
+    mergeMap(({id}) => this.courseService.addToTheBestCourse(id).pipe(
+      map(() => addToTheBestSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchAllFreeCoursesRequest());
+        this.store.dispatch(fetchAllPaidCoursesRequest());
+        this.helpers.openSnackbar('Успешно добавлен');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Не добавлен');
+        return of(addToTheBestFailure());
+      })
+    ))
+  ));
+
+  removeFromBest = createEffect(() => this.actions.pipe(
+    ofType(removeFromBestRequest),
+    mergeMap(({id}) => this.courseService.removeFromBestCourse(id).pipe(
+      map(() => removeFromBestSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchAllFreeCoursesRequest());
+        this.store.dispatch(fetchAllPaidCoursesRequest());
+        this.helpers.openSnackbar('Удален из лучших');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Курс не удален из лучших');
+        return of(removeFromBestFailure());
       })
     ))
   ));

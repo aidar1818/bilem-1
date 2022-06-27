@@ -96,6 +96,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NotFoundComponent } from './ui/not-found/not-found.component';
 import { AllFreeCoursesComponent } from './pages/all-courses/all-free-courses/all-free-courses.component';
 import { AllPaidCoursesComponent } from './pages/all-courses/all-paid-courses/all-paid-courses.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -175,6 +176,7 @@ const socialConfig: SocialAuthServiceConfig = {
     NotFoundComponent,
     AllFreeCoursesComponent,
     AllPaidCoursesComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
