@@ -40,14 +40,20 @@ import {
   removeCourseFailure,
   removeCourseRequest,
   removeCourseSuccess, removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
+  removeFavoriteCourseFailure,
+  removeFavoriteCourseRequest,
+  removeFavoriteCourseSuccess, removeLearningCourseFailure,
+  removeLearningCourseRequest, removeLearningCourseSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
-  searchCoursesSuccess,
+  searchCoursesSuccess, startCourseFailure, startCourseRequest, startCourseSuccess,
 } from './course.actions';
 import { CourseService } from '../../services/course.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../types';
 import { fetchLessonRequest } from '../lessons/lessons.actions';
+import {fetchUserRequest} from "../users/users.actions";
+import { fetchReviewsRequest } from '../reviews/review.actions';
 
 @Injectable()
 export class CourseEffects {
@@ -63,8 +69,8 @@ export class CourseEffects {
   fetchCourses = createEffect(() => this.actions.pipe(
     ofType(fetchCoursesRequest),
     mergeMap(() => this.courseService.fetchCourses().pipe(
-      map(courses => fetchCoursesSuccess({courses})),
-      catchError(() => of(fetchCoursesFailure({error: 'Something wrong'})))
+      map(courses => fetchCoursesSuccess({ courses })),
+      catchError(() => of(fetchCoursesFailure({ error: 'Something wrong' })))
     ))
   ));
 
@@ -86,16 +92,17 @@ export class CourseEffects {
 
   fetchCourseInfo = createEffect(() => this.actions.pipe(
     ofType(fetchCourseInfoRequest),
-    mergeMap(({id}) => this.courseService.getCourseById(id).pipe(
-      map(course => fetchCourseInfoSuccess({course})),
-      catchError(() => of(fetchCourseInfoFailure({error: 'Something wrong'})))
+    mergeMap(({ id }) => this.courseService.getCourseById(id).pipe(
+      map(course => fetchCourseInfoSuccess({ course })),
+      tap(() => this.store.dispatch(fetchReviewsRequest({ id }))),
+      catchError(() => of(fetchCourseInfoFailure({ error: 'Something wrong' })))
     ))
   ));
 
   fetchUserCourses = createEffect(() => this.actions.pipe(
     ofType(fetchUserCoursesRequest),
-    mergeMap(({id}) => this.courseService.getUserCourses(id).pipe(
-      map(courses => fetchUserCoursesSuccess({courses})),
+    mergeMap(({ id }) => this.courseService.getUserCourses(id).pipe(
+      map(courses => fetchUserCoursesSuccess({ courses })),
       catchError(() => of(fetchUserCoursesFailure({
         error: 'Something went wrong'
       })))
@@ -104,8 +111,8 @@ export class CourseEffects {
 
   fetchCoursesByCategory = createEffect(() => this.actions.pipe(
     ofType(fetchCoursesByCategoryRequest),
-    mergeMap(({id}) => this.courseService.getCoursesByCategory(id).pipe(
-      map(courses => fetchCoursesByCategorySuccess({courses})),
+    mergeMap(({ id }) => this.courseService.getCoursesByCategory(id).pipe(
+      map(courses => fetchCoursesByCategorySuccess({ courses })),
       catchError(() => of(fetchCoursesByCategoryFailure({
         error: 'Something wrong'
       })))
@@ -114,8 +121,8 @@ export class CourseEffects {
 
   fetchCoursesBySubcategory = createEffect(() => this.actions.pipe(
     ofType(fetchCoursesBySubcategoryRequest),
-    mergeMap(({id}) => this.courseService.getCoursesBySubcategory(id).pipe(
-      map(courses => fetchCoursesBySubcategorySuccess({courses})),
+    mergeMap(({ id }) => this.courseService.getCoursesBySubcategory(id).pipe(
+      map(courses => fetchCoursesBySubcategorySuccess({ courses })),
       catchError(() => of(fetchCoursesBySubcategoryFailure({
         error: 'Something wrong'
       })))
@@ -124,7 +131,7 @@ export class CourseEffects {
 
   createCourse = createEffect(() => this.actions.pipe(
     ofType(createCourseRequest),
-    mergeMap(({courseData}) => this.courseService.createCourse(courseData).pipe(
+    mergeMap(({ courseData }) => this.courseService.createCourse(courseData).pipe(
       map(() => createCourseSuccess()),
       tap(() => {
         void this.router.navigate(['/teaching/courses']);
@@ -136,17 +143,18 @@ export class CourseEffects {
 
   searchCourses = createEffect(() => this.actions.pipe(
     ofType(searchCoursesRequest),
-    mergeMap(({courseData}) => this.courseService.search(courseData).pipe(
-      map(searchCourses => searchCoursesSuccess({searchCourses})),
+    mergeMap(({ courseData }) => this.courseService.search(courseData).pipe(
+      map(searchCourses => searchCoursesSuccess({ searchCourses })),
       this.helpers.catchServerError(searchCoursesFailure)
     ))
   ))
 
   addLearningCourse = createEffect(() => this.actions.pipe(
     ofType(addLearningCourseRequest),
-    mergeMap(({id}) => this.courseService.addLearningCourses(id).pipe(
+    mergeMap(({ id }) => this.courseService.addLearningCourses(id).pipe(
       map(() => addLearningCourseSuccess()),
       tap(() => {
+        this.store.dispatch(fetchUserRequest());
         this.helpers.openSnackbar('Добавлен в мои курсы');
       }),
       this.helpers.catchServerError(addLearningCourseFailure)
@@ -155,7 +163,7 @@ export class CourseEffects {
 
   addFavoriteCourse = createEffect(() => this.actions.pipe(
     ofType(addFavoriteCourseRequest),
-    mergeMap(({id}) => this.courseService.addFavoriteCourses(id).pipe(
+    mergeMap(({ id }) => this.courseService.addFavoriteCourses(id).pipe(
       map(() => addFavoriteCourseSuccess()),
       tap(() => {
         this.helpers.openSnackbar('Добавлен в список желаний');
@@ -164,9 +172,21 @@ export class CourseEffects {
     ))
   ));
 
+  startCourse = createEffect(() => this.actions.pipe(
+    ofType(startCourseRequest),
+    mergeMap(({id}) => this.courseService.startCourse(id).pipe(
+      map(() => startCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Вы успешно поступили на курс');
+      }),
+      this.helpers.catchServerError(startCourseFailure)
+    ))
+  ));
+
   removeCourse = createEffect(() => this.actions.pipe(
     ofType(removeCourseRequest),
-    mergeMap(({id}) => this.courseService.removeCourse(id).pipe(
+    mergeMap(({ id }) => this.courseService.removeCourse(id).pipe(
       map(() => removeCourseSuccess()),
       tap(() => {
         this.store.dispatch(fetchAllFreeCoursesRequest());
@@ -180,9 +200,39 @@ export class CourseEffects {
     ))
   ));
 
+  removeLearningCourse = createEffect(() => this.actions.pipe(
+    ofType(removeLearningCourseRequest),
+    mergeMap(({id}) => this.courseService.removeLearningCourse(id).pipe(
+      map(() => removeLearningCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Вы успешно покинули курс')
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Не удалось покинуть курс');
+        return of(removeLearningCourseFailure());
+      })
+    ))
+  ));
+
+  removeFavoriteCourse = createEffect(() => this.actions.pipe(
+    ofType(removeFavoriteCourseRequest),
+    mergeMap(({id}) => this.courseService.removeFavoriteCourse(id).pipe(
+      map(() => removeFavoriteCourseSuccess()),
+      tap(() => {
+        this.store.dispatch(fetchUserRequest());
+        this.helpers.openSnackbar('Курс успешно удален из желаемых');
+      }),
+      catchError(() => {
+        this.helpers.openSnackbar('Не удалось удалить курс из желаемых');
+        return of(removeFavoriteCourseFailure());
+      })
+    ))
+  ));
+
   publishCourse = createEffect(() => this.actions.pipe(
     ofType(publishCourseRequest),
-    mergeMap(({id}) => this.courseService.publishCourse(id).pipe(
+    mergeMap(({ id }) => this.courseService.publishCourse(id).pipe(
       map(() => publishCourseSuccess()),
       tap(() => {
         this.store.dispatch(fetchAllFreeCoursesRequest());
@@ -230,15 +280,15 @@ export class CourseEffects {
 
   addComment = createEffect(() => this.actions.pipe(
     ofType(createCommentRequest),
-    mergeMap(({commentData}) => this.courseService.addComment(commentData).pipe(
+    mergeMap(({ commentData }) => this.courseService.addComment(commentData).pipe(
       map(() => createCommentSuccess()),
       tap(() => {
-        this.store.dispatch(fetchLessonRequest({lessonId: commentData.lessonId}));
+        this.store.dispatch(fetchLessonRequest({ lessonId: commentData.lessonId }));
         this.helpers.openSnackbar('Комментарий добавлен!');
       }),
       catchError((error) => {
         this.helpers.openSnackbar('Что то пошло не так');
-        return of(createCommentFailure({error}));
+        return of(createCommentFailure({ error }));
       }),
     )),
   ));

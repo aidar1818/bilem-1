@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~css-star-rating/css/star-rating.css';
 
 * {
   box-sizing: border-box;
@@ -152,6 +153,10 @@ footer {
 app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
 .mat-select-arrow {
   display: none;
+}
+
+.mat-form-field-infix {
+  border: none;
 }
 
 .greyDarkText {
@@ -368,7 +373,11 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   }
 }
 
-
+@media (max-width: 537px) {
+  .mat-tab-label-container {
+    margin-left: 10px;
+  }
+}
 
 
 

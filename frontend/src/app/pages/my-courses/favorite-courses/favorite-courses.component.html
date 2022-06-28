@@ -7,7 +7,7 @@
 </div>
 
 <mat-progress-spinner
-  *ngIf="(loading | async) else coursesArea"
+  *ngIf="(loading | async) || (removeLoading | async) else coursesArea"
   mode="indeterminate"
   style="margin: 20px 20px;"
 ></mat-progress-spinner>
@@ -33,16 +33,16 @@
       <div fxLayout="column" fxLayoutAlign="space-around flex-end" class="btnsBlock">
         <div>
           <button mat-icon-button [matMenuTriggerFor]="menu" class="remove-btn">
-            <span class="material-icons">more_vert</span>
+            <span class="material-icons settings">more_vert</span>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>Покинуть курс</button>
+            <button mat-menu-item class="remove__btn" (click)="removeCourse(course._id)">Удалить</button>
           </mat-menu>
         </div>
 
         <mat-card-actions fxFlex="15">
-          <button mat-stroked-button color="accent" *ngIf="!course.is_free">Купить курс</button>
-          <button mat-stroked-button color="success" *ngIf="course.is_free">Пройти курс</button>
+          <button mat-stroked-button color="accent" *ngIf="!course.is_free" (click)="startCourse(course._id)">Купить курс</button>
+          <button mat-stroked-button color="success" *ngIf="course.is_free" (click)="startCourse(course._id)">Пройти курс</button>
         </mat-card-actions>
       </div>
     </mat-card>

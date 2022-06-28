@@ -21,13 +21,13 @@
       <div fxLayout="row" fxLayoutAlign="space-between">
         <p class="price" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
         <p class="price" *ngIf="course.is_free && !learning">Бесплатно</p>
-        <p class="price" style="color: gray" *ngIf="learning">Вы уже записаны</p>
+        <p class="price" style="color: #66cc66" *ngIf="learning">Вы уже записаны</p>
       </div>
       <div>
-        <div fxLayout="row">
-          <i class="material-icons" style="color: #9999998A;">star</i>
+        <div fxLayout="row" class="div-div">
+          <i class="material-icons icon" style="color: #9999998A;">star</i>
           <p class="course-rate-text">{{ course.rate }}</p>
-          <i class="material-icons" style="color: #9999998A;">person</i>
+          <i class="material-icons icon" style="color: #9999998A;">person</i>
           <p class="course-rate-text">{{ course.students.length }}</p>
         </div>
       </div>

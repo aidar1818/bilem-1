@@ -6,8 +6,8 @@
     <button class="btn" mat-raised-button (click)="showFreeCards()">Создать курс</button>
   </div>
 
-  <div class="box" fxLayout="row" fxLayoutAlign="space-evenly" *ngIf="showCard === true">
-    <mat-card>
+  <div class="box" *ngIf="showCard === true">
+    <mat-card class="buildCourse" routerLink="/teaching/editCourse" (click)="addPaidCourse()">
       <mat-card-title>
         Платный курс
       </mat-card-title>
@@ -15,16 +15,15 @@
       <div>
         Создать платный курс
       </div>
-      <button mat-raised-button class="addBtn" routerLink="/teaching/editCourse" (click)="addPaidCourse()"
-              fxLayoutAlign="center center">
+      <button mat-raised-button class="addBtn">
       <span class="material-icons" style="margin-right: 10px">
         add
       </span>
-        Создать платный курс
+        Создать <span class="courseTxt">платный курс</span>
       </button>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="buildCourse" routerLink="/teaching/editCourse" (click)="addFreeCourse()">
       <mat-card-title>
         Бесплатный курс
       </mat-card-title>
@@ -32,12 +31,11 @@
       <div>
         Создать бесплатный курс
       </div>
-      <button mat-raised-button class="addBtn" routerLink="/teaching/editCourse" (click)="addFreeCourse()"
-              fxLayoutAlign="center center">
+      <button mat-raised-button class="addBtn">
       <span class="material-icons" style="margin-right: 10px">
         add
       </span>
-        Создать бесплатный курс
+        Создать <span class="courseTxt">бесплатный курс</span>
       </button>
     </mat-card>
   </div>

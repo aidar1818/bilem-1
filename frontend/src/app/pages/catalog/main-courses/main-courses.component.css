@@ -86,7 +86,7 @@
 @media (max-width: 815px) {
   .woman-img {
     width: 100%;
-    max-width: 260px;
+    max-width: 235px;
   }
 
   .forAnonUserBlock {
@@ -96,7 +96,7 @@
   }
 
   .title {
-    font-size: 48px;
+    font-size: 46px;
   }
 
   .p1 {
@@ -140,5 +140,72 @@
     margin-bottom: 30px;
     height: 308px;
     margin-left: 20px;
+  }
+}
+
+@media (max-width: 655px) {
+  .woman-img {
+    width: 100%;
+    max-width: 170px;
+  }
+
+  .textBlock {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .title {
+    font-size: 35px;
+  }
+
+  .p1 {
+    font-size: 18px;
+  }
+
+  .p2 {
+    font-size: 18px;
+    max-width: 350px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 537px) {
+  .textBlock {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .p1 {
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 24px;
+  }
+
+  .p2 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    max-width: 350px;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 25px;
+    line-height: 28px;
+  }
+
+  .btnGo {
+    width: 157px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .forAnonUserBlock {
+    height: 240px;
+    max-width: 350px;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 0;
   }
 }

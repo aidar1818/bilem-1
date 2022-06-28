@@ -4,7 +4,7 @@
   align-items: center;
   height: 64px;
   padding: 0 25px;
-  margin: 16px 0 0 0;
+  margin: 20px 0;
   background: #DADADA;
 }
 
@@ -199,6 +199,12 @@ label {
   margin-top: 20px;
 }
 
+@media (max-width: 1440px) {
+  .burger {
+    display: none;
+  }
+}
+
 @media (max-width: 1195px) {
   .checkboxInput + label {
     margin-left: 240px;
@@ -212,10 +218,6 @@ label {
 }
 
 @media (max-width: 815px) {
-  .search-block {
-    margin-bottom: 0;
-  }
-
   .checkboxInput + label {
     margin-left: 70px;
   }
@@ -236,5 +238,72 @@ label {
 
   .content-main {
     padding: 0 15px;
+  }
+}
+
+@media (max-width: 530px) {
+  .textInput {
+    width: 235px;
+  }
+
+  ::placeholder {
+    font-size: 14px !important;
+  }
+
+  .btnSearch {
+    width: 71px;
+    height: 35px;
+    font-size: 14px;
+    padding: 0;
+    text-transform: none;
+    line-height: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .search-icon {
+    font-size: 20px;
+    margin: auto 0;
+  }
+}
+
+@media (max-width: 434px) {
+  .textInput {
+    width: 200px;
+    height: 26px;
+  }
+
+  ::placeholder {
+    font-size: 12px !important;
+  }
+
+  .btnSearch {
+    width: 71px;
+    height: 28px;
+    font-size: 12px;
+    padding: 0;
+    text-transform: none;
+    line-height: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+    margin-top: 0.5px;
+  }
+
+  .textInput {
+    padding: 0 0 0 30px !important;
+  }
+
+  .form {
+    margin-left: 10px;
+  }
+
+  .catalog {
+    font-size: 28px !important;
+  }
+
+  .search-block {
+    padding: 0 17px;
   }
 }

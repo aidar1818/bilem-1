@@ -85,7 +85,10 @@ export type CourseState = {
   searchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
+  startLoading: boolean,
   removeLoading: boolean,
+  removeLearningCourse: boolean,
+  removeFavoriteCourse: boolean,
   publishLoading: boolean,
   addToTheBestLoading: boolean,
   removeFromBestLoading: boolean,
@@ -115,6 +118,10 @@ export type ReviewsState = {
   reviews: Review[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  createLoading: boolean,
+  createError: null | string,
+  removeLoading: boolean,
+  removeError: null | string,
 };
 
 export type StatisticsState = {

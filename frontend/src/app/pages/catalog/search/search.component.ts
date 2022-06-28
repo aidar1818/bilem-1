@@ -14,14 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchComponent implements OnInit, OnDestroy {
   searchCourses: Observable<Course[]>;
   querySub!: Subscription;
-  loading: Observable<boolean>
+  searchLoading: Observable<boolean>
   error: Observable<null | string>
   available = false;
   courseSub!: Subscription;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.searchCourses = store.select(state => state.courses.searchCourses);
-    this.loading = store.select(state => state.courses.searchLoading);
+    this.searchLoading = store.select(state => state.courses.searchLoading);
     this.error = store.select(state => state.courses.fetchLoadingError);
   }
 
@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (c.length > 0) {
         this.available = false;
       }
-    })
+    });
   }
 
   ngOnDestroy() {

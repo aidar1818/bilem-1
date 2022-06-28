@@ -29,10 +29,15 @@ import {
   publishCourseSuccess,
   removeCourseFailure,
   removeCourseRequest,
-  removeCourseSuccess, removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
+  removeCourseSuccess,
+  removeFavoriteCourseFailure,
+  removeFavoriteCourseRequest,
+  removeFavoriteCourseSuccess, removeLearningCourseFailure,
+  removeLearningCourseRequest, removeLearningCourseSuccess,
+  removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
-  searchCoursesSuccess
+  searchCoursesSuccess, startCourseFailure, startCourseRequest, startCourseSuccess
 } from './course.actions';
 
 const initialState: CourseState = {
@@ -58,7 +63,10 @@ const initialState: CourseState = {
   searchLoadingError: null,
   createLoading: false,
   createError: null,
+  startLoading: false,
   removeLoading: false,
+  removeLearningCourse: false,
+  removeFavoriteCourse: false,
   publishLoading: false,
   addToTheBestLoading: false,
   removeFromBestLoading: false,
@@ -113,6 +121,10 @@ export const courseReducer = createReducer(
     createError: error
   })),
 
+  on(startCourseRequest, state => ({...state, startLoading: true})),
+  on(startCourseSuccess, state => ({...state, startLoading: false})),
+  on(startCourseFailure, state => ({...state, startLoading: false})),
+
   on(searchCoursesRequest, state => ({...state, searchLoading: true})),
   on(searchCoursesSuccess, (state, {searchCourses}) => ({...state, searchLoading: false, searchCourses})),
   on(searchCoursesFailure, (state, {error}) => ({...state, searchLoading: false, searchLoadingError: error})),
@@ -120,6 +132,14 @@ export const courseReducer = createReducer(
   on(removeCourseRequest, state => ({...state, removeLoading: true})),
   on(removeCourseSuccess, state => ({...state, removeLoading: false})),
   on(removeCourseFailure, state => ({...state, removeLoading: false})),
+
+  on(removeLearningCourseRequest, state => ({...state, removeLearningCourse: true})),
+  on(removeLearningCourseSuccess, state => ({...state, removeLearningCourse: false})),
+  on(removeLearningCourseFailure, state => ({...state, removeLearningCourse: false})),
+
+  on(removeFavoriteCourseRequest, state => ({...state, removeFavoriteCourse: true})),
+  on(removeFavoriteCourseSuccess, state => ({...state, removeFavoriteCourse: false})),
+  on(removeFavoriteCourseFailure, state => ({...state, removeFavoriteCourse: false})),
 
   on(publishCourseRequest, state => ({...state, publishLoading: true})),
   on(publishCourseSuccess, state => ({...state, publishLoading: false})),

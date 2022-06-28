@@ -41,7 +41,7 @@ mat-form-field {
   font-family: 'Poppins', sans-serif;
   background: #E0E0E0;
   border: none;
-  width: 37%;
+  width: 50%;
   padding: 19px 13px;
   border-radius: 10px;
 }
@@ -57,11 +57,24 @@ mat-form-field {
   resize: none;
 }
 
+.imgField {
+  display: flex;
+}
+
 .download_photo {
   width: 315px;
   height: 250px;
   background: url('src/assets/icons/download_photo.svg') 50%  #E0E0E0 no-repeat;
   border-radius: 10px;
+}
+
+.previewImg {
+  width: 315px;
+  height: 250px;
+}
+
+.image__label {
+  width: 340px;
 }
 
 .accept {
@@ -125,11 +138,15 @@ custom-checkbox+label {
   width: 40%;
 }
 
-.info-block p {
+.info-block__text {
   width: 66%;
   font-size: 16px;
   padding: 0 30px 0 12px;
   margin: 0;
+}
+
+.info-block__text-small {
+  display: none;
 }
 
 .info-block a {
@@ -153,4 +170,57 @@ custom-checkbox+label {
 .btn-close {
   background: url('src/assets/icons/ic-close.svg') no-repeat;
   margin-left: 24px;
+}
+
+mat-form-field .mat-form-field-infix {
+  border: none;
+}
+
+@media screen and (max-width: 1195px) {
+  .info-block__text-big {
+    display: none;
+  }
+
+  .info-block__text-small {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 965px){
+  .new-course{
+    margin: 45px 0 15px 25px;
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 744px) {
+  .info-block {
+    display: none;
+  }
+
+  .form-field__general {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .form-field__general {
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 485px) {
+  .form-field__general {
+    width: 100%;
+  }
+
+  .new-course {
+    margin-left: 0;
+  }
+
+  .new-course__title {
+    font-size: 29px;
+  }
 }

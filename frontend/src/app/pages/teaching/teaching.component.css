@@ -97,7 +97,11 @@ mat-nav-list a:hover {
   border-bottom: 2px solid #85233E;
 }
 
-@media screen and (max-width: 905px) {
+@media screen and (max-width: 965px) {
+  .router {
+    padding: 30px 0;
+  }
+
   .nav {
     display: none;
   }
@@ -106,6 +110,16 @@ mat-nav-list a:hover {
     display: block;
   }
 }
+
+@media screen and (max-width: 530px) {
+  .tabList a{
+    padding: 0 10px 10px;
+    font-size: 12px;
+  }
+}
+
+
+
 
 
 

@@ -13,7 +13,6 @@
   max-width: 260px;
   text-decoration: none;
   margin-top: 10px;
-  font-size: 18px;
   color: black;
 }
 
@@ -43,12 +42,12 @@ mat-card-title-group {
 
 .mat-card-title .course-title {
   display: block;
-  font-size: 20px !important;
+  font-size: 20px;
   margin-bottom: 10px !important;
 }
 
 .mat-card-title .course-author {
-  font-size: 16px !important;
+  font-size: 16px;
   font-weight: 400;
   color: #999;
 }
@@ -92,5 +91,153 @@ h1 {
 @media (max-width: 815px) {
   .card-wrapper {
     width: 340px;
+  }
+}
+
+@media (max-width: 737px) {
+  .card-wrapper {
+    width: 320px;
+    height: 180px;
+  }
+
+  .course-title {
+    font-size: 16px !important;
+    max-width: 200px !important;
+  }
+
+  .course-author {
+    font-size: 12px !important;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .icon {
+    font-size: 22px;
+  }
+
+  .course-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 697px) {
+  .card-wrapper {
+    width: 280px;
+  }
+
+  .course-title {
+    font-size: 14px !important;
+    max-width: 165px !important;
+  }
+
+  .course-author {
+    font-size: 10px !important;
+  }
+
+  .price {
+    font-size: 15px;
+  }
+
+  .icon {
+    font-size: 20px;
+    height: 20px;
+  }
+
+  .course-image {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 617px) {
+  .card-wrapper {
+    width: 240px;
+    height: 140px;
+  }
+
+  .course-title {
+    font-size: 12px !important;
+    line-height: 14px;
+    letter-spacing: 0.2px;
+    max-width: 150px !important;
+  }
+
+  .course-author {
+    font-size: 8px !important;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .icon {
+    height: 15px;
+    font-size: 15px;
+    padding-top: 3px;
+  }
+
+  .course-rate-text {
+    font-size: 8px;
+    margin: 3px 2px 0 2px;
+  }
+
+  .course-image {
+    width: 52px;
+    height: 52px;
+  }
+
+  .heart {
+    height: 18px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 537px) {
+  .card-wrapper {
+    width: 153.5px;
+    height: 140px;
+  }
+
+  .course-title {
+    font-size: 10px !important;
+    line-height: 10px;
+    letter-spacing: 0.1px;
+    max-width: 84px !important;
+  }
+
+  .course-author {
+    font-size: 8px !important;
+  }
+
+  .price {
+    font-size: 9px;
+  }
+
+  .icon {
+    height: 11px;
+    font-size: 11px;
+    padding-top: 6px;
+  }
+
+  .course-rate-text {
+    font-size: 6px;
+    margin: 2px 2px 0 2px;
+  }
+
+  .course-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .mat-card {
+    padding: 10px !important;
+  }
+
+  .heart {
+    height: 15px;
+    font-size: 15px;
   }
 }

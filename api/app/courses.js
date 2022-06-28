@@ -254,12 +254,76 @@ router.post('/addCourse', auth, async (req, res, next) => {
   }
 });
 
+router.delete('/removeLearningCourse/:id', auth, async (req, res, next) => {
+  try {
+    const user = req.user;
+
+    for (let i = user.myCourses.length; i--; ) {
+      if (user.myCourses[i].course._id.toString() === req.params.id) {
+        user.myCourses.splice(i, 1);
+        await user.save();
+      }
+    }
+
+    const course = await Course.findOne({_id: req.params.id});
+    let courseIndex = course.students.findIndex(user => user._id === user._id);
+    if (courseIndex !== -1) {
+      course.students.splice(courseIndex, 1);
+      await course.save();
+    }
+
+    return res.send({ message: 'Learning course deleted!' })
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/addFavoriteCourse', auth, async (req, res, next) => {
   try {
     const user = req.user;
     user.favoriteCourses.push(req.body.favoriteCourse);
     await user.save();
     return res.send({message: 'Course added!'});
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/startCourse', auth, async (req, res, next) => {
+  try {
+    const user = req.user;
+
+    for (let i = user.favoriteCourses.length; i--; ) {
+      if (user.favoriteCourses[i]._id.toString() === req.body.course) {
+        user.favoriteCourses.splice(i, 1);
+      }
+    }
+
+    user.myCourses.push({passedLessons: [], course: req.body.course});
+    const course = await Course.findOne({_id: req.body.course});
+    course.students.push(user);
+
+    await course.save();
+    await user.save();
+
+    return res.send({ message: 'You started new course!' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete('/removeFavoriteCourse/:id', auth, async (req, res, next) => {
+  try {
+    const user = req.user;
+
+    for (let i = user.favoriteCourses.length; i--; ) {
+      if (user.favoriteCourses[i]._id.toString() === req.params.id) {
+        user.favoriteCourses.splice(i, 1);
+        await user.save();
+      }
+    }
+
+    return res.send({ message: 'Favorite course removed!' });
   } catch (error) {
     next(error);
   }
