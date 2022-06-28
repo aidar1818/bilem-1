@@ -2,7 +2,8 @@ import { CourseState } from '../types';
 import { createReducer, on } from '@ngrx/store';
 import {
   addToTheBestFailure,
-  addToTheBestRequest, addToTheBestSuccess,
+  addToTheBestRequest,
+  addToTheBestSuccess,
   createCourseFailure,
   createCourseRequest,
   createCourseSuccess,
@@ -32,12 +33,21 @@ import {
   removeCourseSuccess,
   removeFavoriteCourseFailure,
   removeFavoriteCourseRequest,
-  removeFavoriteCourseSuccess, removeLearningCourseFailure,
-  removeLearningCourseRequest, removeLearningCourseSuccess,
-  removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
+  removeFavoriteCourseSuccess,
+  removeLearningCourseFailure,
+  removeLearningCourseRequest,
+  removeLearningCourseSuccess,
+  removeFromBestFailure,
+  removeFromBestRequest,
+  removeFromBestSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
-  searchCoursesSuccess, startCourseFailure, startCourseRequest, startCourseSuccess
+  searchCoursesSuccess,
+  startCourseFailure,
+  startCourseRequest,
+  startCourseSuccess,
+  fetchAllBestCoursesRequest,
+  fetchAllBestCoursesSuccess, fetchAllBestCoursesFailure
 } from './course.actions';
 
 const initialState: CourseState = {
@@ -49,6 +59,8 @@ const initialState: CourseState = {
   bestCourses: [],
   fetchLoading: false,
   fetchLoadingError: null,
+  fetchAllBestCoursesLoading: false,
+  fetchAllBestCoursesLoadingError: null,
   fetchAllFreeCoursesLoading: false,
   fetchAllFreeCoursesLoadingError: null,
   fetchAllPaidCoursesLoading: false,
@@ -77,6 +89,10 @@ export const courseReducer = createReducer(
   on(fetchCoursesRequest, state => ({...state, fetchLoading: true})),
   on(fetchCoursesSuccess, (state, {courses}) => ({...state, fetchLoading: false, courses})),
   on(fetchCoursesFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
+
+  on(fetchAllBestCoursesRequest, state => ({...state, fetchAllBestCoursesLoading: true})),
+  on(fetchAllBestCoursesSuccess, (state, {bestCourses}) => ({...state, fetchAllBestCoursesLoading: false, bestCourses})),
+  on(fetchAllBestCoursesFailure, (state, {error}) => ({...state, fetchAllBestCoursesLoading: false, fetchAllBestCoursesLoadingError: error})),
 
   on(fetchAllFreeCoursesRequest, state => ({...state, fetchAllFreeCoursesLoading: true})),
   on(fetchAllFreeCoursesSuccess, (state, {allFreeCourses}) => ({...state, fetchAllFreeCoursesLoading: false, allFreeCourses})),

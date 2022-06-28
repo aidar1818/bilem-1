@@ -92,6 +92,11 @@ a.activeToolbarNav {
   color: #161615;
 }
 
+.btnSign:hover {
+  background: #161615;
+  color: #fff;
+}
+
 .avatar {
   background: #007DFF;
   border-radius: 50%;

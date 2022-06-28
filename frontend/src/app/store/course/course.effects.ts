@@ -8,7 +8,10 @@ import {
   addFavoriteCourseSuccess,
   addLearningCourseFailure,
   addLearningCourseRequest,
-  addLearningCourseSuccess, addToTheBestFailure, addToTheBestRequest, addToTheBestSuccess,
+  addLearningCourseSuccess,
+  addToTheBestFailure,
+  addToTheBestRequest,
+  addToTheBestSuccess,
   createCommentFailure,
   createCommentRequest,
   createCommentSuccess,
@@ -17,8 +20,10 @@ import {
   createCourseSuccess,
   fetchAllFreeCoursesFailure,
   fetchAllFreeCoursesRequest,
-  fetchAllFreeCoursesSuccess, fetchAllPaidCoursesFailure,
-  fetchAllPaidCoursesRequest, fetchAllPaidCoursesSuccess,
+  fetchAllFreeCoursesSuccess,
+  fetchAllPaidCoursesFailure,
+  fetchAllPaidCoursesRequest,
+  fetchAllPaidCoursesSuccess,
   fetchCourseInfoFailure,
   fetchCourseInfoRequest,
   fetchCourseInfoSuccess,
@@ -39,14 +44,24 @@ import {
   publishCourseSuccess,
   removeCourseFailure,
   removeCourseRequest,
-  removeCourseSuccess, removeFromBestFailure, removeFromBestRequest, removeFromBestSuccess,
+  removeCourseSuccess,
+  removeFromBestFailure,
+  removeFromBestRequest,
+  removeFromBestSuccess,
   removeFavoriteCourseFailure,
   removeFavoriteCourseRequest,
-  removeFavoriteCourseSuccess, removeLearningCourseFailure,
-  removeLearningCourseRequest, removeLearningCourseSuccess,
+  removeFavoriteCourseSuccess,
+  removeLearningCourseFailure,
+  removeLearningCourseRequest,
+  removeLearningCourseSuccess,
   searchCoursesFailure,
   searchCoursesRequest,
-  searchCoursesSuccess, startCourseFailure, startCourseRequest, startCourseSuccess,
+  searchCoursesSuccess,
+  startCourseFailure,
+  startCourseRequest,
+  startCourseSuccess,
+  fetchAllBestCoursesRequest,
+  fetchAllBestCoursesSuccess, fetchAllBestCoursesFailure,
 } from './course.actions';
 import { CourseService } from '../../services/course.service';
 import { Store } from '@ngrx/store';
@@ -88,6 +103,16 @@ export class CourseEffects {
       map(allPaidCourses => fetchAllPaidCoursesSuccess({allPaidCourses})),
       catchError(() => of(fetchAllPaidCoursesFailure({error: 'Something wrong'})))
     ))
+  ));
+
+  fetchAllBestCourses = createEffect(() => this.actions.pipe(
+    ofType(fetchAllBestCoursesRequest),
+    mergeMap(() => {
+      return this.courseService.fetchAllBestCourses().pipe(
+        map(bestCourses => fetchAllBestCoursesSuccess({bestCourses})),
+        catchError(() => of(fetchAllBestCoursesFailure({error: 'Something wrong'})))
+      );
+    })
   ));
 
   fetchCourseInfo = createEffect(() => this.actions.pipe(

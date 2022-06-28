@@ -191,6 +191,12 @@ label {
   color: #FFFFFF;
 }
 
+.btnSearch:hover {
+  background: #DADADA;
+  border: #85233E;
+  color: #85233E;
+}
+
 .edit-ic {
   cursor: pointer;
 }

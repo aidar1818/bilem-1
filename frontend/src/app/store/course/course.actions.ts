@@ -13,6 +13,11 @@ export const fetchAllPaidCoursesRequest = createAction('[Courses] Fetch All Paid
 export const fetchAllPaidCoursesSuccess = createAction('[Courses] Fetch All Paid Success', props<{allPaidCourses: Course[]}>());
 export const fetchAllPaidCoursesFailure = createAction('[Courses] Fetch All Paid Failure', props<{error: string}>());
 
+export const fetchAllBestCoursesRequest = createAction('[Courses] Fetch All Best Request');
+export const fetchAllBestCoursesSuccess = createAction('[Courses] Fetch All Best Success', props<{bestCourses: Course[]}>());
+export const fetchAllBestCoursesFailure = createAction('[Courses] Fetch All Best Failure', props<{error: string}>());
+
+
 export const fetchCourseInfoRequest = createAction(
   '[Course] Fetch Request',
   props<{id: string}>());

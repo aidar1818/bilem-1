@@ -98,6 +98,7 @@ import { AllFreeCoursesComponent } from './pages/all-courses/all-free-courses/al
 import { AllPaidCoursesComponent } from './pages/all-courses/all-paid-courses/all-paid-courses.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { AllBestCoursesComponent } from './pages/all-courses/all-best-courses/all-best-courses.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -178,6 +179,7 @@ const socialConfig: SocialAuthServiceConfig = {
     AllFreeCoursesComponent,
     AllPaidCoursesComponent,
     AdminComponent,
+    AllBestCoursesComponent,
   ],
   imports: [
     BrowserModule,

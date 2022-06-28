@@ -495,4 +495,19 @@ router.get('/all/paidCourses', roles, async (req, res, next) => {
   }
 });
 
+router.get('/all/bestCourses', async (req, res, next) => {
+  try {
+    let courses;
+    courses = await Course.find({best: true, is_published: true})
+        .sort({_id: -1})
+        .populate('author', 'displayName')
+        .populate('modules.lessons.comments.user', 'displayName');
+    console.log(courses)
+    return res.send(courses);
+
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

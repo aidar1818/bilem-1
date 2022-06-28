@@ -107,6 +107,11 @@ footer {
 }
 
 
+.socialLinks a svg:hover path{
+  fill: #85233E;
+}
+
+
 .footer-nav nav {
   display: flex;
   flex-direction: column;

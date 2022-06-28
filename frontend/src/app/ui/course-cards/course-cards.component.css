@@ -33,6 +33,11 @@
   color: white;
 }
 
+.btn:hover {
+  background: #FFF;
+  color: #111116;
+}
+
 .ic_right {
   font-size: 18px;
   margin-left: 10px;

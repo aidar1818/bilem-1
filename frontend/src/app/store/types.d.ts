@@ -71,6 +71,8 @@ export type CourseState = {
   bestCourses: Course[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchAllBestCoursesLoading: boolean,
+  fetchAllBestCoursesLoadingError: null | string,
   fetchAllFreeCoursesLoading: boolean,
   fetchAllFreeCoursesLoadingError: null | string,
   fetchAllPaidCoursesLoading: boolean,

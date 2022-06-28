@@ -90,6 +90,32 @@ export class CourseService {
     );
   }
 
+  fetchAllBestCourses() {
+    return this.http.get<Course[]>(env.apiUrl + '/courses/all/bestCourses').pipe(
+      map(response => {
+        return response.map(courseData => {
+          return new Course(
+            courseData._id,
+            courseData.title,
+            courseData.description,
+            courseData.information,
+            courseData.author,
+            courseData.students,
+            courseData.modules,
+            courseData.subcategory,
+            courseData.price,
+            courseData.image,
+            courseData.is_free,
+            courseData.best,
+            courseData.rate,
+            courseData.is_published,
+            courseData.promoVideo,
+          );
+        });
+      })
+    );
+  }
+
   fetchTariffData() {
     return this.http.get<FetchTariffData>(env.apiUrl + '/courses/tariff/amount').pipe(
       map(response => {

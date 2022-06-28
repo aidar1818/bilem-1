@@ -8,6 +8,10 @@
   width: 580px;
 }
 
+.courses {
+  margin-bottom: 46px;
+}
+
 .p1 {
   margin-bottom: 12px;
   font-family: Inter, sans-serif;
@@ -40,6 +44,13 @@
   color: #969696;
 }
 
+.cards-title {
+  margin: 0 0 30px 0;
+  letter-spacing: 0.5px;
+  font-family: Poppins, Arial, serif;
+  font-size: 36px;
+  font-weight: 500;
+}
 
 .btnGo {
   width: 190px;
@@ -58,9 +69,128 @@
   cursor: pointer;
 }
 
+
+.btn-area {
+  text-align: center;
+  margin-bottom: 46px;
+}
+
+.btn {
+  font-family: Poppins, Arial, serif;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 18px;
+  background: #111116;
+  color: white;
+}
+
+.btn:hover {
+  background: #FFF;
+  color: #111116;
+}
+
+.card-wrapper {
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.5px;
+  width: 368px;
+  height: 210px;
+  border-radius: 25px;
+  margin: 7px;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-wrapper mat-card-title a {
+  max-width: 260px;
+  text-decoration: none;
+  margin-top: 10px;
+  color: black;
+}
+
+.card-wrapper:hover {
+  -webkit-box-shadow: 0 0 5px 2px lightgray;
+  -moz-box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 5px 2px lightgray;
+}
+
+mat-card-title-group {
+  position: relative;
+}
+
+.rating-img {
+  height: 20px;
+}
+
+.course-card {
+  height: 100%;
+}
+
+.course-rate-text {
+  color: rgba(153, 153, 153, 54%);
+  font-size: 12px;
+  margin: 3px 5px 0 5px;
+}
+
+.mat-card-title .course-title {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 10px !important;
+}
+
+.mat-card-title .course-author {
+  font-size: 16px;
+  font-weight: 400;
+  color: #999;
+}
+
+.course-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+}
+
+.course-content {
+  position: absolute;
+  bottom: 30px;
+}
+
+.price {
+  color: #6B0D24;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+h1 {
+  margin-left: 4rem;
+  margin-top: 25px;
+  font-size: 2.5rem;
+}
+
+.subscribers {
+  height: 20px;
+  margin-left: 5px;
+}
+
+.admin-btns {
+  position: absolute;
+  bottom: 40px;
+  left: 5px;
+}
+
+
+
+
 @media (max-width: 1195px) {
   .title {
     font-size: 58px;
+  }
+
+  .cards-block {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 780px;
   }
 }
 
@@ -102,6 +232,18 @@
   .p1 {
     padding-top: 25px;
   }
+
+  .cards-title {
+    margin-left: 20px;
+  }
+
+  .cards-block {
+    max-width: 710px;
+  }
+
+  .card-wrapper {
+    width: 340px;
+  }
 }
 
 @media (max-width: 744px) {
@@ -141,6 +283,82 @@
     height: 308px;
     margin-left: 20px;
   }
+
+}
+
+@media (max-width: 737px) {
+  .cards-title {
+    font-size: 32px;
+  }
+
+  .cards-block {
+    max-width: 670px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+
+  .card-wrapper {
+    width: 320px;
+    height: 180px;
+  }
+
+  .course-title {
+    font-size: 16px !important;
+    max-width: 200px !important;
+  }
+
+  .course-author {
+    font-size: 12px !important;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .icon {
+    font-size: 22px;
+  }
+
+  .course-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 697px) {
+  .cards-block {
+    max-width: 590px;
+  }
+
+  .card-wrapper {
+    width: 280px;
+  }
+
+  .course-title {
+    font-size: 14px !important;
+    max-width: 165px !important;
+  }
+
+  .course-author {
+    font-size: 10px !important;
+  }
+
+  .price {
+    font-size: 15px;
+  }
+
+  .icon {
+    font-size: 20px;
+    height: 20px;
+  }
+
+  .course-image {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 @media (max-width: 655px) {
@@ -166,6 +384,49 @@
     font-size: 18px;
     max-width: 350px;
     width: 100%;
+  }
+}
+
+@media (max-width: 617px) {
+  .card-wrapper {
+    width: 240px;
+    height: 140px;
+  }
+
+  .course-title {
+    font-size: 12px !important;
+    line-height: 14px;
+    letter-spacing: 0.2px;
+    max-width: 150px !important;
+  }
+
+  .course-author {
+    font-size: 8px !important;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .icon {
+    height: 15px;
+    font-size: 15px;
+    padding-top: 3px;
+  }
+
+  .course-rate-text {
+    font-size: 8px;
+    margin: 3px 2px 0 2px;
+  }
+
+  .course-image {
+    width: 52px;
+    height: 52px;
+  }
+
+  .heart {
+    height: 18px;
+    font-size: 18px;
   }
 }
 
@@ -208,4 +469,72 @@
     margin-left: 10px;
     margin-top: 0;
   }
+
+  .cards-title {
+    font-size: 25px;
+    margin-left: 10px;
+  }
+
+  ::ng-deep .mat-tab-label .mat-tab-label-content {
+    font-size: 10px !important;
+  }
+
+  .cards-block {
+    max-width: 340px;
+  }
+
+  .btn {
+    width: 200px;
+    height: 42px;
+    font-size: 11px;
+    line-height: 8px;
+    letter-spacing: -0.2px;
+    padding: 0;
+  }
+
+  .card-wrapper {
+    width: 153.5px;
+    height: 140px;
+  }
+
+  .course-title {
+    font-size: 10px !important;
+    line-height: 10px;
+    letter-spacing: 0.1px;
+    max-width: 84px !important;
+  }
+
+  .course-author {
+    font-size: 8px !important;
+  }
+
+  .price {
+    font-size: 9px;
+  }
+
+  .icon {
+    height: 11px;
+    font-size: 11px;
+    padding-top: 6px;
+  }
+
+  .course-rate-text {
+    font-size: 6px;
+    margin: 2px 2px 0 2px;
+  }
+
+  .course-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .mat-card {
+    padding: 10px !important;
+  }
+
+  .heart {
+    height: 15px;
+    font-size: 15px;
+  }
 }
+
