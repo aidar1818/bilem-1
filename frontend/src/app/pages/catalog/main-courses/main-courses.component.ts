@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
 import { Course } from '../../../models/course.model';
-import { BreakPoint } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-main-courses',
@@ -17,6 +16,8 @@ export class MainCoursesComponent implements OnInit {
   loadingSub!: Subscription;
   loading!: boolean | null;
 
+  mobile = true;
+
   constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
     this.courses = store.select(state => state.courses.courses);
@@ -24,6 +25,10 @@ export class MainCoursesComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+
+    if (window.screen.width <= 537) {
+      this.mobile = false;
+    }
   }
 
   ngAfterViewInit() {

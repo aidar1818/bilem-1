@@ -378,7 +378,11 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   }
 }
 
-
+@media (max-width: 537px) {
+  .mat-tab-label-container {
+    margin-left: 10px;
+  }
+}
 
 
 

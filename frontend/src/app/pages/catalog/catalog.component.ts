@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { searchCoursesRequest } from '../../store/course/course.actions';
@@ -44,11 +44,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
   selectedCategory = '';
   selectedSubCategory = '';
 
+  mobile = false;
+
   constructor(
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.searchLoading = store.select(state => state.courses.searchLoading);
     this.categories = store.select(state => state.categories.categories);
@@ -60,6 +63,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (window.screen.width <= 530) {
+      this.mobile = true;
+    }
+
     this.store.dispatch(fetchCategoriesRequest());
 
     this.querySub = this.route.queryParams
@@ -86,6 +93,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.subCategoriesArr = subCategories;
       }
     });
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
   selectCategory(id: string) {
