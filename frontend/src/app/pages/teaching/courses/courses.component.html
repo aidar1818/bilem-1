@@ -18,7 +18,10 @@
         <img class="img" [src]="course.image | imageForCourse" [alt]="course.title"/>
         <div fxLayout="row" fxLayoutAlign="space-between" class="title-course">
           <h2>
-            <p class="text"><i>Курс: {{ course.title }}</i></p>
+            <p class="text">
+              <i>Курс: {{ course.title }}</i>
+              <span class="textIsFree" *ngIf="course.is_free === false">Данный курс платный</span>
+            </p>
           </h2>
         </div>
       </mat-card>

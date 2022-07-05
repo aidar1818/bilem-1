@@ -10,6 +10,9 @@ const config = require('../config');
 const path = require('path');
 const Subcategory = require('../models/Subcategory');
 const router = express.Router();
+jwt = require('jsonwebtoken');
+const axios = require('axios');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -241,7 +244,7 @@ router.post('/addFavoriteCourse', auth, async (req, res, next) => {
   }
 });
 
-router.post('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+router.post('/lesson/:id', auth, permit('user', 'admin'), upload.single('video'), async (req, res, next) => {
   try {
     if (!req.body.title) {
       return res.status(400).send({message: 'Название урока является обязательным полем!'});
@@ -263,6 +266,12 @@ router.post('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next)
           if (req.body.video) {
             course.modules[i].lessons[j].video = req.body.video;
           }
+          if(req.file) {
+            course.modules[i].lessons[j].video = req.file.originalname;
+            const fileHeandler = await fs.createReadStream(req.file.path);
+            await sendVideoToKinescope(fileHeandler);
+            await fs.promises.unlink(req.file.path);
+          }
         }
       }
     }
@@ -273,6 +282,54 @@ router.post('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next)
     next(e);
   }
 });
+
+const getVideoToKinescope = () => {
+  const ACCESS_KEY = 'ecc879e0-0190-40b7-a660-2c97950c9c4b';
+
+  const config = {
+    method: 'get',
+    url: 'https://api.kinescope.io/v1/videos?page=1&per_page=1&order=created_at.desc,title.asc',
+    headers: {
+      'Authorization': `Bearer ${ACCESS_KEY}`,
+    }
+  };
+
+  return axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
+const sendVideoToKinescope = (videoFile) => {
+  const data = videoFile;
+  const ACCESS_KEY = 'ecc879e0-0190-40b7-a660-2c97950c9c4b';
+
+  let config = {
+    method: 'post',
+    url: 'https://uploader.kinescope.io/video',
+    headers: {
+      'Authorization': `Bearer ${ACCESS_KEY}`,
+      'X-Project-ID': '9ccf2fff-4fa3-428b-bb45-71f4058df6ea',
+      'X-Folder-ID': '',
+      'X-Video-Title': 'videoFile.mp4',
+      'X-Video-Description': 'description',
+      'X-File-Name': 'videoFilefilename.mp4',
+      'Content-Type': 'text/plain'
+    },
+    data: data
+  };
+
+  return axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
 
 router.get('/lesson/:id', auth, permit('user', 'admin'), async (req, res, next) => {
   try {

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment, environment as env } from '../../environments/environment';
-import { CommentData, Course, CourseData, FetchTariffData, Lesson } from '../models/course.model';
+import { CommentData, Course, CourseData, FetchTariffData, Lesson, LessonClass } from '../models/course.model';
 import { map } from 'rxjs';
 import { Module } from '../models/module.model';
+import axios from 'axios';
 
 
 @Injectable({
@@ -211,18 +212,26 @@ export class CourseService {
   }
 
   addLesson(lessonData: Lesson) {
-    return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, lessonData);
+    const formData = new FormData();
+
+    Object.keys(lessonData).forEach(key => {
+      if (lessonData[key] !== null) {
+        formData.append(key, lessonData[key]);
+      }
+    });
+
+    return this.http.post<Course>(env.apiUrl + `/courses/lesson/${lessonData._id}`, formData);
   }
 
   getLessonData(lessonId: string, action?: string) {
     const url = action ? `/courses/lesson/${lessonId}?action=addToPassed` : `/courses/lesson/${lessonId}`;
-    return this.http.get<Lesson | null>(env.apiUrl + url)
+    return this.http.get<LessonClass | null>(env.apiUrl + url)
       .pipe(map(result => {
         if (!result) {
           return null;
         }
 
-        return new Lesson(result._id, result.title, result.description, result.video, result.comments);
+        return new LessonClass(result._id, result.title, result.description, result.video, result.comments);
       }));
   }
 

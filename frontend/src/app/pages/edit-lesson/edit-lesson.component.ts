@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { createLessonRequest, fetchLessonRequest } from '../../store/lessons/lessons.actions';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Lesson } from '../../models/course.model';
+import { Course, Lesson } from '../../models/course.model';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
@@ -17,12 +17,14 @@ export class EditLessonComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   loading: Observable<boolean>;
   error: Observable<string | null>;
+  course: Observable<Course | null>;
   lesson: Observable<Lesson | null>;
   fetchLessonDataLoading: Observable<boolean>;
   fetchLessonDataError: Observable<string | null>;
   lessonSub!: Subscription;
   lessonId = '';
   htmlContent = '';
+  is_free!: boolean | undefined;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -62,6 +64,11 @@ export class EditLessonComponent implements OnInit, OnDestroy {
     this.lesson = store.select(state => state.lessons.lesson);
     this.fetchLessonDataLoading = store.select(state => state.lessons.fetchLoading);
     this.fetchLessonDataError = store.select(state => state.lessons.fetchLoadingError);
+    this.course = store.select(state => state.courses.course);
+
+    this.course.subscribe(courseData => {
+      this.is_free = courseData?.is_free;
+    })
   }
 
   ngOnInit(): void {
@@ -96,6 +103,11 @@ export class EditLessonComponent implements OnInit, OnDestroy {
       video: this.form.value.video,
       comments: [],
     };
+
+    if(this.form.value.videoFile) {
+      lessonData.video = this.form.value.videoFile;
+    }
+
     this.store.dispatch(createLessonRequest({lessonData}));
   }
 
