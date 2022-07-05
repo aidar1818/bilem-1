@@ -118,7 +118,7 @@ export class CourseEffects {
   fetchCourseInfo = createEffect(() => this.actions.pipe(
     ofType(fetchCourseInfoRequest),
     mergeMap(({ id }) => this.courseService.getCourseById(id).pipe(
-      map(course => fetchCourseInfoSuccess({ course })),
+      map(course => fetchCourseInfoSuccess({course})),
       tap(() => this.store.dispatch(fetchReviewsRequest({ id }))),
       catchError(() => of(fetchCourseInfoFailure({ error: 'Something wrong' })))
     ))

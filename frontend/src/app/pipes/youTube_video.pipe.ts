@@ -10,7 +10,7 @@ export class YouTubeVideoPipe implements PipeTransform {
 
   transform(value: string | null): string {
     if (value) {
-      return <string>this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${ value }`);
+      return <string>this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${ value }`);
     }
 
     return '';

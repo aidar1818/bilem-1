@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { fetchLessonRequest } from '../../store/lessons/lessons.actions';
 import { Observable, Subscription } from 'rxjs';
-import { Course, Lesson } from '../../models/course.model';
+import { Course, Lesson, LessonClass } from '../../models/course.model';
 import { NgForm } from '@angular/forms';
 import { createCommentRequest } from '../../store/course/course.actions';
 
@@ -13,6 +13,7 @@ import { createCommentRequest } from '../../store/course/course.actions';
   templateUrl: './lesson.component.html',
   styleUrls: ['./lesson.component.css']
 })
+
 export class LessonComponent implements OnInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
 
@@ -22,7 +23,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
   lesson: Observable<Lesson | null>;
   lessonSub!: Subscription;
-  lessonData!: Lesson;
+  lessonData!: LessonClass;
   lessonsArray: string[] = [];
   nextLessonId = '';
   previousLessonId = '';
@@ -45,7 +46,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     this.lessonSub = this.lesson.subscribe(lessonData => {
       if (lessonData) {
-        this.lessonData = lessonData;
+        this.lessonData = <LessonClass>lessonData;
 
         let parser = new DOMParser(),
           doc = parser.parseFromString(this.lessonData.description!, 'text/html'),

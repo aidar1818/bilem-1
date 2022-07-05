@@ -154,4 +154,8 @@ Given('вижу элемент страницы {string}', (elemText) => {
   I.wait(1);
 });
 
+Given('я кликаю на элемент страницы с классом {string}', (className) => {
+  I.click(`.${className}`);
+});
+
 

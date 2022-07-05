@@ -13,84 +13,104 @@
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <div class="myCourses">
-    <div fxLayout="row" fxLayoutGap="16px" class="cards-wrap">
-      <div class="currentCourses">
-        <h3 class="page-title" *ngIf="learningCourses.length">Мои курсы</h3>
+  <div class="myCourses" fxLayout="column" fxLayoutAlign="center">
+    <div>
+      <div fxLayout="row" fxLayoutGap="16px" class="cards-wrap">
+        <div class="currentCourses">
+          <h3 class="page-title" *ngIf="learningCourses.length">Мои курсы</h3>
 
-        <div
-          fxLayout="column"
-          class="cards"
-          *ngFor="let course of learningCourses | paginate :
+          <div
+            fxLayout="column"
+            class="cards"
+            *ngFor="let course of learningCourses | paginate :
           {
              itemsPerPage: 6,
              currentPage: page,
              totalItems: totalLength
               }"
-        >
-          <mat-card class="card learning">
-            <div class="card-top" fxLayout="row" fxLayoutAlign="space-between center">
-              <div>
-                <mat-card-title class="card-title">{{ course.course.title }}</mat-card-title>
-              </div>
+          >
+            <a class="course-card"
+               [routerLink]="['/course', 'lessons', course.course._id, course.course.modules[0].lessons[0]._id]">
+              <mat-card class="card learning">
+                <div class="card-top" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxFlex="40%">
+                    <mat-card-title class="card-title">{{ course.course.title }}</mat-card-title>
+                  </div>
 
-              <mat-card-content fxFlex="40%" fxLayout="row" fxLayoutAlign="flex-end" style="margin: 0">
-                <a mat-stroked-button class="continue-btn"
-                   [routerLink]="['/course', 'lessons', course.course._id, course.course.modules[0].lessons[0]._id]">Продолжить</a>&nbsp;&nbsp;
-                <button mat-stroked-button color="warn" class="leave-btn" (click)="removeCourse(course.course._id)">Покинуть</button>
-              </mat-card-content>
-            </div>
+                  <mat-card-content fxFlex="60%" fxLayout="row" fxLayoutAlign="flex-end" style="margin: 0">
+                    <div class="buttons">
+                      <a mat-stroked-button class="continue-btn">Продолжить</a>
+                      <button mat-stroked-button color="warn" class="leave-btn"
+                              (click)="removeCourse(course.course._id, $event)">
+                        Покинуть
+                      </button>
+                    </div>
 
-            <div>
-              <p class="text-muted">Setters</p>
-            </div>
+                    <div class="menu" (click)="$event.stopPropagation()">
+                      <button mat-icon-button [matMenuTriggerFor]="menu" (click)="onMenuClick($event)">
+                        <span class="material-icons">more_vert</span>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <a mat-menu-item class="continue-btn"
+                           [routerLink]="['/course', 'lessons', course.course._id, course.course.modules[0].lessons[0]._id]">Продолжить</a>
+                        <button mat-menu-item (click)="removeCourse(course.course._id, $event)">Удалить</button>
+                      </mat-menu>
+                    </div>
+                  </mat-card-content>
+                </div>
 
-            <div fxLayout="row" fxLayoutAlign="flex-end">
-              <p class="progress">{{ course.progress }}%</p>
-            </div>
+                <div>
+                  <p class="text-muted">Setters</p>
+                </div>
 
-            <mat-progress-bar mode="determinate" [value]="course.progress"></mat-progress-bar>
+                <div fxLayout="row" fxLayoutAlign="flex-end">
+                  <p class="progress">{{ course.progress }}%</p>
+                </div>
+
+                <mat-progress-bar mode="determinate" [value]="course.progress"></mat-progress-bar>
+              </mat-card>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="lastCourses.length" class="lastCourses">
+          <mat-card>
+            <mat-card-content>
+              <h3 class="page-title">Мои последние курсы</h3>
+              <mat-card class="recent-course-card" *ngFor="let c of lastCourses">
+                <mat-card-content class="recent-course-card-inner" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div style="height: 100px;" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+                    <div style="position: relative">
+                      <mat-progress-spinner [color]="'warn'"
+                                            [mode]="'determinate'"
+                                            [value]="c.progress"
+                                            diameter="55">
+                      </mat-progress-spinner>
+                      <div class="progress-content">{{ c.progress }}%</div>
+                    </div>
+                    <div>
+                      <h4 class="recent-course-card_title">{{ getCourseTitle(c.course.title) }}</h4>
+                      <p class="recent-course-card_content">Пройдено {{ c.passedLessons.length }} уроков</p>
+                    </div>
+                  </div>
+                  <a class="recent-course-link" mat-icon-button
+                     [routerLink]="['/course', 'lessons', c.course._id, c.course.modules[0].lessons[0]._id]">
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                  </a>
+                </mat-card-content>
+              </mat-card>
+            </mat-card-content>
           </mat-card>
         </div>
       </div>
-      <div *ngIf="lastCourses.length" class="lastCourses">
-        <mat-card>
-          <mat-card-content>
-            <h3 class="page-title">Мои последние курсы</h3>
-            <mat-card class="recent-course-card" *ngFor="let c of lastCourses">
-              <mat-card-content class="recent-course-card-inner" fxLayout="row" fxLayoutAlign="space-between center">
-                <div style="height: 100px;" fxLayout="row" fxLayoutGap="16px">
-                  <div>
-                    <mat-progress-spinner [color]="'warn'"
-                                          [mode]="'determinate'"
-                                          [value]="c.progress"
-                                          diameter="55">
-                    </mat-progress-spinner>
-                    <div class="progress-content">{{ c.progress }}%</div>
-                  </div>
-                  <div>
-                    <h4 class="recent-course-card_title">{{ getCourseTitle(c.course.title) }}</h4>
-                    <p class="recent-course-card_content">Пройдено {{ c.passedLessons.length }} уроков</p>
-                  </div>
-                </div>
-                <a class="recent-course-link" mat-icon-button
-                   [routerLink]="['/course', 'lessons', c.course._id, c.course.modules[0].lessons[0]._id]">
-                  <mat-icon>arrow_forward_ios</mat-icon>
-                </a>
-              </mat-card-content>
-            </mat-card>
-          </mat-card-content>
-        </mat-card>
-      </div>
     </div>
-  </div>
-  <div class="paginationArea" *ngIf="learningCourses.length > 0">
-    <pagination-controls
-      (pageChange)="onPageChange($event)"
-      class="my-pagination"
-      previousLabel=""
-      nextLabel=""
-    ></pagination-controls>
+    <div class="paginationArea" *ngIf="learningCourses.length > 0">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+        class="my-pagination"
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
+    </div>
   </div>
 </ng-template>
 

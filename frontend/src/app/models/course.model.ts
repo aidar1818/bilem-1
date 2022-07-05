@@ -14,7 +14,7 @@ export interface CommentData {
   text: string,
 }
 
-export class Lesson {
+export class LessonClass {
   constructor(
     public _id: string,
     public title: string,
@@ -25,11 +25,21 @@ export class Lesson {
   }
 }
 
-export interface LessonData {
+export interface Lesson {
+  [key: string]: any,
   _id: string,
   title: string,
   description: string | null,
-  video: string | null,
+  video: string | null | File,
+  comments: Comment[],
+}
+
+export interface LessonData {
+  [key: string]: any,
+  _id: string,
+  title: string,
+  description: string | null,
+  video: string | null | File,
   comments: Comment[],
   timestamp: string,
 }
@@ -84,5 +94,11 @@ export interface CourseData {
   is_free: boolean,
   promoVideo: string | null,
 }
+
+// export interface VideoData {
+//   title: string,
+//   description: string,
+//   name: string,
+// }
 
 

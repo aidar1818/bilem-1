@@ -13,39 +13,49 @@
 ></mat-progress-spinner>
 
 <ng-template #coursesArea>
-  <h3 class="title-favorite" *ngIf="favoriteCourses[0]">Курсы, которые вы хотите пройти</h3>
-  <div fxLayout="column" class="cards" *ngFor="let course of favoriteCourses">
-    <mat-card fxLayout="row" class="card favorite" fxLayoutAlign="start space-between">
-      <img
-        class="course-image"
-        [src]="course.image | imageForCourse"
-        [alt]="course.title"
-      >
-      <div fxFlex="80">
-        <mat-card-title-group fxLayout="column" fxLayoutAlign="space-around flex-start" style="height: 100%">
-          <p class="course-author">{{ course.author.displayName }}</p>
-          <p class="title">{{ course.title }}</p>
-        </mat-card-title-group>
-        <mat-card-content>
-          <p *ngIf="!course.is_free"><b>{{ course.price }}сом</b></p>
-        </mat-card-content>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="space-around flex-end" class="btnsBlock">
-        <div>
-          <button mat-icon-button [matMenuTriggerFor]="menu" class="remove-btn">
-            <span class="material-icons settings">more_vert</span>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item class="remove__btn" (click)="removeCourse(course._id)">Удалить</button>
-          </mat-menu>
-        </div>
+  <div class="favorite-courses-block">
+    <h3 class="title-favorite" *ngIf="favoriteCourses[0]">Курсы, которые вы хотите пройти</h3>
+    <div fxLayout="column" class="cards" *ngFor="let course of favoriteCourses">
+      <a [routerLink]="['/course', course._id]">
+        <mat-card fxLayout="row" class="card favorite" fxLayoutAlign="start space-between">
+          <img
+            class="course-image"
+            [src]="course.image | imageForCourse"
+            [alt]="course.title"
+          >
+          <div fxFlex="80">
+            <mat-card-title-group fxLayout="column" fxLayoutAlign="space-around flex-start" style="height: 100%">
+              <p class="course-author">{{ course.author.displayName }}</p>
+              <p class="title">{{ course.title }}</p>
+            </mat-card-title-group>
+            <mat-card-content>
+              <p *ngIf="!course.is_free"><b>{{ course.price }}сом</b></p>
+            </mat-card-content>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="space-around flex-end" class="btnsBlock">
+            <div (click)="$event.stopPropagation();">
+              <button mat-icon-button [matMenuTriggerFor]="menu" (click)="onMenuClick($event)" class="remove-btn" >
+                <span class="material-icons settings">more_vert</span>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item class="remove__btn" (click)="removeCourse($event, course._id)">Удалить</button>
+              </mat-menu>
+            </div>
 
-        <mat-card-actions fxFlex="15">
-          <button mat-stroked-button color="accent" *ngIf="!course.is_free" (click)="startCourse(course._id)">Купить курс</button>
-          <button mat-stroked-button color="success" *ngIf="course.is_free" (click)="startCourse(course._id)">Пройти курс</button>
-        </mat-card-actions>
-      </div>
-    </mat-card>
+            <mat-card-actions fxFlex="15" (click)="$event.stopPropagation();">
+              <button mat-stroked-button color="accent" *ngIf="!course.is_free"
+                      (click)="startCourse($event, course._id)">Купить
+                курс
+              </button>
+              <button mat-stroked-button color="success" *ngIf="course.is_free"
+                      (click)="startCourse($event, course._id)">Пройти
+                курс
+              </button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </a>
+    </div>
   </div>
 </ng-template>
 

@@ -2,8 +2,13 @@
   margin: 0 0 20px;
 }
 
+.addForm {
+  margin-bottom: 3rem;
+}
+
 .NgxEditor__Wrapper{
   margin-bottom: 20px;
   min-height: 200px;
 }
+
 

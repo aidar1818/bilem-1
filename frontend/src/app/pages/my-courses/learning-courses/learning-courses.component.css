@@ -7,6 +7,14 @@
   margin-bottom: 16px;
 }
 
+.course-card {
+  text-decoration: none;
+}
+
+.myCourses {
+  height: 100%;
+}
+
 .alternativeTitle {
   text-align: center;
   margin: 40px 0;
@@ -14,7 +22,7 @@
   font-weight: 500;
 }
 
-.currentCourses{
+.currentCourses {
   width: 70%;
 }
 
@@ -47,8 +55,8 @@
 
 .card:hover {
   cursor: pointer;
-  -webkit-box-shadow:  0 7px 14px #D3DAE2;
-  -moz-box-shadow:  0 7px 14px #D3DAE2;
+  -webkit-box-shadow: 0 7px 14px #D3DAE2;
+  -moz-box-shadow: 0 7px 14px #D3DAE2;
   box-shadow: 0 7px 14px #D3DAE2;
 }
 
@@ -56,6 +64,7 @@
   color: #fff;
   background: #85233E;
   min-width: 120px;
+  margin-right: 16px;
 }
 
 .leave-btn {
@@ -90,6 +99,7 @@
 
 .recent-course-card {
   width: 350px;
+  padding: 0;
   margin-bottom: 16px;
 }
 
@@ -105,6 +115,7 @@
 .recent-course-card_title {
   color: #081131;
   font-size: 17px;
+  margin-bottom: 0;
 }
 
 .recent-course-card:hover .recent-course-card_title {
@@ -113,6 +124,7 @@
 
 .recent-course-card_content {
   color: #9DA6BA;
+  margin-bottom: 0;
 }
 
 .recent-course-card:hover .recent-course-card_content {
@@ -126,10 +138,10 @@
 .progress-content {
   max-width: 35px;
   color: #6B0D24;
-  position: relative;
-  top: -25%;
+  position: absolute;
+  top: 50%;
   left: 55%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   margin: 0;
 }
 
@@ -146,6 +158,8 @@
 }
 
 .paginationArea {
+  display: flex;
+  justify-content: center;
   width: 60%;
   text-align: right;
   margin-bottom: 40px;
@@ -153,27 +167,7 @@
   padding-right: 10px;
 }
 
-.my-pagination /deep/ .ngx-pagination .current {
-  color: #85233E !important;
-  border: 1px solid #85233E !important;
-  border-radius: 15%;
-  background-color: #FFFFFF !important;
-}
 
-.my-pagination /deep/ .ngx-pagination a {
-  border: 1px solid #DFE3E8 !important;
-  background-color: #FFFFFF;
-  border-radius: 15%;
-  margin-left: 10px;
-}
-
-.my-pagination /deep/ .ngx-pagination a::after {
-  margin: 0;
-}
-
-.my-pagination /deep/ .ngx-pagination a::before {
-  margin: 0;
-}
 
 .text-muted {
   margin: 0;
@@ -184,20 +178,39 @@
 }
 
 .paginationArea {
-  position: absolute;
-  bottom: 0;
-  right: 29%;
+  width: 100%;
+  margin-top: auto;
 }
 
-@media screen and (max-width: 1120px) {
+.menu {
+  display: none;
+}
+
+@media screen and (max-width: 1196px) {
   .currentCourses {
     width: 100%;
   }
+
   .lastCourses {
     display: none;
   }
-  .paginationArea {
-    right: 0;
+}
+
+@media screen and (max-width: 567px) {
+  .currentCourses {
+    padding: 0 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .buttons {
+    display: none;
+  }
+
+  .menu {
+    display: block;
   }
 }
 

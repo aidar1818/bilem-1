@@ -47,7 +47,11 @@ import {
   startCourseRequest,
   startCourseSuccess,
   fetchAllBestCoursesRequest,
-  fetchAllBestCoursesSuccess, fetchAllBestCoursesFailure
+  fetchAllBestCoursesSuccess,
+  fetchAllBestCoursesFailure,
+  fetchCourseInfoRequest,
+  fetchCourseInfoSuccess,
+  fetchCourseInfoFailure
 } from './course.actions';
 
 const initialState: CourseState = {
@@ -117,6 +121,10 @@ export const courseReducer = createReducer(
   on(fetchCoursesByCategoryRequest, state => ({...state, fetchSortLoading: true})),
   on(fetchCoursesByCategorySuccess, (state, {courses}) => ({...state, fetchSortLoading: false, courses})),
   on(fetchCoursesByCategoryFailure, (state, {error}) => ({...state, fetchSortLoading: false, fetchSortLoadingError: error})),
+
+  on(fetchCourseInfoRequest, state => ({...state, fetchLoading: true})),
+  on(fetchCourseInfoSuccess, (state, {course}) => ({...state, fetchLoading: false, course})),
+  on(fetchCourseInfoFailure, (state, {error}) => ({...state, fetchLoading: false, fetchLoadingError: error})),
 
   on(fetchCoursesBySubcategoryRequest, state => ({...state, fetchBySubcategoryLoading: true})),
   on(fetchCoursesBySubcategorySuccess, (state, {courses}) => ({...state, fetchBySubcategoryLoading: false, courses})),
