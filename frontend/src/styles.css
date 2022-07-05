@@ -41,20 +41,25 @@ body {
 }
 
 .main-contents {
-  min-height: calc(100vh - 480px);
+  min-height: calc(100vh - 100px);
 }
 
 .footerBlock {
   background: #111116;
 }
 
-footer {
+.descFooter {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 400px;
   padding: 15px;
+  margin-top: 50px;
+}
+
+.mobFooter {
+  display: none;
 }
 
 .footerText {
@@ -71,7 +76,7 @@ footer {
   margin-bottom: 15px;
 }
 
-.footer-logo a {
+.footer-logo-link {
   align-items: center;
   font-family: 'Poppins', sans-serif;
   font-style: normal;
@@ -95,7 +100,7 @@ footer {
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  line-height: 29px;
+  line-height: 34px;
   color: #F4F4F4;
   margin-bottom: 50px;
 }
@@ -376,12 +381,49 @@ app-edit-course .mat-form-field-appearance-legacy .mat-form-field-underline,
   .authFbGlText {
     font-size: 15px !important;
   }
+
+  .descFooter {
+    height: 358px;
+    padding: 5px;
+  }
+
 }
 
 @media (max-width: 537px) {
   .mat-tab-label-container {
     margin-left: 10px;
   }
+
+  .descFooter {
+    display: none;
+  }
+
+  .mobFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 544px;
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  .footer-nav nav a {
+    font-size: 16px;
+    line-height: 180%;
+    color: #FAFAFA;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .socialLinks  {
+    margin: 0 auto;
+  }
+  .socialLinks a {
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+  }
+
 }
 
 
