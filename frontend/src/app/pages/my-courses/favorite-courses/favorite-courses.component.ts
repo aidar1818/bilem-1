@@ -5,10 +5,7 @@ import { Course } from '../../../models/course.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
 import { fetchUserRequest } from '../../../store/users/users.actions';
-import {
-  removeFavoriteCourseRequest,
-  startCourseRequest
-} from "../../../store/course/course.actions";
+import { removeFavoriteCourseRequest, startCourseRequest } from '../../../store/course/course.actions';
 
 @Component({
   selector: 'app-favorite-courses',
@@ -39,15 +36,25 @@ export class FavoriteCoursesComponent implements OnInit, OnDestroy {
     });
   }
 
-  removeCourse(id: string) {
-    this.store.dispatch(removeFavoriteCourseRequest({id}));
+  removeCourse(event: Event, id: string) {
+    event.preventDefault();
+    this.store.dispatch(removeFavoriteCourseRequest({ id }));
   }
 
-  startCourse(id: string) {
-    this.store.dispatch(startCourseRequest({id}));
+  startCourse(event: Event, id: string) {
+    event.preventDefault();
+    this.store.dispatch(startCourseRequest({ id }));
+  }
+
+  onDeleteClick(event: Event) {
+    event.preventDefault();
   }
 
   ngOnDestroy() {
     this.userSub.unsubscribe()
+  }
+
+  onMenuClick(event: Event) {
+    event.preventDefault();
   }
 }

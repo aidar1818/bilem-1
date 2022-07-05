@@ -10,13 +10,17 @@
       </div>
     </div>
     <mat-nav-list role="navigation">
-      <a mat-list-item routerLink="learning">
-        <img src="../../../assets/icons/my-courses.svg" alt="my-courses" class="ic"/>
-        Мои курсы
+      <a mat-list-item routerLink="learning" fxLayout="row" fxLayoutAlign="start center" class="nav-item">
+        <div fxFlex="30%">
+          <img src="../../../assets/icons/my-courses.svg" alt="my-courses" class="ic"/>
+        </div>
+        <span fxFlex="70%" style="width: 100%">Мои курсы</span>
       </a>
-      <a mat-list-item routerLink="favorite">
-        <img src="assets/icons/favorite-courses.svg" alt="favorite-courses" class="ic"/>
-        Хочу пройти
+      <a mat-list-item routerLink="favorite" fxLayout="row" fxLayoutAlign="start center" class="nav-item">
+        <div fxFlex="30%">
+          <img src="assets/icons/favorite-courses.svg" alt="favorite-courses" class="ic"/>
+        </div>
+        <span fxFlex="70%" style="width: 100%">Хочу пройти</span>
       </a>
     </mat-nav-list>
   </app-sidebar>

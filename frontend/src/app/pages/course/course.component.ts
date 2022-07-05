@@ -55,7 +55,7 @@ export class CourseComponent implements OnInit {
     this.reviewsFetchLoading = store.select(state => state.reviews.fetchLoading);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.store.dispatch(fetchUserRequest());
     this.store.dispatch(fetchCourseInfoRequest({ id: this.route.snapshot.params['id'] }));
     this.courseSub = this.courseOb.subscribe(c => {
