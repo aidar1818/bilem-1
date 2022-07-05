@@ -4,7 +4,6 @@ import { environment, environment as env } from '../../environments/environment'
 import { CommentData, Course, CourseData, FetchTariffData, Lesson, LessonClass } from '../models/course.model';
 import { map } from 'rxjs';
 import { Module } from '../models/module.model';
-import axios from 'axios';
 
 
 @Injectable({
