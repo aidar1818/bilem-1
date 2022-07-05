@@ -5,6 +5,7 @@ import { AppState } from '../../../store/types';
 import { MyCourses, User } from '../../../models/user.model';
 import { fetchUserRequest } from '../../../store/users/users.actions';
 import { Router } from '@angular/router';
+import { removeLearningCourseRequest } from '../../../store/course/course.actions';
 
 @Component({
   selector: 'app-learning-courses',
@@ -19,6 +20,7 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
   learningCourses: MyCourses[] = [];
   lastCourses: MyCourses[] = [];
   loading: Observable<boolean>;
+  removeLoading: Observable<boolean>;
   error: Observable<null | string>;
 
   totalLength: any;
@@ -27,6 +29,7 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private router: Router) {
     this.user = store.select(state => state.users.user);
     this.loading = store.select(state => state.users.fetchLoading);
+    this.removeLoading = store.select(state => state.courses.removeLearningCourse);
     this.error = store.select(state => state.users.fetchLoadingError);
   }
 
@@ -62,7 +65,17 @@ export class LearningCoursesComponent implements OnInit, OnDestroy {
     void this.router.navigate(['favorite']);
   }
 
+  removeCourse(id: string, event: Event) {
+    event.preventDefault();
+    this.store.dispatch(removeLearningCourseRequest({ id }));
+  }
+
+  onMenuClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
   ngOnDestroy() {
     this.userSub.unsubscribe();
   }
 }
+

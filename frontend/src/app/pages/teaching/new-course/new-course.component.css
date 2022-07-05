@@ -6,6 +6,13 @@
   margin: 2rem auto 2rem;
 }
 
+.box {
+  display: flex;
+  flex-direction: row;
+  place-content: stretch space-evenly;
+  align-items: stretch;
+}
+
 .box mat-card{
   margin: 20px;
   padding: 40px;
@@ -32,7 +39,55 @@ mat-card div{
   margin: 20px 0
 }
 
-.addBtn{
+.addBtn {
   background: #85233E;
   color: white;
 }
+
+.buildCourse {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1195px) {
+  .box mat-card{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 965px) {
+  .title {
+    margin: 4rem auto 2rem;
+  }
+}
+
+@media screen and (max-width: 665px){
+  .box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box mat-card{
+    padding: 30px;
+  }
+
+  .material-icons {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 530px){
+  .courseTxt {
+    display: none;
+  }
+
+  .mat-card .mat-card-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .mat-card div {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+}
+

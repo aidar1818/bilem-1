@@ -11,8 +11,62 @@
         собраны специально для тебя</p>
       <button class="btnGo" routerLink="/login">Начать учиться</button>
     </div>
-    <img src="./assets/icons/woman.png" alt="woman" class="woman-img">
+    <img *ngIf="mobile" src="./assets/icons/woman.png" alt="woman" class="woman-img">
   </div>
     <app-course-cards [title]="'Бесплатные курсы'" [is_free]="true"></app-course-cards>
     <app-course-cards [title]="'Платные курсы'" [is_free]="false"></app-course-cards>
+
+
+    <div *ngIf="bestCoursesData.length > 0" class="courses">
+      <h1 class="cards-title">Собираем для вас лучшие курсы</h1>
+      <div class="cards-block">
+        <div fxLayout="row wrap" class="courses">
+          <div *ngFor="let course of bestCoursesData | orderBy:'-rate'">
+            <mat-card class="card-wrapper">
+              <div [routerLink]="['/course', course['_id']]" class="course-card" fxLayout="column"
+                   fxLayoutAlign="space-between">
+                <div>
+                  <mat-card-title-group fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-card-title>
+                      <a class="course-title" [routerLink]="['/course', course['_id']]">{{ course.title }}</a>
+                      <p class="course-author">Author</p>
+                    </mat-card-title>
+                    <div>
+                      <img
+                        mat-card-sm-image
+                        class="course-image"
+                        [src]="course.image | imageForCourse"
+                        alt="icon"
+                      >
+                    </div>
+                  </mat-card-title-group>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <div fxLayout="row" fxLayoutAlign="space-between">
+                    <p class="price" *ngIf="!course.is_free && !learning">{{ course['price'] }} сом</p>
+                    <p class="price" *ngIf="course.is_free && !learning">Бесплатно</p>
+                    <p class="price" style="color: #66cc66" *ngIf="learning">Вы уже записаны</p>
+                  </div>
+                  <div>
+                    <div fxLayout="row" class="div-div">
+                      <i class="material-icons icon" style="color: #9999998A;">star</i>
+                      <p class="course-rate-text">{{ course.rate }}</p>
+                      <i class="material-icons icon" style="color: #9999998A;">person</i>
+                      <p class="course-rate-text">{{ course.students.length }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+
+          </div>
+        </div>
+      </div>
+      <div class="btn-area">
+        <button mat-raised-button class="btn" [routerLink]="['all-best-courses']">
+          ПОСМОТРЕТЬ ВСЕ КУРСЫ
+          <span class="material-icons ic_right">arrow_forward</span>
+        </button>
+      </div>
+    </div>
 </ng-template>

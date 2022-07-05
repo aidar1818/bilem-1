@@ -80,6 +80,32 @@ button {
   margin-bottom: 30px;
 }
 
+@media screen and (max-width: 567px) {
+  .favorite-courses-block {
+    padding: 0 16px;
+  }
+
+  .title-favorite {
+    font-size: 22px;
+  }
+
+  .course-author {
+    font-size: 12px;
+  }
+
+  .mat-button-wrapper {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .course-image {
+    display: none;
+  }
+}
+
 
 
 

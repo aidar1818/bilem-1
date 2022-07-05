@@ -34,6 +34,7 @@ exports.config = {
       './step_definitions/steps.modal.js',
       './step_definitions/steps.anonUserBlock.js',
       './step_definitions/steps.statistics.js',
+        './step_definitions/steps.leaveCourse.js'
     ]
   },
   plugins: {

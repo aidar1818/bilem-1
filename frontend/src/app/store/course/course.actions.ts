@@ -5,6 +5,19 @@ export const fetchCoursesRequest = createAction('[Courses] Fetch Request');
 export const fetchCoursesSuccess = createAction('[Courses] Fetch Success', props<{courses: Course[]}>());
 export const fetchCoursesFailure = createAction('[Courses] Fetch Failure', props<{error: string}>());
 
+export const fetchAllFreeCoursesRequest = createAction('[Courses] Fetch All Free Request');
+export const fetchAllFreeCoursesSuccess = createAction('[Courses] Fetch All Free Success', props<{allFreeCourses: Course[]}>());
+export const fetchAllFreeCoursesFailure = createAction('[Courses] Fetch All Free Failure', props<{error: string}>());
+
+export const fetchAllPaidCoursesRequest = createAction('[Courses] Fetch All Paid Request');
+export const fetchAllPaidCoursesSuccess = createAction('[Courses] Fetch All Paid Success', props<{allPaidCourses: Course[]}>());
+export const fetchAllPaidCoursesFailure = createAction('[Courses] Fetch All Paid Failure', props<{error: string}>());
+
+export const fetchAllBestCoursesRequest = createAction('[Courses] Fetch All Best Request');
+export const fetchAllBestCoursesSuccess = createAction('[Courses] Fetch All Best Success', props<{bestCourses: Course[]}>());
+export const fetchAllBestCoursesFailure = createAction('[Courses] Fetch All Best Failure', props<{error: string}>());
+
+
 export const fetchCourseInfoRequest = createAction(
   '[Course] Fetch Request',
   props<{id: string}>());
@@ -86,13 +99,33 @@ export const addFavoriteCourseFailure = createAction(
   props<{error: string}>()
 );
 
+export const startCourseRequest = createAction('[Course] Start Request', props<{ id: string }>());
+export const startCourseSuccess = createAction('[Course] Start Success');
+export const startCourseFailure = createAction('[Course] Start Failure');
+
 export const removeCourseRequest = createAction('[Course] Remove Request', props<{ id: string }>());
 export const removeCourseSuccess = createAction('[Course] Remove Success');
 export const removeCourseFailure = createAction('[Course] Remove Failure');
 
+export const removeLearningCourseRequest = createAction('[Learning Course] Remove Request', props<{ id: string }>());
+export const removeLearningCourseSuccess = createAction('[Learning Course] Remove Success');
+export const removeLearningCourseFailure = createAction('[Learning Course] Remove Failure');
+
+export const removeFavoriteCourseRequest = createAction('[Favorite Course] Remove Request', props<{ id: string }>());
+export const removeFavoriteCourseSuccess = createAction('[Favorite Course] Remove Success');
+export const removeFavoriteCourseFailure = createAction('[Favorite Course] Remove Failure');
+
 export const publishCourseRequest = createAction('[Course] Publish Request', props<{ id: string }>());
 export const publishCourseSuccess = createAction('[Course] Publish Success');
 export const publishCourseFailure = createAction('[Course] Publish Failure');
+
+export const addToTheBestRequest = createAction('[Course] AddToTheBest Request', props<{ id: string }>());
+export const addToTheBestSuccess = createAction('[Course] AddToTheBest Success');
+export const addToTheBestFailure = createAction('[Course] AddToTheBest Failure');
+
+export const removeFromBestRequest = createAction('[Course] RemoveFrom Request', props<{ id: string }>());
+export const removeFromBestSuccess = createAction('[Course] RemoveFrom Success');
+export const removeFromBestFailure = createAction('[Course] RemoveFrom Failure');
 
 export const createCommentRequest = createAction('[Comment] Create Request', props<{commentData: CommentData}>());
 export const createCommentSuccess = createAction('[Comment] Create Success');

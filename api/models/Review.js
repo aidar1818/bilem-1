@@ -22,7 +22,7 @@ const ReviewSchema = new Schema({
     },
     datetime: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 

@@ -5,11 +5,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   name: 'youTubeVideo'
 })
 export class YouTubeVideoPipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) {
+  }
 
   transform(value: string | null): string {
     if (value) {
-      return <string>this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${value}`);
+      return <string>this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${ value }`);
     }
 
     return '';

@@ -1,0 +1,76 @@
+.freeCourses, .paidCourses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px 0;
+  padding: 15px;
+  border-bottom: 1px solid #000;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+.cards {
+  width: 400px;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card img {
+  width: 100px;
+}
+
+.content {
+  width: 200px;
+}
+
+.content h3 {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.content h3:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.published {
+  color: blue;
+}
+
+.unpublished {
+  color: red;
+}
+
+.best {
+  color: green;
+}
+
+.admin-btns {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.admin-btns button {
+  margin-bottom: 10px;
+}
+
+
+
+

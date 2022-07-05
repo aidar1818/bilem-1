@@ -6,11 +6,17 @@
 }
 
 .nav {
-  width: 18rem;
-  margin-right: 50px;
+  width: 274px;
+  margin-right: 15px;
   padding: 40px 0;
   background-color: #fff;
   border-right: 1px solid #E2E2E2;
+}
+
+@media screen and (max-width: 567px) {
+  .container {
+    padding: 0;
+  }
 }
 
 .mat-nav-list:last-child {
@@ -80,8 +86,15 @@ mat-nav-list a:hover {
 }
 
 .ic {
+  width: 45px;
+  height: 25px;
   filter: invert(70%) sepia(1%) saturate(0%) hue-rotate(355deg) brightness(88%) contrast(86%);
   padding-right: 19px;
+}
+
+.nav-item {
+  display: block;
+  width: 100%;
 }
 
 .router {
@@ -109,7 +122,7 @@ mat-nav-list a:hover {
   border-bottom: 2px solid #999999;
 }
 
-.active a{
+.active a {
   color: #85233E;
   border-bottom: 2px solid #85233E;
 }
@@ -118,7 +131,8 @@ mat-nav-list a:hover {
   .nav {
     display: none;
   }
-  .tabList{
+
+  .tabList {
     display: block;
   }
 }

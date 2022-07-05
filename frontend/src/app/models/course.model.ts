@@ -75,6 +75,7 @@ export class Course {
     public price: number,
     public image: string,
     public is_free: boolean,
+    public best: boolean,
     public rate: number,
     public is_published: boolean,
     public promoVideo: string,

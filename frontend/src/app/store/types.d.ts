@@ -66,8 +66,17 @@ export type CourseState = {
   courses: Course[],
   course: Course | null,
   searchCourses: Course[],
+  allFreeCourses: Course[],
+  allPaidCourses: Course[],
+  bestCourses: Course[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  fetchAllBestCoursesLoading: boolean,
+  fetchAllBestCoursesLoadingError: null | string,
+  fetchAllFreeCoursesLoading: boolean,
+  fetchAllFreeCoursesLoadingError: null | string,
+  fetchAllPaidCoursesLoading: boolean,
+  fetchAllPaidCoursesLoadingError: null | string,
   fetchPersonalLoading: boolean,
   fetchPersonalLoadingError: null | string,
   fetchSortLoading: boolean,
@@ -78,8 +87,13 @@ export type CourseState = {
   searchLoadingError: null | string,
   createLoading: boolean,
   createError: null | string,
+  startLoading: boolean,
   removeLoading: boolean,
+  removeLearningCourse: boolean,
+  removeFavoriteCourse: boolean,
   publishLoading: boolean,
+  addToTheBestLoading: boolean,
+  removeFromBestLoading: boolean,
 };
 
 export type ModuleState = {
@@ -106,6 +120,10 @@ export type ReviewsState = {
   reviews: Review[],
   fetchLoading: boolean,
   fetchLoadingError: null | string,
+  createLoading: boolean,
+  createError: null | string,
+  removeLoading: boolean,
+  removeError: null | string,
 };
 
 export type StatisticsState = {

@@ -2,17 +2,18 @@
   {{ error | async }}
 </div>
 
-<mat-progress-spinner
-  *ngIf="(loading | async) else coursesArea"
-  mode="indeterminate"
-></mat-progress-spinner>
-
 <div *ngIf="available" class="notAvailable">
   <p><b>По данному запросу ничего не найдено. Попробуйте изменить параметры поиска.</b></p>
 </div>
 
+<mat-progress-spinner
+  *ngIf="(searchLoading | async) else coursesArea"
+  mode="indeterminate"
+  style="margin: 50px auto;"
+></mat-progress-spinner>
+
 <ng-template #coursesArea >
-  <div class="card_section" *ngFor="let course of searchCourses | async">
+  <div class="card_section" *ngFor="let course of searchCourses | async" [routerLink]="['/course', course['_id']]">
     <div class="card">
       <div class="card_img">
                 <img

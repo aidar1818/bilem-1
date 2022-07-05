@@ -99,6 +99,10 @@ const CourseSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  best: {
+    type: Boolean,
+    default: false,
+  },
   rate: {
     type: Number,
     default: 0.0
