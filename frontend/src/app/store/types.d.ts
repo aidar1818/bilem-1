@@ -5,6 +5,7 @@ import { Course } from '../models/course.model';
 import { Lesson, Module } from '../models/course.model';
 import { Review } from '../models/review.model';
 import { Statistics } from '../models/statistics.model';
+import { Message } from '../models/message.model';
 
 export type UsersState = {
   user: null | User,
@@ -132,6 +133,16 @@ export type StatisticsState = {
   fetchLoadingError: null | string,
 };
 
+export type MessagesState = {
+  messages: Message[],
+  fetchLoading: boolean,
+  fetchLoadingError: null | string,
+  createLoading: boolean,
+  createError: null | string,
+  removeLoading: boolean,
+  removeError: null | string,
+};
+
 export type AppState = {
   users: UsersState,
   categories: CategoriesState,
@@ -141,4 +152,5 @@ export type AppState = {
   lessons: LessonsState,
   reviews: ReviewsState,
   statistics: StatisticsState,
+  messages: MessagesState,
 };

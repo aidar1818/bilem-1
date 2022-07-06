@@ -60,7 +60,7 @@ mat-nav-list a:hover {
 
 .avatar mat-icon {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 5px;
   color: white;
   font-family: Roboto, "Helvetica Neue", sans-serif;

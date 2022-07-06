@@ -6,6 +6,7 @@ const subcategories = require('./app/subcategories');
 const categories = require('./app/categories');
 const courses = require('./app/courses');
 const reviews = require('./app/reviews');
+const messages = require('./app/messages');
 const config = require('./config');
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/subcategories', subcategories);
 app.use('/categories', categories);
 app.use('/courses', courses);
 app.use('/reviews', reviews);
+app.use('/messages', messages);
 
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);

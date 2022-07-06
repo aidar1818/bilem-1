@@ -79,6 +79,10 @@ form div{
   margin-right: 20px;
 }
 
+form button {
+  width: 100px;
+}
+
 form .text {
   width: 300px;
 }

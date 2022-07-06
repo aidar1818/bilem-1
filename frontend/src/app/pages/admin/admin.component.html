@@ -3,12 +3,12 @@
 
   <ng-template #freeCoursesArea>
 
-    <div>
+    <div *ngIf="freeCoursesData.length >= 1">
       <h2>Бесплатные курсы</h2>
       <div class="freeCourses">
         <div class="cards" *ngFor="let course of freeCoursesData | paginate :
           {
-             itemsPerPage: 10,
+             itemsPerPage: 4,
              currentPage: pageFree,
              totalItems: totalLengthFree
               }">
@@ -65,12 +65,12 @@
   <mat-progress-spinner *ngIf="(paidLoading | async) else paidCoursesArea" mode="indeterminate"></mat-progress-spinner>
 
   <ng-template #paidCoursesArea>
-    <div>
+    <div *ngIf="paidCoursesData.length >= 1">
       <h2>Платные курсы</h2>
       <div class="paidCourses">
         <div class="cards" *ngFor="let course of paidCoursesData | paginate :
           {
-             itemsPerPage: 10,
+             itemsPerPage: 4,
              currentPage: pagePaid,
              totalItems: totalLengthPaid
               }">
@@ -122,4 +122,48 @@
       </div>
     </div>
   </ng-template>
+
+
+  <mat-progress-spinner *ngIf="(messagesLoading | async) else mesArea" mode="indeterminate"></mat-progress-spinner>
+
+  <ng-template #mesArea>
+
+    <div *ngIf="messagesData.length >= 1">
+      <h2>Вопросы и предложения</h2>
+      <div class="messages">
+        <div class="mesCards" *ngFor="let message of messagesData | paginate :
+          {
+             itemsPerPage: 10,
+             currentPage: pageMes,
+             totalItems: totalLengthMes
+              }">
+          <mat-card style="margin-bottom: 15px">
+            <mat-card-title>Имя: {{ message.name }}</mat-card-title>
+            <div class="mesInfo">
+              <h3> Текст: {{ message.text }}</h3>
+              <p>Email: {{ message.email }}</p>
+              <p>Телефон: {{ message.phoneNumber }}</p>
+            </div>
+            <mat-card-actions>
+              <button  mat-raised-button color="warn" (click)="removeMessages(message._id, $event)">
+                <mat-spinner diameter="30" *ngIf="(removeMesLoading | async) && message._id === toBeRemoveMessage"></mat-spinner>
+                <span *ngIf="!(removeMesLoading | async) || message._id !== toBeRemoveMessage">Удалить</span>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <div class="paginationArea" *ngIf="messagesData.length > 0">
+        <pagination-controls
+          (pageChange)="onPageMesChange($event)"
+          class="my-pagination"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+    </div>
+
+  </ng-template>
+
+
 </div>
